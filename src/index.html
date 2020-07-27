@@ -1,21 +1,82 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <!-- <link rel="stylesheet" src="./sass/main.scss"> -->
+    <!-- <link rel="stylesheet" src="./styles.css"> -->
+    <title>JS Final</title>
+  </head>
 
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-  <!-- <link rel="stylesheet" src="./sass/main.scss"> -->
-  <!-- <link rel="stylesheet" src="./styles.css"> -->
-  <title>JS Final</title>
-
-</head>
-
-<body>
-  <div class="container" id="root">
-
-  </div>
-</body>
-
-
+  <body>
+    <div class="container" id="root">
+      <main>
+        <section class="information container">
+          <ul class="information__icon-list">
+            <li class="information__icon-item">
+              <svg class="information__icon">
+                <use href="./images/information/sprite.svg#delivery"></use>
+              </svg>
+            </li>
+            <li class="information__icon-item">
+              <svg class="information__icon">
+                <use href="./images/information/sprite.svg#payment"></use>
+              </svg>
+            </li>
+            <li class="information__icon-item">
+              <svg class="information__icon">
+                <use href="./images/information/sprite.svg#conditions"></use>
+              </svg>
+            </li>
+            <li class="information__icon-item">
+              <svg class="information__icon">
+                <use href="./images/information/sprite.svg#return"></use>
+              </svg>
+            </li>
+          </ul>
+          <ul class="information_list">
+            <li class="information__list-item">
+              <span class="information__list-title">
+                Доставка
+              </span>
+              <p class="information__list-description">
+                Мы предоставляем бесплатную доставку в отделение "Нова Пошта"
+                или "Укрпошта" для всех заказов на сумму от 1000 грн. Доставка
+                заказов на сумму менее 1000 грн оплачивается покупателем по
+                тарифам почты.
+              </p>
+            </li>
+            <li class="information__list-item">
+              <span class="information__list-title">
+                Оплата
+              </span>
+              <p class="information__list-description">
+                Наличный расчет, Безналичный расчет, Online оплата LiqPay
+              </p>
+            </li>
+            <li class="information__list-item">
+              <span class="information__list-title">
+                В2В Условия и предложения
+              </span>
+              <p class="information__list-description">
+                Основным направлением деятельности нашей компании является
+                оптовая и розничная торговля женской, мужской и детской обувью.
+              </p>
+            </li>
+            <li class="information__list-item">
+              <span class="information__list-title">
+                Обмен или возврат товара
+              </span>
+              <p class="information__list-description">
+                Весь товар можно вернуть или обменять в течение 14 дней с
+                момента получения заказа при условии, что он не был в
+                использовании.
+              </p>
+            </li>
+          </ul>
+        </section>
+      </main>
+    </div>
+  </body>
 </html>

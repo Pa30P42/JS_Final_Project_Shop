@@ -1,0 +1,66 @@
+@media (min-width: 1200px) {
+  .information {
+    padding: 48px 20px 30px 20px;
+    background-color: rgb(244, 244, 244);
+    border-radius: 10px;
+  }
+
+  .information__icon-list {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+  }
+
+  .information__icon {
+    width: 80px;
+    height: 80px;
+
+    margin-bottom: 40px;
+  }
+
+  .information_list {
+    display: flex;
+    justify-content: center;
+  }
+
+  .information__list-item {
+    width: 248px;
+  }
+
+  .information__list-item:not(:last-child) {
+    margin-right: 30px;
+  }
+
+  .information__list-title {
+    @include font(600, 18px, 1.2, $main-color);
+    font-family: 'Montserrat Alternates', sans-serif;
+    font-style: normal;
+    text-align: start;
+    // margin-bottom: 30px;
+  }
+
+  .information__list-description {
+    @include font(500, 14px, 1.2, $main--text-color);
+    font-family: 'Montserrat Alternates', sans-serif;
+    font-style: normal;
+    // margin-top: 30px;
+    margin-bottom: 30px;
+  }
+
+  // .information__list-item::before {
+  //   display: block;
+  //   content: '';
+  //   height: 80px;
+  //   width: 80px;
+  //   background-repeat: no-repeat;
+  // }
+
+  // .information__icon::before {
+  //   background-image: url(../../images/information/delivery.svg);
+  // }
+
+  // .information__icon {
+  //   width: 80px;
+  //   height: 80px;
+  // }
+}
