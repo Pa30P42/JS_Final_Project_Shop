@@ -1,0 +1,16 @@
+@mixin font($fw, $fs, $lh, $fc) {
+  font-weight: $fw;
+  font-size: $fs;
+  line-height: $lh;
+  color: $fc;
+}
+@mixin size($w, $h) {
+  width: $w;
+  height: $h;
+}
+@mixin btn($bgc, $c, $pad, $min-w) {
+  background-color: $bgc;
+  color: $c;
+  padding: $pad;
+  min-width: $min-w;
+}
