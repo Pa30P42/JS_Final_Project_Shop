@@ -1,0 +1,89 @@
+@import '../../sass/helpers/mixins.scss';
+@import '../../sass/helpers/variables.scss';
+@import '../../sass/helpers/placeholders.scss';
+
+.categories {
+  &__list {
+    margin-bottom: 48px;
+
+    @media (min-width: 768px) {
+      margin-bottom: 65px;
+      display: flex;
+      flex-wrap: wrap;
+    }
+  }
+
+  &__item {
+    text-align: center;
+
+    @media (max-width: 767px) {
+      &:not(:last-child) {
+        margin-bottom: 48px;
+      }
+    }
+
+    @media (min-width: 768px) {
+      &:nth-child(2n-1) {
+        margin-right: 20px;
+      }
+    }
+
+    @media (min-width: 768px) {
+      &:nth-child(-n + 2) {
+        margin-bottom: 30px;
+      }
+    }
+
+    @media (min-width: 1200px) {
+      &:nth-child(2n-1) {
+        margin-right: 30px;
+      }
+    }
+  }
+}
+
+.category {
+  &__img {
+    border-radius: 10px;
+    height: 144px;
+    margin: 0 auto;
+
+    @media (min-width: 768px) {
+      width: 314px;
+      height: 161px;
+    }
+
+    @media (min-width: 1200px) {
+      width: 525px;
+      height: 270px;
+    }
+
+    &_wrapper {
+      margin-bottom: 20px;
+    }
+  }
+  &__title {
+    @include font(700, 26px, 28px, $main--text-color);
+    margin-bottom: 20px;
+  }
+}
+
+.btn {
+  @extend %btn;
+  @include font(500, 18px, 22px, #ffffff);
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  align-items: center;
+  text-align: center;
+
+  &_gradient {
+    min-width: 198px;
+    height: 44px;
+    padding: 11px 50px;
+
+    background: $main-gradient;
+    border-radius: 10px;
+
+    color: #ffffff;
+  }
+}
