@@ -6,16 +6,17 @@ export default {
     try {
       const response = await axios.get('https://goit-store.herokuapp.com/orders');
       console.log(response);
-
+      return response
     } catch (err) {
       throw new Error(err);
     }
   },
 
-  async createNewOrder() {
+  async createNewOrder(newOrder) {
     try {
-      const response = await axios.post('https://goit-store.herokuapp.com/orders');
+      const response = await axios.post('https://goit-store.herokuapp.com/orders', newOrder);
       console.log(response)
+      return response
 
     } catch (err) {
       throw new Error(err);
