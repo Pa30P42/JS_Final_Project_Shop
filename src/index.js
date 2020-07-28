@@ -10,4 +10,4 @@ containerHandler();
 apiProducts.getCategories().then(data => console.log(userData));
 
 // services.addFavorite('5f154f156a4df46aa14dc526');
-// services.GetAllOrders();
+
