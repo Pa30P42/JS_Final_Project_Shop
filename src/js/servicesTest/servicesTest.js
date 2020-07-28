@@ -21,4 +21,4 @@ const getInfo = async () => {
 //   }
 // };
 
-getInfo();
+// getInfo();
