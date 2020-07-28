@@ -1,5 +1,27 @@
 import './category.scss';
 
+const appliances = [
+  {
+    name: 'Крупная бытовая техника',
+    value: 'large_home_appliances',
+  },
+
+  {
+    name: 'Встраиваемая техника',
+    value: 'built-in_appliances',
+  },
+
+  {
+    name: 'Уход за домом и одеждой',
+    value: 'home_and_clothing_care',
+  },
+
+  {
+    name: 'Техника для кухний',
+    value: 'kitchen_appliances',
+  },
+];
+
 const categories = [
   {
     name: 'Крупная бытовая техника',
@@ -45,5 +67,5 @@ function categoriesItemMarkup(categories) {
   }, '');
 }
 
-const markup = document.querySelector('#root');
-markup.insertAdjacentHTML('afterbegin', categoriesListMarkup(categories));
+// const markup = document.querySelector('#root');
+// markup.insertAdjacentHTML('afterbegin', categoriesListMarkup(categories));
