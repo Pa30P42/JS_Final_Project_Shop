@@ -10,11 +10,13 @@
       margin-bottom: 65px;
       display: flex;
       flex-wrap: wrap;
+      justify-content: space-between;
     }
   }
 
   &__item {
     text-align: center;
+    align-content: space-between;
 
     @media (max-width: 767px) {
       &:not(:last-child) {
@@ -23,15 +25,18 @@
     }
 
     @media (min-width: 768px) {
-      &:nth-child(2n-1) {
-        margin-right: 20px;
-      }
+      width: 314px;
+      min-height: 301px;
     }
 
     @media (min-width: 768px) {
       &:nth-child(-n + 2) {
         margin-bottom: 30px;
       }
+    }
+
+    @media (min-width: 1200px) {
+      width: 525px;
     }
 
     @media (min-width: 1200px) {
@@ -47,6 +52,7 @@
     border-radius: 10px;
     height: 144px;
     margin: 0 auto;
+    object-fit: cover;
 
     @media (min-width: 768px) {
       width: 314px;
@@ -75,6 +81,11 @@
   letter-spacing: 0.2em;
   align-items: center;
   text-align: center;
+
+  &:hover,
+  &:focus {
+    background: $main-color;
+  }
 
   &_gradient {
     min-width: 198px;
