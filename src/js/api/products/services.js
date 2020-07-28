@@ -4,6 +4,7 @@ export const getAppliances = (categories) => {
   const getCategoryItems = (key) => {
     const result = categories.reduce((acc, category) => {
       for (const item of userData.appliances[key].filter) {
+      // console.log(item);
         if (category.value === item) {
           acc.push(category);
           break;
