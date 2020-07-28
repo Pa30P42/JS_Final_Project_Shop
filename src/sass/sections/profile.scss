@@ -40,7 +40,8 @@
 .profile__buttons-wrapper {
   display: flex;
   flex-direction: column;
-  margin-right: 30px;
+  align-items: center;
+  // margin-right: 30px;
 }
 
 .profile__button {
@@ -163,6 +164,7 @@
 .form-group {
   display: flex;
   flex-direction: column;
+  // align-items: center;
 
   & label {
     color: #53535C;
@@ -171,6 +173,7 @@
 }
 
 .save-button {
+
   width: 250px;
   height: 44px;
   background-image: linear-gradient(10.96deg, #6368E5 15.48%, #B884F3 81.25%);
@@ -179,6 +182,9 @@
   letter-spacing: 0.2em;
   text-transform: uppercase;
   border: none;
+  margin-bottom: 45px;
+
+  align-items: center;
 
   &:hover {
     box-shadow: 0px 0px 5px #53535C;
@@ -339,4 +345,77 @@ em {
   &:hover {}
 
 
+}
+
+//=========js-active=====
+.js-active-tab {
+  position: relative;
+}
+
+.active-form {
+  display: flex;
+  flex-direction: column;
+
+  @media (max-width: 1198px) {
+
+    align-items: center;
+  }
+
+
+
+  @media (min-width: 768px) {
+    position: absolute;
+    transform: translateX(100%);
+    // right: 150px;
+
+  }
+
+  @media (min-width: 1200px) {
+    transform: translateX(115%)
+  }
+}
+
+.address-form-group {
+  display: flex;
+  flex-direction: column;
+
+  &input {
+    @media (min-width: 1200px) {
+      margin-right: 20px;
+    }
+
+  }
+
+  @media (min-width: 1200px) {
+
+
+    flex-wrap: wrap;
+    height: 350px;
+    //width: 300px;
+    // justify-content: start;
+    //justify-content: space-evenly;
+  }
+
+
+
+
+}
+
+.section-one {
+  display: flex;
+  flex-direction: column;
+
+  @media (min-width: 1200px) {
+    margin-right: 30px;
+  }
+}
+
+.section-two {
+  display: flex;
+  flex-direction: column;
+
+}
+
+label {
+  margin-bottom: 10px;
 }
