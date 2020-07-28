@@ -1,0 +1,266 @@
+body {
+  font-family: 'Montserrat Alternates';
+}
+
+@media (min-width: 1200px) {
+
+  .footer {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    width: 100%;
+    height: 237px;
+    left: 0px;
+    top: 884px;
+    background: #53535C;
+  }
+
+  .footer-container {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    font-family: 'Montserrat Alternates';
+    left: 5%;
+    right: 52.08%;
+    top: 12.66%;
+    bottom: 37.55%;
+    color: #C7C7C7;
+  }
+
+  .footer-container_contacts {
+    margin-right: 20%;
+    font-style: normal;
+  }
+
+  .footer-container_box {
+    display: flex;
+    flex-direction: row;
+    width: 600px;
+  }
+
+  .footer-container_num {
+    @include font(500, 14px, 23px, #C7C7C7);
+  }
+
+  .footer-container_title {
+    @include font(600, 18px, 22px, #FFC390);
+    font-style: normal;
+    margin-bottom: 5%;
+  }
+
+  .footer-container_num {
+    font-style: normal;
+    @include font(500, 14px, 17px, #C7C7C7);
+    padding-top: 3%;
+  }
+
+  .footer-container_num .footer-container_num-link {
+    color: #FFFFFF;
+    text-decoration: none;
+  }
+
+  .footer-container_schedule {
+    font-style: normal;
+    font-weight: 500;
+    @include font(500, 14px, 190%, #C7C7C7);
+  }
+
+  .footer-container_schedule span {
+    color: #FFFFFF;
+  }
+
+  .footer-container_info {
+    position: absolute;
+    width: 100%;
+    height: 0px;
+    left: 0px;
+    top: 80%;
+  }
+
+  .footer-container_info-data {
+    @include font(500, 14px, 17px, #FFFFFF);
+    font-style: normal;
+    text-align: center;
+    padding: 1%;
+  }
+}
+
+
+
+@media (min-width: 768px) {
+  .footer {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    position: absolute;
+    width: 100%;
+    height: 237px;
+    left: 0px;
+    top: 884px;
+    background: #53535C;
+  }
+
+  .footer-container {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+  
+    font-family: 'Montserrat Alternates';
+    left: 7.82%;
+    right: 17.73%;
+    top: 12.66%;
+    bottom: 37.55%;
+    color: #C7C7C7;
+  }
+
+  .footer-container_contacts {
+    
+    font-style: normal;
+  }
+
+  .footer-container_box {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+    width: 600px;
+  }
+
+  .footer-container_num {
+    @include font(500, 14px, 23px, #C7C7C7);
+  }
+
+  .footer-container_title {
+    @include font(600, 18px, 22px, #FFC390);
+    font-style: normal;
+   
+  }
+
+  .footer-container_num {
+    font-style: normal;
+    @include font(500, 14px, 17px, #C7C7C7);
+    padding-top: 3%;
+  }
+
+  .footer-container_num .footer-container_num-link {
+    color: #FFFFFF;
+    text-decoration: none;
+  }
+
+  .footer-container_schedule {
+    font-style: normal;
+    font-weight: 500;
+    @include font(500, 14px, 190%, #C7C7C7);
+  }
+
+  .footer-container_schedule span {
+    color: #FFFFFF;
+  }
+
+  .footer-container_info {
+    position: absolute;
+    width: 100%;
+    height: 0px;
+    left: 0px;
+    top: 80%;
+  }
+
+  .footer-container_info-data {
+    @include font(500, 14px, 17px, #FFFFFF);
+    font-style: normal;
+    text-align: center;
+    margin-top: 1%;
+    padding: 1%;
+  }
+  
+}
+
+
+@media (min-width: 320px) {
+  .footer {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    width: 100%;
+    height: 237px;
+    left: 0px;
+    top: 884px;
+    background: #53535C;
+  }
+
+  .footer-container {
+    display: flex;
+    flex-direction: column;
+    width:100%;
+    position: absolute;
+  
+    font-family: 'Montserrat Alternates';
+    left: 7.82%;
+    right: 17.73%;
+    top: 12.66%;
+    bottom: 37.55%;
+    color: #C7C7C7;
+  }
+
+  .footer-container_contacts {
+    
+    font-style: normal;
+  }
+
+  .footer-container_box {
+    display: flex;
+    flex-direction: column;
+    width: 600px;
+  }
+
+  .footer-container_num {
+    @include font(500, 14px, 23px, #C7C7C7);
+  }
+
+  .footer-container_title {
+    @include font(600, 18px, 22px, #FFC390);
+    font-style: normal;
+   
+  }
+
+  .footer-container_num {
+    font-style: normal;
+    @include font(500, 14px, 17px, #C7C7C7);
+    padding-top: 3%;
+  }
+
+  .footer-container_num .footer-container_num-link {
+    color: #FFFFFF;
+    text-decoration: none;
+  }
+
+  .footer-container_schedule {
+    font-style: normal;
+    font-weight: 500;
+    @include font(500, 14px, 190%, #C7C7C7);
+  }
+
+  .footer-container_schedule span {
+    color: #FFFFFF;
+  }
+
+  .footer-container_info {
+    position: absolute;
+    width: 100%;
+    height: 0px;
+    left: 0px;
+    top: 80%;
+  }
+
+  .footer-container_info-data {
+    @include font(500, 14px, 17px, #FFFFFF);
+    font-style: normal;
+    text-align: center;
+    margin-top: 1%;
+    padding: 1%;
+  }
+
+
+
+
+ 
+}
