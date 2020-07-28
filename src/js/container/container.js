@@ -14,7 +14,7 @@ const containerFooterMarkup = function () {
     `;
 };
 const containerSectionsMarkup = function () {
-  return ` 
+  return `
     <div class="slider-wrapper"></div>
     <div class="category-wrapper">${categoriesListMarkup(categories)}</div>
     <div class="new-products-wrapper"></div>
