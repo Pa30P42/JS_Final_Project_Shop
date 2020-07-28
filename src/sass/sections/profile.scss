@@ -225,13 +225,28 @@ em {
 }
 
 //==========favorites========
+
 .favorites-wrapper {
+  position: relative;
+}
+
+.favorites-wrapper__position {
   text-align: center;
+  position: relative;
+
+  @media (min-width: 768px) {
+    position: absolute;
+    transform: translate(35%, -80%);
+
+  }
 }
 
 .favorites-list {
   display: flex;
   justify-content: center;
+
+
+
 }
 
 .favorites-list__items {

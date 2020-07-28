@@ -173,5 +173,72 @@ const addressFormMarkup = () => {
   const myAddressBtn = document.querySelector('.address');
   myAddressBtn.insertAdjacentHTML('afterend', formMarkup())
 
+};
+//addressFormMarkup();
+
+
+const favoritesFormMarkup = () => {
+  const favoritesMarkup = () => {
+
+    return `
+      <div class="favorites-wrapper">
+      <div class="favorites-wrapper__position">
+
+            <ul class="favorites-list ">
+              <li class="favorites-list__items">
+                <button class="favorites-list__favorite-button">
+                  <img src="./images/profile/heart.svg" alt="" class="item__favorite-icon">
+                </button>
+
+                <img src="./images/profile/image 6.png" alt="" class="item-img" width="80">
+                <p class="item-name">Духовой шкаф электрический</p>
+                <div class="item-rate">
+                  <img src="./images/profile/circle.svg" alt="" class="item-rate__img">
+                  <img src="./images/profile/circle.svg" alt="" class="item-rate__img">
+                  <img src="./images/profile/circle.svg" alt="" class="item-rate__img">
+                  <img src="./images/profile/circle.svg" alt="" class="item-rate__img">
+                  <img src="./images/profile/circle.svg" alt="" class="item-rate__img">
+                </div>
+                <div class="item-price">
+                  <p class="item-price__old"><s> 10 555 &#x20b4;</s></p>
+                  <p class="item-price__new"> 13 999 &#x20b4;</p>
+                </div>
+
+              </li>
+
+              <li class="favorites-list__items">
+                <button class="favorites-list__favorite-button">
+                  <img src="./images/profile/heart.svg" alt="" class="item__favorite-icon">
+                </button>
+
+                <img src="./images/profile/image 6.png" alt="" class="item-img" width="80">
+                <p class="item-name">Духовой шкаф электрический</p>
+                <div class="item-rate">
+                  <img src="./images/profile/circle.svg" alt="" class="item-rate__img">
+                  <img src="./images/profile/circle.svg" alt="" class="item-rate__img">
+                  <img src="./images/profile/circle.svg" alt="" class="item-rate__img">
+                  <img src="./images/profile/circle.svg" alt="" class="item-rate__img">
+                  <img src="./images/profile/circle.svg" alt="" class="item-rate__img">
+                </div>
+                <div class="item-price">
+                  <p class="item-price__old"><s> 10 555 &#x20b4;</s></p>
+                  <p class="item-price__new"> 13 999 &#x20b4;</p>
+                </div>
+
+              </li>
+
+
+
+
+            </ul>
+            <button type="submit" id="submit" class="favorite-button save-button">
+              Купить всё
+            </button>
+            </div>
+          </div>
+      `
+  }
+  const favoritesBtn = document.querySelector('.favorites');
+  favoritesBtn.insertAdjacentHTML('afterend', favoritesMarkup());
 }
-addressFormMarkup();
+favoritesFormMarkup()
