@@ -12,6 +12,26 @@ body {
   margin-bottom: 10px;
 }
 
+.product__image {
+  width: 280px;
+  height: 280px;
+  background-size: cover;
+  margin-bottom: 10px;
+}
+
+.product__image--preview-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin-bottom: 30px;
+}
+
+.product__image--preview-item {
+  background-size: cover;
+  width: 44px;
+  height: 44px;
+}
+
 .product__code {
   display: inline-block;
   @include font(400, 14px, 17px, rgb(179, 179, 179));
@@ -22,19 +42,6 @@ body {
 .product__code-number {
   font-weight: 400;
   color: $main--text-color;
-}
-
-.product__image--preview-list {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  margin-top: 10px;
-  margin-bottom: 30px;
-}
-
-.product__image--preview-item:not(:last-child) {
-  margin-right: 10px;
-  margin-bottom: 10px;
 }
 
 .product__price-wrapper {
@@ -85,4 +92,58 @@ body {
   @include font(500, 10px, 12px, rgb(0, 0, 0));
   font-family: 'Montserrat Alternates', sans-serif;
   margin-bottom: 60px;
+}
+
+@media (max-width: 767px) {
+  .product__wrapper-tablet {
+    display: flex;
+    flex-direction: column;
+  }
+  .product__card-title {
+    order: -100;
+  }
+  .product__image--preview-item:not(:nth-child(5n)) {
+    margin-right: 10px;
+  }
+  .product__image--preview-item:not(:last-child) {
+    margin-bottom: 10px;
+  }
+}
+
+@media (min-width: 768px) {
+  .product__images-wrapper {
+    display: flex;
+    justify-content: space-between;
+  }
+  .product__wrapper-tablet {
+    // flex-wrap: wrap;
+    // align-content: space-between;
+  }
+  .product__wrapper-tablet {
+    flex-direction: column;
+  }
+  .product__card-title {
+    width: 314px;
+  }
+  .product__card-images {
+    width: 314px;
+  }
+  .product__image {
+    width: 314px;
+    height: 314px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .product__images-wrapper {
+    width: 525px;
+  }
+  .product__image {
+    width: 525px;
+    height: 525px;
+  }
+  .product__image--preview-item {
+    width: 74px;
+    height: 74px;
+  }
 }
