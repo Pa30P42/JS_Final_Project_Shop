@@ -5,12 +5,16 @@
   @media (min-width: 768px) {
     padding-bottom: 205px;
   }
+
+  @media (min-width: 1200px) {
+    padding-bottom: 60px;
+  }
 }
 
 .profile__title {
 
   margin: 30px 130px 20px 4px;
-  font-family: Montserrat Alternates sans-serif;
+
   font-weight: bold;
   font-size: 26px;
   line-height: 32px;
@@ -26,7 +30,7 @@
     font-weight: bold;
     font-size: 26px;
     line-height: 32px;
-    padding: 0;
+    // padding: 0;
     margin-bottom: 20px;
 
   }
@@ -128,7 +132,7 @@
 }
 
 .page-control {
-  font-family: Montserrat Alternates;
+  //   font-family: Montserrat Alternates;
   font-style: normal;
   font-weight: 500;
   font-size: 14px;
@@ -145,9 +149,6 @@
     right: 60px;
 
   }
-
-
-
 }
 
 //======================form=====
@@ -215,4 +216,127 @@
 
 em {
   color: #FF8A9D;
+}
+
+//==========favorites========
+.favorites-wrapper {
+  text-align: center;
+}
+
+.favorites-list {
+  display: flex;
+  justify-content: center;
+}
+
+.favorites-list__items {
+  position: relative;
+  width: 135px;
+  height: 220px;
+  padding: 20px 15px 15px 15px;
+
+  background: #FFFFFF;
+  border-radius: 10px;
+  font-weight: 500;
+  font-size: 10px;
+  line-height: 12px;
+
+  color: #000000;
+
+  text-align: left;
+
+  margin: 0 10px 30px 0;
+
+  &:hover {
+    box-shadow: 0px 0px 5px #53535C;
+
+  }
+
+  @media (min-width: 768px) {
+    width: 204px;
+    height: 300px;
+    padding: 20px;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 17px;
+
+  }
+
+  @media (min-width: 1200px) {}
+
+  &__address::placeholder {
+    color: #B3B3B3;
+  }
+}
+
+.item-name {
+  margin: 10px 0 10px;
+}
+
+.item-img {
+  @media (min-width: 768px) {
+    width: 140px;
+    height: 140px;
+  }
+
+}
+
+.item-rate {
+  display: flex;
+  margin-bottom: 16px;
+
+
+  &__img {
+
+    margin-right: 5px;
+  }
+}
+
+.item-price {
+  @media (min-width: 768px) {
+
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+  }
+
+}
+
+.item-price__old {
+  font-weight: 500;
+  font-size: 10px;
+  line-height: 12px;
+  text-decoration-line: line-through;
+
+  color: #B3B3B3;
+
+  @media (min-width: 768px) {
+    order: 2;
+    font-size: 14px;
+    line-height: 17px;
+    text-align: right;
+  }
+
+}
+
+.item-price__new {
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 22px;
+
+  color: #53535C;
+
+  @media (min-width: 768px) {
+    order: 1;
+  }
+
+}
+
+.item__favorite-icon {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+
+  &:hover {}
+
+
 }
