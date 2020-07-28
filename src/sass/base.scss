@@ -1,6 +1,7 @@
 html {
   box-sizing: border-box;
 }
+
 *,
 *::before,
 *::after {
@@ -8,39 +9,49 @@ html {
   margin: 0;
   padding: 0;
 }
+
 body {
-  font-family: 'Montserrat', Arial, Helvetica, sans-serif;
+  // font-family: 'Montserrat', Arial, Helvetica, sans-serif;
 }
+
 ul,
 ol {
   list-style: none;
   margin: 0;
   padding: 0;
 }
+
 a {
   text-decoration: none;
 }
+
 img {
   display: block;
   max-width: 100%;
   height: auto;
 }
+
 h1 {
   margin: 0;
 }
+
 button {
   outline: none;
 }
+
 .container {
   margin: 0 auto;
   width: 280px;
+
   @media (min-width: 768px) {
     width: 648px;
   }
+
   @media (min-width: 1200px) {
     width: 1080px;
   }
 }
+
 .visually-hidden:not(:focus):not(:active),
 input[type='checkbox'].visually-hidden,
 input[type='radio'].visually-hidden {

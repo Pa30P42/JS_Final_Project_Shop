@@ -1,0 +1,218 @@
+.profile {
+  padding: 20px 0 60px;
+  background: #E5E5E5;
+
+  @media (min-width: 768px) {
+    padding-bottom: 205px;
+  }
+}
+
+.profile__title {
+
+  margin: 30px 130px 20px 4px;
+  font-family: Montserrat Alternates sans-serif;
+  font-weight: bold;
+  font-size: 26px;
+  line-height: 32px;
+  color: #53535C;
+
+  @media (min-width: 768px) {
+    font-size: 26px;
+    line-height: 32px;
+    width: 240px;
+  }
+
+  @media (min-width: 1200px) {
+    font-weight: bold;
+    font-size: 26px;
+    line-height: 32px;
+    padding: 0;
+    margin-bottom: 20px;
+
+  }
+
+}
+
+.profile__buttons-wrapper {
+  display: flex;
+  flex-direction: column;
+  margin-right: 30px;
+}
+
+.profile__button {
+
+
+  width: 280px;
+  height: 64px;
+  left: 20px;
+  top: 212px;
+  margin-bottom: 20px;
+
+  background: #FFFFFF;
+  border: 1px solid white;
+  border-radius: 10px;
+  text-align: left;
+  padding-left: 88px;
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 22px;
+
+  @media (min-width: 768px) {
+    width: 223px;
+    height: 64px;
+    padding: 0 15px 0 82px;
+    text-align: left;
+
+  }
+
+  @media (min-width: 1200px) {
+    width: 340px;
+    height: 64px;
+    padding-left: 100px;
+
+
+  }
+
+
+}
+
+.profile__button {
+  background-repeat: no-repeat;
+  background-position: 10%;
+  background-size: auto 70%;
+
+  &:hover {
+    box-shadow: 0px 0px 5px #53535C;
+
+  }
+}
+
+.contacts {
+  background-image: url("../images/profile/user.svg");
+
+}
+
+.password {
+  background-image: url("../images/profile/heartlock.svg");
+
+}
+
+.address {
+  background-image: url("../images/profile/shopping.svg");
+
+}
+
+.favorites {
+  background-image: url("../images/profile/giftbag.svg");
+}
+
+.advertisement {
+  background-image: url("../images/profile/addbutton.svg");
+
+}
+
+
+.page-control__wrapper {
+
+  display: flex;
+  justify-content: space-between;
+
+}
+
+.page-control__wrapper a {
+  color: #53535C;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+.page-control {
+  font-family: Montserrat Alternates;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 17px;
+  color: #53535C;
+
+  &__home {
+    margin: 0 196px 30px 23px
+  }
+
+  &__exit {
+    position: relative;
+    top: 79px;
+    right: 60px;
+
+  }
+
+
+
+}
+
+//======================form=====
+.profile-wrapper {
+  @media (min-width: 768px) {
+    display: flex;
+    flex-direction: row;
+  }
+
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+
+  & label {
+    color: #53535C;
+    margin-bottom: 10px;
+  }
+}
+
+.save-button {
+  width: 250px;
+  height: 44px;
+  background-image: linear-gradient(10.96deg, #6368E5 15.48%, #B884F3 81.25%);
+  border-radius: 10px;
+  color: white;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  border: none;
+
+  &:hover {
+    box-shadow: 0px 0px 5px #53535C;
+  }
+}
+
+.form-control {
+
+  width: 279px;
+  height: 40px;
+  border: 1px solid #B3B3B3;
+  border-radius: 10px;
+  margin-bottom: 20px;
+  padding-left: 10px;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 17px;
+
+  &::placeholder {
+    color: #000000;
+  }
+
+  @media (min-width: 768px) {
+    width: 302px;
+
+  }
+
+  @media (min-width: 1200px) {}
+
+  &__address::placeholder {
+    color: #B3B3B3;
+  }
+
+}
+
+em {
+  color: #FF8A9D;
+}
