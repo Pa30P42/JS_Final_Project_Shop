@@ -22,7 +22,7 @@ const appliances = [
   },
 ];
 
-const categories = [
+export const categories = [
   {
     name: 'Крупная бытовая техника',
     image:
@@ -45,7 +45,7 @@ const categories = [
   },
 ];
 
-function categoriesListMarkup(categories) {
+export function categoriesListMarkup(categories) {
   return `
             <ul class="categories__list">
             ${categoriesItemMarkup(categories)}
