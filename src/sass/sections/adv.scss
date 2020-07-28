@@ -1,3 +1,88 @@
 body {
-  background-color: lightcoral;
+  background-color: rgb(244, 244, 244);
+}
+
+.product__card {
+  padding-top: 10px;
+}
+
+.product__card-title {
+  @include font(700, 26px, 32px, $main--text-color);
+  font-family: 'Montserrat Alternates', sans-serif;
+  margin-bottom: 10px;
+}
+
+.product__code {
+  display: inline-block;
+  @include font(400, 14px, 17px, rgb(179, 179, 179));
+  font-family: 'Montserrat Alternates', sans-serif;
+  margin-bottom: 20px;
+}
+
+.product__code-number {
+  font-weight: 400;
+  color: $main--text-color;
+}
+
+.product__image--preview-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin-top: 10px;
+  margin-bottom: 30px;
+}
+
+.product__image--preview-item:not(:last-child) {
+  margin-right: 10px;
+  margin-bottom: 10px;
+}
+
+.product__price-wrapper {
+  @include font(600, 26px, 32px, $main-color);
+  font-family: 'Montserrat Alternates', sans-serif;
+  margin-bottom: 30px;
+}
+
+.product__to-add-wrapper {
+  display: flex;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+.buy-btn {
+  display: inline-block;
+  @include font(600, 18px, 22px, rgb(255, 255, 255));
+  font-family: 'Montserrat Alternates', sans-serif;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  @extend %btn;
+  background: $main-gradient;
+  padding: 11px;
+  min-width: 200px;
+  height: 44px;
+  margin-right: 30px;
+}
+
+.product__describtion-title {
+  @include font(500, 14px, 17px, rgb(179, 179, 179));
+  font-family: 'Montserrat Alternates', sans-serif;
+  margin-bottom: 5px;
+}
+
+.product__describtion {
+  @include font(500, 10px, 12px, rgb(0, 0, 0));
+  font-family: 'Montserrat Alternates', sans-serif;
+  margin-bottom: 20px;
+}
+
+.product__guarantee-title {
+  @include font(500, 14px, 17px, rgb(179, 179, 179));
+  font-family: 'Montserrat Alternates', sans-serif;
+  margin-bottom: 5px;
+}
+
+.product__guarantee {
+  @include font(500, 10px, 12px, rgb(0, 0, 0));
+  font-family: 'Montserrat Alternates', sans-serif;
+  margin-bottom: 60px;
 }
