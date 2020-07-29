@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 axios.defaults.headers['Authorization'] = 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVmMWZlMDk0ZjlkMWZiMDAxNzQ0MGYyMiIsImlhdCI6MTU5NTkyNjI0MiwiZXhwIjoxNTk2MDEyNjQyfQ.AiTPvTcz8gSizZbqAchpW8cMbFDrIq_vN7v52tDfCjY';
-// * >>>> Orders >>>>
+// * >>>> Orders >>>
 // 1*Выводит все заказы
 // apiOrders.GetAllOrders().then(data => console.log(data.data));
 
