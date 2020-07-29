@@ -3,16 +3,15 @@ import {
 } from './services'
 import axios from 'axios';
 import userData from '../../userData'
+dataForcreateChangeUser
 
 axios.defaults.headers['Authorization'] = 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVmMWZlMDk0ZjlkMWZiMDAxNzQ0MGYyMiIsImlhdCI6MTU5NTkyNjI0MiwiZXhwIjoxNTk2MDEyNjQyfQ.AiTPvTcz8gSizZbqAchpW8cMbFDrIq_vN7v52tDfCjY';
 
 export default {
   // async checkData(key) {
   //   if(userData[key].length){
-
   //   }
   // }
-
   async getCategories() {
     if(userData.categoriesItems.length > 0){
       return userData.categoriesItems

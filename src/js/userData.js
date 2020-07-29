@@ -1,7 +1,5 @@
 export default {
-  // products:{
-  //   category:
-  // }
+ 
   user:{
     favorites:[],
     name:'',
@@ -18,7 +16,8 @@ export default {
       "zip": ""
     },
 
-  }
+  },
+  
   categoriesItems: [],
   appliances : {
     large_home_appliances: {

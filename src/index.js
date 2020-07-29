@@ -10,7 +10,9 @@ import apiOrders from './js/api/orders/apiOrders';
 import apiUsers from './js/api/users/apiUsers';
 
 import userData from './js/userData';
+import FORCreateChangeUserAdress from './js/api/products/services'
 
+console.log('hello')
 
 const addFavoriteUrl =
   'https://goit-store.herokuapp.com/users/addFavoriteProduct/5f154f156a4df46aa14dc526';
@@ -88,7 +90,7 @@ const deleteFavorite = async () => {
 // apiUsers.changeUserEmailOrNameAddress('email": "olha11111@gmail.com').then(data => console.log(data.data));
 
 // ! Подтверждает пароль юзера(они должны быть одинаковы)
-// apiUsers.changeUserPassword({"password": "qwerty123", "confirmPassword": "qwerty123"}).then(data => alert("Успешно подтверждено"));
+// apiUsers.changeUserPassword({"password": "qwerty123", "confirmPassword": "qwerty12433"}).then(data => alert("Успешно подтверждено"));
 
 //! DONT WORK FAVORITE
 // apiUsers.addFavorite('5f154f156a4df46aa14dc526').then(data => console.log(data.data));
@@ -113,16 +115,39 @@ const deleteFavorite = async () => {
 // apiUsers.RemoveFavoriteProduct('5f1c07c110a0f5001756a477').then(data => console.log(data.data));
 
 
+apiUsers.createOrChangeUserAdress({  country: "USA",
+city: "NY",
+place: "Brroklyn",
+street: "Wall street",
+block: "1",
+building: "",
+flat: "15",
+zip: ""
+}
+).then(data => console.log(data.data));
 
-apiProducts.getCategories().then(data => console.log(data.data));
 
 const button = document.querySelector('.button')
-button.addEventListener('click', event => {
-apiUsers.addFavoriteProduct('5f1c07c110a0f5001756a477').then(data => console.log(data.data));
+button.addEventListener('click', event=>{
+  console.log(event)
+  // apiUsers.addFavoriteProduct('5f1c07c110a0f5001756a477').then(data => console.log(data.data));
+       apiUsers.createOrChangeUserAdress({  "country": "USA",
+       "city": "NY",
+       "place": "Brroklyn",
+       "street": "Wall street",
+       "block": "1",
+       "building": "",
+       "flat": "15",
+       "zip": ""
+  }
+  ).then(data => console.log(data.data));
+});
+ 
+
 
 // apiUsers.changeUserEmailOrNameAddress('email": "olha@gmail.com').then(data => console.log(data.data));
 
-}); 
+
 
 
 

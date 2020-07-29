@@ -22,3 +22,5 @@ export const getAppliances = (categories) => {
     getCategoryItems(key)
   }
 }
+
+

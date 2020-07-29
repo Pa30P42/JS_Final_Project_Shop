@@ -72,10 +72,11 @@ export default {
   },
 
 
-  async createOrChangeUserAdress(id, adress) {
+  async createOrChangeUserAdress(adress) {
+    console.log(adress)
     // не работает
     try {
-      const response = await axios.post(`https://goit-store.herokuapp.com/users/updateAddress`);
+      const response = await axios.patch(`https://goit-store.herokuapp.com/users/updateAddress`, adress);
       console.log(response)
       return response
     } catch (err) {
