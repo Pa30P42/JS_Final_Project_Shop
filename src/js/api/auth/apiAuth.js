@@ -24,7 +24,6 @@ export default {
   },
 
   async login(info) {
-    console.log('hhh');
     try {
       const user = info;
       // const user = {

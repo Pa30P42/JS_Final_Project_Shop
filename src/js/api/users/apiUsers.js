@@ -6,27 +6,29 @@ export default {
   getUserByIdUrl: 'https://goit-store.herokuapp.com/users/getById/',
   changePasswordUrl: 'https://goit-store.herokuapp.com/users/changePassword',
   updateAddressUrl: 'https://goit-store.herokuapp.com/users/updateAddress',
-  addFavoriteUrl:
-    'https://goit-store.herokuapp.com/users/addFavoriteProduct/5f154f156a4df46aa14dc526',
+  addFavoriteUrl: 'https://goit-store.herokuapp.com/users/addFavoriteProduct/',
   deleteFavoriteUrl:
-    'https://goit-store.herokuapp.com/users/removeFavoriteProduct/5f154f156a4df46aa14dc526',
-
-  async addFavorite() {
+    'https://goit-store.herokuapp.com/users/removeFavoriteProduct/',
+  // should get a prod id
+  async addFavorite(id) {
     try {
-      axios.defaults.headers['Authorization'] =
-        'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVmMWZlMDk0ZjlkMWZiMDAxNzQ0MGYyMiIsImlhdCI6MTU5NTk1MTIxNywiZXhwIjoxNTk2MDM3NjE3fQ.fkNST8eulZySCYzg-vVOYBs-Ircia1yN-lHY8M82daE';
-      const response = await axios.get(this.addFavoriteUrl);
+      // console.log(JSON.parse(localStorage.getItem('info')).token);
+      axios.defaults.headers['Authorization'] = JSON.parse(
+        localStorage.getItem('info'),
+      ).token;
+      const response = await axios.get(`${this.addFavoriteUrl}${id}`);
       console.log(response);
     } catch (error) {
       console.log(error);
       // throw error;
     }
   },
-  async deleteFavorite() {
+  async deleteFavorite(id) {
     try {
-      axios.defaults.headers['Authorization'] =
-        'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVmMWZlMDk0ZjlkMWZiMDAxNzQ0MGYyMiIsImlhdCI6MTU5NTk1MTIxNywiZXhwIjoxNTk2MDM3NjE3fQ.fkNST8eulZySCYzg-vVOYBs-Ircia1yN-lHY8M82daE';
-      const response = await axios.delete(this.deleteFavoriteUrl);
+      axios.defaults.headers['Authorization'] = JSON.parse(
+        localStorage.getItem('info'),
+      ).token;
+      const response = await axios.delete(`${this.deleteFavoriteUrl}${id}`);
       console.log(response);
     } catch (error) {
       console.log(error);
@@ -43,11 +45,13 @@ export default {
       // throw error;
     }
   },
-  async changeUserInfo() {
+  async changeUserInfo(info) {
     try {
-      axios.defaults.headers['Authorization'] =
-        'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVmMWZlMDk0ZjlkMWZiMDAxNzQ0MGYyMiIsImlhdCI6MTU5NTk1MTIxNywiZXhwIjoxNTk2MDM3NjE3fQ.fkNST8eulZySCYzg-vVOYBs-Ircia1yN-lHY8M82daE';
-      const user = { email: 'cheeseburger555555@gmail.com' };
+      axios.defaults.headers['Authorization'] = JSON.parse(
+        localStorage.getItem('info'),
+      ).token;
+      const user = info;
+      // const user = { email: 'cheeseburger555555@gmail.com' };
       const response = await axios.patch(this.usersUrl, user);
       console.log(response);
     } catch (error) {
@@ -56,20 +60,22 @@ export default {
     }
   },
 
-  async updateUserAddress() {
+  async updateUserAddress(info) {
     try {
-      axios.defaults.headers['Authorization'] =
-        'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVmMWZlMDk0ZjlkMWZiMDAxNzQ0MGYyMiIsImlhdCI6MTU5NTk1MTIxNywiZXhwIjoxNTk2MDM3NjE3fQ.fkNST8eulZySCYzg-vVOYBs-Ircia1yN-lHY8M82daE';
-      const user = {
-        country: 'USA',
-        city: 'NY',
-        place: 'Brroklyn',
-        street: 'Wall street',
-        block: '1',
-        building: '',
-        flat: '15',
-        zip: '',
-      };
+      axios.defaults.headers['Authorization'] = JSON.parse(
+        localStorage.getItem('info'),
+      ).token;
+      const user = info;
+      // const user = {
+      //   country: 'USA',
+      //   city: 'NY',
+      //   place: 'Brroklyn',
+      //   street: 'Wall street',
+      //   block: '1',
+      //   building: '',
+      //   flat: '15',
+      //   zip: '',
+      // };
       const response = await axios.patch(this.updateAddressUrl, user);
       console.log(response);
     } catch (error) {
@@ -77,14 +83,16 @@ export default {
       // throw error;
     }
   },
-  async changeUserPassword() {
+  async changeUserPassword(info) {
     try {
-      axios.defaults.headers['Authorization'] =
-        'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVmMWZlMDk0ZjlkMWZiMDAxNzQ0MGYyMiIsImlhdCI6MTU5NTk1MTIxNywiZXhwIjoxNTk2MDM3NjE3fQ.fkNST8eulZySCYzg-vVOYBs-Ircia1yN-lHY8M82daE';
-      const newPassword = {
-        password: 'qwerty123',
-        confirmPassword: 'qwerty123',
-      };
+      axios.defaults.headers['Authorization'] = JSON.parse(
+        localStorage.getItem('info'),
+      ).token;
+      const newPassword = info;
+      // const newPassword = {
+      //   password: 'qwerty123',
+      //   confirmPassword: 'qwerty123',
+      // };
       const response = await axios.patch(this.changePasswordUrl, newPassword);
       console.log(response);
     } catch (error) {
@@ -92,9 +100,11 @@ export default {
       // throw error;
     }
   },
-  async getCurrentUser(token) {
+  async getCurrentUser() {
     try {
-      axios.defaults.headers['Authorization'] = token;
+      axios.defaults.headers['Authorization'] = JSON.parse(
+        localStorage.getItem('info'),
+      ).token;
       const response = await axios.get(this.getUserInfoUrl);
       console.log(response);
     } catch (error) {
@@ -104,8 +114,9 @@ export default {
   },
   async getUserById(id) {
     try {
-      axios.defaults.headers['Authorization'] =
-        'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVmMWZlMDk0ZjlkMWZiMDAxNzQ0MGYyMiIsImlhdCI6MTU5NTk1MTIxNywiZXhwIjoxNTk2MDM3NjE3fQ.fkNST8eulZySCYzg-vVOYBs-Ircia1yN-lHY8M82daE';
+      axios.defaults.headers['Authorization'] = JSON.parse(
+        localStorage.getItem('info'),
+      ).token;
       const response = await axios.get(`${this.getUserByIdUrl}${id}`);
       console.log(response);
     } catch (error) {
@@ -115,8 +126,9 @@ export default {
   },
   async getUserInfo() {
     try {
-      axios.defaults.headers['Authorization'] =
-        'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVmMWZlMDk0ZjlkMWZiMDAxNzQ0MGYyMiIsImlhdCI6MTU5NTk1MTIxNywiZXhwIjoxNTk2MDM3NjE3fQ.fkNST8eulZySCYzg-vVOYBs-Ircia1yN-lHY8M82daE';
+      axios.defaults.headers['Authorization'] = JSON.parse(
+        localStorage.getItem('info'),
+      ).token;
       const response = await axios.get(this.getUserInfoUrl);
       const currentId = response.data._id;
       console.log(currentId);
