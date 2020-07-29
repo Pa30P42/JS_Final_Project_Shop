@@ -1,5 +1,7 @@
 import userData from '../../userData';
 
+
+
 export const getAppliances = (categories) => {
   const getCategoryItems = (key) => {
     const result = categories.reduce((acc, category) => {
@@ -22,5 +24,9 @@ export const getAppliances = (categories) => {
     getCategoryItems(key)
   }
 }
+
+
+
+
 
 

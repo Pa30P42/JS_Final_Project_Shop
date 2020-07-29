@@ -38,27 +38,27 @@ export default {
     return token;
   },
 
-  async addFavoriteProduct(id) {
-    // не работает
-    try {
-      // let config = {
-      //   headers: {
-      //     'Authorization': 'Bearer ' + this.validToken() if(userData.categoriesItems.length > 0){
-      return userData.categoriesItems
-    } else{
-      //   }
-      // }
-      // console.log(config.headers['Authorization'])
-      // await axios.post('http://localhost:8000/api/v1/get_token_payloads', config);
+  // async addFavoriteProduct(id) {
+  //   // не работает
+  //   try {
+  //     // let config = {
+  //     //   headers: {
+  //     //     'Authorization': 'Bearer ' + this.validToken() if(userData.categoriesItems.length > 0){
+  //     return userData.categoriesItems
+  //   } else{
+  //     //   }
+  //     // }
+  //     // console.log(config.headers['Authorization'])
+  //     // await axios.post('http://localhost:8000/api/v1/get_token_payloads', config);
 
-      axios.defaults.headers['Authorization'] = 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVmMWZiYzQ4MWZlOWJhMDAxN2U4NzFhYiIsImlhdCI6MTU5NjAwNzE3NywiZXhwIjoxNTk2MDkzNTc3fQ.0uy-ge7NYJF1RvVWawn5BXjAsURuZqvfgo7lTF3tXes';
-      const response = await axios.get(`https://goit-store.herokuapp.com/users/addFavoriteProduct/${id}`);
-      console.log(response)
+  //     axios.defaults.headers['Authorization'] = 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVmMWZiYzQ4MWZlOWJhMDAxN2U4NzFhYiIsImlhdCI6MTU5NjAwNzE3NywiZXhwIjoxNTk2MDkzNTc3fQ.0uy-ge7NYJF1RvVWawn5BXjAsURuZqvfgo7lTF3tXes';
+  //     const response = await axios.get(`https://goit-store.herokuapp.com/users/addFavoriteProduct/${id}`);
+  //     console.log(response)
 
-    } catch (err) {
-      throw new Error(err);
-    }
-  },
+  //   } catch (err) {
+  //     throw new Error(err);
+  //   }
+  // },
 
   async RemoveFavoriteProduct(id) {
     // не работает

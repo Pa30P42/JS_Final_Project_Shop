@@ -2,16 +2,14 @@ import {
   getAppliances
 } from './services'
 import axios from 'axios';
+
 import userData from '../../userData'
-dataForcreateChangeUser
+
 
 axios.defaults.headers['Authorization'] = 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVmMWZlMDk0ZjlkMWZiMDAxNzQ0MGYyMiIsImlhdCI6MTU5NTkyNjI0MiwiZXhwIjoxNTk2MDEyNjQyfQ.AiTPvTcz8gSizZbqAchpW8cMbFDrIq_vN7v52tDfCjY';
 
 export default {
-  // async checkData(key) {
-  //   if(userData[key].length){
-  //   }
-  // }
+
   async getCategories() {
     if(userData.categoriesItems.length > 0){
       return userData.categoriesItems
@@ -36,7 +34,7 @@ export default {
       return userData.categoriesItems
     } else{
     try {
-      const response = await axios.get('https://goit-store.herokuapp.com/orders');
+      const response = await axios.get('https://goit-store.herokuapp.com/products');
       return response
 
     } catch (err) {
@@ -46,10 +44,9 @@ export default {
   },
 
   async CreateNewProduct(product) {
-    // !==didn`t work
+    
     try {
       const response = await axios.post('https://goit-store.herokuapp.com/products', product);
-      console.log(response)
       return response
 
     } catch (err) {
@@ -57,21 +54,34 @@ export default {
     }
   },
 
-  async searchProducts(inputSearch) {
-    // нужна функция которая будет отслеживать какой запрос запускать
+  async searchProductsbyName(inputSearch) {
+    
     try {
       const dataName = await axios.get(`https://goit-store.herokuapp.com/products?search=${inputSearch}`);
-      // не ищет через категории!!!!!!!!!!!!!!!!!!!!!!!!
-      const dataCategory = await axios.get('https://goit-store.herokuapp.com/products?search=category=tools');
-      // https://goit-store.herokuapp.com/products?search=&category=tools такой запрос ищет по категориям даже без нейма,
-      // но если нейм правельній а категория нет - то не работает
-      const dataCategoryAndName = await axios.get(`https://goit-store.herokuapp.com/products?search=${inputSearch}&category=tools`);
-
+    
       console.log(dataName)
-      console.log(dataCategory)
-      console.log(dataCategoryAndName)
-
       return dataName
+    } catch (err) {
+      throw new Error(err);
+    }
+  },
+
+  async searchProductsbyCategory(inputSearch) {
+    
+    try {
+      const dataCategory = await axios.get(`https://goit-store.herokuapp.com/products?search=category=${inputSearch}`);
+      console.log(dataCategory)
+      return dataCategory
+    } catch (err) {
+      throw new Error(err);
+    }
+  },
+
+  async searchProductsbyCategoryAndName(name, category) {
+    
+    try {
+      const dataCategoryAndName = await axios.get(`https://goit-store.herokuapp.com/products?search=${name}&category=${category}`); 
+      return dataCategoryAndName
     } catch (err) {
       throw new Error(err);
     }
