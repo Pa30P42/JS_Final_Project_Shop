@@ -117,6 +117,19 @@ li {
   justify-content: space-around;
   align-items: center;
 }
+.logo_name {
+  font-family: Montserrat Alternates;
+  font-style: italic;
+  font-weight: normal;
+  font-size: 28px;
+  margin-left: 20px;
+  color: white;
+  margin-top: 10px;
+}
+
+.header_txt {
+  font-weight: bold;
+}
 .center_conatiner {
   margin-top: 10px;
   width: 150px;
@@ -184,7 +197,7 @@ li {
   width: 30px;
   height: 30px;
 }
-@media (min-width: 20px) and (max-width: 799px) {
+@media (min-width: 20px) and (max-width: 767px) {
   .phone {
     display: block;
   }
@@ -196,7 +209,7 @@ li {
   }
 }
 
-@media (min-width: 800px) and (max-width: 1250px) {
+@media (min-width: 768px) {
   .phone {
     display: none;
   }
@@ -214,15 +227,9 @@ li {
     flex-direction: row;
     align-items: center;
   }
-  .logo_name {
-    margin-left: 20px;
-    font-size: 28px;
-    color: orange;
-    margin-top: 10px;
-  }
 }
 
-@media (min-width: 1250px) {
+@media (min-width: 1200px) {
   .phone {
     display: none;
   }
@@ -238,21 +245,12 @@ li {
     flex-direction: row;
     align-items: center;
   }
-  .logo_name {
-    margin-left: 20px;
-    font-size: 28px;
-    color: orange;
-    margin-top: 10px;
-  }
+
   .phone_container {
     display: flex;
     align-items: center;
   }
-  .phone_number {
-    font-size: 15px;
-    margin-left: 10px;
-    color: white;
-  }
+
   .arrow_down_icon {
     fill: white;
     margin-left: 10px;
@@ -260,39 +258,19 @@ li {
     width: 10px;
     height: 10px;
   }
-  .catalog_container {
-    display: flex;
-    align-items: center;
-  }
-  .catalog {
+  .desktop_text {
+    padding-top: 20px;
+    padding-left: 25px;
     font-size: 15px;
     color: white;
   }
-  .sale_container {
-    display: flex;
-    align-items: center;
-  }
-  .sale_text {
+
+  .phone_text {
+    padding-top: 4px;
     font-size: 15px;
     color: white;
   }
-  .info_container {
-    display: flex;
-    align-items: center;
-  }
-  .info_text {
-    font-size: 15px;
-    color: white;
-  }
-  .contact_container {
-    display: flex;
-    align-items: center;
-  }
-  .contact_text {
-    font-size: 15px;
-    margin-left: 10px;
-    color: white;
-  }
+
   .navigatiom_container {
     display: flex;
   }
