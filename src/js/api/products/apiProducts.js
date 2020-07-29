@@ -7,21 +7,35 @@ import userData from '../../userData'
 axios.defaults.headers['Authorization'] = 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVmMWZlMDk0ZjlkMWZiMDAxNzQ0MGYyMiIsImlhdCI6MTU5NTkyNjI0MiwiZXhwIjoxNTk2MDEyNjQyfQ.AiTPvTcz8gSizZbqAchpW8cMbFDrIq_vN7v52tDfCjY';
 
 export default {
+  // async checkData(key) {
+  //   if(userData[key].length){
+
+  //   }
+  // }
+
   async getCategories() {
+    if(userData.categoriesItems.length > 0){
+      return userData.categoriesItems
+    } else{
     try {
       const response = await axios.get('https://goit-store.herokuapp.com/products/getCategories');
 
       userData.categoriesItems = [...response.data.categories];
-      console.log(userData.categoriesItems)
+      console.log("user", userData.categoriesItems)
+
       getAppliances(userData.categoriesItems);
       return userData.categoriesItems;
 
     } catch (err) {
       throw new Error(err);
     }
+  }
   },
 
   async getAllProducts() {
+    if(userData.categoriesItems.length > 0){
+      return userData.categoriesItems
+    } else{
     try {
       const response = await axios.get('https://goit-store.herokuapp.com/orders');
       return response
@@ -29,6 +43,7 @@ export default {
     } catch (err) {
       throw new Error(err);
     }
+  }
   },
 
   async CreateNewProduct(product) {

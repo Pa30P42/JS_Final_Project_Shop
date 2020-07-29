@@ -1,5 +1,5 @@
 import axios from 'axios';
-axios.defaults.headers['Authorization'] = 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVmMWZlMDk0ZjlkMWZiMDAxNzQ0MGYyMiIsImlhdCI6MTU5NTkyNjI0MiwiZXhwIjoxNTk2MDEyNjQyfQ.AiTPvTcz8gSizZbqAchpW8cMbFDrIq_vN7v52tDfCjY';
+axios.defaults.headers['Authorization'] = 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVmMWZiYzQ4MWZlOWJhMDAxN2U4NzFhYiIsImlhdCI6MTU5NjAwNzE3NywiZXhwIjoxNTk2MDkzNTc3fQ.0uy-ge7NYJF1RvVWawn5BXjAsURuZqvfgo7lTF3tXes';
 
 export default {
   async GetAllOrders() {
