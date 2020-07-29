@@ -147,7 +147,15 @@
   &__exit {
     position: relative;
     top: 79px;
-    right: 60px;
+
+    @media(max-width:767px) {
+      right: 60px;
+    }
+
+    @media(min-width: 1200px) {
+      right: 250px;
+    }
+
 
   }
 }
@@ -445,4 +453,93 @@ label {
 //==============
 .active {
   box-shadow: 0px 0px 5px #53535C;
+}
+
+
+//====advertisement=====
+.input-photo {
+  width: 75px;
+  height: 74px;
+  border-radius: 10px;
+  background-color: #fff;
+  padding-top: 10px;
+
+}
+
+
+
+
+.js-active-tab-advertisement {
+  position: relative;
+}
+
+.active-form-advertisement {
+  display: flex;
+  flex-direction: column;
+
+  @media (max-width: 767px) {
+
+    align-items: center;
+  }
+
+
+
+  @media (min-width: 768px) {
+    position: absolute;
+    transform: translateX(85%);
+    // right: 150px;
+
+  }
+
+  @media (min-width: 1200px) {
+    transform: translateX(100%)
+  }
+}
+
+
+.form-control-advertisement {
+
+  width: 279px;
+  height: 40px;
+  border: 1px solid #B3B3B3;
+  border-radius: 10px;
+  margin-bottom: 20px;
+  padding-left: 10px;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 17px;
+
+  &::placeholder {
+    color: #000000;
+  }
+
+  @media (min-width: 768px) {
+    width: 395px;
+
+  }
+
+  @media (min-width: 1200px) {}
+
+  &__address::placeholder {
+    color: #B3B3B3;
+  }
+
+}
+
+.input-textarea {
+  color: #B3B3B3;
+
+  height: 80px;
+  background-color: #FFFFFF;
+  padding-top: 10px;
+
+  @media (min-width: 768px) {
+    width: 395px;
+
+  }
+
+}
+
+label.adv-label {
+  color: #000000;
 }

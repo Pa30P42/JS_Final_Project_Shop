@@ -6,7 +6,8 @@ import {
   favoritesFormMarkup,
   addressFormMarkup,
   passwordMarkup,
-  userInfoMarkup
+  userInfoMarkup,
+  advertisementFormMarkup,
 }
 from './profileMarkups';
 import {
@@ -69,11 +70,12 @@ DOM.tabsNav.addEventListener('click', event => {
     case "favorites":
       favoritesFormMarkup()
       break;
-      // case "advertisement":
-      //   break;
-
-    default:
+    case "advertisement":
+      advertisementFormMarkup();
       break;
+
+      // default:
+      //   break;
   }
 
 

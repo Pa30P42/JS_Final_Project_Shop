@@ -65,7 +65,7 @@ const maintabsMarkup = () => {
                 <button class="profile__button password" type="button" title="password">Изменить пароль</button>
                 <button class="profile__button address" type="button" title="address">Мой Адрес</button>
                 <button class="profile__button favorites" type="button" title="favorites">Избранное</button>
-                <button class="profile__button advertisement" type="button" title=" advertisement">Создать
+                <button class="profile__button advertisement" type="button" title="advertisement">Создать
                   объявление</button>
               </div>
     
@@ -295,11 +295,74 @@ const favoritesFormMarkup = () => {
 //favoritesFormMarkup()
 
 //=================favoritesFormMarkup======================
+
+
+//===============advertisement============
+const advertisementFormMarkup = () => {
+  const advertisementMarkup = () => {
+    return `
+    
+    
+    
+      <form method="post" action="/" id="form" class="active-form-advertisement js-active-tab-advertisement">
+        <div class="form-group">
+
+          <label  class="adv-label" for="name">Название товара</label>
+          <input type="text" name="name" id="name" class="advertisement-inputs form-control-advertisement" placeholder="Название"
+            required />
+
+          <label class="adv-label"  for="name">Фото</label>
+          <input type="file" id="img" name="img" class="input-photo form-control " accept="image/*"
+            class="form-control" required />
+
+          <label  class="adv-label" for="name">Описание товара</label>
+          <textarea disabled  name="text" id="comments" class="advertisement-inputs form-control-advertisement  input-textarea " name="comment"
+            placeholder="Описание"></textarea>
+
+          <label  class="adv-label" for="name">Категория товара</label>
+          <select id="dropdown" name="role" class="advertisement-inputs form-control-advertisement" required>
+            <option disabled selected value class="input-select">Выберите категорию</option>
+            <option value="student">2</option>
+            <option value="job">3</option>
+            <option value="learner">4</option>
+            <option value="preferNo">5</option>
+            <option value="other">6</option>
+          </select>
+
+          <label class="adv-label"  id="name-label" for="name">Цена</label>
+          <input type="text" name="text" class="form-control form-control__address" placeholder="0.000 &#x20b4;"
+            required />
+
+          <label class="adv-label" id="phone-number">Телефон</label>
+          <input type="tel" name="phone-number" class="form-control form-control__address"
+            placeholder="+38 (093) 333 99 99" required />
+
+
+
+        </div>
+        <button type="submit" id="submit" class="save-button">
+          Создать
+        </button>
+      </form>
+`
+  }
+  const advertisementBtn = document.querySelector('.advertisement');
+  advertisementBtn.insertAdjacentHTML('afterend', advertisementMarkup());
+  setActive();
+};
+// advertisementFormMarkup()
+
+
+
+
+
+//=================================
 export {
   favoritesFormMarkup,
   addressFormMarkup,
   passwordMarkup,
-  userInfoMarkup
+  userInfoMarkup,
+  advertisementFormMarkup,
 };
 
 export {
