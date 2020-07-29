@@ -7,12 +7,14 @@ export default {
   regUrl: 'https://goit-store.herokuapp.com/auth/registration',
   loginUrl: 'https://goit-store.herokuapp.com/auth/login',
 
-  async register() {
+  async register(info) {
     try {
-      const user = {
-        email: 'ismayilnew@gmail.com',
-        password: 'ismayil123123',
-      };
+      const user = info;
+      // const user = {
+      //   name: 'Ismayil',
+      //   email: 'ismayilnew2@gmail.com',
+      //   password: 'ismayil123123',
+      // };
       const response = await axios.post(this.regUrl, user);
       console.log(response);
     } catch (error) {
@@ -21,18 +23,21 @@ export default {
     }
   },
 
-  async login() {
+  async login(info) {
     console.log('hhh');
     try {
-      const user = {
-        email: 'unotest2@gmail.com',
-        password: 'testuno111',
-      };
+      const user = info;
+      // const user = {
+      //   email: 'unotest2@gmail.com',
+      //   password: 'testuno111',
+      // };
+      // Должен приходить обьеки в info
       const response = await axios.post(this.loginUrl, user);
+      console.log(response);
       axios.defaults.headers['Authorization'] = response.data.accces_token;
       const currentUser = await axios.get(apiUsers.getUserInfoUrl);
 
-      // console.log(currentUser.data.favorites);
+      console.log(currentUser.data.favorites);
       localStorage.setItem(
         'info',
         JSON.stringify({
@@ -46,9 +51,6 @@ export default {
     }
   },
 };
-
-const btnRef = document.querySelector('.check');
-const btnRef2 = document.querySelector('.check2');
 
 // btnRef.addEventListener('click', login);
 // btnRef2.addEventListener('click', getInfo);
