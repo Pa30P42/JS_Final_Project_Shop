@@ -72,7 +72,7 @@ const maintabsMarkup = () => {
 }
 
 
-maintabsMarkup();
+//maintabsMarkup();
 
 
 //сделать асинхронной по клику ждать 
@@ -353,6 +353,7 @@ const advertisementFormMarkup = () => {
 
 //=================================
 export {
+  maintabsMarkup,
   favoritesFormMarkup,
   addressFormMarkup,
   passwordMarkup,

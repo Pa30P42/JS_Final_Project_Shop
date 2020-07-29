@@ -3,6 +3,7 @@ import {
 } from "../components/refs";
 import './profileMarkups';
 import {
+  maintabsMarkup,
   favoritesFormMarkup,
   addressFormMarkup,
   passwordMarkup,
@@ -37,7 +38,7 @@ console.log(DOM.tabsNav);
 console.log(DOM);
 
 
-
+//==========================
 
 // async function () {
 //   try {
@@ -48,57 +49,74 @@ console.log(DOM);
 // })();
 
 //markup
-
+//===================
+// profileRender();
+//=======================
+// const renderProfile = async () => {
+//   const response = await maintabsMarkup();
+//   return response;
+// }
+// renderProfile().then(DOM.tabsNav.addEventListener('click', tabsControl));
+//==========================
 // const
-// const profileTabs = async () => {
+const profileRender = async () => {
+  const response = await maintabsMarkup();
+  //const action = await DOM.tabsNav.addEventListener('click', tabsControl);
+  return response;
 
-DOM.tabsNav.addEventListener('click', tabsControl)
+};
+
+profileRender().then(response => {
+
+  DOM.tabsNav.addEventListener('click', tabsControl);
 
 
-function tabsControl() {
+  const tabsControl = () => {
 
-  if (event.target.nodeName !== 'BUTTON') {
-    console.log('Not a button');
-    return;
+
+    if (event.target.nodeName !== 'BUTTON') {
+      console.log('Not a button');
+      return;
+    }
+    const currentActiveBtn = DOM.tabsNav.querySelector('.active');
+    console.log(currentActiveBtn);
+
+    if (currentActiveBtn) {
+      currentActiveBtn.classList.remove('active');
+      deleteActive();
+      //deleteActive();
+    }
+    const controlItem = event.target;
+    controlItem.classList.add('active');
+
+    //panelsTitle = controlItem.title;
+    console.log(controlItem.title);
+
+    switch (controlItem.title) {
+      case "contacts":
+        userInfoMarkup();
+
+
+        break;
+      case "password":
+        passwordMarkup();
+        break;
+      case "address":
+        addressFormMarkup();
+        break;
+      case "favorites":
+        favoritesFormMarkup()
+        break;
+      case "advertisement":
+        advertisementFormMarkup();
+        break;
+
+        // default:
+        //   break;
+    }
   }
-  const currentActiveBtn = DOM.tabsNav.querySelector('.active');
-  console.log(currentActiveBtn);
-
-  if (currentActiveBtn) {
-    currentActiveBtn.classList.remove('active');
-    deleteActive();
-    //deleteActive();
-  }
-  const controlItem = event.target;
-  controlItem.classList.add('active');
-
-  //panelsTitle = controlItem.title;
-  console.log(controlItem.title);
-
-  switch (controlItem.title) {
-    case "contacts":
-      userInfoMarkup();
-
-
-      break;
-    case "password":
-      passwordMarkup();
-      break;
-    case "address":
-      addressFormMarkup();
-      break;
-    case "favorites":
-      favoritesFormMarkup()
-      break;
-    case "advertisement":
-      advertisementFormMarkup();
-      break;
-
-      // default:
-      //   break;
-  }
-}
+})
 
 
 //   })
-// }
+// 
