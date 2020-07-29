@@ -8,7 +8,6 @@ body {
 
 .product__card-title {
   @include font(700, 26px, 32px, $main--text-color);
-  // font-family: 'Montserrat Alternates', sans-serif;
   margin-bottom: 10px;
 }
 
@@ -35,7 +34,6 @@ body {
 .product__code {
   display: inline-block;
   @include font(400, 14px, 17px, rgb(179, 179, 179));
-  // font-family: 'Montserrat Alternates', sans-serif;
   margin-bottom: 20px;
 }
 
@@ -46,7 +44,6 @@ body {
 
 .product__price-wrapper {
   @include font(600, 26px, 32px, $main-color);
-  // font-family: 'Montserrat Alternates', sans-serif;
   margin-bottom: 30px;
 }
 
@@ -59,7 +56,6 @@ body {
 .buy-btn {
   display: inline-block;
   @include font(600, 18px, 22px, rgb(255, 255, 255));
-  // font-family: 'Montserrat Alternates', sans-serif;
   letter-spacing: 0.2em;
   text-transform: uppercase;
   @extend %btn;
@@ -80,25 +76,21 @@ body {
 
 .product__describtion-title {
   @include font(500, 14px, 17px, rgb(179, 179, 179));
-  // font-family: 'Montserrat Alternates', sans-serif;
   margin-bottom: 5px;
 }
 
 .product__describtion {
   @include font(500, 10px, 12px, rgb(0, 0, 0));
-  // font-family: 'Montserrat Alternates', sans-serif;
   margin-bottom: 20px;
 }
 
 .product__guarantee-title {
   @include font(500, 14px, 17px, rgb(179, 179, 179));
-  // font-family: 'Montserrat Alternates', sans-serif;
   margin-bottom: 5px;
 }
 
 .product__guarantee {
   @include font(500, 10px, 12px, rgb(0, 0, 0));
-  // font-family: 'Montserrat Alternates', sans-serif;
   margin-bottom: 60px;
 }
 
