@@ -11,11 +11,11 @@ const initialAction = async () => {
   await apiProducts.getCategories();
   containerHandler();
 
-  const x = 'built_in_appliances';
-  console.log(
-    'userData',
-    userData.appliances[x].categories.map(item => item.name),
-  );
+  //   const x = 'built_in_appliances';
+  //   console.log(
+  //     'userData',
+  //     userData.appliances[x].categories.map(item => item.name),
+  //   );
 };
 
 initialAction();

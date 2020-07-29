@@ -1,15 +1,13 @@
 import './category.scss';
 import categoriesList from '../userData';
-import apiProducts from '../api/products/apiProducts';
-import { getAppliances } from '../api/products/services';
-import userData from '../../js/userData';
 
 export default {
   refs: {
-    categoriesList: '',
+    categoriesListInsert: '',
+    subcategoriesListInsert: '',
   },
 
-  categories: Object.values(categoriesList.appliances),
+  globalCategoriesObjects: Object.values(categoriesList.appliances),
 
   getLink(e) {
     if (e.target.nodeName === 'BUTTON' && e.target.dataset.link) {
@@ -21,56 +19,84 @@ export default {
   categoriesListMarkup() {
     return `
             <ul class="categories__list">
-            ${this.categoriesItemMarkup(this.categories)}
+            ${this.categoriesItemMarkup(this.globalCategoriesObjects)}
             </ul>
             `;
   },
 
-  getCategories(categoryItem) {
-    // const subCategories = userData.appliances[x].categories.map(item => item.name),
-
-    const markup = categoryItem.categories.reduce((acc, subCategory) => {
+  getCategories(globalCategory) {
+    console.log(globalCategory);
+    // const subCategories = categoriesList.appliances[x].categories.map(
+    //   item => item.name,
+    // );
+    const markup = globalCategory.categories.reduce((acc, subCategory) => {
       acc += `
-            <li data-link="${subCategory.value}">${subCategory.name}  </li>
+            <li class="subcategories__item" data-link="${subCategory.value}">${subCategory.name}  </li>
             `;
-
       return acc;
     }, '');
     // console.log(markup);
     return markup;
   },
 
-  categoriesItemMarkup(categories) {
-    return categories.reduce((acc, categoryItem) => {
+  categoriesItemMarkup(globalCategoriesObjects) {
+    return globalCategoriesObjects.reduce((acc, globalCategory) => {
+      console.log('Global', globalCategory);
       acc += `
                 <li class="categories__item">
                     <div class="category__img_wrapper">
-                        <img src=${categoryItem.image} alt="${
-        categoryItem.value
+                        <img src=${globalCategory.image} alt="${
+        globalCategory.value
       }" class="category__img" width="280" height="144">
                     </div>
-                    <p class="category__title">${categoryItem.name}</p>
-                    <ul class="list">
-                    ${this.getCategories(categoryItem)}
+                    <p class="category__title">${globalCategory.name}</p>
+                    <ul class="subcategories__list">
+                    <template>
+                      <div class="modal">
+                          <p>I'm a modal created from a DOM element/node.</p>
+                          <p>${this.getCategories(globalCategory)}</p>
+                      </div>
+                     </template>
+                    
                     </ul>
                     <button type="button" class="btn btn_gradient js-category-buy-btn" data-link="${
-                      categoryItem.value
+                      globalCategory.value
                     }">Купить</button>
                 </li>`;
       return acc;
     }, '');
   },
 
+  // openSubCategories(markup) {
+  //   console.log(markup);
+  //   // return markup;
+  // },
+
+  // insertSubcategories(globalCategory) {
+  //   console.log(globalCategory);
+
+  //   const subCategoriesList = globalCategory.categories.reduce(
+  //     (acc, subCategory) => {
+  //       acc.push(subCategory.name);
+  //       // console.log(acc);
+  //       return acc;
+  //     },
+  //     [],
+  //   );
+  // },
+
   categoriesListMarkupAddListeners() {
     const button = document.querySelector('.js-category-buy-btn');
     console.log('BTN', button);
+
+    const subLi = document.querySelector('.subcategories__list');
 
     this.refs.categoriesList = document.querySelector('.categories__list');
     this.refs.categoriesList.addEventListener('click', this.getLink);
   },
 
   categoriesListMarkupRemoveListeners() {
-    this.refs.categoriesList.removeEventListener('click', this.getLink);
+    this.refs.categoriesListInsert.removeEventListener('click', this.getLink);
   },
 };
 
