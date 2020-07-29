@@ -1,58 +1,34 @@
 import './sass/main.scss';
-
-import './js/category/category-markup';
+import './js/api/auth/apiAuth';
 import {
   containerHandler
 } from './js/container/container';
-
+import userData from './js/userData';
+import apiAuth from './js/api/auth/apiAuth';
+import apiUsers from './js/api/users/apiUsers';
+import './js/category/category-markup';
 import apiProducts from './js/api/products/apiProducts';
 import apiOrders from './js/api/orders/apiOrders';
-import userData from './js/userData';
 import setting from './js/setting';
 
 console.log(setting.getDivice())
 
+const btnRef = document.querySelector('.check');
+const btnRef2 = document.querySelector('.check2');
 
-// containerHandler();
-// ========= services product ==== Все катигории и продукты
-// 1.apiProducts.getCategories().then(data => console.log(userData));
+containerHandler();
+// apiUsers.getInfo();
+btnRef.addEventListener('click', () => {
+  apiUsers.deleteFavorite('5f2155d59e8747001767cdf7');
+});
+btnRef2.addEventListener('click', () => {
+  apiUsers.getInfo();
+});
+// apiProducts.getCategories().then(data => console.log(userData));
 
+// services.addFavorite('5f154f156a4df46aa14dc526');
+// services.GetAllOrders();
 
-// ! >>> Products >>>
-// !===== Вывод масива объектов всех продуктов / length: 4
-// apiProducts.getAllProducts().then(data => console.log(data.data));
+// btnRef.addEventListener('click', apiAuth.login);
+// btnRef2.addEventListener('click', getInfo);
 
-// !===== Поиск продуктов через search
-// apiProducts.searchProductsbyName('mix').then(data => console.log(data.data));
-// apiProducts.searchProductsbyCategory('tools').then(data => console.log(data.data));
-
-// !===== Передача продуктов по пагинации(пайдж только 1 пока что)
-// apiProducts.getProductsWithPagination(2, 1, "tools").then(data => console.log(data.data));
-
-// !===== Добавить продукт
-// apiProducts.CreateNewProduct({"images": [],
-// "totalQuantity": 2,
-// "name": "Wrenoholoy",
-// "category": "tools",
-// "price": 15,
-// "description": "Good tool"}
-// ).then(data => console.log(data.data));
-
-// * >>>> Orders >>>>
-// 1*Выводит все заказы
-// apiOrders.GetAllOrders().then(data => console.log(data.data));
-
-// 2*Вывод ID новго заказа
-// apiOrders.createNewOrder({"address": {
-//   "city": "dsfs",
-//   "country": "werwrewr",
-//   "place": "rewrewrn",
-//   "street": "rwerwer",
-//   "block": "",
-//   "building": "15",
-//   "flat": "35"
-// },
-// "productList": [
-//   "5f1021fbc7a15c871d735f48",
-//    "5f154f156a4df46aa14dc526"]}
-// ).then(data => console.log(data.data.id));

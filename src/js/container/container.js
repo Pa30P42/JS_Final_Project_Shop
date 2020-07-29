@@ -1,5 +1,6 @@
 import { refs } from '../components/refs';
 import { categoriesListMarkup, categories } from '../category/category-markup';
+import { header } from '../header/header';
 
 //В каждом диве запустить функцию определенного модуля который булет отрисовывать блок.
 
