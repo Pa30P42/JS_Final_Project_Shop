@@ -9,7 +9,7 @@ export default {
       );
 
       userData.categoriesItems = [...response.data.categories];
-      // console.log(userData.categoriesItems)
+      console.log(userData.categoriesItems);
       getAppliances(userData.categoriesItems);
       return userData.categoriesItems;
     } catch (err) {

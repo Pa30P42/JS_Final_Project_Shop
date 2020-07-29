@@ -1,80 +1,77 @@
 import './category.scss';
 import categoriesList from '../userData';
 import apiProducts from '../api/products/apiProducts';
-import getAppliances from '../api/products/services';
+import { getAppliances } from '../api/products/services';
 import userData from '../../js/userData';
 
-export const categories = Object.values(categoriesList.appliances);
-// console.log(categories);
+export default {
+  refs: {
+    categoriesList: '',
+  },
 
-export function categoriesListMarkup(categories) {
-  return `
+  categories: Object.values(categoriesList.appliances),
+
+  getLink(e) {
+    if (e.target.nodeName === 'BUTTON' && e.target.dataset.link) {
+      const link = e.target.closest('[data-link]').dataset.link;
+      console.log(link); //link можно добавить в хлебные крошки//
+    } else return;
+  },
+
+  categoriesListMarkup() {
+    return `
             <ul class="categories__list">
-            ${categoriesItemMarkup(categories)}
+            ${this.categoriesItemMarkup(this.categories)}
             </ul>
             `;
-}
+  },
 
-function categoriesItemMarkup(categories) {
-  return categories.reduce((acc, category) => {
-    acc += `
+  getCategories(categoryItem) {
+    // const subCategories = userData.appliances[x].categories.map(item => item.name),
+
+    const markup = categoryItem.categories.reduce((acc, subCategory) => {
+      acc += `
+            <li data-link="${subCategory.value}">${subCategory.name}  </li>
+            `;
+
+      return acc;
+    }, '');
+    // console.log(markup);
+    return markup;
+  },
+
+  categoriesItemMarkup(categories) {
+    return categories.reduce((acc, categoryItem) => {
+      acc += `
                 <li class="categories__item">
                     <div class="category__img_wrapper">
-                        <img src=${category.image} alt="${category.value}" class="category__img" width="280" height="144">
+                        <img src=${categoryItem.image} alt="${
+        categoryItem.value
+      }" class="category__img" width="280" height="144">
                     </div>
-                    <p class="category__title">${category.name}</p>
-                    <button type="button" class="btn btn_gradient">Купить</button>
+                    <p class="category__title">${categoryItem.name}</p>
+                    <ul class="list">
+                    ${this.getCategories(categoryItem)}
+                    </ul>
+                    <button type="button" class="btn btn_gradient js-category-buy-btn" data-link="${
+                      categoryItem.value
+                    }">Купить</button>
                 </li>`;
-    console.log(category.filter);
-    return acc;
-  }, '');
-}
+      return acc;
+    }, '');
+  },
 
-// const markup = document.querySelector('#root');
-// markup.insertAdjacentHTML('afterbegin', categoriesListMarkup(categories));
+  categoriesListMarkupAddListeners() {
+    const button = document.querySelector('.js-category-buy-btn');
+    console.log('BTN', button);
 
-// apiProducts.getCategories().then(data => console.log(userData.appliances));
-apiProducts.getCategories().then(data => console.log(userData));
+    this.refs.categoriesList = document.querySelector('.categories__list');
+    this.refs.categoriesList.addEventListener('click', this.getLink);
+  },
 
-function bigCategory() {
-  const keys = Object.keys(userData.appliances);
-  console.log(keys);
+  categoriesListMarkupRemoveListeners() {
+    this.refs.categoriesList.removeEventListener('click', this.getLink);
+  },
+};
 
-  const values = Object.values(userData.appliances);
-
-  for (let key of keys) {
-    subCategories(key);
-  }
-}
-
-function subCategories(key) {
-  console.log('KEY', key);
-
-  const result = Object.keys(userData.appliances).filter(data => {
-    console.log('result', data);
-  });
-
-  if (key === Object.keys(userData.appliances)) {
-  }
-  apiProducts.getCategories().then(data => {
-    const arrayCategory = [];
-    const values = Object.values(userData.appliances);
-
-    const subCategories = userData.categoriesItems;
-
-    for (let value of values) {
-      const filterCategory = value.filter.map(category => {
-        for (let subCategory of subCategories) {
-          if (subCategory.value === category) {
-            // console.log('subCategory.name', subCategory.name);
-            // console.log('subCategory.value', subCategory.value);
-            arrayCategory.push(subCategory.name);
-          }
-        }
-      });
-    }
-    // console.log(arrayCategory);
-  });
-}
-
-bigCategory();
+// console.log(categories);
