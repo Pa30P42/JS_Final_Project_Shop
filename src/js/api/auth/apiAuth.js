@@ -2,6 +2,10 @@ import axios from 'axios';
 import apiUsers from '../users/apiUsers';
 
 // Get All Users
+//Информация для пользования Апи
+// В файле где будете использовать функции из данной Апи, с импортируйте обьект по примеру.import apiAuth from './js/api/auth/apiAuth';
+// Далее пройдите по функциям выбрав вам нужную. для запуска напишите apiAuth.(имя функции которую хоите вставить)
+// Если в функцию нужен импут, то сложите его по закоментированному примеру в самой функции
 
 export default {
   regUrl: 'https://goit-store.herokuapp.com/auth/registration',
