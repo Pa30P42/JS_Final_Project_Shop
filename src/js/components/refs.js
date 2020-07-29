@@ -1,5 +1,5 @@
 export const refs = {
-  containerr: document.querySelector('.containerr'),
-  sections: document.querySelector('.sections'),
+  container: document.querySelector('.container'),
+  sections: document.querySelector('#sections'),
 
 };

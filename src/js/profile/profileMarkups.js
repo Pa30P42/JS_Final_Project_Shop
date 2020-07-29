@@ -1,7 +1,3 @@
-// import {
-//   refs
-// } from '../components/refs';
-
 import {
   refs
 } from "../components/refs";
@@ -12,11 +8,6 @@ import {
 // }
 // name();
 // export default name;
-
-
-
-
-
 
 
 
@@ -48,7 +39,7 @@ const maintabsMarkup = () => {
   const accountTabsMarkup = () => {
     return ` 
         <section class="profile tabs__panel"  id="profile">
-          <div class="container">
+          <div class="container-tabs">
     
             <div class="page-control__wrapper">
               <a href="#" class="page-control__home">Главная</a>
@@ -75,12 +66,16 @@ const maintabsMarkup = () => {
         `;
 
   }
-  refs.containerr.insertAdjacentHTML("beforeend", accountTabsMarkup());
+  console.log(refs.sections);
+  refs.sections.insertAdjacentHTML("beforeend", accountTabsMarkup());
 
 }
 
 
 maintabsMarkup();
+
+
+//сделать асинхронной по клику ждать 
 
 //=================maintabsMarkup======================
 

@@ -36,7 +36,27 @@ console.log(DOM.tabsNav);
 //formRef.setAttribute('data-active', 'true');
 console.log(DOM);
 
-DOM.tabsNav.addEventListener('click', event => {
+
+
+
+// async function () {
+//   try {
+//     await doManyThings();
+//   } catch (err) {
+//     console.error(err);
+//   }
+// })();
+
+//markup
+
+// const
+// const profileTabs = async () => {
+
+DOM.tabsNav.addEventListener('click', tabsControl)
+
+
+function tabsControl() {
+
   if (event.target.nodeName !== 'BUTTON') {
     console.log('Not a button');
     return;
@@ -77,6 +97,8 @@ DOM.tabsNav.addEventListener('click', event => {
       // default:
       //   break;
   }
+}
 
 
-})
+//   })
+// }
