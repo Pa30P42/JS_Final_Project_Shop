@@ -1,11 +1,12 @@
 import { refs } from '../components/refs';
 import { categoriesListMarkup, categories } from '../category/category-markup';
-import { headerMarkUp } from '../header/header.js';
+import { header } from '../header/header';
+
 //В каждом диве запустить функцию определенного модуля который булет отрисовывать блок.
 
 const containerHeaderMarkup = function () {
   return `
-    <div class="header-wrapper">${headerMarkUp()}</div>
+    <div class="header-wrapper"></div>
     `;
 };
 const containerFooterMarkup = function () {
