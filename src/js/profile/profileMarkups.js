@@ -7,20 +7,47 @@ import {
 } from "../components/refs";
 
 
-const name = () => {
-  console.log('name');
+// const name = () => {
+//   console.log('name');
+// }
+// name();
+// export default name;
+
+
+
+
+
+
+
+
+const setActive = () => {
+  const sectionRef = document.querySelector('#profile')
+  const formRef = sectionRef.querySelector('#form');
+
+  return formRef.setAttribute('data-active', 'true');
+  //console.log(formRef.dataset.active);
 }
-name();
-export default name;
+const deleteActive = () => {
+  const sectionRef = document.querySelector('#profile');
+  const activePanel = sectionRef.querySelector('#form[data-active="true"]');
+  activePanel.removeAttribute('data-active');
 
+  const parent = sectionRef.querySelector("#parent");
+  const child = sectionRef.querySelector("#form");
+  parent.removeChild(child);
+  console.log(parent);
+  console.log(child);
 
+  return
 
+}
+//=================maintabsMarkup======================
 
 const maintabsMarkup = () => {
 
   const accountTabsMarkup = () => {
     return ` 
-        <section class="profile">
+        <section class="profile tabs__panel"  id="profile">
           <div class="container">
     
             <div class="page-control__wrapper">
@@ -29,11 +56,11 @@ const maintabsMarkup = () => {
             </div>
     
             <h2 class="profile__title">Учетная запись</h2>
-            <div class="profile-wrapper">
+            <div id="tabs-1" class="profile-wrapper">
     
     
     
-              <div class="profile__buttons-wrapper">
+              <div class="profile__buttons-wrapper tabs__nav" id="parent" >
                 <button class="profile__button contacts" type="button" title="contacts">Контакты</button>
                 <button class="profile__button password" type="button" title="password">Изменить пароль</button>
                 <button class="profile__button address" type="button" title="address">Мой Адрес</button>
@@ -48,14 +75,16 @@ const maintabsMarkup = () => {
         `;
 
   }
-  refs.containerr.insertAdjacentHTML("beforeend", accountTabsMarkup())
+  refs.containerr.insertAdjacentHTML("beforeend", accountTabsMarkup());
+
 }
 
 
 maintabsMarkup();
 
+//=================maintabsMarkup======================
 
-
+//=================userInfoMarkup======================
 
 
 const userInfoMarkup = () => {
@@ -63,7 +92,7 @@ const userInfoMarkup = () => {
 
 
     return `
-    <form method="post" action="/" id="contacts-form" class="active-form js-active-tab">
+    <form method="post" action="/" id="form" class="active-form js-active-tab tabs__panel">
               <div class="form-group">
                 <label id="name-label" for="name"><em> * </em>Имя, Отчество</label>
                 <input type="text" name="name" id="name" class="form-control" placeholder="Username" required />
@@ -86,16 +115,26 @@ const userInfoMarkup = () => {
             </form>
       `
   }
-  const contactsBtn = document.querySelector('.contacts')
+  const contactsBtn = document.querySelector('.contacts');
   contactsBtn.insertAdjacentHTML("afterend", infoMarkup());
+  setActive();
+
 }
+
+
+
+
 
 //userInfoMarkup();
 
-const passwordChangeMarkup = () => {
+//=================userInfoMarkup======================
+
+//=================passwordChangeMarkup======================
+//const passwordChangeMarkup = () => {
+const passwordMarkup = () => {
   const passwordFormMarkup = () => {
     return `
-        <form method="post" action="/" id="contacts-form" class="active-form js-active-tab">
+        <form method="post" action="/" id="form" class="active-form js-active-tab tabs__panel">
               <div class="form-group">
                 <label id="name-label" for="password"><em> * </em>Пароль</label>
                 <input type="password" name="password" id="password" class="form-control" placeholder="******"
@@ -114,18 +153,24 @@ const passwordChangeMarkup = () => {
         `;
   }
   const changePasswordBtn = document.querySelector('.password');
-  changePasswordBtn.insertAdjacentHTML('afterend', passwordFormMarkup())
+  changePasswordBtn.insertAdjacentHTML('afterend', passwordFormMarkup());
+  setActive();
 }
-//passwordChangeMarkup();
+//passwordMarkup();
 
-// class = "address-form  active-form js-active-tab" 
+//=================passwordChangeMarkup======================
+
+//=================addressFormMarkup======================
+
+
+
 const addressFormMarkup = () => {
   const formMarkup = () => {
     return `
         <form method = "post"
         action = "/"
-        id="contacts-form"
-        class="  active-form js-active-tab" >
+        id="form"
+        class="  active-form js-active-tab tabs__panel" >
               <div class="address-form-group">
               <div class="section-one">
 
@@ -171,17 +216,22 @@ const addressFormMarkup = () => {
         `
   }
   const myAddressBtn = document.querySelector('.address');
-  myAddressBtn.insertAdjacentHTML('afterend', formMarkup())
+  myAddressBtn.insertAdjacentHTML('afterend', formMarkup());
+  setActive();
 
 };
 //addressFormMarkup();
+
+//=================addressFormMarkup======================
+
+//=================favoritesFormMarkup======================
 
 
 const favoritesFormMarkup = () => {
   const favoritesMarkup = () => {
 
     return `
-      <div class="favorites-wrapper">
+      <div class="favorites-wrapper tabs__panel" id="form">
       <div class="favorites-wrapper__position">
 
             <ul class="favorites-list ">
@@ -240,5 +290,19 @@ const favoritesFormMarkup = () => {
   }
   const favoritesBtn = document.querySelector('.favorites');
   favoritesBtn.insertAdjacentHTML('afterend', favoritesMarkup());
+  setActive();
 }
-favoritesFormMarkup()
+//favoritesFormMarkup()
+
+//=================favoritesFormMarkup======================
+export {
+  favoritesFormMarkup,
+  addressFormMarkup,
+  passwordMarkup,
+  userInfoMarkup
+};
+
+export {
+
+  deleteActive
+};

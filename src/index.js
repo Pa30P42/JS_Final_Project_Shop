@@ -9,7 +9,8 @@ import apiProducts from './js/api/products/apiProducts';
 import userData from './js/userData';
 
 
-import './js/profile/profile';
+import './js/profile/profileMarkups';
+import './js/profile/profileTabs';
 // containerHandler();
 // apiProducts.getCategories().then(data => console.log(userData));
 

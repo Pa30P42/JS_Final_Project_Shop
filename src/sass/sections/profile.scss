@@ -231,13 +231,20 @@ em {
 }
 
 .favorites-wrapper__position {
-  text-align: center;
+  @media (max-width:767px) {
+    text-align: center;
+  }
+
   position: relative;
 
   @media (min-width: 768px) {
     position: absolute;
     transform: translate(35%, -80%);
 
+  }
+
+  @media(min-width: 1200px) {
+    transform: translate(50%, -80%);
   }
 }
 
@@ -433,4 +440,9 @@ em {
 
 label {
   margin-bottom: 10px;
+}
+
+//==============
+.active {
+  box-shadow: 0px 0px 5px #53535C;
 }
