@@ -24,6 +24,8 @@ const headerButton = event => {
     console.log('cart');
   } else if (dataname === 'name_menu') {
     console.log('menu');
+  } else if (dataname === 'name_catalog') {
+    console.log('catalog');
   }
 };
 
