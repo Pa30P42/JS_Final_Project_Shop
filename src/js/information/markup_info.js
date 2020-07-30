@@ -1,6 +1,10 @@
 import '../../sass/main.scss';
 // import '../../sass/sections/information.scss';
 import { refs } from '../components/refs';
+import delivery from '../../images/information/delivery.svg';
+import payment from '../../images/information/payment.svg';
+import conditions from '../../images/information/conditions.svg';
+import returns from '../../images/information/return.svg';
 
 function markupInformation() {
   let markup = `
@@ -8,28 +12,28 @@ function markupInformation() {
     <ul class="information__icon-list">
       <li class="information__icon-item">
         <img
-          src="./images/information/delivery.svg"
+          src="${delivery}"
           alt="credit card icon"
           width="80"
         />
       </li>
       <li class="information__icon-item">
         <img
-          src="../../images/information/payment.svg"
+          src="${payment}"
           alt="credit card icon"
           width="80"
         />
       </li>
       <li class="information__icon-item">
         <img
-          src="../../images/information/conditions.svg"
+          src="${conditions}"
           alt="icon 24/7"
           width="80"
         />
       </li>
       <li class="information__icon-item">
         <img
-          src="../../images/information/return.svg"
+          src="${returns}"
           alt="icon discount"
           width="80"
         />
