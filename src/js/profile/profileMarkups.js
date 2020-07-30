@@ -13,7 +13,6 @@ const userData = {
   name: "admin",
   email: "admin@gmail.com",
   password: "qwerty321",
-
   role: "ADMIN",
 
 };
@@ -22,40 +21,42 @@ import {
   refs
 } from "../components/refs";
 
+const forms = {
+  infoForm: {
+    name: '',
+    surname: '',
+    phone: '',
+    email: ''
+  },
+  passwordForm: {
+    password: '',
+    confirmPassword: ''
+  },
+  addressForm: {
+    country: '',
+    city: '',
+    place: '',
+    street: '',
+    block: '',
+    building: '',
+    flat: '',
+  },
+  advertisementForm: {
+    name: '',
+    category: '',
+    price: 0,
+    description: '',
+    images: [],
+    totalQuantity: 0,
+  },
+
+};
+
+
 export default {
   refs: {
     curentActiveTab: "",
     sectionRef: "",
-  },
-  forms: {
-    infoForm: {
-      name: '',
-      surname: '',
-      phone: '',
-      email: ''
-    },
-    passwordForm: {
-      password: '',
-      confirmPassword: ''
-    },
-    addressForm: {
-      country: '',
-      city: '',
-      place: '',
-      street: '',
-      block: '',
-      building: '',
-      flat: '',
-    },
-    advertisementForm: {
-      name: '',
-      category: '',
-      price: 0,
-      description: '',
-      images: [],
-      totalQuantity: 0,
-    },
-
   },
 
 
@@ -122,19 +123,25 @@ export default {
     switch (controlItem.title) {
       case "contacts":
         userInfoMarkup();
+        addInfoListener('infoForm')
 
         break;
       case "password":
         passwordMarkup();
+        addInfoListener('passwordForm')
+
         break;
       case "address":
         addressFormMarkup();
+        addInfoListener('addressForm')
         break;
       case "favorites":
         favoritesFormMarkup();
+
         break;
       case "advertisement":
         advertisementFormMarkup();
+        addInfoListener('advertisementForm')
         break;
 
       default:
@@ -147,7 +154,7 @@ export default {
 function userInfoMarkup() {
   const infoMarkup = () => {
     return `
-        <form name="infoForm" id="form" class="active-form js-active-tab tabs__panel">
+        <form name="infoForm"  data-form="infoForm" id="form" class="active-form js-active-tab tabs__panel">
                   <div class="form-group">
                     <label id="name-label" for="name"><em> * </em>Имя, Отчество</label>
                     <input type="text" name="name" id="name" class="form-control" placeholder="Username" required />
@@ -179,7 +186,7 @@ function userInfoMarkup() {
 function passwordMarkup() {
   const passwordFormMarkup = () => {
     return `
-            <form method="post"  name="passwordForm" action="/" id="form" class="active-form js-active-tab tabs__panel">
+            <form   data-form="passwordForm" name="passwordForm" action="/" id="form" class="active-form js-active-tab tabs__panel">
                   <div class="form-group">
                     <label id="name-label" for="password"><em> * </em>Пароль</label>
                     <input type="password" name="password" id="password" class="form-control" placeholder="******"
@@ -205,7 +212,7 @@ function passwordMarkup() {
 function addressFormMarkup() {
   const formMarkup = () => {
     return `
-            <form name="addressForm"
+            <form name="addressForm" data-form="addressForm"
             
             id="form"
             class="  active-form js-active-tab tabs__panel" >
@@ -329,7 +336,7 @@ function advertisementFormMarkup() {
         
         
         
-          <form name="advertisementForm" id="form" class="active-form-advertisement js-active-tab-advertisement">
+          <form name="advertisementForm"  data-form="advertisementForm" id="form" class="active-form-advertisement js-active-tab-advertisement">
             <div class="form-group">
     
               <label  class="adv-label" for="name">Название товара</label>
@@ -394,4 +401,17 @@ function deleteActive() {
   const parent = document.querySelector("#parent");
   const child = document.querySelector("#form");
   parent.removeChild(child);
+};
+
+function getInfo(event) {
+  const key = event.target.closest('[data-form]').dataset.form;
+  forms[key][event.target.name] = event.target.value;
+  console.log(forms[key]);
+};
+
+function addInfoListener(key) {
+  const form = document.querySelector('#profile');
+  console.log(forms[key]);
+  const inputForm = form.querySelector(`[data-form="${key}"]`);
+  inputForm.addEventListener('input', getInfo);
 };
