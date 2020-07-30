@@ -4,6 +4,25 @@ import homeCareTech from '../images/category/home-care-tech.jpg';
 import kitchenTech from '../images/category/kitchen-tech.jpg';
 
 export default {
+ 
+  user:{
+    favorites:[],
+    name:'',
+    phone: '',
+    email: "",
+    adress:{
+        "country": "",
+      "city": "",
+      "place": "",
+      "street": " ",
+      "block": "",
+      "building": "",
+      "flat": "",
+      "zip": ""
+    },
+
+  },
+  
   categoriesItems: [],
   appliances: {
     large_home_appliances: {
