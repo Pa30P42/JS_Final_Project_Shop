@@ -1,5 +1,6 @@
 import { refs } from './refs';
 import cartItems from '../../templates/cart-items.hbs';
+import './js/components/modalModule/modalModule';
 
 const bodyRef = document.querySelector('body');
 const cart = {
@@ -12,8 +13,14 @@ console.log(divRef);
 divRef.innerHTML = markup;
 // divRef.style.display = 'none';
 // refs.container.insertAdjacentElement('afterend', divRef);
-
+const createCartMarkup = () => {
+  return cartItems(cart.order);
+};
+const listeners = action => {
+  const btnComponent = document.querySelector('.btn-close');
+  btnComponent.addEventListener('click', action);
+};
 const showCart = () => {
   // alert('Корзина пуста');
-  return cartItems(cart.order);
+  modalModule(createCartMarkup, listeners);
 };
