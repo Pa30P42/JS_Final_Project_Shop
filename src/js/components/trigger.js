@@ -29,7 +29,6 @@ export default {
     this.triggerMarkupListener();
   },
   openTrigger() {
-    console.log(refs.triggerHidden);
     if (refs.triggerHidden.classList.contains('ishiddenTrigger')) {
       refs.triggerHidden.classList.remove('ishiddenTrigger');
     }
