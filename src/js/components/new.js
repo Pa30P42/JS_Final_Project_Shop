@@ -60,7 +60,7 @@ const testProducts = [
 ];
 
 const createCardMarkup = product => {
-  return `<li class="product-card">
+  return `<li class="product-card" data-id="${product._id}">
     <img class="product-img" src="${product.images[0]}" alt="" width="150" height="140">
     <p class="product-name">${product.name}</p>
     <p class="product-price">${product.price}</p>
@@ -76,7 +76,7 @@ const addNewProducts = () => {
     `<h2 class="new-products__title">Новые поступления</h2>
       <div class="new-products__slider"></div>`,
   );
-  const sliderRef = document.querySelector('.new-products__slider');
+  // const sliderRef = document.querySelector('.new-products__slider');
 
   const createListCardsMarkup = products => {
     // return `<ul class="slider__list-cards"></ul>`;
@@ -146,7 +146,7 @@ const addNewProducts = () => {
       console.log('newProducts: ', response.data);
       // await delay(5000);
       divRef.innerHTML = createListCardsMarkup(response.data);
-      return divRef;
+      return response.data;
     } catch (error) {
       console.log('Лог ошибки в getNewProducts ' + error);
     }
@@ -287,14 +287,24 @@ const addNewProducts = () => {
       prevNav.style.display = 'none';
     }
   }
+  let newProducts = [];
+  const onSelectCard = e => {
+    console.log(e.target);
+    const parent = e.target.closest('[data-id]');
+    const id = parent.dataset.id;
+    const product = newProducts.find(item => item._id === id);
+    console.log(product);
+  };
   getNewProducts().then(data => {
-    console.log(data);
+    newProducts = [...data];
     new Slider('.new-products-wrapper', {
       step: 1,
       isNavs: true,
       isPagination: true,
       countItems: 5,
     });
+    const listCards = document.querySelector('.slider__list-cards');
+    listCards.addEventListener('click', onSelectCard);
   });
   /*
   const sliderFromNewProducts = new Slider('.new-products-wrapper', {
