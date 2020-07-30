@@ -8,15 +8,17 @@ import './js/category/category-markup';
 import apiProducts from './js/api/products/apiProducts';
 import apiOrders from './js/api/orders/apiOrders';
 import setting from './js/setting';
+import trigger from './js/components/trigger';
 
 const btnRef = document.querySelector('.check');
 const btnRef2 = document.querySelector('.check2');
 
 containerHandler();
-
-// btnRef.addEventListener('click', () => {
-//   apiUsers.deleteFavorite('5f2155d59e8747001767cdf7');
-// });
+trigger.triggerFn();
+btnRef2.addEventListener('click', () => {
+  trigger.openTrigger();
+  // console.log('hello');
+});
 // btnRef2.addEventListener('click', () => {
 //   apiUsers.getInfo();
 // });
