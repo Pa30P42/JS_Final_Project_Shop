@@ -1,5 +1,4 @@
 import '../../sass/main.scss';
-// import '../../sass/sections/information.scss';
 import { refs } from '../components/refs';
 import delivery from '../../images/information/delivery.svg';
 import payment from '../../images/information/payment.svg';
