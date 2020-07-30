@@ -1,4 +1,4 @@
-.header {
+.header_wrap {
   position: relative;
 }
 
@@ -10,7 +10,6 @@
   &-wrapper {
     position: absolute;
     // left: 0;
-    right: 0px;
     top: 60px;
     width: 220px;
     height: 100px;
