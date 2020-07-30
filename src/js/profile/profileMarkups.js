@@ -3,14 +3,6 @@ import {
 } from "../components/refs";
 
 
-// const name = () => {
-//   console.log('name');
-// }
-// name();
-// export default name;
-
-
-
 const setActive = () => {
   const sectionRef = document.querySelector('#profile')
   const formRef = sectionRef.querySelector('#form');
@@ -35,7 +27,7 @@ const deleteActive = () => {
 //=================maintabsMarkup======================
 
 const maintabsMarkup = () => {
-
+  refs.sections.innerHTML = "";
   const accountTabsMarkup = () => {
     return ` 
         <section class="profile tabs__panel"  id="profile">
@@ -66,8 +58,53 @@ const maintabsMarkup = () => {
         `;
 
   }
-  console.log(refs.sections);
+
+
   refs.sections.insertAdjacentHTML("beforeend", accountTabsMarkup());
+  const mainTabsNav = document.querySelector('#parent')
+  mainTabsNav.addEventListener('click', (event) => {
+    console.log(target);
+    if (event.target.nodeName !== 'BUTTON') {
+      console.log('Not a button');
+      return;
+    }
+    const currentActiveBtn = DOM.tabsNav.querySelector('.active');
+    console.log(currentActiveBtn);
+
+    if (currentActiveBtn) {
+      currentActiveBtn.classList.remove('active');
+      deleteActive();
+
+    }
+    const controlItem = event.target;
+    controlItem.classList.add('active');
+
+    console.log(controlItem.title);
+
+    switch (controlItem.title) {
+      case "contacts":
+        userInfoMarkup();
+
+
+        break;
+      case "password":
+        passwordMarkup();
+        break;
+      case "address":
+        addressFormMarkup();
+        break;
+      case "favorites":
+        favoritesFormMarkup()
+        break;
+      case "advertisement":
+        advertisementFormMarkup();
+        break;
+
+        // default:
+        //   break;
+    }
+  })
+
 
 }
 

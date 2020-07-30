@@ -1,255 +1,256 @@
 <!DOCTYPE html>
 <html lang="en">
 
+
+
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <!-- <link rel="stylesheet" src="./sass/main.scss"> -->
     <!-- <link rel="stylesheet" src="./styles.css"> -->
-    <title>JS Final </title>
-
+    <link rel="stylesheet" src="./sass/sections/header.scss">
+    <title>JS Final</title>
   </head>
 
   <body>
+    <header class="header">
+      <div class="sidebar ishidden">
+        <ul class="sidebar_list">
+          <li class="sidebar_item_search">
+            <div data-name="name_search" class="header_wrap_search">
+              <svg class="sidebar_icon_search">
+                <use href="./images/svgHeader/sprite.svg#icon-search-white"></use>
+              </svg>
+              <input class="sidebar_input_form" type="text" placeholder="Поиск" />
+            </div>
+            <button data-name="name_buttonClose" class="close_btn">
+              <svg class="nav__icon_close">
+                <use href="./svg/vector/sprite4.svg#icon-close"></use>
+              </svg>
+            </button>
+          </li>
+          <li data-name="name_sale" class="sidebar_item">
+            <p class="sidebar_text">Sale%</p>
+          </li>
+          <li data-name="name_info" class="sidebar_item">
+            <p class="sidebar_text">Информация</p>
+            <svg class="sidebar_arrow_down_icon">
+              <use href="./svg/vector/sprite2.svg#icon-caret-down"></use>
+            </svg>
+          </li>
+          <li data-name="name_contacts" class="sidebar_item">
+            <p class="sidebar_text">Контакты</p>
+          </li>
+          <li data-name="name_phone" class="sidebar_item">
+            <div class="sidebar_icon_info_wraper">
+              <div class="sidebar_header_wrap">
+                <svg class="sidebar_nav__icon">
+                  <use href="./svg/vector/sprite.svg#icon-phone-50313-PM"></use>
+                </svg>
+              </div>
+              <p class="sidebar_text">+38(050)333-37-96</p>
+            </div>
+
+            <svg class="sidebar_arrow_down_icon">
+              <use href="./svg/vector/sprite2.svg#icon-caret-down"></use>
+            </svg>
+          </li>
+          <li data-name="name_user" class="sidebar_item">
+            <div class="sidebar_icon_info_wraper">
+              <div class="sidebar_header_wrap">
+                <svg class="sidebar_nav__icon">
+                  <use href="./svg/vector/sprite3.svg#icon-user1"></use>
+                </svg>
+              </div>
+              <p class="sidebar_text">Личный кабинет</p>
+            </div>
+            <svg class="sidebar_arrow_down_icon">
+              <use href="./svg/vector/sprite2.svg#icon-caret-down"></use>
+            </svg>
+          </li>
+          <li data-name="name_like" class="sidebar_item">
+            <div class="sidebar_icon_info_wraper">
+              <div class="sidebar_header_wrap">
+                <p class="amount_cart">0</p>
+                <svg class="sidebar_nav__icon">
+                  <use href="./svg/vector/sprite.svg#icon-like-50313-PM"></use>
+                </svg>
+              </div>
+              <p class="sidebar_text">Избранное</p>
+            </div>
+            <svg class="sidebar_arrow_down_icon">
+              <use href="./svg/vector/sprite2.svg#icon-caret-down"></use>
+            </svg>
+          </li>
+        </ul>
+      </div>
+
+
+      <div class="phone">
+        <ul class="header__nav">
+          <div class="logo_container">
+            <li class="header__nav__input"><a data-name="name_logo" class="header__logo"></a></li>
+          </div>
+          <div class="center_conatiner">
+            <li class="header__nav__input">
+              <div class="header_wrap">
+                <svg data-name="name_phone" class="nav__icon">
+                  <use href="./svg/vector/sprite.svg#icon-phone-50313-PM"></use>
+                </svg>
+              </div>
+            </li>
+            <li class="header__nav__input">
+              <div class="header_wrap_search">
+                <svg data-name="name_search" class="nav__icon_search">
+                  <use href="./svg/vector/sprite.svg#icon-search-white"></use>
+                </svg>
+              </div>
+            </li>
+            <li class="header__nav__input">
+              <div class="header_wrap">
+                <p class="amount_cart">0</p>
+                <svg data-name="name_cart" class="nav__icon">
+                  <use href="./svg/vector/sprite.svg#icon-SHOPPING-CART"></use>
+                </svg>
+              </div>
+            </li>
+          </div>
+          <li class="header__nav__three_dots">
+            <div class="header_wrap_three_dots">
+              <svg data-name="name_menu" class="nav__icon_three_dots">
+                <use href="./svg/vector/sprite2.svg#icon-three-dots-svgrepo-com"></use>
+              </svg>
+            </div>
+          </li>
+        </ul>
+      </div>
+
+      <div class="tablet">
+        <ul class="header__nav">
+          <div class="logo_container">
+            <li class="header__nav__input"><a data-name="name_logo" class="header__logo"></a></li>
+            <p class="logo_name">Lo<span class="header_txt">GO</p>
+          </div>
+          <div class="center_conatiner">
+            <li class="header__nav__input">
+              <div class="header_wrap">
+                <svg data-name="name_phone" class="nav__icon">
+                  <use href="./svg/vector/sprite.svg#icon-phone-50313-PM"></use>
+                </svg>
+              </div>
+            </li>
+            <li class="header__nav__input">
+              <div class="header_wrap_search">
+                <svg data-name="name_search" class="nav__icon_search">
+                  <use href="./svg/vector/sprite.svg#icon-search-white"></use>
+                </svg>
+              </div>
+            </li>
+            <li class="header__nav__input">
+              <div class="header_wrap">
+                <p class="amount_cart">0</p>
+                <svg data-name="name_cart" class="nav__icon">
+                  <use href="./svg/vector/sprite.svg#icon-SHOPPING-CART"></use>
+                </svg>
+              </div>
+            </li>
+          </div>
+          <li class="header__nav__three_dots">
+            <div class="header_wrap_three_dots">
+              <svg data-name="name_menu" class="nav__icon_three_dots">
+                <use href="./svg/vector/sprite2.svg#icon-three-dots-svgrepo-com"></use>
+              </svg>
+            </div>
+          </li>
+        </ul>
+      </div>
+
+      <div class="desktop">
+        <ul class="header__nav">
+          <div class="logo_container">
+            <li class="header__nav__input"><a data-name="name_logo" class="header__logo"></a></li>
+            <p class="logo_name">Lo<span class="header_txt">GO</p>
+          </div>
+          <div class="navigatiom_container">
+            <div data-name="name_phone" class="phone_container nav_item">
+              <li class="header__nav__input">
+                <div class="header_wrap">
+                  <svg class="nav__icon">
+                    <use href="./svg/vector/sprite.svg#icon-phone-50313-PM"></use>
+                  </svg>
+                </div>
+              </li>
+              <p data-name="name_phone" class="phone_text">+38(050)333-37-96</p>
+              <svg class="arrow_down_icon">
+                <use href="./svg/vector/sprite2.svg#icon-caret-down"></use>
+              </svg>
+            </div>
+            <div data-name="name_catalog" class="catalog_container nav_item">
+              <p data-name="name_catalog" class="desktop_text">Каталог</p>
+              <svg class="arrow_down_icon">
+                <use href="./svg/vector/sprite2.svg#icon-caret-down"></use>
+              </svg>
+            </div>
+            <div data-name="name_sale" class="sale_container nav_item">
+              <p data-name="name_sale" class="desktop_text">Sale%</p>
+            </div>
+            <div data-name="name_info" class="info_container nav_item">
+              <p data-name="name_info" class="desktop_text">Информация</p>
+              <svg class="arrow_down_icon">
+                <use href="./svg/vector/sprite2.svg#icon-caret-down"></use>
+              </svg>
+            </div>
+            <div data-name="name_contacts" class="contact_container nav_item">
+              <p data-name="name_contacts" class="desktop_text">Контакты</p>
+            </div>
+          </div>
+          <div class="icon_container">
+            <li class="header__nav__input nav_icon">
+              <div class="header_wrap_search">
+                <svg data-name="name_search" class="nav__icon_search">
+                  <use href="./svg/vector/sprite.svg#icon-search-white"></use>
+                </svg>
+              </div>
+            </li>
+            <li class="header__nav__input nav_icon">
+              <div class="header_wrap">
+                <svg data-name="name_user" class="nav__icon">
+                  <use href="./svg/vector/sprite3.svg#icon-user1"></use>
+                </svg>
+              </div>
+            </li>
+            <li class="header__nav__input nav_icon">
+              <div class="header_wrap">
+                <p class="amount_cart">0</p>
+                <svg data-name="name_like" class="nav__icon">
+                  <use href="./svg/vector/sprite.svg#icon-like-50313-PM"></use>
+                </svg>
+              </div>
+            </li>
+            <li class="header__nav__input nav_icon">
+              <div class="header_wrap">
+                <p class="amount_cart">0</p>
+                <svg data-name="name_cart" class="nav__icon">
+                  <use href="./svg/vector/sprite.svg#icon-SHOPPING-CART"></use>
+                </svg>
+              </div>
+            </li>
+          </div>
+        </ul>
+      </div>
+    </header>
+
+
+    <button class="check">click me</button>
+    <button class="check2">check 2</button>
     <div class="container" id="root">
       <div id="sections" class="sections"></div>
 
+
     </div>
-    <!-- <section class="profile">
-      <div class="wow">
 
-        <div class="page-control__wrapper">
-          <a href="#" class="page-control__home">Главная</a>
-          <a href="#" class="page-control__exit">Выход</a>
-        </div>
 
-        <h2 class="profile__title">Учетная запись</h2>
-        <div class="profile-wrapper">
-
-
-
-          <div class="profile__buttons-wrapper">
-            <button class="profile__button contacts" type="button" title="contacts">Контакты</button>
-            <button class="profile__button password" type="button" title="password">Изменить пароль</button>
-            <button class="profile__button address" type="button" title="address">Мой Адрес</button>
-            <button class="profile__button favorites" type="button" title="favorites">Избранное</button>
-            <button class="profile__button advertisement" type="button" title=" advertisement">Создать
-              объявление</button>
-          </div>
-
-        </div>
-      </div>
-    </section> -->
-
-    <!-- profile -->
-    <!-- <form method="post" action="/" id="contacts-form" class="contacts-form">
-              <div class="form-group">
-                <label id="name-label" for="name"><em> * </em>Имя, Отчество</label>
-                <input type="text" name="name" id="name" class="form-control" placeholder="Username" required />
-
-                <label id="name-label" for="name"><em> * </em>Фамилия</label>
-                <input type="text" name="name" id="name" class="form-control" placeholder="Username2" required />
-
-
-                <label id="email-label" for="email"><em> * </em>Email</label>
-                <input type="email" name="email" id="email" class="form-control" placeholder="user@mail.com" required />
-                <label id="phone-number" for="phone-number"><em> * </em>Телефон</label>
-                <input type="phone-number" name="phone-number" id="phone-number" class="form-control"
-                  placeholder="+38 (093) 333 99 99" required />
-
-               
-
-              </div> 
-              <button type="submit" id="submit" class="save-button">
-                  Сохранить
-                </button>
-            </form> -->
-    <!-- password -->
-
-    <!-- <form method="post" action="/" id="contacts-form">
-              <div class="form-group">
-                <label id="name-label" for="password"><em> * </em>Пароль</label>
-                <input type="password" name="password" id="password" class="form-control" placeholder="******"
-                  required />
-
-                <label id="name-label" for="password"><em> * </em>Подтвердите пароль</label>
-                <input type="password" name="password" id="password" class="form-control" placeholder="******"
-                  required />
-
-                  
-                </div>
-                    <button type="submit" id="submit" class="save-button">
-                      Сохранить
-                    </button>
-            </form> -->
-    <!-- address -->
-    <!-- <form method="post" action="/" id="contacts-form" class="active-form js-active-tab">
-              <div class="form-group">
-
-                <label id="name-label" for="name"><em> * </em>Имя, Отчество</label>
-                <input type="text" name="name" id="name" class="form-control" placeholder="Username" required />
-
-                <label id="name-label" for="name"><em> * </em>Фамилия</label>
-                <input type="text" name="name" id="name" class="form-control" placeholder="Username2" required />
-
-                <label id="name-label" for="name"><em> * </em>Страна</label>
-                <input type="text" name="name" id="name" class="form-control" placeholder="Украина" required />
-
-                <label id="name-label" for="name"><em> * </em>Регион/Область</label>
-                <input type="text" name="name" id="name" class="form-control" placeholder="Киевская" required />
-
-                <label id="name-label" for="name"><em> * </em>Город</label>
-                <input type="text" name="name" id="name" class="form-control form-control__address" placeholder="Город"
-                  required />
-
-                <label id="name-label" for="name"><em> * </em>Адрес 1</label>
-                <input type="text" name="name" id="name" class="form-control  form-control__address"
-                  placeholder="Улица, дом, квартира" required />
-
-                <label id="name-label" for="name"><em> * </em>Адрес 2</label>
-                <input type="text" name="name" id="name" class="form-control  form-control__address"
-                  placeholder="Улица, дом, квартира" required />
-
-                <label id="name-label" for="name"><em> * </em>Почтовый индекс</label>
-                <input type="text" name="name" id="name" class="form-control  form-control__address" placeholder="00000"
-                  required />
-
-
-
-                
-
-              </div>
-              <button type="submit" id="submit" class="save-button">
-                  Сохранить
-                </button>
-            </form> -->
-
-
-
-    <!-- Favorites -->
-
-    <!-- 
-          <div class="favorites-wrapper">
-
-            <ul class="favorites-list">
-              <li class="favorites-list__items">
-                <button class="favorites-list__favorite-button">
-                  <img src="./images/profile/heart.svg" alt="" class="item__favorite-icon">
-                </button>
-
-                <img src="./images/profile/image 6.png" alt="" class="item-img" width="80">
-                <p class="item-name">Духовой шкаф электрический</p>
-                <div class="item-rate">
-                  <img src="./images/profile/circle.svg" alt="" class="item-rate__img">
-                  <img src="./images/profile/circle.svg" alt="" class="item-rate__img">
-                  <img src="./images/profile/circle.svg" alt="" class="item-rate__img">
-                  <img src="./images/profile/circle.svg" alt="" class="item-rate__img">
-                  <img src="./images/profile/circle.svg" alt="" class="item-rate__img">
-                </div>
-                <div class="item-price">
-                  <p class="item-price__old"><s> 10 555 &#x20b4;</s></p>
-                  <p class="item-price__new"> 13 999 &#x20b4;</p>
-                </div>
-
-              </li>
-
-
-
-
-            </ul>
-            <button type="submit" id="submit" class="favorite-button save-button">
-              Купить всё
-            </button>
-          </div> -->
-
-
-
-
-    <!-- </div> -->
-
-    <!-- =============advertisement======== -->
-
-    <!-- 
-      <form method="post" action="/" id="form" class="active-form js-active-tab">
-        <div class="form-group">
-
-          <label for="name">Название товара</label>
-          <input type="text" name="name" id="name" class="form-control form-control__address" placeholder="Название"
-            required />
-
-          <label for="name">Фото</label>
-          <input type="file" id="img" name="img" class="form-control form-control__address" accept="image/*"
-            class="form-control" required />
-
-          <label for="name">Описание товара</label>
-          <textarea id="comments" class="input-textarea form-control form-control__address" name="comment"
-            placeholder="Описание"></textarea>
-
-          <label for="name">Категория товара</label>
-          <select id="dropdown" name="role" class="form-control form-control__address" required>
-            <option disabled selected value>1</option>
-            <option value="student">2</option>
-            <option value="job">3</option>
-            <option value="learner">4</option>
-            <option value="preferNo">5</option>
-            <option value="other">6</option>
-          </select>
-
-          <label id="name-label" for="name">Цена</label>
-          <input type="text" name="text" class="form-control form-control__address" placeholder="0.000 &#x20b4;"
-            required />
-
-          <label id="phone-number">Телефон</label>
-          <input type="tel" name="phone-number" class="form-control form-control__address"
-            placeholder="+38 (093) 333 99 99" required />
-
-
-
-        </div>
-        <button type="submit" id="submit" class="save-button">
-          Создать
-        </button>
-      </form> -->
-
-    <!-- =============advertisement======== -->
-
-
-
-
-
-    <!-- <form method="post" action="/" id="contacts-form">
-            <div class="form-group">
-              <label id="name-label" for="name"><em> * </em>Имя, Отчество</label>
-              <input type="text" name="name" id="name" class="form-control" placeholder="Username" required />
-
-              <label id="name-label" for="name"><em> * </em>Фамилия</label>
-              <input type="text" name="name" id="name" class="form-control" placeholder="Username2" required />
-
-
-              <label id="email-label" for="email"><em> * </em>Email</label>
-              <input type="email" name="email" id="email" class="form-control" placeholder="user@mail.com" required />
-              <label id="phone-number" for="phone-number"><em> * </em>Телефон</label>
-              <input type="phone-number" name="phone-number" id="phone-number" class="form-control"
-                placeholder="+38 (093) 333 99 99" required />
-
-              <button type="submit" id="submit" class="save-button">
-                Сохранить
-              </button>
-            </div>
-          </form> -->
-
-    <!-- </div>
-
-
-    </section> -->
-
-
-
-
-
-
-    <!-- </div> -->
   </body>
 
 

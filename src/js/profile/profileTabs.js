@@ -16,26 +16,29 @@ import {
   deleteActive
 } from './profileMarkups';
 
+// import apiAuth from './api/users/apiUsers';
+//===================
 
+// apiAuth.getUserInfo()
+//==================
 
-// const name = () => {
-//   console.log('name');
-// }
-// name();
-// export default name;
+// export const DOM = {
+//   tabsNav: document.querySelector('.tabs__nav'),
+// };
 
-export const DOM = {
-  tabsNav: document.querySelector('.tabs__nav'),
-  //   tabsNavItem: document.querySelector('#tabs-1 .profile__button'),
-  //   panels: document.querySelector('.tabs__panel'),
-  //   section: document.querySelector('section'),
+//=====
+const renderProfile = async () => {
+  const pseudoRef = document.querySelector('.check');
+  const response = await pseudoRef.addEventListener('click', maintabsMarkup);
 
-};
-console.log(DOM.tabsNav);
-//console.log(DOM.section);
-//const formRef = DOM.section.querySelector('form');
-//formRef.setAttribute('data-active', 'true');
-console.log(DOM);
+  return response;
+}
+let mainTabsNav
+const chooseNavBtn = () => {
+  mainTabsNav = document.querySelector('#parent')
+  console.log(mainTabsNav);
+}
+renderProfile().then(chooseNavBtn())
 
 
 //==========================
@@ -47,76 +50,3 @@ console.log(DOM);
 //     console.error(err);
 //   }
 // })();
-
-//markup
-//===================
-// profileRender();
-//=======================
-// const renderProfile = async () => {
-//   const response = await maintabsMarkup();
-//   return response;
-// }
-// renderProfile().then(DOM.tabsNav.addEventListener('click', tabsControl));
-//==========================
-// const
-const profileRender = async () => {
-  const response = await maintabsMarkup();
-  //const action = await DOM.tabsNav.addEventListener('click', tabsControl);
-  return response;
-
-};
-
-profileRender().then(response => {
-
-  DOM.tabsNav.addEventListener('click', tabsControl);
-
-
-  const tabsControl = () => {
-
-
-    if (event.target.nodeName !== 'BUTTON') {
-      console.log('Not a button');
-      return;
-    }
-    const currentActiveBtn = DOM.tabsNav.querySelector('.active');
-    console.log(currentActiveBtn);
-
-    if (currentActiveBtn) {
-      currentActiveBtn.classList.remove('active');
-      deleteActive();
-      //deleteActive();
-    }
-    const controlItem = event.target;
-    controlItem.classList.add('active');
-
-    //panelsTitle = controlItem.title;
-    console.log(controlItem.title);
-
-    switch (controlItem.title) {
-      case "contacts":
-        userInfoMarkup();
-
-
-        break;
-      case "password":
-        passwordMarkup();
-        break;
-      case "address":
-        addressFormMarkup();
-        break;
-      case "favorites":
-        favoritesFormMarkup()
-        break;
-      case "advertisement":
-        advertisementFormMarkup();
-        break;
-
-        // default:
-        //   break;
-    }
-  }
-})
-
-
-//   })
-// 
