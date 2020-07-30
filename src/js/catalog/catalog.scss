@@ -28,6 +28,7 @@ line-height: 12px;
     font-weight: 500;
     font-size: 10px;
     line-height: 12px;
+    cursor: pointer;
 
 }
 
@@ -42,6 +43,7 @@ font-size: 18px;
 line-height: 22px;
 color: #53535C;
 margin-bottom: 15px;
+cursor: pointer;
 
 }
 
@@ -132,10 +134,9 @@ margin-bottom: 15px;
         background: #E5E5E5;
     }
 
-
-
-
-
+    .hidden {
+        display: block;
+      }
 
 
   }

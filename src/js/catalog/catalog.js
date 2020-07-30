@@ -37,12 +37,18 @@ export default {
       }
 
       if (e.target.nodeName === "H2" && e.target.dataset.title) {
+
         if (isMobile || isTablet) {
-        const activeSubCatalog = this.refs.catalogList.querySelector('.active')
+        const activeSubCatalog = this.refs.catalogList.querySelector('.active') 
+
+        
+
         if (activeSubCatalog) {
           activeSubCatalog.classList.remove('active')
           activeSubCatalog.classList.add('hidden')
-        }
+        } 
+
+
         console.log(activeSubCatalog);
         console.log(e.target);
 
@@ -53,7 +59,10 @@ export default {
 
         const catalog = e.target.closest('[data-link]')
         const subCatalog = catalog.querySelector('.sub__catalog__list')
-        subCatalog.classList.add('active')       
+
+        subCatalog.classList.add('active')
+        
+
       }
       }
     },
@@ -62,8 +71,6 @@ export default {
       if (isMobile || isTablet) {
         return 'hidden'
       } else return 'active'
-
-
     },
 
     catalogListMarkup() {
@@ -124,17 +131,15 @@ export default {
 // let clickLi = document.querySelector('.catalog__item');
 
 
-// clickLi.addEventListener('click', () => {
-//   showMenu()
-// });
+// clickLi.addEventListener('click', showMenu)
+
 
 // function showMenu() {
-//   const links =   document.querySelector('.sub__catalog__list');
+//   const links = document.querySelector('.sub__catalog__list');
 //   if(links.classList.contains('hidden')) {
 //     links.classList.remove('hidden');
 //   }
 //   else {
-//     console.log('add hidden');
 //     links.classList.add('hidden')
 //   }
 // }
