@@ -18,4 +18,5 @@ export const getAppliances = (categories) => {
   for (const key of keys) {
     getCategoryItems(key)
   }
+ 
 }
