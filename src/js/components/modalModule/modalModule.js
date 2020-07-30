@@ -18,6 +18,7 @@ const container = document.querySelector('.modalModule');
 // };
 
 //  === Module ===
+
 const modalModule = (component, listeners) => {
   const closeModalComponent = () => {
     console.log('click');
