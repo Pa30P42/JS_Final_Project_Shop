@@ -15,6 +15,7 @@ const btnRef2 = document.querySelector('.check2');
 
 containerHandler();
 trigger.triggerFn();
+// trigger.triggerMarkupListener();
 btnRef2.addEventListener('click', () => {
   trigger.openTrigger();
   // console.log('hello');
