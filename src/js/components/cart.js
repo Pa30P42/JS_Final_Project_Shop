@@ -14,5 +14,6 @@ divRef.innerHTML = markup;
 // refs.container.insertAdjacentElement('afterend', divRef);
 
 const showCart = () => {
-  alert('Корзина пуста');
+  // alert('Корзина пуста');
+  return cartItems(cart.order);
 };
