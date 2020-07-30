@@ -17,8 +17,10 @@ const btnRef2 = document.querySelector('.check2');
 import userData from './js/userData';
 
 containerHandler();
-
 btnRef.addEventListener('click', markupInformation);
+btnRef2.addEventListener('click', () =>
+  modalModule(markupInformation, listeners),
+);
 
 // btnRef.addEventListener('click', () => {
 //   apiUsers.deleteFavorite('5f2155d59e8747001767cdf7');

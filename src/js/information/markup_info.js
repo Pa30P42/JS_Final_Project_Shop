@@ -4,6 +4,7 @@ import delivery from '../../images/information/delivery.svg';
 import payment from '../../images/information/payment.svg';
 import conditions from '../../images/information/conditions.svg';
 import returns from '../../images/information/return.svg';
+import '../components/modalModule/modalModule';
 
 function markupInformation() {
   let markup = `
