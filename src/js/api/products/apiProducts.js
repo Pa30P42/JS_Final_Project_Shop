@@ -1,8 +1,10 @@
 import { getAppliances } from './services';
 import axios from 'axios';
 
-import userData from '../../userData'
-axios.defaults.headers['Authorization'] = 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVmMWZlMDk0ZjlkMWZiMDAxNzQ0MGYyMiIsImlhdCI6MTU5NTkyNjI0MiwiZXhwIjoxNTk2MDEyNjQyfQ.AiTPvTcz8gSizZbqAchpW8cMbFDrIq_vN7v52tDfCjY';
+import userData from '../../userData';
+axios.defaults.headers['Authorization'] = JSON.parse(
+  localStorage.getItem('info'),
+).token;
 
 // ========= services product ==== Все катигории и продукты и залиті в ЮЗЕРДАТУ
 // 1.apiProducts.getCategories().then(data => console.log(userData));
@@ -28,99 +30,128 @@ axios.defaults.headers['Authorization'] = 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6Ik
 // ).then(data => console.log(data.data));
 
 export default {
-
   async getCategories() {
-
-    if(userData.categoriesItems.length > 0){
-      return userData.categoriesItems
-    } else{
-    try {
-      const response = await axios.get(
-        'https://goit-store.herokuapp.com/products/getCategories',
-      );
-
-      userData.categoriesItems = [...response.data.categories];
-
-      console.log("user", userData.categoriesItems)
-
-      getAppliances(userData.categoriesItems);
+    if (userData.categoriesItems.length > 0) {
       return userData.categoriesItems;
-    } catch (err) {
-      throw new Error(err);
+    } else {
+      try {
+        const response = await axios.get(
+          'https://goit-store.herokuapp.com/products/getCategories',
+        );
+
+        userData.categoriesItems = [...response.data.categories];
+
+        console.log('user', userData.categoriesItems);
+
+        getAppliances(userData.categoriesItems);
+        return userData.categoriesItems;
+      } catch (err) {
+        throw new Error(err);
+      }
     }
-  }
   },
 
   async getAllProducts() {
-    if(userData.categoriesItems.length > 0){
-      return userData.categoriesItems
-    } else{
-    try {
-      const response = await axios.get('https://goit-store.herokuapp.com/products');
-      return response
-
-    } catch (err) {
-      throw new Error(err);
+    if (userData.categoriesItems.length > 0) {
+      return userData.categoriesItems;
+    } else {
+      try {
+        const response = await axios.get(
+          'https://goit-store.herokuapp.com/products',
+        );
+        return response;
+      } catch (err) {
+        throw new Error(err);
+      }
     }
-  }
   },
 
   async CreateNewProduct(product) {
+<<<<<<< HEAD
 
+=======
+>>>>>>> 84a935a402cd3d9783a444909c387cdf3d05debb
     try {
-      const response = await axios.post('https://goit-store.herokuapp.com/products', product);
-      return response
-
+      const response = await axios.post(
+        'https://goit-store.herokuapp.com/products',
+        product,
+      );
+      return response;
     } catch (err) {
       throw new Error(err);
     }
   },
 
   async searchProductsbyName(inputSearch) {
+<<<<<<< HEAD
 
     try {
       const dataName = await axios.get(`https://goit-store.herokuapp.com/products?search=${inputSearch}`);
 
       console.log(dataName)
       return dataName
+=======
+    try {
+      const dataName = await axios.get(
+        `https://goit-store.herokuapp.com/products?search=${inputSearch}`,
+      );
+
+      console.log(dataName);
+      return dataName;
+>>>>>>> 84a935a402cd3d9783a444909c387cdf3d05debb
     } catch (err) {
       throw new Error(err);
     }
   },
 
   async searchProductsbyCategory(inputSearch) {
+<<<<<<< HEAD
 
     try {
       const dataCategory = await axios.get(`https://goit-store.herokuapp.com/products?search=&category=${inputSearch}`);
       console.log(dataCategory)
       return dataCategory
+=======
+    try {
+      const dataCategory = await axios.get(
+        `https://goit-store.herokuapp.com/products?search=&category=${inputSearch}`,
+      );
+      console.log(dataCategory);
+      return dataCategory;
+>>>>>>> 84a935a402cd3d9783a444909c387cdf3d05debb
     } catch (err) {
       throw new Error(err);
     }
   },
 
   async searchProductsbyCategoryAndName(name, category) {
+<<<<<<< HEAD
 
     try {
       const dataCategoryAndName = await axios.get(`https://goit-store.herokuapp.com/products?search=${name}&category=${category}`);
       return dataCategoryAndName
+=======
+    try {
+      const dataCategoryAndName = await axios.get(
+        `https://goit-store.herokuapp.com/products?search=${name}&category=${category}`,
+      );
+      return dataCategoryAndName;
+>>>>>>> 84a935a402cd3d9783a444909c387cdf3d05debb
     } catch (err) {
       throw new Error(err);
     }
   },
-
 
   async getProductsWithPagination(PerPage, page = 1, category) {
     try {
-      const response = await axios.get(`https://goit-store.herokuapp.com/products?itemsPerPage=${PerPage}&page=${page}&category=${category}`);
-      console.log(response)
+      const response = await axios.get(
+        `https://goit-store.herokuapp.com/products?itemsPerPage=${PerPage}&page=${page}&category=${category}`,
+      );
+      console.log(response);
 
-      return response
+      return response;
     } catch (err) {
       throw new Error(err);
     }
   },
-
-
 };
-
