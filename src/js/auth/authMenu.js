@@ -1,0 +1,6 @@
+сonst authMenuMarkUp = () => {
+    return `
+    
+
+    `
+} 
