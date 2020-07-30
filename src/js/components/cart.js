@@ -12,3 +12,7 @@ console.log(divRef);
 divRef.innerHTML = markup;
 // divRef.style.display = 'none';
 // refs.container.insertAdjacentElement('afterend', divRef);
+
+const showCart = () => {
+  alert('Корзина пуста');
+};
