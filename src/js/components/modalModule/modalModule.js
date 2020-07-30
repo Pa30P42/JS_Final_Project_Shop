@@ -1,32 +1,30 @@
 const container = document.querySelector('.modalModule');
-// const btnTest = document.querySelector('.test'); // test button
+// const btnTest = document.querySelector('.test'); // test button need to be made in index.html
 
-// // === Hot to send data in modal module ===
-// // ===  через component должна заходить Ваша динамицеская разметка ===
+// === Hot to send data in modal module ===
+// ===  через component должна заходить Ваша динамицеская разметка ===
 
 // const component = () => {
 //   return `<div class="component">
-//   <button class="btn_component"> action</button>
+//   <button class="btn__component"> action</button>
 //   </div>`;
 // };
 
-// // ===  через listeners должны заходить Ваши слушатели ===
+// ===  через listeners должны заходить Ваши слушатели ===
 
 // const listeners = action => {
-//   const btnComponent = document.querySelector('.btn_component');
+//   const btnComponent = document.querySelector('.btn__component');
 //   btnComponent.addEventListener('click', action);
 // };
 
-//  === Module ===
+//  === MODAL MODULE ===
 
 const modalModule = (component, listeners) => {
   const closeModalComponent = () => {
-    console.log('click');
     container.innerHTML = '';
   };
 
   const closeModalWindow = e => {
-    console.log(e);
     if (
       e.target.classList.contains('modalOverlay') ||
       e.target.dataset.action === 'btn__closeModal' ||
@@ -59,5 +57,7 @@ const modalModule = (component, listeners) => {
   window.addEventListener('keydown', closeModalWindow);
 };
 
-// === Пример ===
-// btnTest.addEventListener('click', () => modalModule(component, listeners)); // test button
+// === test button need to be made in index.html to use it ===
+// btnTest.addEventListener('click', () => modalModule(component, listeners));
+
+// ===  used styles are in modalModule.scss - classes=> component and btn__closeModal.

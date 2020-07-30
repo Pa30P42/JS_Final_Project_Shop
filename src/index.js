@@ -2,8 +2,6 @@ import './sass/main.scss';
 import './js/api/auth/apiAuth';
 import { containerHandler } from './js/container/container';
 
-import './js/components/modalModule/modalModule';
-
 import userData from './js/userData';
 import apiAuth from './js/api/auth/apiAuth';
 import apiUsers from './js/api/users/apiUsers';
