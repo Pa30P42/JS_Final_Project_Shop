@@ -1,7 +1,26 @@
 import './sass/main.scss';
+import './js/api/auth/apiAuth';
 import { containerHandler } from './js/container/container';
-import './js/servicesTest/servicesTest';
+import userData from './js/userData';
+import apiAuth from './js/api/auth/apiAuth';
+import apiUsers from './js/api/users/apiUsers';
+import './js/category/category-markup';
+import apiProducts from './js/api/products/apiProducts';
+import apiOrders from './js/api/orders/apiOrders';
+import setting from './js/setting';
+
+import markupInformation from './js/information/markup_info';
+
+const btnRef = document.querySelector('.check');
+const btnRef2 = document.querySelector('.check2');
 
 containerHandler();
 
-console.log('hi');
+btnRef.addEventListener('click', markupInformation);
+
+// btnRef.addEventListener('click', () => {
+//   apiUsers.deleteFavorite('5f2155d59e8747001767cdf7');
+// });
+// btnRef2.addEventListener('click', () => {
+//   apiUsers.getInfo();
+// });
