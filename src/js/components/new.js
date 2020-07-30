@@ -1,7 +1,22 @@
-'use strict';
+import apiProducts from '../api/products/apiProducts';
 import { refs } from './refs';
+import axios from 'axios';
 
-const newProducts = [
+// apiProducts.getAllProducts().then(data => console.log(data.data));
+// apiProducts.searchProductsbyCategory('new').then(data => console.log(data.data));
+const getProductsbyCategory = async category => {
+  try {
+    const dataCategory = await axios.get(
+      `https://goit-store.herokuapp.com/products?category=${category}`,
+    );
+    // console.log(dataCategory);
+    return dataCategory;
+  } catch (err) {
+    throw new Error(err);
+  }
+};
+
+const testProducts = [
   {
     img: 'https://i2.rozetka.ua/goods/11051965/gorenje_k_5341_xf_images_11051965719.jpg',
     name: 'Плита комбинированная',
@@ -46,7 +61,7 @@ const newProducts = [
 
 const createCardMarkup = product => {
   return `<li class="product-card">
-    <img class="product-img" src="${product.img}" alt="" width="150" height="140">
+    <img class="product-img" src="${product.images[0]}" alt="" width="150" height="140">
     <p class="product-name">${product.name}</p>
     <p class="product-price">${product.price}</p>
   </li>`;
@@ -64,8 +79,11 @@ const addNewProducts = () => {
   const sliderRef = document.querySelector('.new-products__slider');
 
   const createListCardsMarkup = products => {
+    // return `<ul class="slider__list-cards"></ul>`;
+
     return `<ul class="slider__list-cards">
     ${products.reduce((acc, product) => {
+      console.log(product);
       acc += createCardMarkup(product);
       return acc;
     }, '')}
@@ -74,12 +92,12 @@ const addNewProducts = () => {
 
   const createCardsMarkup = products => {
     return products.reduce((acc, product) => {
-      acc += createCardMarkup(product);
+      // acc += createCardMarkup(product);
       return acc;
     }, '');
   };
 
-  const listCardsMarkup = createCardsMarkup(newProducts);
+  const listCardsMarkup = createCardsMarkup(testProducts);
 
   const createSliderMarkup = products => {
     return `<h2 class="new-products__title">Новые поступления</h2>
@@ -113,9 +131,29 @@ const addNewProducts = () => {
     </div>`;
   };
 
-  const markup = createSliderMarkup(newProducts);
+  // const markup = createSliderMarkup(newProducts);
   // console.log(markup);
-  divRef.innerHTML = createListCardsMarkup(newProducts);
+  // divRef.innerHTML = createListCardsMarkup(testProducts);
+
+  // let newProducts = [];
+  const delay = ms => {
+    return new Promise(resolve => setTimeout(() => resolve(''), ms));
+  };
+
+  const getNewProducts = async () => {
+    try {
+      const response = await apiProducts.searchProductsbyCategory('new');
+      console.log('newProducts: ', response.data);
+      // await delay(5000);
+      divRef.innerHTML = createListCardsMarkup(response.data);
+      return divRef;
+    } catch (error) {
+      console.log('Лог ошибки в getNewProducts ' + error);
+    }
+  };
+
+  // console.log(newProducts);
+  // divRef.innerHTML = getProductsbyCategory('new').then(createListCardsMarkup);
   class Slider {
     constructor(selector, options) {
       this.wrapper = document.querySelector(selector);
@@ -146,6 +184,7 @@ const addNewProducts = () => {
     buildUI() {
       if (!this.wrapper) return false;
       this.track = this.wrapper.querySelector('ul');
+      console.log(this.track);
       this.items = Array.from(this.track.children);
       if (!this.items.length) return false;
       const style = window.getComputedStyle(this.items[0]);
@@ -204,7 +243,9 @@ const addNewProducts = () => {
       this.slider.appendChild(paginationWrapper);
     }
     setupEvents() {
-      console.log('listeners');
+      window.addEventListener('resize', () => {
+        // return this.updateUI();
+      });
     }
     goToSlide(index) {
       this.trackPosition = -(index * this.itemWidth * this.countItems);
@@ -227,12 +268,10 @@ const addNewProducts = () => {
       this.startItemNum += 1;
       this.lastItemNum += 1;
       if (this.lastItemNum === this.items.length) this.hideNextNav();
-
       if (this.startItemNum === 2) this.showPrevNav();
     }
     hideNextNav() {
       const nextNav = this.wrapper.querySelector('.slider__controls-arrow_right');
-      console.log(nextNav);
       nextNav.style.display = 'none';
     }
     showNextNav() {
@@ -248,12 +287,23 @@ const addNewProducts = () => {
       prevNav.style.display = 'none';
     }
   }
+  getNewProducts().then(data => {
+    console.log(data);
+    new Slider('.new-products-wrapper', {
+      step: 1,
+      isNavs: true,
+      isPagination: true,
+      countItems: 5,
+    });
+  });
+  /*
   const sliderFromNewProducts = new Slider('.new-products-wrapper', {
     step: 1,
     isNavs: true,
     isPagination: true,
     countItems: 5,
   });
+  */
 };
 
 export { addNewProducts };
