@@ -3,6 +3,7 @@ import categoriesList from '../userData';
 
 export default {
   refs: {
+    modalCategory: document.querySelector('.modal-category'), // УДАЛИТЬ
     categoriesListInsert: '',
     subcategoriesListInsert: '',
   },
@@ -10,10 +11,26 @@ export default {
   globalCategoriesObjects: Object.values(categoriesList.appliances),
 
   getLink(e) {
+    //link можно добавить в хлебные крошки//
+
+    if (
+      (e.target.nodeName === 'LI' || e.target.nodeName === 'P') &&
+      e.target.closest('[data-sublink]')
+    ) {
+      const subLink = e.target.closest('[data-sublink]').dataset.sublink;
+      console.log(sunLink);
+    }
+
     if (e.target.nodeName === 'BUTTON' && e.target.dataset.link) {
       const link = e.target.closest('[data-link]').dataset.link;
-      console.log(link); //link можно добавить в хлебные крошки//
-    } else return;
+      // console.log(link);
+      this.refs.modalCategory.innerHTML = this.getSubCategoryListMarkup(link);
+      console.log('markup', this.refs.modalCategory);
+    }
+
+    const category = e.target.closest('[data-link]');
+    const subCategory = category.querySelector('.subcategories__list');
+    console.log(category);
   },
 
   categoriesListMarkup() {
@@ -24,19 +41,39 @@ export default {
             `;
   },
 
-  getCategories(globalCategory) {
-    console.log(globalCategory);
-    // const subCategories = categoriesList.appliances[x].categories.map(
-    //   item => item.name,
-    // );
-    const markup = globalCategory.categories.reduce((acc, subCategory) => {
-      acc += `
-            <li class="subcategories__item" data-link="${subCategory.value}">${subCategory.name}  </li>
-            `;
-      return acc;
-    }, '');
-    // console.log(markup);
-    return markup;
+  // getCategories(globalCategory) {
+  //   console.log(globalCategory);
+  //   // const subCategories = categoriesList.appliances[x].categories.map(
+  //   //   item => item.name,
+  //   // );
+  //   const markup = globalCategory.categories.reduce((acc, subCategory) => {
+  //     acc += `
+  //           <li class="subcategories__item" data-link="${subCategory.value}">${subCategory.name}  </li>
+  //           `;
+  //     return acc;
+  //   }, '');
+  //   // console.log(markup);
+  //   return markup;
+  // },
+
+  getSubCategoryListMarkup(subCategory) {
+    const result = categoriesList.appliances[subCategory].categories.reduce(
+      (acc, subCategoryItem) => {
+        acc += this.getSubCategoryListItemMarkup(subCategoryItem);
+        return acc;
+      },
+      '',
+    );
+    return `<ul class="subcategories__list">${result}</ul>`;
+  },
+
+  getSubCategoryListItemMarkup(subCategoryItem) {
+    return `
+          <li class="subcategories__item" data-sublink="${subCategoryItem.value}"> 
+          <img src="#" alt="#"/>
+          <p>${subCategoryItem.name}</p>
+          </li>
+    `;
   },
 
   categoriesItemMarkup(globalCategoriesObjects) {
@@ -45,23 +82,10 @@ export default {
       acc += `
                 <li class="categories__item">
                     <div class="category__img_wrapper">
-                        <img src=${globalCategory.image} alt="${
-        globalCategory.value
-      }" class="category__img" width="280" height="144">
+                        <img src=${globalCategory.image} alt="${globalCategory.value}" class="category__img" width="280" height="144">
                     </div>
                     <p class="category__title">${globalCategory.name}</p>
-                    <ul class="subcategories__list">
-                    <template>
-                      <div class="modal">
-                          <p>I'm a modal created from a DOM element/node.</p>
-                          <p>${this.getCategories(globalCategory)}</p>
-                      </div>
-                     </template>
-                    
-                    </ul>
-                    <button type="button" class="btn btn_gradient js-category-buy-btn" data-link="${
-                      globalCategory.value
-                    }">Купить</button>
+                    <button type="button" class="btn btn_gradient js-category-buy-btn" data-link="${globalCategory.value}">Купить</button>
                 </li>`;
       return acc;
     }, '');
@@ -92,11 +116,14 @@ export default {
     const subLi = document.querySelector('.subcategories__list');
 
     this.refs.categoriesList = document.querySelector('.categories__list');
-    this.refs.categoriesList.addEventListener('click', this.getLink);
+    this.refs.categoriesList.addEventListener('click', this.getLink.bind(this));
   },
 
   categoriesListMarkupRemoveListeners() {
-    this.refs.categoriesListInsert.removeEventListener('click', this.getLink);
+    this.refs.categoriesListInsert.removeEventListener(
+      'click',
+      this.getLink.bind(this),
+    );
   },
 };
 
