@@ -8,6 +8,8 @@
 // apiAuth.getCurrentUser()   role: "ADMIN"
 //
 // const role = "ADMIN";
+
+
 const userData = {
 
   name: "admin",
@@ -157,10 +159,10 @@ function userInfoMarkup() {
         <form name="infoForm"  data-form="infoForm" id="form" class="active-form js-active-tab tabs__panel">
                   <div class="form-group">
                     <label id="name-label" for="name"><em> * </em>Имя, Отчество</label>
-                    <input type="text" name="name" id="name" class="form-control" placeholder="Username" required />
+                    <input type="text" name="name"  class="form-control" placeholder="Username" required />
     
                     <label id="name-label" for="name"><em> * </em>Фамилия</label>
-                    <input type="text" name="surname" id="name" class="form-control" placeholder="Username2" required />
+                    <input type="text" name="surname"  class="form-control" placeholder="Username2" required />
     
     
                     <label id="email-label" for="email"><em> * </em>Email</label>
@@ -220,29 +222,29 @@ function addressFormMarkup() {
                   <div class="section-one">
     
                     <label id="name-label" for="name"><em> * </em>Страна</label>
-                    <input type="text" name="country"  class="form-control" placeholder="Username" required />
+                    <input type="text" name="country"  class="form-control" placeholder="Страна" required />
     
                     <label id="name-label" for="name"><em> * </em>Регион/Область</label>
-                    <input type="text" name="city"  class="form-control" placeholder="Username2" required />
+                    <input type="text" name="city"  class="form-control" placeholder="Киевская" required />
     
                     <label id="name-label" for="name"><em> * </em>Город</label>
-                    <input type="text" name="place"  class="form-control" placeholder="Украина" autocomplete="section-blue shipping street-address" required />
+                    <input type="text" name="place"  class="form-control" placeholder="Киев" autocomplete="section-blue shipping street-address" required />
     
                     <label id="name-label" for="name"><em> * </em>Улица</label>
-                    <input type="text" name="street"  class="form-control" placeholder="Киевская" autocomplete="section-blue shipping street-address" required />
+                    <input type="text" name="street"  class="form-control" placeholder="Пушкинская" autocomplete="section-blue shipping street-address" required />
     </div>
     <div class="section-two" >
                     <label id="name-label" for="name"><em> * </em>Дом</label>
-                    <input type="text" name="building"  class="form-control form-control__address" placeholder="Город"
+                    <input type="text" name="building"  class="form-control form-control__address" placeholder="Дом"
                      autocomplete="section-blue shipping street-address"  required />
     
                     <label id="name-label" for="name">Блок</label>
                     <input type="text" name="block"  class="form-control  form-control__address"
-                      placeholder="Улица, дом, квартира" required />
+                      placeholder="Блок" required />
     
                     <label id="name-label" for="name">Квартира</label>
                     <input type="text" name="flat"  class="form-control  form-control__address"
-                      placeholder="Улица, дом, квартира" required />
+                      placeholder="Квартира" required />
     
                     <label id="name-label" for="name"><em> * </em>Почтовый индекс</label>
                     <input type="text" name="postIndex"  class="form-control  form-control__address" placeholder="00000"
@@ -273,7 +275,7 @@ function favoritesFormMarkup() {
     
                 <ul class="favorites-list ">
                   <li class="favorites-list__items">
-                    <button class="favorites-list__favorite-button">
+                    <button class="favorites-list__favorite-button"><span tooltip="Убрать из избранного">o</span>
                       <img src="./images/profile/heart.svg" alt="" class="item__favorite-icon">
                     </button>
     
@@ -294,7 +296,8 @@ function favoritesFormMarkup() {
                   </li>
     
                   <li class="favorites-list__items">
-                    <button class="favorites-list__favorite-button">
+                    <button class="favorites-list__favorite-button"><span tooltip="Убрать из избранного">o</span>
+                
                       <img src="./images/profile/heart.svg" alt="" class="item__favorite-icon">
                     </button>
     
@@ -348,7 +351,7 @@ function advertisementFormMarkup() {
                 class="form-control" required />
     
               <label  class="adv-label" for="name">Описание товара</label>
-              <textarea disabled  name="description" id="comments" class="advertisement-inputs form-control-advertisement  input-textarea " name="comment"
+              <textarea style="resize:none"  name="description" id="comments" class="advertisement-inputs form-control-advertisement  input-textarea " name="comment"
                 placeholder="Описание"></textarea>
     
               <label  class="adv-label" for="name">Категория товара</label>
