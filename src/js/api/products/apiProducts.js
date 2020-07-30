@@ -94,7 +94,7 @@ export default {
   async searchProductsbyCategory(inputSearch) {
     try {
       const dataCategory = await axios.get(
-        `https://goit-store.herokuapp.com/products?search=category=${inputSearch}`,
+        `https://goit-store.herokuapp.com/products?search=&category=${inputSearch}`,
       );
       console.log(dataCategory);
       return dataCategory;
