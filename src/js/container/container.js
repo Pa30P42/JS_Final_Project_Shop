@@ -1,11 +1,17 @@
-import { refs } from '../components/refs';
+import {
+  refs
+} from '../components/refs';
 
 import {
   categoriesListMarkup,
   categoriesListMarkupAddListeners,
 } from '../category/category-markup';
-import { header } from '../header/header';
-import { searchSideBar } from '../search/searchsidebar/searchSideBar.js';
+import {
+  header
+} from '../header/header';
+import {
+  searchSideBar
+} from '../search/searchsidebar/searchSideBar.js';
 
 //В каждом диве запустить функцию определенного модуля который булет отрисовывать блок.
 
