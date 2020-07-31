@@ -7,7 +7,7 @@ import buy from './buy';
 const productCard = item => {
   const component = () => markup(item);
   updateLastSeen(item._id);
-  modalWindow(component, () => {});
+  modalWindow(component, addListener);
 
   const btnFavourite = document.getElementById('btnFavourite');
   const btnBuy = document.getElementById('btnBuy');
@@ -18,11 +18,14 @@ const productCard = item => {
     }
   });
 
-  btnBuy.addEventListener('click', () => {
-    if (currentItem) {
-      buy(currentItem._id);
-    }
-  });
+  function addListener(closeModal) {
+    const btnBuy = document.getElementById('btnBuy');
+    btnBuy.addEventListener('click', () => {
+      if (item) {
+        buy(item, closeModal);
+      }
+    });
+  }
 };
 
 export default productCard;

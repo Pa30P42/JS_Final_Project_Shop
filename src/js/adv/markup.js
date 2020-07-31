@@ -9,7 +9,7 @@ import img6 from '../../images/adv/preview/roborock6_preview.jpg';
 
 const productItem = item => {
   const images = [img1, img2, img3, img4, img5, img6];
-
+  console.log(item);
   return `
     <section class="product__card container">
       <div class="product__title-mobile">

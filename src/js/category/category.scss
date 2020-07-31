@@ -102,3 +102,27 @@
     color: #ffffff;
   }
 }
+
+.modal_wrapper {
+  background: #fff;
+  // width: 300px;
+  // height: 300px;
+  padding: 30px;
+}
+
+.subcategories {
+  &__item {
+    cursor: pointer;
+    display: flex;
+    // justify-content: space-between;
+    align-items: center;
+
+    &:not(:last-child) {
+      margin-bottom: 20px;
+    }
+  }
+
+  &__image {
+    margin-right: 10px;
+  }
+}

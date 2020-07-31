@@ -1,8 +1,9 @@
 // import { addToCart, showCart } from '../../js/components/cart';
 
-// const buy = item => {
-//   addToCart(item);
-//   showCart();
-// };
+const buy = (item, closeModal) => {
+  // addToCart(item);
+  closeModal();
+  // showCart();
+};
 
-// export default buy;
+export default buy;
