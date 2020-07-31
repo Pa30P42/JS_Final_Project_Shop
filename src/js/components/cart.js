@@ -34,7 +34,7 @@ const createCartMarkup = () => {
         return acc;
       }, '')}
     </ul>
-    <div class="cart__total"><span class="cart__total-label">Итого</span><span class="cart__total-amount">8 499 ₴</span></div>
+    <div class="cart__total"><span class="cart__total-label">Итого</span><span class="cart__total-amount">${totalAmount} ₴</span></div>
     <div class="cart__buttons-wrap">
       <button type="button" class="cart__button cart__button_confirm" data-button="confirmOrder">Оформить заказ</button>
       <button type="button" class="cart__button cart__button_back" data-button="backToProducts">
@@ -48,8 +48,10 @@ const createCartMarkup = () => {
 
 const createCartItemMarkup = item => {
   return `
-  <li class="cart__item" data-id="${item._id}">
-    <img class="cart__item-image" src=${item.images[0]} alt="${item.name}" width="85" height="80" />
+  <li class="cart__item" data-id="${item.id}">
+    <img class="cart__item-image" src=${item.image} alt="${
+    item.name
+  }" width="85" height="80" />
     <div class="cart__item-props">
       <p class="cart__item-name">${item.name}</p>
       <p class="cart__item-price">${item.price} ₴</p>
@@ -68,7 +70,9 @@ const createCartItemMarkup = item => {
             <path d="M1 8H17" stroke="white" stroke-width="2" stroke-linecap="round"/>
           </svg>
         </button>
-        <input name="quantity" type="number" data-input="inputNumber" value="${item.quantity}" />
+        <input name="quantity" type="number" data-input="inputNumber" value="${
+          item.quantity
+        }" />
         <button type="button" data-button="increment">
           <svg width="18" height="18" viewBox="0 0 18 18" xmlns="http://www.w3.org/2000/svg">
             <path d="M9 17V1" stroke="white" stroke-width="2" stroke-linecap="round"/>
@@ -76,7 +80,7 @@ const createCartItemMarkup = item => {
           </svg>
         </button>
       </div>
-      <p class="cart__item-amount">${totalAmount} ₴</p>
+      <p class="cart__item-amount">${item.price * item.quantity} ₴</p>
     </div>
   </li>`;
 };
@@ -123,13 +127,21 @@ const inputQuantityHandler = ({ target }) => {
 };
 
 const counterHandler = e => {
-  const listItem = e.target.closest('[data-id]');
+  const counterBtn = e.target.closest('[data-button]');
+  if (!counterBtn) return;
+  if (
+    counterBtn.dataset.button !== 'decrement' &&
+    counterBtn.dataset.button !== 'increment'
+  ) {
+    return;
+  }
+  const listItem = counterBtn.closest('[data-id]');
   const id = listItem.dataset.id;
   const element = userData.cart.cartItems.find(item => item.id === id);
   const buttonDecrement = listItem.querySelector('[data-button="decrement"]');
-  const cartTotalPrice = document.querySelector('.cartTotalPrice');
+  const cartTotalPrice = document.querySelector('.cart__total-amount');
 
-  if (e.target.dataset.button === 'decrement') {
+  if (counterBtn.dataset.button === 'decrement') {
     if (element.quantity <= 1) {
       element.quantity = 1;
     } else element.quantity -= 1;
@@ -138,19 +150,19 @@ const counterHandler = e => {
       buttonDecrement.disabled = true;
     }
   }
-  if (e.target.dataset.button === 'increment') {
+  if (counterBtn.dataset.button === 'increment') {
     element.quantity += 1;
     buttonDecrement.disabled = false;
   }
   const inputNumber = listItem.querySelector('[data-input="inputNumber"]');
   inputNumber.value = element.quantity;
-  cartTotalPrice.textContent = this.getTotalPrice(
-    this.userData[this.keys.cart],
-  );
+  cartTotalPrice.textContent = getTotalPrice(userData.cart.cartItems);
 };
 
 const removeCartItem = e => {
-  if (e.target.dataset.button !== 'delete') {
+  const deleteBtn = e.target.closest('[data-button]');
+  if (!deleteBtn) return;
+  if (deleteBtn.dataset.button !== 'delete') {
     return;
   }
   const listItem = e.target.closest('[data-id]');
@@ -193,8 +205,9 @@ const showCart = () => {
   // console.log(refs.cartList);
   // refs.cartList.addEventListener('click', e => console.dir(e));
 
-  // modalModule(createCartMarkup, listeners);
+  modalModule(createCartMarkup, listeners);
   const cartList = document.querySelector('.cart__list');
+  console.log(cartList);
   cartList.addEventListener('click', counterHandler);
   cartList.addEventListener('change', inputQuantityHandler);
   cartList.addEventListener('click', removeCartItem);
