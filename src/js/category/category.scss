@@ -103,10 +103,6 @@
   }
 }
 
-.subcategories__item {
-  cursor: pointer;
-}
-
 .modal_wrapper {
   background: #fff;
   // width: 300px;
@@ -114,6 +110,19 @@
   padding: 30px;
 }
 
-.categories__item {
-  display: flex;
+.subcategories {
+  &__item {
+    cursor: pointer;
+    display: flex;
+    // justify-content: space-between;
+    align-items: center;
+
+    &:not(:last-child) {
+      margin-bottom: 20px;
+    }
+  }
+
+  &__image {
+    margin-right: 10px;
+  }
 }

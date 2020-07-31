@@ -1,7 +1,7 @@
 import { refs } from '../components/refs.js';
 import { headerMenu, closeHeaderMenu } from '../sideBar/headerSideBar.js';
 import { contactMarkUp } from '../contacts/contacts.js';
-import { categoriesListMarkup, categories } from '../category/category-markup';
+// import { categoriesListMarkup, categories } from '../category/category-markup';
 
 const headerButton = event => {
   const dataname = event.target.dataset.name;
