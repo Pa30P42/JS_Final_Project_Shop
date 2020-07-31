@@ -19,9 +19,9 @@ const initialAction = async () => {
   containerHandler();
 };
 initialAction();
-// if (setting.isMobile) {
+// if (setting.isDesktop) {
 //   console.log('WORK')
-// } перепроверка ширирны
+// } ПЕРЕПРОВЕРКА
 
 
 
