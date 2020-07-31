@@ -392,12 +392,9 @@ em {
     align-items: center;
   }
 
-
-
   @media (min-width: 768px) {
     position: absolute;
     transform: translateX(100%);
-    // right: 150px;
 
   }
 
@@ -418,17 +415,10 @@ em {
   }
 
   @media (min-width: 1200px) {
-
-
     flex-wrap: wrap;
     height: 350px;
-    //width: 300px;
-    // justify-content: start;
-    //justify-content: space-evenly;
+
   }
-
-
-
 
 }
 
@@ -683,37 +673,22 @@ label.adv-label {
 }
 
 //==================VALIDATION=====
-input:focus {
-  // outline-color: red;
-}
 
 
+// input[type="text"],
+// input[type="tel"],
+// input[type="email"],
+// input[type="password"] {
+//   &:invalid {
+//     outline-color: red;
+//   }
 
-input[type="text"],
-input[type="tel"],
-input[type="email"],
-input[type="password"] {
-  &:invalid {
-    outline-color: red;
-  }
+//   &:valid {
+//     outline-color: green;
 
-  &:valid {
-    outline-color: green;
-
-  }
-
-
-}
-
-// .helper-text-div {
-//   position: absolute;
-//   top: 0;
-//   right: 0;
-//   background-image: url("../images/profile/user.svg");
-//   width: 100px;
-//   height: 30px;
-
+//   }
 // }
+
 div.helper-text-div {
   position: relative;
 }
@@ -721,36 +696,36 @@ div.helper-text-div {
 .helper-text-invalid {
   font-size: 12px;
   display: inline-block;
-  padding-top: 55px;
+  padding-top: 52px;
   vertical-align: bottom;
   text-align: end;
-  width: 280px;
+  // width: 280px;
   height: auto;
   position: absolute;
-  top: -72px;
+  top: -71px;
   right: 5px;
   color: red;
   background-image: url("../images/profile/invalid.svg");
   background-repeat: no-repeat;
-  background-position: 99%;
-  background-size: auto 30%;
+  background-position: 95%;
+  background-size: 48%;
 
 }
 
 .helper-text-valid {
   font-size: 12px;
   display: inline-block;
-  padding-top: 39px;
+  padding-top: 48px;
   vertical-align: bottom;
-  width: 280px;
+  // width: 280px;
   height: auto;
   position: absolute;
-  top: -58px;
-  right: -5px;
+  top: -68px;
+  right: 7px;
   color: rgb(16, 155, 23);
   background-image: url("../images/profile/valid.svg");
   background-repeat: no-repeat;
   background-position: 95%;
-  background-size: 9%;
+  background-size: 40%;
 
 }
