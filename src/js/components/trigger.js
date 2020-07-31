@@ -1,5 +1,9 @@
 import { refs } from './refs';
 
+import vodafone from '../../images/trigger/vodafone.png';
+import life from '../../images/trigger/lifecell.png';
+import kyivstar from '../../images/trigger/kyivstar.png';
+
 export default {
   refs: {
     triggerHidden: '',
@@ -12,11 +16,11 @@ export default {
     return `
           <div class="trigger-wrapper ishiddenTrigger">
              <ul class="trigger-list">
-               <li class="trigger-list__item"><a href="tel:380503333796" class="trigger-list__item_vodafone">+38 (050)
+               <li class="trigger-list__item"><div class="img-icon-wrapper"><img src = ${vodafone} alt = "icon"  class= "imgIcon"></div><a href="tel:380503333796" class="trigger-list__item_vodafone">+38 (050)
                    333-37-96</a></li>
-               <li class="trigger-list__item"><a href="tel:380738373737" class="trigger-list__item_lifecell">+38 (073)
+               <li class="trigger-list__item"><div class="img-icon-wrapper"><img src = "${life}" alt = "icon" width= "14" height ="14"></div><a href="tel:380738373737" class="trigger-list__item_lifecell">+38 (073)
                    837-37-37</a></li>
-               <li class="trigger-list__item"><a href="tel:380688773737" class="trigger-list__item_kyivstar">+38 (068)
+               <li class="trigger-list__item"><div class="img-icon-wrapper"><img src = "${kyivstar}" alt = "icon" width= "14" height ="14"></div><a href="tel:380688773737" class="trigger-list__item_kyivstar">+38 (068)
                    877-37-37</a></li>
              </ul>
             </div>
