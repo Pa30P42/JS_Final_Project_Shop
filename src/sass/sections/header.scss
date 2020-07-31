@@ -1,3 +1,7 @@
+.svg_imade_header {
+  margin: 0 auto;
+}
+
 .sidebar {
   display: block;
   width: 100%;
@@ -10,18 +14,22 @@
   transition: transform 250ms linear;
   padding: 20px;
 }
+
 .caret_down {
   position: absolute;
   right: 20px;
 }
+
 .sidebar_item_search {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
 }
+
 .header_wrap_search {
   display: flex;
 }
+
 .ishidden {
   opacity: 1;
   transform: translateX(-100%);
@@ -36,10 +44,12 @@
   width: 30px;
   height: 30px;
 }
+
 .search_btn {
   background: none;
   border: none;
 }
+
 .sidebar_input_form {
   height: 40px;
   font-size: 20px;
@@ -50,23 +60,28 @@
   border-radius: 5px;
   transition: all 250ms linear;
 }
+
 .sidebar_input_form:hover {
   background-color: white;
   transition: all 250ms linear;
 }
+
 .close_btn {
   border: none;
   background: none;
   outline: none;
 }
+
 .nav__icon_close {
   fill: #53535c;
   width: 16px;
   height: 16px;
 }
+
 .nav__icon_close:hover {
   fill: red;
 }
+
 .sidebar_item {
   position: relative;
   display: flex;
@@ -74,13 +89,16 @@
   flex-direction: row;
   justify-content: space-between;
 }
+
 .sidebar_icon_info_wraper {
   display: flex;
   flex-direction: row;
 }
+
 .sidebar_text {
   font-size: 20px;
 }
+
 .sidebar_nav__icon {
   fill: white;
   margin-left: 5px;
@@ -88,6 +106,7 @@
   width: 20px;
   height: 20px;
 }
+
 .sidebar_header_wrap {
   width: 30px;
   height: 30px;
@@ -96,6 +115,7 @@
   position: relative;
   margin-right: 30px;
 }
+
 .sidebar_arrow_down_icon {
   margin-left: 10px;
   margin-top: 5px;
@@ -116,6 +136,7 @@ ul,
 li {
   list-style: none;
 }
+
 .header {
   background-color: #53535c;
   height: 60px;
@@ -126,6 +147,7 @@ li {
   justify-content: space-around;
   align-items: center;
 }
+
 .logo_name {
   font-family: Montserrat Alternates;
   font-style: italic;
@@ -139,12 +161,14 @@ li {
 .header_txt {
   font-weight: bold;
 }
+
 .center_conatiner {
   margin-top: 10px;
   width: 150px;
   display: flex;
   justify-content: space-between;
 }
+
 .header__logo {
   display: block;
   width: 40px;
@@ -165,6 +189,7 @@ li {
   border-radius: 50px;
   background-color: #53535c;
 }
+
 .header_wrap {
   width: 30px;
   height: 30px;
@@ -172,6 +197,7 @@ li {
   border-radius: 20px;
   position: relative;
 }
+
 .nav__icon {
   fill: #53535c;
   margin-left: 5px;
@@ -179,6 +205,7 @@ li {
   width: 20px;
   height: 20px;
 }
+
 .amount_cart {
   position: absolute;
   text-align: center;
@@ -198,9 +225,11 @@ li {
   width: 20px;
   height: 20px;
 }
+
 .header__nav__three_dots {
   margin-top: 15px;
 }
+
 .nav__icon_three_dots {
   fill: orange;
   width: 30px;
@@ -214,15 +243,22 @@ li {
 .header_img_phone {
   padding-top: 3px;
 }
+
+.header_img_phone_side {
+  padding-top: 2px;
+}
+
 .side_bar_img_phone {
   position: absolute;
   right: 0;
   margin-top: 10px;
   margin-right: 15px;
 }
+
 .header_img_search {
   padding-top: 5px;
 }
+
 .header_img_menu {
   margin-left: 5px;
 }
@@ -243,9 +279,11 @@ li {
     width: 320px;
     margin: 0 auto;
   }
+
   .tablet {
     display: none;
   }
+
   .desktop {
     display: none;
   }
@@ -255,17 +293,21 @@ li {
   .phone {
     display: none;
   }
+
   .tablet {
     display: block;
     width: 950px;
     margin: 0 auto;
   }
+
   .desktop {
     display: none;
   }
+
   .sidebar {
     width: 50%;
   }
+
   .logo_container {
     display: flex;
     flex-direction: row;
@@ -277,9 +319,11 @@ li {
   .phone {
     display: none;
   }
+
   .tablet {
     display: none;
   }
+
   .desktop {
     display: block;
     width: 1300px;
@@ -304,6 +348,7 @@ li {
     width: 10px;
     height: 10px;
   }
+
   .desktop_text {
     padding-top: 10px;
     padding-left: 25px;
@@ -324,12 +369,15 @@ li {
   .navigatiom_container {
     display: flex;
   }
+
   .icon_container {
     display: flex;
   }
+
   .nav_icon {
     margin-right: 20px;
   }
+
   .nav_item {
     margin-right: 10px;
   }
