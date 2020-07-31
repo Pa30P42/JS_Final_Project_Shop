@@ -12,15 +12,16 @@ const globalCategoriesObjects = Object.values(categoriesList.appliances);
 
 function getLink(e) {
   //link можно добавить в хлебные крошки//
-
+  console.log('e.target :>> ', e.target);
   if (
     e.target.nodeName === 'LI' ||
     e.target.nodeName === 'P' ||
     e.target.nodeName === 'IMG'
   ) {
-    const subLink = e.target.closest('[data-sublink]').dataset.sublink;
-
-    return subLink;
+    if (e.target.closest('[data-sublink]')) {
+      const subLink = e.target.closest('[data-sublink]').dataset.sublink;
+      return subLink;
+    } else return;
   }
 
   if (e.target.nodeName === 'BUTTON' && e.target.dataset.button) {
@@ -112,7 +113,8 @@ function listeners(action) {
 
 function showModal(e) {
   const newLink = getLink(e);
-  const markup = getSubCategoryListMarkup(newLink);
-
-  modalModule(() => getSubCategoryListMarkup(newLink), listeners);
+  // const markup = getSubCategoryListMarkup(newLink);
+  if (newLink) {
+    modalModule(() => getSubCategoryListMarkup(newLink), listeners);
+  }
 }

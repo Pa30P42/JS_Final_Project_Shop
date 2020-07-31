@@ -39,11 +39,7 @@ export const modalModule = (component, listeners) => {
   
     <div class="modalComponent"></div>
   
-    // <button
-    //     type="button"
-    //     class="btn__closeModal"
-    //     data-action="btn__closeModal"
-    // ></button>
+
     </div>
     `;
 
