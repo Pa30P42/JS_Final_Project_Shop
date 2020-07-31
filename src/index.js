@@ -11,20 +11,20 @@ import apiOrders from './js/api/orders/apiOrders';
 import setting from './js/setting';
 
 import markupInformation from './js/information/markup_info';
+// import markupInformation from './js/information/information';
 
 const btnRef = document.querySelector('.check');
 const btnRef2 = document.querySelector('.check2');
 import userData from './js/userData';
 
 containerHandler();
-btnRef.addEventListener('click', markupInformation);
-btnRef2.addEventListener('click', () =>
-  modalModule(markupInformation, listeners),
-);
 
-// btnRef.addEventListener('click', () => {
-//   apiUsers.deleteFavorite('5f2155d59e8747001767cdf7');
-// });
-// btnRef2.addEventListener('click', () => {
-//   apiUsers.getInfo();
+btnRef.addEventListener('click', markupInformation);
+// btnRef2.addEventListener('click', () =>
+//   modalModule(informationModal, listeners),
+// );
+// apiAuth.register({
+//   name: 'Vygovska',
+//   email: 'pillowforneedles@gmail.com',
+//   password: 'qwerty123',
 // });
