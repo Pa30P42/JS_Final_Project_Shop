@@ -19,6 +19,7 @@ document.body.onload = updateLastSeen(189864298, new Date().getTime());
 
 const btnRef = document.querySelector('.check');
 const btnRef2 = document.querySelector('.check2');
+// import apiProducts from './js/api/products/apiProducts';
 import userData from './js/userData';
 
 containerHandler();
