@@ -2,6 +2,8 @@ import { refs } from '../components/refs.js';
 import { headerMenu, closeHeaderMenu } from '../sideBar/headerSideBar.js';
 import { contactMarkUp } from '../contacts/contacts.js';
 import { categoriesListMarkup, categories } from '../category/category-markup';
+import trigger from '../components/trigger';
+// import trigger from './js/components/trigger';
 
 const headerButton = event => {
   const dataname = event.target.dataset.name;
@@ -9,7 +11,7 @@ const headerButton = event => {
     refs.container.innerHTML = categoriesListMarkup(categories);
     console.log('logo');
   } else if (dataname === 'name_phone') {
-    // trigger.openTrigger();
+    trigger.openTrigger();
     console.log('phone');
   } else if (dataname === 'name_search') {
     console.log('search');

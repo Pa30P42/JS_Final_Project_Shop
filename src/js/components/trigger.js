@@ -45,6 +45,7 @@ export default {
         refs.triggerHidden[1].classList.add('ishiddenTrigger');
         refs.triggerHidden[2].classList.add('ishiddenTrigger');
       }
+      refs.sections.removeEventListener();
     });
   },
 };

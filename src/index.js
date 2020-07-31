@@ -20,10 +20,10 @@ import userData from './js/userData';
 containerHandler();
 trigger.triggerFn();
 // trigger.triggerMarkupListener();
-btnRef2.addEventListener('click', () => {
-  trigger.openTrigger();
-  // console.log('hello');
-});
+// btnRef2.addEventListener('click', () => {
+//   trigger.openTrigger();
+//   // console.log('hello');
+// });
 // btnRef2.addEventListener('click', () => {
 //   apiUsers.getInfo();
 // });
