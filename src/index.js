@@ -5,7 +5,7 @@ import { containerHandler } from './js/container/container';
 import services from './js/services/services';
 import apiProducts from './js/api/products/apiProducts';
 import userData from './js/userData';
-
+import './js/slider/slider.js';
 containerHandler();
 apiProducts.getCategories().then(data => console.log(userData));
 
