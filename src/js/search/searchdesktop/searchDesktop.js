@@ -20,15 +20,17 @@ export const searshForm = () => {
   </div>`;
 };
 
-export const listenersForSearch = () => {
+export const listenersForSearch = clsmodal => {
   const hoverSearch = document.querySelector('.hover_search');
 
   const searchList = event => {
     event.preventDefault();
+
     apiProducts
       .searchProductsbyName(event.target[0].value)
       .then(res => console.log(res.data));
     event.target[0].value = '';
+    clsmodal();
   };
   hoverSearch.addEventListener('submit', searchList);
 };
