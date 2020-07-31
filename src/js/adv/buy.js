@@ -1,7 +1,7 @@
 // import { addToCart, showCart } from '../../js/components/cart';
 
-// const buy = id => {
-//   addToCart(id);
+// const buy = item => {
+//   addToCart(item);
 //   showCart();
 // };
 
