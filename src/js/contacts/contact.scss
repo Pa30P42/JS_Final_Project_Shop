@@ -29,6 +29,7 @@ img {
   width: 280px;
   height: 126px;
   margin: 10px 10px 10px 10px;
+  padding: 10px 10px 10px 10px;
   background: #ffffff;
   box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.15);
   border-radius: 10px;
@@ -62,7 +63,7 @@ img {
   font-size: 18px;
   line-height: 22px;
   color: #53535c;
-  margin-top: 35px;
+  margin-top: 25px;
   margin-bottom: 15px;
 }
 
@@ -78,10 +79,34 @@ img {
   margin-bottom: 35px;
 }
 
+.contactsBack {
+  margin: 20px 20px 20px 20px;
+  font-family: Montserrat Alternates;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  color: #53535c;
+}
+
+.title_contacts {
+  font-family: Montserrat Alternates;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 26px;
+  color: #53535c;
+  margin: 20px 20px 20px 20px;
+}
+
 @media (min-width: 320px) and (max-width: 799px) {
   .container {
     width: 320px;
     margin: 0 auto;
+  }
+
+  .team__item {
+    width: 314px;
+    height: 161px;
+    margin: 5px 5px 5px 5px;
   }
 }
 
@@ -94,17 +119,17 @@ img {
   .team__item {
     width: 314px;
     height: 161px;
-    margin: 20px 20px 20px 20px;
+    margin: 10px 10px 10px 10px;
   }
 
   .team__item__info {
     width: 198px;
     margin-left: 30px;
+    font-size: 14px;
   }
 
   .team__item__person {
-    margin-left: 15px;
-    margin-top: 15px;
+    font-size: 18px;
   }
 
   .team__item__photo {
@@ -122,7 +147,7 @@ img {
 
   .team__item__text {
     font-size: 14px;
-    line-height: 17px;
+    line-height: 14px;
     margin-bottom: 40px;
   }
 }
@@ -145,25 +170,27 @@ img {
   }
 
   .team__item__person {
-    margin-left: 55px;
-    margin-top: 55px;
+    margin-left: 25px;
+    margin-top: 25px;
   }
 
   .team__item__photo {
     width: 160px;
     height: 160px;
     border-radius: 90px;
+    margin-bottom: 30px;
   }
 
   .team__item__title {
     font-size: 26px;
     line-height: 32px;
-    margin-top: 90px;
+    margin-top: 60px;
     margin-bottom: 15px;
   }
 
   .team__item__text {
-    font-size: 14px;
+    font-weight: 500;
+    font-size: 16px;
     line-height: 17px;
     margin-bottom: 90px;
   }
