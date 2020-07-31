@@ -1,9 +1,9 @@
 .modal__heading {
+  margin-bottom: 17px;
+  padding: 0 20px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  height: 58px;
-  padding: 0 20px;
 
   h3 {
     color: $main--text-color;
@@ -19,11 +19,12 @@
   }
 }
 .cart {
-  position: absolute;
+  // position: absolute;
+  padding: 20px 0 30px;
   width: 320px;
-  top: 25px;
-  left: 50%;
-  transform: translateX(-50%);
+  // top: 25px;
+  // left: 50%;
+  // transform: translateX(-50%);
   @media (min-width: 768px) {
     width: 648px;
   }
@@ -120,6 +121,9 @@
       @media (min-width: 768px) {
         width: 180px;
       }
+      @media (min-width: 1200px) {
+        text-align: center;
+      }
     }
 
     &-counter {
@@ -140,11 +144,14 @@
         @media (min-width: 768px) {
           margin-right: 10px;
         }
+        // @media (min-width: 1200px) {
+        //   margin-bottom: 30px;
+        // }
       }
 
       button:last-child {
         @media (min-width: 1200px) {
-          margin: 0;
+          margin-right: 0;
         }
       }
 

@@ -2,8 +2,11 @@ import { refs } from '../components/refs.js';
 import { headerMenu, closeHeaderMenu } from '../sideBar/headerSideBar.js';
 import { contactMarkUp } from '../contacts/contacts.js';
 import { categoriesListMarkup, categories } from '../category/category-markup';
+import '../components/modalModule/modalModule';
+import { showCart } from '../components/cart';
 
 const headerButton = event => {
+  const dataNode = event.target.closest('[data-name]');
   const dataname = event.target.dataset.name;
   if (dataname === 'name_logo') {
     refs.container.innerHTML = categoriesListMarkup(categories);
@@ -28,6 +31,7 @@ const headerButton = event => {
     console.log('like');
   } else if (dataname === 'name_cart') {
     console.log('cart');
+    showCart();
   } else if (dataname === 'name_menu') {
     headerMenu();
   } else if (dataname === 'name_catalog') {

@@ -1,10 +1,18 @@
-export default{
+export default {
   isMobile: false,
   isTablet: false,
-  isMobile: false,
+  isDesktop: false,
 
-  getDivice(){
-    // let width = 
-    console.log('windows')
-  }
-}
+  getDevice() {
+    const width = document.documentElement.clientWidth;
+    if (width < 768) {
+      this.isMobile = true;
+    }
+    if (width >= 768 || width < 1200) {
+      this.isTablet = true;
+    }
+    if (width >= 1200) {
+      this.isDesktop = true;
+    }
+  },
+};
