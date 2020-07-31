@@ -83,7 +83,6 @@ const addNewProducts = () => {
 
     return `<ul class="slider__list-cards">
     ${products.reduce((acc, product) => {
-      console.log(product);
       acc += createCardMarkup(product);
       return acc;
     }, '')}
@@ -143,7 +142,7 @@ const addNewProducts = () => {
   const getNewProducts = async () => {
     try {
       const response = await apiProducts.searchProductsbyCategory('new');
-      console.log('newProducts: ', response.data);
+      // console.log('newProducts: ', response.data);
       // await delay(5000);
       divRef.innerHTML = createListCardsMarkup(response.data);
       return response.data;
@@ -170,8 +169,8 @@ const addNewProducts = () => {
       this.itemWidth = 0;
       // this.isStart = true;
       // this.isEnd = false;
-      this.startItemNum = 1;
-      this.lastItemNum = this.countItems;
+      this.slideIndex = 1;
+      this.dotIndex = 0;
       this.setup();
     }
     setup() {
@@ -184,19 +183,24 @@ const addNewProducts = () => {
     buildUI() {
       if (!this.wrapper) return false;
       this.track = this.wrapper.querySelector('ul');
-      console.log(this.track);
+      // console.log(this.track);
       this.items = Array.from(this.track.children);
       if (!this.items.length) return false;
       const style = window.getComputedStyle(this.items[0]);
       const itemMarginRight = parseInt(style.marginRight);
       // getPropertyValue('margin-right'));
       this.itemWidth = this.items[0].clientWidth + itemMarginRight;
+      // this.countItems = Math.floor(this.wrapper.clientWidth / this.itemWidth);
+      this.countItems = Math.round(this.wrapper.clientWidth / this.itemWidth);
+      console.log(this.wrapper.clientWidth, this.itemWidth, this.countItems);
       this.trackWidth = this.itemWidth * this.items.length;
       this.track.style.width = this.trackWidth + 'px';
       const holderRef = document.createElement('div');
       const bodySlider = document.createElement('div');
       bodySlider.classList.add('slider__body');
       holderRef.classList.add('slider__holder');
+      // holderRef.style.width = `${(this.itemWidth - itemMarginRight) * this.countItems}px`
+      holderRef.style.width = this.itemWidth * this.countItems - itemMarginRight + 20 + 'px';
       holderRef.appendChild(this.track);
       bodySlider.appendChild(holderRef);
       this.slider.appendChild(bodySlider);
@@ -235,9 +239,19 @@ const addNewProducts = () => {
         // dotRef.addEventListener('click', () => this.goToSlide(i));
         paginationWrapper.appendChild(dotRef);
       }
+      paginationWrapper.children[0].classList.add('active');
+      this.dotIndex = 0;
       paginationWrapper.addEventListener('click', e => {
         if (e.target.nodeName !== 'BUTTON') return;
+        if (this.dotIndex === 0) this.showPrevNav();
+        if (this.dotIndex === paginationWrapper.children.length - 1) this.showNextNav();
+        const currentDot = paginationWrapper.querySelector('.active');
+        currentDot.classList.remove('active');
+        e.target.classList.add('active');
         const index = Number(e.target.dataset.index);
+        if (index === 0) this.hidePrevNav();
+        if (index === paginationWrapper.children.length - 1) this.hideNextNav();
+        this.dotIndex = index;
         this.goToSlide(index);
       });
       this.slider.appendChild(paginationWrapper);
@@ -257,18 +271,16 @@ const addNewProducts = () => {
     goToPrevSlide(e, step = 1) {
       this.trackPosition += this.itemWidth * step;
       this.moveSlider();
-      this.startItemNum -= 1;
-      this.lastItemNum -= 1;
-      if (this.lastItemNum === this.items.length - 1) this.showNextNav();
-      if (this.startItemNum === 1) this.hidePrevNav();
+      this.slideIndex -= 1;
+      if (this.slideIndex + this.countItems - 1 === this.items.length - 1) this.showNextNav();
+      if (this.slideIndex === 1) this.hidePrevNav();
     }
     goToNextSlide(e, step = 1) {
       this.trackPosition -= this.itemWidth * step;
       this.moveSlider();
-      this.startItemNum += 1;
-      this.lastItemNum += 1;
-      if (this.lastItemNum === this.items.length) this.hideNextNav();
-      if (this.startItemNum === 2) this.showPrevNav();
+      this.slideIndex += 1;
+      if (this.slideIndex + this.countItems - 1 === this.items.length) this.hideNextNav();
+      if (this.slideIndex === 2) this.showPrevNav();
     }
     hideNextNav() {
       const nextNav = this.wrapper.querySelector('.slider__controls-arrow_right');
@@ -301,7 +313,7 @@ const addNewProducts = () => {
       step: 1,
       isNavs: true,
       isPagination: true,
-      countItems: 5,
+      // countItems: 5,
     });
     const listCards = document.querySelector('.slider__list-cards');
     listCards.addEventListener('click', onSelectCard);
