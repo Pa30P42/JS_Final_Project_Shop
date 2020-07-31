@@ -17,7 +17,7 @@ const productItem = item => {
           ${item.name}
         </h2>
         <span class="product__code">
-          РљРѕРґ:
+          код:
           <span class="product__code-number">${item._id}</span>
         </span>
       </div>
@@ -53,7 +53,7 @@ const productItem = item => {
               ${item.name}
             </h2>
             <span class="product__code">
-              РљРѕРґ:  
+              код:  
               <span class="product__code-number">${item._id}</span>
             </span>
           </div>
@@ -62,25 +62,24 @@ const productItem = item => {
             <span class="product__price-credits"> &#8372;</span>
           </div>
           <div class="product__to-add-wrapper">
-            <button id="btnBuy" class="buy-btn">РєСѓРїРёС‚СЊ</button>
+            <button id="btnBuy" class="buy-btn">купить</button>
             <img id="btnFavourite" src="${favourite}" alt="like" width="20" />
-            <span class="in-favorite">Р’ РёР·Р±СЂР°РЅРЅРѕРµ</span>
+            <span class="in-favorite">В избранное</span>
           </div>
 
           <div class="product__describtion-desktop">
             <div class="product__describtion-wrapper">
-              <span class="product__describtion-title">РћРїРёСЃР°РЅРёРµ:</span>
+              <span class="product__describtion-title">Описание:</span>
               <p class="product__describtion">
                 ${item.description}
               </p>
             </div>
             <div class="product__guarantee-wrapper">
-              <span class="product__guarantee-title">Р“Р°СЂР°РЅС‚РёСЏ:</span>
+              <span class="product__guarantee-title">Гарантия:</span>
               <p class="product__guarantee">
-                12 РјРµСЃСЏС†РµРІ РѕС„РёС†РёР°Р»СЊРЅРѕР№ РіР°СЂР°РЅС‚РёРё РѕС‚ РїСЂРѕРёР·РІРѕРґРёС‚РµР»СЏ </br>РћР±РјРµРЅ/РІРѕР·РІСЂР°С‚
-                С‚РѕРІР°СЂР° РІ С‚РµС‡РµРЅРёРµ 14 РґРЅРµР№ </br>РџСЂРѕРґР°РІРµС† РіР°СЂР°РЅС‚РёСЂСѓРµС‚ СѓРїР°РєРѕРІРєСѓ Р·Р°РєР°Р·Р°РЅРЅРѕРіРѕ
-                С‚РѕРІР°СЂР°, РєРѕС‚РѕСЂР°СЏ РѕР±РµСЃРїРµС‡РёС‚ С†РµР»РѕСЃС‚РЅРѕСЃС‚СЊ Рё СЃРѕС…СЂР°РЅРЅРѕСЃС‚СЊ РµРіРѕ С‚РѕРІР°СЂРЅРѕРіРѕ
-                РІРёРґР°
+              12 месяцев официальной гарантии от производителя
+              </br>Обмен/возврат товара в течение 14 дней
+              </br>Продавец гарантирует упаковку заказанного товара, которая обеспечит целостность и сохранность его товарного вида      
               </p>
             </div>
           </div>
@@ -89,18 +88,17 @@ const productItem = item => {
       </div>
     <div class="product__describtion-tablet">
       <div class="product__describtion-wrapper">
-        <span class="product__describtion-title">РћРїРёСЃР°РЅРёРµ:</span>
+        <span class="product__describtion-title">Описание:</span>
         <p class="product__describtion">
           ${item.description}
         </p>
       </div>
       <div class="product__guarantee-wrapper">
-        <span class="product__guarantee-title">Р“Р°СЂР°РЅС‚РёСЏ:</span>
+        <span class="product__guarantee-title">Гарантия:</span>
         <p class="product__guarantee">
-          12 РјРµСЃСЏС†РµРІ РѕС„РёС†РёР°Р»СЊРЅРѕР№ РіР°СЂР°РЅС‚РёРё РѕС‚ РїСЂРѕРёР·РІРѕРґРёС‚РµР»СЏ </br>РћР±РјРµРЅ/РІРѕР·РІСЂР°С‚
-          С‚РѕРІР°СЂР° РІ С‚РµС‡РµРЅРёРµ 14 РґРЅРµР№ </br>РџСЂРѕРґР°РІРµС† РіР°СЂР°РЅС‚РёСЂСѓРµС‚ СѓРїР°РєРѕРІРєСѓ Р·Р°РєР°Р·Р°РЅРЅРѕРіРѕ
-          С‚РѕРІР°СЂР°, РєРѕС‚РѕСЂР°СЏ РѕР±РµСЃРїРµС‡РёС‚ С†РµР»РѕСЃС‚РЅРѕСЃС‚СЊ Рё СЃРѕС…СЂР°РЅРЅРѕСЃС‚СЊ РµРіРѕ С‚РѕРІР°СЂРЅРѕРіРѕ
-          РІРёРґР°
+        12 месяцев официальной гарантии от производителя
+        </br>Обмен/возврат товара в течение 14 дней
+        </br>Продавец гарантирует упаковку заказанного товара, которая обеспечит целостность и сохранность его товарного вида
         </p>
       </div>
     </div>

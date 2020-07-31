@@ -3,7 +3,7 @@ const LAST_SEEN = 'lastSeen';
 import apiUsers from '../api/users/apiUsers';
 
 function updateLastSeen(id) {
-  const lastSeenData = localStorage.getItem(LAST_SEEN); //РјР°СЃСЃРёРІ СЃ РїСЂРѕСЃРјРѕС‚СЂРµРЅРЅС‹РјРё СЌР»РµРјРµРЅС‚Р°РјРё
+  const lastSeenData = localStorage.getItem(LAST_SEEN); //массив
   let lastSeen = JSON.parse(lastSeenData);
   if (!lastSeen) {
     lastSeen = [];
@@ -22,5 +22,3 @@ function updateLastSeen(id) {
 }
 
 export default updateLastSeen;
-
-// export default updateLastSeen;

@@ -4,13 +4,13 @@ import updateLastSeen from './lastSeen';
 import addToFavourite from './favorite';
 import buy from './buy';
 
-const btnFavourite = document.getElementById('btnFavourite');
-const btnBuy = document.getElementById('btnBuy');
-
 const productCard = item => {
   const component = () => markup(item);
   updateLastSeen(item._id);
   modalWindow(component, () => {});
+
+  const btnFavourite = document.getElementById('btnFavourite');
+  const btnBuy = document.getElementById('btnBuy');
 
   btnFavourite.addEventListener('click', async () => {
     if (currentItem) {
