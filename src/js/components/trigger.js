@@ -44,12 +44,23 @@ export default {
     refs.triggerHidden[2].classList.toggle('ishiddenTrigger');
 
     refs.sections.addEventListener('click', e => {
-      if (e.target !== refs.triggerNotHidden) {
-        refs.triggerHidden[0].classList.add('ishiddenTrigger');
-        refs.triggerHidden[1].classList.add('ishiddenTrigger');
-        refs.triggerHidden[2].classList.add('ishiddenTrigger');
-      }
-      refs.sections.removeEventListener();
+      this.removeListenerFromTrigger(e);
+      // if (e.target !== refs.triggerNotHidden) {
+      //   refs.triggerHidden[0].classList.add('ishiddenTrigger');
+      //   refs.triggerHidden[1].classList.add('ishiddenTrigger');
+      //   refs.triggerHidden[2].classList.add('ishiddenTrigger');
+      // }
+      refs.sections.removeEventListener(
+        'click',
+        this.removeListenerFromTrigger(e),
+      );
     });
+  },
+  removeListenerFromTrigger(e) {
+    if (e.target !== refs.triggerNotHidden) {
+      refs.triggerHidden[0].classList.add('ishiddenTrigger');
+      refs.triggerHidden[1].classList.add('ishiddenTrigger');
+      refs.triggerHidden[2].classList.add('ishiddenTrigger');
+    }
   },
 };
