@@ -3,6 +3,9 @@ import { refs } from './refs';
 export default {
   refs: {
     triggerHidden: '',
+    triggerNotHidden: '',
+    body: '',
+    liRef: document.querySelectorAll('.header__nav__input_phone'),
   },
 
   triggerMarkup() {
@@ -21,16 +24,27 @@ export default {
   },
 
   triggerMarkupListener() {
-    const triigerWrapper = document.querySelector('.trigger-wrapper');
-    refs.triggerHidden = document.querySelector('.ishiddenTrigger');
+    refs.triggerNotHidden = document.querySelector('.trigger-wrapper');
+    refs.triggerHidden = document.querySelectorAll('.ishiddenTrigger');
+    refs.body = document.querySelector('body');
   },
   triggerFn() {
-    refs.sections.insertAdjacentHTML('afterbegin', this.triggerMarkup());
+    this.refs.liRef[0].insertAdjacentHTML('afterbegin', this.triggerMarkup());
+    this.refs.liRef[1].insertAdjacentHTML('afterbegin', this.triggerMarkup());
+    this.refs.liRef[2].insertAdjacentHTML('afterbegin', this.triggerMarkup());
     this.triggerMarkupListener();
   },
   openTrigger() {
-    if (refs.triggerHidden.classList.contains('ishiddenTrigger')) {
-      refs.triggerHidden.classList.remove('ishiddenTrigger');
-    }
+    refs.triggerHidden[0].classList.toggle('ishiddenTrigger');
+    refs.triggerHidden[1].classList.toggle('ishiddenTrigger');
+    refs.triggerHidden[2].classList.toggle('ishiddenTrigger');
+
+    refs.sections.addEventListener('click', e => {
+      if (e.target !== refs.triggerNotHidden) {
+        refs.triggerHidden[0].classList.add('ishiddenTrigger');
+        refs.triggerHidden[1].classList.add('ishiddenTrigger');
+        refs.triggerHidden[2].classList.add('ishiddenTrigger');
+      }
+    });
   },
 };

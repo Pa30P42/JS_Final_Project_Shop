@@ -17,7 +17,6 @@ import './js/components/modalModule/modalModule';
 // import apiProducts from './js/api/products/apiProducts';
 import userData from './js/userData';
 
-
 containerHandler();
 trigger.triggerFn();
 // trigger.triggerMarkupListener();
