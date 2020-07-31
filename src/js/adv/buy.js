@@ -1,5 +1,8 @@
-const buy = (id) => {
-  // TODO - call method to add to buy list
-}
+// import { addToCart, showCart } from '../../js/components/cart';
 
-export default buy;
+// const buy = id => {
+//   addToCart(id);
+//   showCart();
+// };
+
+// export default buy;

@@ -13,12 +13,8 @@ import './js/category/category-markup';
 
 // =========== adv ==============
 import productCard from './js/adv/productCard';
-import addToFavourite from './js/adv/favorite';
-import buy from './js/adv/buy';
 
 // document.body.onload = updateLastSeen(189864298, new Date().getTime());
-const btnFavourite = document.getElementById('btnFavourite');
-const btnBuy = document.getElementById('btnBuy');
 const btnShowModal = document.getElementById('btnShowModal');
 
 let currentItem = null;
@@ -32,17 +28,6 @@ btnShowModal.addEventListener('click', async () => {
   productCard(item);
 });
 
-btnFavourite.addEventListener('click', async () => {
-  if (currentItem) {
-    await addToFavourite(currentItem._id);
-  }
-});
-
-btnBuy.addEventListener('click', () => {
-  if (currentItem) {
-    buy(currentItem._id);
-  }
-});
 // =============================
 
 // const btnRef = document.querySelector('.check');
@@ -59,4 +44,15 @@ btnBuy.addEventListener('click', () => {
 // });
 // btnRef2.addEventListener('click', () => {
 //   apiUsers.getInfo();
+// });
+
+// apiAuth.register({
+//   name: 'Vygovska',
+//   email: 'pillowforneedles@gmail.com',
+//   password: 'qwerty123',
+// });
+
+// apiAuth.login({
+//   email: 'pillowforneedles@gmail.com',
+//   password: 'qwerty123',
 // });
