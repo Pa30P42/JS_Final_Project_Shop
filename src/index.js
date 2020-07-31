@@ -1,39 +1,30 @@
- import './sass/main.scss';
+import './sass/main.scss';
+import './js/api/auth/apiAuth';
 
- // import './js/category/category-markup';
- // import {
- //   containerHandler
- // } from './js/container/container';
- // import services from './js/services/services';
- // import apiProducts from './js/api/products/apiProducts';
- //=====================
- import './js/api/auth/apiAuth';
- import {
-   containerHandler
- } from './js/container/container';
+import './js/category/category-markup';
+import {
+  containerHandler
+} from './js/container/container';
 
- //=====================
- import userData from './js/userData';
- import apiAuth from './js/api/auth/apiAuth';
- import apiUsers from './js/api/users/apiUsers';
- import './js/category/category-markup';
- import apiProducts from './js/api/products/apiProducts';
- import apiOrders from './js/api/orders/apiOrders';
- import setting from './js/setting';
+import apiProducts from './js/api/products/apiProducts';
 
- const btnRef = document.querySelector('.check');
- const btnRef2 = document.querySelector('.check2');
+import setting from './js/setting';
 
 
- import './js/profile/profileMarkups';
- import './js/profile/profileTabs';
- // containerHandler();
- // apiProducts.getCategories().then(data => console.log(userData));
- containerHandler();
 
- // btnRef.addEventListener('click', () => {
- //   apiUsers.deleteFavorite('5f2155d59e8747001767cdf7');
- // });
- // btnRef2.addEventListener('click', () => {
- //   apiUsers.getInfo();
- // });
+
+
+import {
+  pseudoProfile
+} from './js/profile/profileTabs';
+
+
+
+const initialAction = async () => {
+  await apiProducts.getCategories();
+  setting.getDevice(document.documentElement.clientWidth);
+  containerHandler();
+  pseudoProfile();
+
+};
+initialAction();

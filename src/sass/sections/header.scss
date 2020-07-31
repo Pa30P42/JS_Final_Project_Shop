@@ -1,3 +1,7 @@
+.svg_imade_header {
+  margin: 0 auto;
+}
+
 .sidebar {
   display: block;
   width: 100%;
@@ -9,6 +13,11 @@
   transform: translateX(0%);
   transition: transform 250ms linear;
   padding: 20px;
+}
+
+.caret_down {
+  position: absolute;
+  right: 20px;
 }
 
 .sidebar_item_search {
@@ -34,6 +43,11 @@
   margin-right: 10px;
   width: 30px;
   height: 30px;
+}
+
+.search_btn {
+  background: none;
+  border: none;
 }
 
 .sidebar_input_form {
@@ -69,6 +83,7 @@
 }
 
 .sidebar_item {
+  position: relative;
   display: flex;
   margin-bottom: 30px;
   flex-direction: row;
@@ -221,9 +236,48 @@ li {
   height: 30px;
 }
 
+.header_img_cart {
+  padding-top: 8px;
+}
+
+.header_img_phone {
+  padding-top: 3px;
+}
+
+.header_img_phone_side {
+  padding-top: 2px;
+}
+
+.side_bar_img_phone {
+  position: absolute;
+  right: 0;
+  margin-top: 10px;
+  margin-right: 15px;
+}
+
+.header_img_search {
+  padding-top: 5px;
+}
+
+.header_img_menu {
+  margin-left: 5px;
+}
+
+.header_img_caret {
+  margin-top: 10px;
+  margin-left: 10px;
+}
+
+.header_wrap_three_dots {
+  display: flex;
+  flex-direction: row;
+}
+
 @media (min-width: 20px) and (max-width: 767px) {
   .phone {
     display: block;
+    width: 320px;
+    margin: 0 auto;
   }
 
   .tablet {
@@ -242,6 +296,8 @@ li {
 
   .tablet {
     display: block;
+    width: 950px;
+    margin: 0 auto;
   }
 
   .desktop {
@@ -270,6 +326,8 @@ li {
 
   .desktop {
     display: block;
+    width: 1300px;
+    margin: 0 auto;
   }
 
   .logo_container {
@@ -292,7 +350,7 @@ li {
   }
 
   .desktop_text {
-    padding-top: 20px;
+    padding-top: 10px;
     padding-left: 25px;
     font-size: 15px;
     color: white;
@@ -302,6 +360,10 @@ li {
     padding-top: 4px;
     font-size: 15px;
     color: white;
+  }
+
+  .info_container {
+    display: flex;
   }
 
   .navigatiom_container {

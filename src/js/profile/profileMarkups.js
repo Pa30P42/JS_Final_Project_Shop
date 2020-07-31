@@ -66,43 +66,48 @@ export default {
 
   maintabsMarkup() {
     console.log(this);
-    this.sectionRef = document.querySelector("#profile");
+    this.sectionRef = document.querySelector(".container");
+    console.log('sectionRef :>> ', this.sectionRef);
 
-    refs.sections.innerHTML = "";
+    this.sectionRef.innerHTML = "";
     const accountTabsMarkup = () => {
       return ` 
-          <section class="profile tabs__panel"  id="profile">
-            <div class="container-tabs">
+      <section class="profile tabs__panel"  id="profile">
+      <div class="container-tabs">
       
-              <div class="page-control__wrapper">
-                <a href="#" class="page-control__home">Главная</a>
-                <a href="#" class="page-control__exit">Выход</a>
-              </div>
+      <div class="page-control__wrapper">
+      <a href="#" class="page-control__home">Главная</a>
+      <a href="#" class="page-control__exit">Выход</a>
+      </div>
       
-              <h2 class="profile__title">Учетная запись</h2>
-              <div id="tabs-1" class="profile-wrapper">
+      <h2 class="profile__title">Учетная запись</h2>
+      <div id="tabs-1" class="profile-wrapper">
       
       
       
-                <div class="profile__buttons-wrapper tabs__nav" id="parent" >
-                  <button class="profile__button contacts" type="button" title="contacts">Контакты</button>
-                  <button class="profile__button password" type="button" title="password">Изменить пароль</button>
-                  <button class="profile__button address" type="button" title="address">Мой Адрес</button>
-                  <button class="profile__button favorites" type="button" title="favorites">Избранное</button>
-  ${(userData.role === "ADMIN")? `<button class="profile__button advertisement" type="button" title="advertisement">Создать
-                    объявление</button>`:``}
-                  
-                </div>
+      <div class="profile__buttons-wrapper tabs__nav" id="parent_profile" >
+      <button class="profile__button contacts" type="button" title="contacts">Контакты</button>
       
-              </div>
-            </div>
+      <button class="profile__button password" type="button" title="password">Изменить пароль</button>
+      <button class="profile__button address" type="button" title="address">Мой Адрес</button>
+      <button class="profile__button favorites" type="button" title="favorites">Избранное</button>
+      ${(userData.role === "ADMIN")? `<button class="profile__button advertisement" type="button" title="advertisement">Создать
+      объявление</button>`:``}
+      
+      </div>
+      
+      </div>
+      </div>
             </section>
           `;
     };
+    console.log('refs.sections :>> ', refs.sections);
+    this.sectionRef.innerHTML = accountTabsMarkup();
+    const mainTabsNav = document.querySelector("#parent_profile");
 
-    refs.sections.insertAdjacentHTML("beforeend", accountTabsMarkup());
-    const mainTabsNav = document.querySelector("#parent");
+    console.log(mainTabsNav);
     mainTabsNav.addEventListener("click", this.getMarkup);
+
   },
   getMarkup(event) {
 
@@ -424,7 +429,7 @@ function deleteActive() {
   );
   activePanel.removeAttribute("data-active");
 
-  const parent = document.querySelector("#parent");
+  const parent = document.querySelector("#parent_profile");
   const child = document.querySelector("#form");
   parent.removeChild(child);
 };
