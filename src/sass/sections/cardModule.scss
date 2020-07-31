@@ -77,7 +77,11 @@ body {
   border-radius: 10px;
   background: linear-gradient(47.73deg, #ff8a9d 15.48%, #ffc390 81.25%);
   margin-bottom: 16px;
+  margin-right: 5px;
   // margin-left: 15px;
+}
+.card_rating-list {
+  display: flex;
 }
 .card_price-sale {
   // width: 105px;

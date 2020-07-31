@@ -1,6 +1,8 @@
+import { createSingleCardMarkup } from './cardModule';
+
 const createListMarkup = array => {
   return `<ul class="card_list">${array.reduce((acc, element) => {
-    acc += cardCartItem(element);
+    acc += createSingleCardMarkup(element, 'sale');
     return acc;
   }, '')}</ul>`;
 };
@@ -11,7 +13,7 @@ const getItem = event => {
     // функция Ани(id)
   } else return id;
 };
-const createList = array => {
+export const createList = array => {
   const container = document.querySelector('.container');
   container.innerHTML = createListMarkup(array);
   container.addEventListener('click', getItem);
