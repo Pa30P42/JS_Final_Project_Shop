@@ -1,23 +1,24 @@
 import './sass/main.scss';
+import './js/api/auth/apiAuth';
 
-// import './js/category/category-markup';
+import apiAuth from './js/api/auth/apiAuth';
+import apiUsers from './js/api/users/apiUsers';
+import './js/category/category-markup';
 import { containerHandler } from './js/container/container';
-import services from './js/services/services';
+import {modalModule} from './js/components/modalModule/modalModule';
 import apiProducts from './js/api/products/apiProducts';
 import userData from './js/userData';
 import './js/catalog/catalog'
 
-const createPage = async () => {
+const initialAction = async () => {
     await apiProducts.getCategories();
     containerHandler();
-    // const x = 'built_in_appliances';
-    // console.log(
-    //   'userData',
-    //   userData.appliances[x].categories.map(item => item.name),
-    // );
   };
-  createPage();
-// apiProducts.getCategories().then(data => console.log(userData));
+  initialAction();
 
-// services.addFavorite('5f154f156a4df46aa14dc526');
-// services.GetAllOrders();
+// btnRef.addEventListener('click', () => {
+//   apiUsers.deleteFavorite('5f2155d59e8747001767cdf7');
+// });
+// btnRef2.addEventListener('click', () => {
+//   apiUsers.getInfo();
+// });

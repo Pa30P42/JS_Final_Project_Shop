@@ -1,13 +1,17 @@
-.hidden {
+.catalog__hidden {
     display: none;
   }
   
-  .active {
+  .catalog__active {
       display: block;
   }
 
 
-.catalog__wrapper {
+// .catalog__wrapper {
+//     background-color: #E5E5E5;
+// }
+
+.catalog__list {
     background-color: #E5E5E5;
 }
 
@@ -134,7 +138,7 @@ cursor: pointer;
         background: #E5E5E5;
     }
 
-    .hidden {
+    .catalog__hidden {
         display: block;
       }
 

@@ -9,18 +9,18 @@ const isMobile = true;
 const isTablet = false;
 const isDesktop = false;
 
-
+export default {
   
 
-   const refs =  {
+    refs: {
       catalogList: '',
-    };
+    },
 
 
 
-    const categories = Object.values(catalogList.appliances);
+    categories: Object.values(catalogList.appliances),
     
-    function getLink(e) {
+    getLink(e) {
 
       // console.log("nodeName", e.target.nodeName);
 // console.log(e.target);
@@ -30,13 +30,13 @@ const isDesktop = false;
 // console.log(e.target);
       if ((e.target.nodeName === "LI" || e.target.nodeName === "P")  && e.target.closest('[data-sublink]')) {
         const subLink = e.target.closest('[data-sublink]').dataset.sublink
-        return subLink
-      } 
+        console.log(subLink);
+      }
 
       if (e.target.nodeName === "H2" && e.target.dataset.title) {
 
         if (isMobile || isTablet) {
-        const activeSubCatalog = refs.catalogList.querySelector('.catalog__active') 
+        const activeSubCatalog = this.refs.catalogList.querySelector('.catalog__active') 
 
         
 
@@ -46,8 +46,8 @@ const isDesktop = false;
         } 
 
 
-        // console.log(activeSubCatalog);
-        // console.log(e.target);
+        console.log(activeSubCatalog);
+        console.log(e.target);
 
         // if (activeSubCatalog.closest('[data-title]') === e.target) {
         //   e.target.classList.remove('active')
@@ -60,30 +60,28 @@ const isDesktop = false;
         subCatalog.classList.add('catalog__active')
         
 
-       
       }
       }
+    },
 
-    }
-
-    function getVisibilitySubCatalog() {
+    getVisibilitySubCatalog() {
       if (isMobile || isTablet) {
         return 'catalog__hidden'
       } else return 'catalog__active'
-    }
+    },
 
-   export function catalogListMarkup() {
+    catalogListMarkup() {
       return `
                 <ul class="catalog__list">
-                ${catalogItemMarkup(categories)}
+                ${this.catalogItemMarkup(this.categories)}
                 </ul>
                 `;
 
-    }
+    },
 
     
 
-    function getCategories (category) {
+    getCategories (category) {
       const markup = category.categories.reduce((acc, category) => {
         acc+= `
         <li class="sub__catalog__item" data-sublink="${category.value}">
@@ -94,48 +92,47 @@ const isDesktop = false;
       }, '')
       // console.log(markup);
       return markup
-    }
+    },
 
-    function catalogItemMarkup(categories) {
+    catalogItemMarkup(categories) {
       return categories.reduce((acc, category) => {
         // console.log(category);
         acc += `
         <li class="catalog__item" data-link="${category.value}">
         <img src="${category.image}" alt="${category.value}" class="catalog__img" width="247" height="127">
         <h2 class="catalog__title" data-title="${category.value}">${category.name}</h2>
-        <ul class="sub__catalog__list ${getVisibilitySubCatalog()}">
-        ${getCategories(category)}
+        <ul class="sub__catalog__list ${this.getVisibilitySubCatalog()}">
+        ${this.getCategories(category)}
         </ul>
       </li>`;
         return acc;
       }, '');
-    }
+    },
 
-    export function catalogListMarkupAddListeners() {
+   catalogListMarkupAddListeners() {
       const li = document.querySelector('.catalog__item');
+      console.log(li);
     
-      refs.catalogList = document.querySelector('.catalog__list');
-      refs.catalogList.addEventListener('click', getLink);
-    }
+      this.refs.catalogList = document.querySelector('.catalog__list');
+      this.refs.catalogList.addEventListener('click', this.getLink.bind(this));
+    },
     
     
-    function catalogListMarkupRemoveListeners() {
-      refs.catalogList.removeEventListener('click', getLink);
-    }
+    catalogListMarkupRemoveListeners() {
+      this.refs.catalogList.removeEventListener('click', this.getLink);
+    },
 
-    export function listeners  (action) {
-
+    listeners  (action) {
       const getSubCatalogLink = (e) => {
-        const link = getLink(e)
-        console.log(link);
-        if (link) {         
-          action()
-        }
+        const link = this.getLink(e)
+        action()
       }
-      const catalogList = document.querySelector('.catalog__list');
-      catalogList.addEventListener('click', getSubCatalogLink);
+      const subCatalogList = document.querySelector('.sub__catalog__list');
+      subCatalogList.addEventListener('click', getSubCatalogLink);
+    },
 
-    }
+
+}
 
 
 
