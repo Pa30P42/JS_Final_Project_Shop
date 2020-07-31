@@ -2,8 +2,8 @@ import {
   getAppliances
 } from './services';
 import axios from 'axios';
-
 import userData from '../../userData';
+
 axios.defaults.headers['Authorization'] = JSON.parse(
   localStorage.getItem('info'),
 );

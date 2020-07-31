@@ -4,25 +4,35 @@ import homeCareTech from '../images/category/home-care-tech.jpg';
 import kitchenTech from '../images/category/kitchen-tech.jpg';
 
 export default {
- 
-  user:{
-    favorites:[],
-    name:'',
+  user: {
+    favorites: [],
+    name: '',
     phone: '',
-    email: "",
-    adress:{
-        "country": "",
-      "city": "",
-      "place": "",
-      "street": " ",
-      "block": "",
-      "building": "",
-      "flat": "",
-      "zip": ""
+    email: '',
+    adress: {
+      country: '',
+      city: '',
+      place: '',
+      street: ' ',
+      block: '',
+      building: '',
+      flat: '',
+      zip: '',
     },
-
+    cartItem: {
+      id: '',
+      name: '',
+      price: 0,
+      image: '',
+      quantity: 0,
+    },
+    cart: {
+      cartItems: [],
+      totalAmount: 0,
+      totalQuantity: 0,
+    },
   },
-  
+
   categoriesItems: [],
   appliances: {
     large_home_appliances: {
