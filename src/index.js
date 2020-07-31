@@ -8,13 +8,17 @@ import { containerHandler } from './js/container/container';
 import { modalModule } from './js/components/modalModule/modalModule';
 import apiProducts from './js/api/products/apiProducts';
 import userData from './js/userData';
+import setting from './js/setting';
 
 const initialAction = async () => {
   await apiProducts.getCategories();
+  setting.getDevice(document.documentElement.clientWidth);
   containerHandler();
 };
-
 initialAction();
+// if (setting.isMobile) {
+//   console.log('WORK')
+// } перепроверка ширирны
 
 // btnRef.addEventListener('click', () => {
 //   console.log('hi');
