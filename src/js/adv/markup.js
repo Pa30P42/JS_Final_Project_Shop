@@ -1,45 +1,110 @@
-import '../../sass/main.scss';
-import { refs } from '../components/refs';
-export function markupProduct() {
-  let markup = `
-  
-  
-  `;
+import favourite from '../../images/adv/icons/favorite.svg';
 
-  refs.sections.innerHTML = markup;
-  return markup;
-}
+import img1 from '../../images/adv/preview/roborock1_preview.jpg';
+import img2 from '../../images/adv/preview/roborock2_preview.jpg';
+import img3 from '../../images/adv/preview/roborock3_preview.jpg';
+import img4 from '../../images/adv/preview/roborock4_preview.jpg';
+import img5 from '../../images/adv/preview/roborock5_preview.jpg';
+import img6 from '../../images/adv/preview/roborock6_preview.jpg';
 
-export default markupProduct;
+const productItem = item => {
+  const images = [img1, img2, img3, img4, img5, img6];
 
-// export const saleCartItem = element => {
-//   return `<li class="sale_item" data-id=${element._id}>
-//   <div class="sale-image">
-//     <img class="sale_img" src="./images/sale/image1.png" alt="img" width="86"/>
-//     <img class="sale_img-tablet" src="./images/sale/image1_tb.png" alt="img" width="149"/>
-//   </div>
-//   <img class="sale_vector" src="./images/sale/Vector.svg" />
-//   <p class="sale_name">${element.name}</p>
-//   <ul class="sale_rating-list">${rating()}</ul>
-//   <div class="sale_prise-block">
-//     <p class="sale_price">${element.price}<span> &#8372;</span></p>
-//   </div>
-// </li>`;
-// };
-// const createListMarkup = array => {
-//   return `<ul class="sale_list">${array.reduce((acc, element) => {
-//     acc += saleCartItem(element);
-//     return acc;
-//   }, '')}</ul>`;
-// };
-// const getItem = event => {
-//   if (event.target !== current.target) {
-//     const id = event.target.closest('[data-id]').dataset.id;
-//     // функция Ани(id)
-//   } else return id;
-// };
-// const createList = array => {
-//   const container = document.querySelector('.container');
-//   container.innerHTML = createListMarkup(array);
-//   container.addEventListener('click', getItem);
-// };
+  return `
+    <section class="product__card container">
+      <div class="product__title-mobile">
+        <h2 class="product__card-title">
+          ${item.name}
+        </h2>
+        <span class="product__code">
+          РљРѕРґ:
+          <span class="product__code-number">${item._id}</span>
+        </span>
+      </div>
+
+      <div class="product__images-wrapper">
+
+        <div class="product__card-images">
+          <div class="product__image">
+            <img
+              id="productImage"
+              src="${images[0]}"
+              alt="Xiaomi RoboRock" height="525" width="525"
+            />
+          </div>
+          <ul class="product__image--preview-list">
+            ${images.map(
+              image => `
+              <li class="product__image--preview-item">
+                <img
+                  src="${image}"
+                  alt="Xiaomi RoboRock"
+                  width="74" height="74"
+                  onclick="document.getElementById('productImage').setAttribute('src', '${image}')"
+                />
+              </li>`,
+            )}
+          </ul>
+        </div>
+
+        <div class="product__wrapper-tablet">
+          <div class="product__title-tablet">
+            <h2 class="product__card-title">
+              ${item.name}
+            </h2>
+            <span class="product__code">
+              РљРѕРґ:  
+              <span class="product__code-number">${item._id}</span>
+            </span>
+          </div>
+          <div class="product__price-wrapper">
+            <span class="product__price">${item.price}</span>
+            <span class="product__price-credits"> &#8372;</span>
+          </div>
+          <div class="product__to-add-wrapper">
+            <button id="btnBuy" class="buy-btn">РєСѓРїРёС‚СЊ</button>
+            <img id="btnFavourite" src="${favourite}" alt="like" width="20" />
+            <span class="in-favorite">Р’ РёР·Р±СЂР°РЅРЅРѕРµ</span>
+          </div>
+
+          <div class="product__describtion-desktop">
+            <div class="product__describtion-wrapper">
+              <span class="product__describtion-title">РћРїРёСЃР°РЅРёРµ:</span>
+              <p class="product__describtion">
+                ${item.description}
+              </p>
+            </div>
+            <div class="product__guarantee-wrapper">
+              <span class="product__guarantee-title">Р“Р°СЂР°РЅС‚РёСЏ:</span>
+              <p class="product__guarantee">
+                12 РјРµСЃСЏС†РµРІ РѕС„РёС†РёР°Р»СЊРЅРѕР№ РіР°СЂР°РЅС‚РёРё РѕС‚ РїСЂРѕРёР·РІРѕРґРёС‚РµР»СЏ </br>РћР±РјРµРЅ/РІРѕР·РІСЂР°С‚
+                С‚РѕРІР°СЂР° РІ С‚РµС‡РµРЅРёРµ 14 РґРЅРµР№ </br>РџСЂРѕРґР°РІРµС† РіР°СЂР°РЅС‚РёСЂСѓРµС‚ СѓРїР°РєРѕРІРєСѓ Р·Р°РєР°Р·Р°РЅРЅРѕРіРѕ
+                С‚РѕРІР°СЂР°, РєРѕС‚РѕСЂР°СЏ РѕР±РµСЃРїРµС‡РёС‚ С†РµР»РѕСЃС‚РЅРѕСЃС‚СЊ Рё СЃРѕС…СЂР°РЅРЅРѕСЃС‚СЊ РµРіРѕ С‚РѕРІР°СЂРЅРѕРіРѕ
+                РІРёРґР°
+              </p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    <div class="product__describtion-tablet">
+      <div class="product__describtion-wrapper">
+        <span class="product__describtion-title">РћРїРёСЃР°РЅРёРµ:</span>
+        <p class="product__describtion">
+          ${item.description}
+        </p>
+      </div>
+      <div class="product__guarantee-wrapper">
+        <span class="product__guarantee-title">Р“Р°СЂР°РЅС‚РёСЏ:</span>
+        <p class="product__guarantee">
+          12 РјРµСЃСЏС†РµРІ РѕС„РёС†РёР°Р»СЊРЅРѕР№ РіР°СЂР°РЅС‚РёРё РѕС‚ РїСЂРѕРёР·РІРѕРґРёС‚РµР»СЏ </br>РћР±РјРµРЅ/РІРѕР·РІСЂР°С‚
+          С‚РѕРІР°СЂР° РІ С‚РµС‡РµРЅРёРµ 14 РґРЅРµР№ </br>РџСЂРѕРґР°РІРµС† РіР°СЂР°РЅС‚РёСЂСѓРµС‚ СѓРїР°РєРѕРІРєСѓ Р·Р°РєР°Р·Р°РЅРЅРѕРіРѕ
+          С‚РѕРІР°СЂР°, РєРѕС‚РѕСЂР°СЏ РѕР±РµСЃРїРµС‡РёС‚ С†РµР»РѕСЃС‚РЅРѕСЃС‚СЊ Рё СЃРѕС…СЂР°РЅРЅРѕСЃС‚СЊ РµРіРѕ С‚РѕРІР°СЂРЅРѕРіРѕ
+          РІРёРґР°
+        </p>
+      </div>
+    </div>
+    </section>`;
+};
+
+export default productItem;

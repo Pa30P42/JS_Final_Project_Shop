@@ -9,22 +9,50 @@ import './js/components/modalModule/modalModule';
 import apiProducts from './js/api/products/apiProducts';
 import apiOrders from './js/api/orders/apiOrders';
 import setting from './js/setting';
+import './js/category/category-markup';
 
 // =========== adv ==============
-import './js/adv/markup';
-import updateLastSeen from './js/adv/lastSeen';
+import productCard from './js/adv/productCard';
+import addToFavourite from './js/adv/favorite';
+import buy from './js/adv/buy';
 
-document.body.onload = updateLastSeen(189864298, new Date().getTime());
-// =============================
+// document.body.onload = updateLastSeen(189864298, new Date().getTime());
+const btnFavourite = document.getElementById('btnFavourite');
+const btnBuy = document.getElementById('btnBuy');
+const btnShowModal = document.getElementById('btnShowModal');
 
-const btnRef = document.querySelector('.check');
-const btnRef2 = document.querySelector('.check2');
-// import apiProducts from './js/api/products/apiProducts';
-import userData from './js/userData';
+let currentItem = null;
 
 containerHandler();
 
-btnRef.addEventListener('click', markupProductCard);
+btnShowModal.addEventListener('click', async () => {
+  const response = await apiProducts.getAllProducts();
+  const item = response.data[8];
+  currentItem = item;
+  productCard(item);
+});
+
+btnFavourite.addEventListener('click', async () => {
+  if (currentItem) {
+    await addToFavourite(currentItem._id);
+  }
+});
+
+btnBuy.addEventListener('click', () => {
+  if (currentItem) {
+    buy(currentItem._id);
+  }
+});
+// =============================
+
+// const btnRef = document.querySelector('.check');
+// const btnRef2 = document.querySelector('.check2');
+// // import apiProducts from './js/api/products/apiProducts';
+// import userData from './js/userData';
+
+// containerHandler();
+
+// btnRef.addEventListener('click', markupProductCard);
 
 // btnRef.addEventListener('click', () => {
 //   apiUsers.deleteFavorite('5f2155d59e8747001767cdf7');

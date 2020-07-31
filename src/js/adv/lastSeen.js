@@ -1,12 +1,15 @@
-export const LAST_SEEN = 'lastSeen';
+const LAST_SEEN = 'lastSeen';
 
-function updateLastSeen(id, time) {
-  const lastSeenData = localStorage.getItem(lastSeen); //массив с просмотренными элементами
+import apiUsers from '../api/users/apiUsers';
+
+function updateLastSeen(id) {
+  const lastSeenData = localStorage.getItem(LAST_SEEN); //РјР°СЃСЃРёРІ СЃ РїСЂРѕСЃРјРѕС‚СЂРµРЅРЅС‹РјРё СЌР»РµРјРµРЅС‚Р°РјРё
   let lastSeen = JSON.parse(lastSeenData);
   if (!lastSeen) {
     lastSeen = [];
   }
   const item = lastSeen.find(elem => elem.id === id);
+  const time = new Date().getTime();
   if (!item) {
     lastSeen.push({
       id,
@@ -17,5 +20,7 @@ function updateLastSeen(id, time) {
   }
   localStorage.setItem(LAST_SEEN, JSON.stringify(lastSeen));
 }
+
+export default updateLastSeen;
 
 // export default updateLastSeen;
