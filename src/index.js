@@ -11,7 +11,7 @@ import apiOrders from './js/api/orders/apiOrders';
 import setting from './js/setting';
 
 // =========== adv ==============
-import './js/adv/index';
+import './js/adv/markup';
 import updateLastSeen from './js/adv/lastSeen';
 
 document.body.onload = updateLastSeen(189864298, new Date().getTime());

@@ -1,4 +1,4 @@
-const LAST_SEEN = 'lastSeen';
+export const LAST_SEEN = 'lastSeen';
 
 function updateLastSeen(id, time) {
   const lastSeenData = localStorage.getItem(lastSeen); //массив с просмотренными элементами
@@ -18,4 +18,4 @@ function updateLastSeen(id, time) {
   localStorage.setItem(LAST_SEEN, JSON.stringify(lastSeen));
 }
 
-export default updateLastSeen;
+// export default updateLastSeen;

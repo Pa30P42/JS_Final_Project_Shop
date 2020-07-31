@@ -1,10 +1,10 @@
 import { getAppliances } from './services';
 import axios from 'axios';
 
-import userData from '../../userData';
-axios.defaults.headers['Authorization'] = JSON.parse(
-  localStorage.getItem('info'),
-).token;
+// import userData from '../../userData';
+// axios.defaults.headers['Authorization'] = JSON.parse(
+//   localStorage.getItem('info'),
+// ).token;
 
 // ========= services product ==== Все катигории и продукты и залиті в ЮЗЕРДАТУ
 // 1.apiProducts.getCategories().then(data => console.log(userData));
