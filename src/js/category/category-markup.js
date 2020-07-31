@@ -46,6 +46,7 @@ export function categoriesListMarkup() {
 }
 
 function getSubCategoryListMarkup(subCategory) {
+  console.log(subCategory);
   const result = categoriesList.appliances[subCategory].categories.reduce(
     (acc, subCategoryItem) => {
       acc += getSubCategoryListItemMarkup(subCategoryItem);
@@ -86,6 +87,13 @@ export function categoriesListMarkupAddListeners() {
   refs.categoriesListInsert = document.querySelector('.categories__list');
   refs.categoriesListInsert.addEventListener('click', showModal);
 }
+
+// function categoriesListMarkupRemoveListeners() {
+//   this.refs.categoriesListInsert.removeEventListener(
+//     'click',
+//     this.getLink.bind(this),
+//   );
+// }
 
 function listeners(action) {
   const getSubCategoryLink = e => {

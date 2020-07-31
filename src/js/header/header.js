@@ -1,17 +1,27 @@
 import { refs } from '../components/refs.js';
 import { headerMenu, closeHeaderMenu } from '../sideBar/headerSideBar.js';
 import { contactMarkUp } from '../contacts/contacts.js';
-// import { categoriesListMarkup, categories } from '../category/category-markup';
+import {
+  categoriesListMarkup,
+  categories,
+  categoriesListMarkupAddListeners,
+} from '../category/category-markup';
+import { modalModule } from '../components/modalModule/modalModule.js';
 
+import {
+  searshForm,
+  listenersForSearch,
+} from '../search/searchdesktop/searchDesktop';
 const headerButton = event => {
   const dataname = event.target.dataset.name;
   if (dataname === 'name_logo') {
     refs.container.innerHTML = categoriesListMarkup(categories);
-    console.log('logo');
+    categoriesListMarkupAddListeners();
   } else if (dataname === 'name_phone') {
     // trigger.openTrigger();
     console.log('phone');
   } else if (dataname === 'name_search') {
+    modalModule(searshForm, listenersForSearch);
     console.log('search');
   } else if (dataname === 'name_buttonClose') {
     closeHeaderMenu();

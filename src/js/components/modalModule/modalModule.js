@@ -19,7 +19,7 @@ const container = document.querySelector('.modalModule');
 
 //  === MODAL MODULE ===
 
-const modalModule = (component, listeners) => {
+export const modalModule = (component, listeners) => {
   const closeModalComponent = () => {
     container.innerHTML = '';
   };
@@ -61,5 +61,3 @@ const modalModule = (component, listeners) => {
 // btnTest.addEventListener('click', () => modalModule(component, listeners));
 
 // ===  used styles are in modalModule.scss - classes=> component and btn__closeModal.
-
-export { modalModule };
