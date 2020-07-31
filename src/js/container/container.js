@@ -1,5 +1,9 @@
 import { refs } from '../components/refs';
-import { categoriesListMarkup, categories } from '../category/category-markup';
+
+import {
+  categoriesListMarkup,
+  categoriesListMarkupAddListeners,
+} from '../category/category-markup';
 import { header } from '../header/header';
 import { searchSideBar } from '../search/searchsidebar/searchSideBar.js';
 
@@ -16,9 +20,9 @@ const containerFooterMarkup = function () {
     `;
 };
 const containerSectionsMarkup = function () {
-  return ` 
+  return `
     <div class="slider-wrapper"></div>
-    <div class="category-wrapper">${categoriesListMarkup(categories)}</div>
+    <div class="category-wrapper">${categoriesListMarkup()}</div>
     <div class="new-products-wrapper"></div>
     <div class="last-seen-wrapper"></div>
     `;
@@ -28,6 +32,7 @@ export const containerHandler = () => {
   refs.container.insertAdjacentHTML('afterbegin', containerHeaderMarkup());
   refs.container.insertAdjacentHTML('beforeend', containerFooterMarkup());
   refs.sections.innerHTML = containerSectionsMarkup();
+  categoriesListMarkupAddListeners();
 };
 
 // categoriesListMarkup(categories);

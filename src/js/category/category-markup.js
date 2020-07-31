@@ -1,71 +1,118 @@
 import './category.scss';
+import categoriesList from '../userData';
+import { modalModule } from '../components/modalModule/modalModule';
 
-const appliances = [
-  {
-    name: 'Крупная бытовая техника',
-    value: 'large_home_appliances',
-  },
+const refs = {
+  modalCategory: document.querySelector('.modalModule'),
+  categoriesListInsert: '',
+  subcategoriesListInsert: '',
+};
 
-  {
-    name: 'Встраиваемая техника',
-    value: 'built-in_appliances',
-  },
+const globalCategoriesObjects = Object.values(categoriesList.appliances);
 
-  {
-    name: 'Уход за домом и одеждой',
-    value: 'home_and_clothing_care',
-  },
+function getLink(e) {
+  //link можно добавить в хлебные крошки//
 
-  {
-    name: 'Техника для кухний',
-    value: 'kitchen_appliances',
-  },
-];
+  if (
+    e.target.nodeName === 'LI' ||
+    e.target.nodeName === 'P' ||
+    e.target.nodeName === 'IMG'
+  ) {
+    const subLink = e.target.closest('[data-sublink]').dataset.sublink;
 
-export const categories = [
-  {
-    name: 'Крупная бытовая техника',
-    image:
-      'https://s3-alpha-sig.figma.com/img/a5fb/5e98/13153a01a77c6fa3fe573bf986ce2864?Expires=1597017600&Signature=gOFPX7qqmCRI7bJmNwRJBhILvzzxFU6N6xVdgRRNTotPqX3TPj3fY45HlRZZqGVvcyGuVNvj3txVRE9eqS2Ic1zcQ6mcPKlEZXxGX-T~HTFYRyVpWHASq-nirJH4vp0RBrnmBO2A1nFnp4D0xZg~dbZqNWeHolByxF4Ao~oGdcfOTl-lR~IAsDn8xBpVS3OWnTnExaKWPP61oYeSYQgY0lY5mHN0eJCU54WVszjFJFAhrofLywk07zBox6RjHXL5~YO3sx2X58R097sLivoj6PSpz6DXqI7-7vEKLiYSVczNHK5ymrVm7J2q6b0XkeI7F6jNVshj0A3CrZblK9ODbw__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA',
-  },
-  {
-    name: 'Встраиваемая техника',
-    image:
-      'https://s3-alpha-sig.figma.com/img/f110/df5d/b5028d162ea8fc9f0c96a9c8fdf88eb7?Expires=1597017600&Signature=SW2DHh2H1yqd7BZKIA6AXUKpCHTuSw4j6UgyvoY4rGg4-xk3XQR1tkwEoknOfFhVb1UGi9ahwp96~VFEXsA6aYFez5Hujo4Q~BjOoNEnQfmChdtzJLqqbf4f6rpCGUoZJ5pjLvDvc5sk-~6Q8i0nqm~J600hdqflNYaXJ3hVrh9DrAQ-CJ0afqn2TrWDaFK1mStfM6RKQPZn3GxjMDeTqhrdzYz1qUWXddy3IwMB5GntdErqlHCOOsoU4wfasrvGLJGQVxYH2FGN~lMURS7Li9bGBxupTEL1qyxOGeKgZJVOE-xExIMpQ7r~R5ckY9CzwIrfQuCedNbZKteHDDwuSQ__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA',
-  },
-  {
-    name: 'Уход за домом и одеждой',
-    image:
-      'https://s3-alpha-sig.figma.com/img/c0a8/dd3c/5840508c838b62a06907ebd7a1210567?Expires=1597017600&Signature=VRLjrXa-ZTyVaXSbW350NjWGsMyJJorlJrJMEaSowsLszfWjzv-NS5KVaHSNy266e8VhN-jL83L36jGnoOUzdtTMHo4V7VzeU1j86d5x53U1uTaMyciBpZ8a8oHZkhv3uqHn4-OuSbzPjOGV0rDbqrmMf44bGYWY4MncWtl6oOWejemFXo4kUJnYwnuqMF9oABuxdqKYnWEBtA-iKnJZyJmMcNDmOx8gqPO7xVJdHgy7Xv3cqA4O-oXwP29jQR88NHqd6WFhcjY9mLFXQwO8hVVBN5bi2LAQRpJslX1Cu7ZlfGYXghSgu7jQi53TytS53E1y2c7R4Qk5fo0srhoycg__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA',
-  },
-  {
-    name: 'Техника для кухни',
-    image:
-      'https://s3-alpha-sig.figma.com/img/a744/f960/7906439bf8683af940f0331e6d1f8f2c?Expires=1597017600&Signature=N2TTD3GJbd3vTHAv2AC4wWvdkNvdnSMddplO4xgxzpDg4PN29l1PBGSzp~8FDL6Y1jYn-LHhc2qSThg7gv-iDHQafv7xQfYIQPuP7J-89P9nBzMTo19jw55I23mWcBtJI165pa27TKcV6Ec6tKlzoycINxnD~ztI3MG~V7vSRFFiAdzsdlFDDE4VLQfbKhm2UPztle8m5uUx6axzOPrjp7ETlx9gTMFUCkhpvYeALNDsquTafRklonBqe7FKkrRNjml7R3wFFpIkulJDo7lJnUQMJtbo6jbAEIhI9rOxp3HNHF8HQOWXdDL7Jjt6NTwxCt7HTXprlCbiamsxcnaZTw__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA',
-  },
-];
+    return subLink;
+  }
 
-export function categoriesListMarkup(categories) {
+  if (e.target.nodeName === 'BUTTON' && e.target.dataset.button) {
+    const link = e.target.closest('[data-button]').dataset.button;
+
+    return link;
+  }
+}
+
+function getSubCategoryItemName() {
+  refs.subcategoriesListInsert = document.querySelector('.subcategories__list');
+  refs.subcategoriesListInsert.addEventListener('click', e => {
+    console.log('hi', e.target);
+  });
+}
+
+export function categoriesListMarkup() {
   return `
             <ul class="categories__list">
-            ${categoriesItemMarkup(categories)}
+            ${categoriesItemMarkup(globalCategoriesObjects)}
             </ul>
             `;
 }
 
-function categoriesItemMarkup(categories) {
-  return categories.reduce((acc, category) => {
+function getSubCategoryListMarkup(subCategory) {
+  console.log(subCategory);
+  const result = categoriesList.appliances[subCategory].categories.reduce(
+    (acc, subCategoryItem) => {
+      acc += getSubCategoryListItemMarkup(subCategoryItem);
+      return acc;
+    },
+    '',
+  );
+  return `
+        <div class="modal_wrapper">
+          <ul class="subcategories__list">${result}</ul>
+        </div>`;
+}
+
+function getSubCategoryListItemMarkup(subCategoryItem) {
+  // console.log(subCategoryItem);
+  return `
+          <li class="subcategories__item" data-sublink="${subCategoryItem.value}"> 
+<img class="subcategories__image" src="data:image/svg+xml;base64,PHN2ZyBoZWlnaHQ9IjUxMiIgdmlld0JveD0iMCAwIDEyOCAxMjgiIHdpZHRoPSI1MTIiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGc+PHBhdGggZD0ibTUxLjUzIDEwOS41aDcuOTd2Ny44NzVoLTcuOTd6IiBmaWxsPSIjZDhkOGQ4Ii8+PHBhdGggZD0ibTY4LjUgMTA5LjVoNy45N3Y3Ljg3NWgtNy45N3oiIGZpbGw9IiNkOGQ4ZDgiLz48cGF0aCBkPSJtMjQuMTkyIDExNS41aDc5LjYxNXY2aC03OS42MTV6IiBmaWxsPSIjZWFlYWYwIi8+PHBhdGggZD0ibTk5LjM1NSA2OC45OTNjMCAxOS4yMDctMTUuODQ0IDM0LjgxNy0zNS4zNTUgMzQuODE3cy0zNS4zNTUtMTUuNjEtMzUuMzU1LTM0LjgxN2MwLTE1LjI2NSA5LjU4My0yOC4zNDIgOS42MjgtNDEuNzUzYTYwLjk1OSA2MC45NTkgMCAwIDEgMTAuMTExIDEyLjUyM2M2LjAzMy0xNC4xMjggMTUuODktMTguNzkgMjMuMjMzLTMzLjI2M2E4MC42NDUgODAuNjQ1IDAgMCAxIDEzLjQ1OCAzOC42ODZzMy4zLTEwLjQ5MSAxMi40NDItMTQuMTE3Yy0xLjkxIDE0Ljg3OSAxLjgzOCAyNy4wMzYgMS44MzggMzcuOTI0eiIgZmlsbD0iI2Y3NTAyZiIvPjxwYXRoIGQ9Im0zNC43IDY4Ljk4aC0uMWExLjc1MiAxLjc1MiAwIDAgMSAtMS42NTEtMS44NDUgNDIuMTQ3IDQyLjE0NyAwIDAgMSAxLjE1MS03LjUzIDEuNzUgMS43NSAwIDEgMSAzLjQuODE0IDM4LjgzNyAzOC44MzcgMCAwIDAgLTEuMDY0IDYuOTA4IDEuNzQ5IDEuNzQ5IDAgMCAxIC0xLjczNiAxLjY1M3oiIGZpbGw9IiNkOTM5MjIiLz48cGF0aCBkPSJtODAuNjU3IDg3LjQwNmExNi42NTkgMTYuNjU5IDAgMCAxIC0zMy4zMTQgMGMwLTcuMTkyIDQuMTY2LTE0LjQ2MiA0LjE4Ny0yMC43ODEgMi43MiAxIDQuNjU2IDMuOTQxIDYuNzIgNy42MjUgMi4wNjItOC44NzUgNi4wNjItOC44MTIgOS4zMzktMTYuMjg3YTMzLjg1NyAzMy44NTcgMCAwIDEgNS42IDE4LjcyNXMyLjIzLTUuNTIxIDcuNDctNy43NzFjLTEuMDc2IDktLjAwMiAxMy4zNi0uMDAyIDE4LjQ4OXoiIGZpbGw9IiNmZGQ4MmUiLz48L2c+PC9zdmc+" width="50" height="50"/>          <p>${subCategoryItem.name}</p>
+          </li>
+    `;
+}
+
+function categoriesItemMarkup(globalCategoriesObjects) {
+  return globalCategoriesObjects.reduce((acc, globalCategory) => {
     acc += `
-                <li class="categories__item">
+                <li class="categories__item" data-link="global_category_item">
                     <div class="category__img_wrapper">
-                        <img src="${category.image}" alt="#" class="category__img" width="280" height="144">
+                        <img src=${globalCategory.image} alt="${globalCategory.value}" class="category__img" width="280" height="144">
                     </div>
-                    <p class="category__title">${category.name}</p>
-                    <button type="button" class="btn btn_gradient">Купить</button>
+                    <p class="category__title">${globalCategory.name}</p>
+                    <button type="button" class="btn btn_gradient js-category-buy-btn" data-button="${globalCategory.value}">Купить</button>
                 </li>`;
     return acc;
   }, '');
 }
 
-// const markup = document.querySelector('#root');
-// markup.insertAdjacentHTML('afterbegin', categoriesListMarkup(categories));
+export function categoriesListMarkupAddListeners() {
+  refs.categoriesListInsert = document.querySelector('.categories__list');
+  refs.categoriesListInsert.addEventListener('click', showModal);
+}
+
+// function categoriesListMarkupRemoveListeners() {
+//   this.refs.categoriesListInsert.removeEventListener(
+//     'click',
+//     this.getLink.bind(this),
+//   );
+// }
+
+function listeners(action) {
+  const getSubCategoryLink = e => {
+    const link = getLink(e);
+
+    console.log(link);
+    if (link) {
+      action();
+    }
+
+    // Чужая функция,в которую передать полученную категорию в виде массива
+  };
+  const subCategoryList = document.querySelector('.subcategories__list');
+  subCategoryList.addEventListener('click', getSubCategoryLink);
+}
+
+function showModal(e) {
+  const newLink = getLink(e);
+  const markup = getSubCategoryListMarkup(newLink);
+
+  modalModule(() => getSubCategoryListMarkup(newLink), listeners);
+}
