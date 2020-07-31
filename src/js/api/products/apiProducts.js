@@ -43,7 +43,7 @@ export default {
 
         userData.categoriesItems = [...response.data.categories];
 
-        console.log('user', userData.categoriesItems);
+        // console.log('user', userData.categoriesItems);
 
         getAppliances(userData.categoriesItems);
         return userData.categoriesItems;

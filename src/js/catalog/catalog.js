@@ -5,6 +5,7 @@ import apiProducts from '../api/products/apiProducts';
 import {modalModule} from '../components/modalModule/modalModule'
 
 
+
 const isMobile = true;
 const isTablet = false;
 const isDesktop = false;
@@ -14,6 +15,7 @@ const isDesktop = false;
 
    const refs =  {
       catalogList: '',
+      subCatalogList: '',
     };
 
 
@@ -37,6 +39,7 @@ const isDesktop = false;
 
         if (isMobile || isTablet) {
         const activeSubCatalog = refs.catalogList.querySelector('.catalog__active') 
+        
 
         
 
@@ -54,13 +57,13 @@ const isDesktop = false;
         //   e.target.classList.add('hidden')
         // }
 
-        const catalog = e.target.closest('[data-link]')
+        const catalog = e.target.closest('[data-link]')       
         const subCatalog = catalog.querySelector('.sub__catalog__list')
 
         subCatalog.classList.add('catalog__active')
-        
-
-       
+      
+        const catalogLink = e.target.closest('[data-sublink]')
+        console.log(catalogLink);
       }
       }
 
@@ -116,6 +119,7 @@ const isDesktop = false;
     
       refs.catalogList = document.querySelector('.catalog__list');
       refs.catalogList.addEventListener('click', getLink);
+      // refs.subCatalogList = document.querySelector('.sub__catalog__list')
     }
     
     
@@ -127,7 +131,7 @@ const isDesktop = false;
 
       const getSubCatalogLink = (e) => {
         const link = getLink(e)
-        console.log(link);
+        // console.log(link);
         if (link) {         
           action()
         }
