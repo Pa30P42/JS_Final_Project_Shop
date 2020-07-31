@@ -1,11 +1,29 @@
 import './contact.scss';
+import { refs } from '../components/refs.js';
+import anastasia_dmv from './image/anastasia_dmv.jpg';
+import Ann from './image/Ann.jpg';
+import Anna from './image/Anna.jpg';
+import Ismail from './image/Ismail.jpg';
+import Kostya from './image/Kostya.jpg';
+import Kristi from './image/Kristi.jpeg';
+import Marina from './image/Marina.jpg';
+import marinamel from './image/marinamel.jpg';
+import Oleg from './image/Oleg.jpeg';
+import Olga from './image/Olga.jpg';
 
 export const contactMarkUp = () => {
-  return ` <ul class="team__list container">
+  refs.container.innerHTML = developersProject;
+};
+
+const developersProject = `<p data-name="name_logo" class="contactsBack" >Главная / Koнтакты</p>
+<p class="title_contacts" > Koнтакты </p>
+
+<ul class="team__list container_contact">
+
     <li class="team__item">
       <div class="team__item__person">
         <img
-          src="./image/Ismail.jpg"
+        src=${Ismail}
           alt="partner"
           width="121"
           height="121"
@@ -22,7 +40,7 @@ export const contactMarkUp = () => {
     <li class="team__item">
       <div class="team__item__person">
         <img
-          src="./image/Marina.jpg"
+        src=${Marina}
           alt="partner"
           width="121"
           height="121"
@@ -39,7 +57,7 @@ export const contactMarkUp = () => {
     <li class="team__item">
       <div class="team__item__person">
         <img
-          src="./image/Kristi.jpeg"
+          src=${Kristi}
           alt="partner"
           width="121"
           height="121"
@@ -54,7 +72,7 @@ export const contactMarkUp = () => {
     <li class="team__item">
       <div class="team__item__person">
         <img
-          src="./image/Olga.jpg"
+        src=${Olga}
           alt="partner"
           width="121"
           height="121"
@@ -69,7 +87,7 @@ export const contactMarkUp = () => {
     <li class="team__item">
       <div class="team__item__person">
         <img
-          src="./image/Kostya.jpg"
+        src=${Kostya}
           alt="partner"
           width="121"
           height="121"
@@ -84,7 +102,7 @@ export const contactMarkUp = () => {
     <li class="team__item">
       <div class="team__item__person">
         <img
-          src="./image/Anna.jpg"
+        src=${Anna}
           alt="partner"
           width="121"
           height="121"
@@ -99,7 +117,7 @@ export const contactMarkUp = () => {
     <li class="team__item">
       <div class="team__item__person">
         <img
-          src="./image/Ann.jpg"
+        src=${Ann}
           alt="partner"
           width="121"
           height="121"
@@ -114,7 +132,7 @@ export const contactMarkUp = () => {
     <li class="team__item">
       <div class="team__item__person">
         <img
-          src="./image/Oleg.jpeg"
+        src=${Oleg}
           alt="partner"
           width="121"
           height="121"
@@ -131,7 +149,7 @@ export const contactMarkUp = () => {
     <li class="team__item">
       <div class="team__item__person">
         <img
-          src="./image/anastasia_dmv.jpg"
+        src=${anastasia_dmv}
           alt="partner"
           width="121"
           height="121"
@@ -148,7 +166,7 @@ export const contactMarkUp = () => {
     <li class="team__item">
       <div class="team__item__person">
         <img
-          src="./image/marinamel.jpg"
+        src=${marinamel}
           alt="partner"
           width="121"
           height="121"
@@ -161,4 +179,3 @@ export const contactMarkUp = () => {
       </div>
     </li>
     </ul>`;
-};
