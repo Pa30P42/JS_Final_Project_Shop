@@ -18,7 +18,7 @@ export const contactMarkUp = () => {
 const developersProject = `<p data-name="name_logo" class="contactsBack" >Главная / Koнтакты</p>
 <p class="title_contacts" > Koнтакты </p>
 
-<ul class="team__list container">
+<ul class="team__list container_contact">
 
     <li class="team__item">
       <div class="team__item__person">

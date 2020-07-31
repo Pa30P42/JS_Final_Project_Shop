@@ -3,6 +3,7 @@ import { refs } from './refs';
 import vodafone from '../../images/trigger/vodafone.png';
 import life from '../../images/trigger/lifecell.png';
 import kyivstar from '../../images/trigger/kyivstar.png';
+import { modalModule } from './modalModule/modalModule';
 
 export default {
   refs: {
@@ -14,7 +15,7 @@ export default {
 
   triggerMarkup() {
     return `
-          <div class="trigger-wrapper ishiddenTrigger">
+          <div class="trigger-wrapper ">
              <ul class="trigger-list">
                <li class="trigger-list__item"><div class="img-icon-wrapper"><img src = ${vodafone} alt = "icon"  class= "imgIcon"></div><a href="tel:380503333796" class="trigger-list__item_vodafone">+38 (050)
                    333-37-96</a></li>
@@ -33,10 +34,11 @@ export default {
     refs.body = document.querySelector('body');
   },
   triggerFn() {
-    this.refs.liRef[0].insertAdjacentHTML('afterbegin', this.triggerMarkup());
-    this.refs.liRef[1].insertAdjacentHTML('afterbegin', this.triggerMarkup());
-    this.refs.liRef[2].insertAdjacentHTML('afterbegin', this.triggerMarkup());
-    this.triggerMarkupListener();
+    modalModule(this.triggerMarkup, this.triggerMarkupListener);
+    // this.refs.liRef[0].insertAdjacentHTML('afterbegin', this.triggerMarkup());
+    // this.refs.liRef[1].insertAdjacentHTML('afterbegin', this.triggerMarkup());
+    // this.refs.liRef[2].insertAdjacentHTML('afterbegin', this.triggerMarkup());
+    // this.triggerMarkupListener();
   },
   openTrigger() {
     refs.triggerHidden[0].classList.toggle('ishiddenTrigger');

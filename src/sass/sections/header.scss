@@ -1,7 +1,9 @@
 .header__nav__input_phone {
   position: relative;
 }
-
+.svg_imade_header {
+  margin: 0 auto;
+}
 .sidebar {
   display: block;
   width: 100%;
@@ -31,7 +33,6 @@
   transform: translateX(-100%);
   transition: transform 250ms linear;
 }
-
 .sidebar_icon_search {
   fill: #53535c;
   margin-left: 5px;
@@ -108,14 +109,12 @@
   margin-left: 100px;
   transform: rotate(-90deg);
 }
-
 /* ================================================== */
 * {
   padding: 0;
   margin: 0;
   box-sizing: border-box;
 }
-
 ul,
 li {
   list-style: none;
@@ -124,7 +123,6 @@ li {
   background-color: #53535c;
   height: 60px;
 }
-
 .header__nav {
   display: flex;
   justify-content: space-around;
@@ -139,7 +137,6 @@ li {
   color: white;
   margin-top: 10px;
 }
-
 .header_txt {
   font-weight: bold;
 }
@@ -158,7 +155,6 @@ li {
   background: linear-gradient(57.07deg, #6368e5 5.81%, #b884f3 91.96%);
   border-radius: 50px;
 }
-
 .header__logo::after {
   content: '';
   display: block;
@@ -194,7 +190,6 @@ li {
   border: 1px solid;
   background: linear-gradient(57.07deg, #6368e5 5.81%, #b884f3 91.96%);
 }
-
 .nav__icon_search {
   fill: white;
   margin-left: 5px;
@@ -210,13 +205,14 @@ li {
   width: 30px;
   height: 30px;
 }
-
 .header_img_cart {
   padding-top: 8px;
 }
-
 .header_img_phone {
   padding-top: 3px;
+}
+.header_img_phone_side {
+  padding-top: 2px;
 }
 .side_bar_img_phone {
   position: absolute;
@@ -230,17 +226,14 @@ li {
 .header_img_menu {
   margin-left: 5px;
 }
-
 .header_img_caret {
   margin-top: 10px;
   margin-left: 10px;
 }
-
 .header_wrap_three_dots {
   display: flex;
   flex-direction: row;
 }
-
 @media (min-width: 20px) and (max-width: 767px) {
   .phone {
     display: block;
@@ -254,7 +247,6 @@ li {
     display: none;
   }
 }
-
 @media (min-width: 768px) {
   .phone {
     display: none;
@@ -276,7 +268,6 @@ li {
     align-items: center;
   }
 }
-
 @media (min-width: 1200px) {
   .phone {
     display: none;
@@ -289,18 +280,15 @@ li {
     width: 1300px;
     margin: 0 auto;
   }
-
   .logo_container {
     display: flex;
     flex-direction: row;
     align-items: center;
   }
-
   .phone_container {
     display: flex;
     align-items: center;
   }
-
   .arrow_down_icon {
     fill: white;
     margin-left: 10px;
@@ -314,17 +302,14 @@ li {
     font-size: 15px;
     color: white;
   }
-
   .phone_text {
     padding-top: 4px;
     font-size: 15px;
     color: white;
   }
-
   .info_container {
     display: flex;
   }
-
   .navigatiom_container {
     display: flex;
   }

@@ -1,19 +1,38 @@
-import { refs } from '../components/refs.js';
-import { headerMenu, closeHeaderMenu } from '../sideBar/headerSideBar.js';
 import { contactMarkUp } from '../contacts/contacts.js';
-import { categoriesListMarkup, categories } from '../category/category-markup';
+
 import trigger from '../components/trigger';
 // import trigger from './js/components/trigger';
+import { refs } from '../components/refs.js';
+import { headerMenu, closeHeaderMenu } from '../sideBar/headerSideBar.js';
 
+import {
+  categoriesListMarkup,
+  categories,
+  categoriesListMarkupAddListeners,
+} from '../category/category-markup';
+import { modalModule } from '../components/modalModule/modalModule.js';
+
+import { pseudoProfile } from '../profile/profileTabs';
+
+import {
+  searshForm,
+  listenersForSearch,
+} from '../search/searchdesktop/searchDesktop';
 const headerButton = event => {
-  const dataname = event.target.dataset.name;
+  const dataname = event.target.closest('[data-name]').dataset.name;
   if (dataname === 'name_logo') {
     refs.container.innerHTML = categoriesListMarkup(categories);
-    console.log('logo');
+    categoriesListMarkupAddListeners();
+
+    //вставить слушателей для профайл табс
+    pseudoProfile();
+    //======надо будет удалить=====
   } else if (dataname === 'name_phone') {
-    trigger.openTrigger();
+    trigger.triggerFn();
+    // trigger.openTrigger();
     console.log('phone');
   } else if (dataname === 'name_search') {
+    modalModule(searshForm, listenersForSearch);
     console.log('search');
   } else if (dataname === 'name_buttonClose') {
     closeHeaderMenu();
