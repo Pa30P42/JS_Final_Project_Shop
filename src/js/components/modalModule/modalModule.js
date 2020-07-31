@@ -43,7 +43,7 @@ const modalModule = (component, listeners) => {
         type="button"
         class="btn__closeModal"
         data-action="btn__closeModal"
-    ></button>
+    >Close</button>
     </div>
     `;
 
@@ -61,3 +61,5 @@ const modalModule = (component, listeners) => {
 // btnTest.addEventListener('click', () => modalModule(component, listeners));
 
 // ===  used styles are in modalModule.scss - classes=> component and btn__closeModal.
+
+export { modalModule };
