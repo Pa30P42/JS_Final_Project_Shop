@@ -681,3 +681,76 @@ label.adv-label {
 [tooltip][flow^="right"]:hover::after {
   animation: tooltips-horz 300ms ease-out forwards;
 }
+
+//==================VALIDATION=====
+input:focus {
+  // outline-color: red;
+}
+
+
+
+input[type="text"],
+input[type="tel"],
+input[type="email"],
+input[type="password"] {
+  &:invalid {
+    outline-color: red;
+  }
+
+  &:valid {
+    outline-color: green;
+
+  }
+
+
+}
+
+// .helper-text-div {
+//   position: absolute;
+//   top: 0;
+//   right: 0;
+//   background-image: url("../images/profile/user.svg");
+//   width: 100px;
+//   height: 30px;
+
+// }
+div.helper-text-div {
+  position: relative;
+}
+
+.helper-text-invalid {
+  font-size: 12px;
+  display: inline-block;
+  padding-top: 55px;
+  vertical-align: bottom;
+  text-align: end;
+  width: 280px;
+  height: auto;
+  position: absolute;
+  top: -72px;
+  right: 5px;
+  color: red;
+  background-image: url("../images/profile/invalid.svg");
+  background-repeat: no-repeat;
+  background-position: 99%;
+  background-size: auto 30%;
+
+}
+
+.helper-text-valid {
+  font-size: 12px;
+  display: inline-block;
+  padding-top: 39px;
+  vertical-align: bottom;
+  width: 280px;
+  height: auto;
+  position: absolute;
+  top: -58px;
+  right: -5px;
+  color: rgb(16, 155, 23);
+  background-image: url("../images/profile/valid.svg");
+  background-repeat: no-repeat;
+  background-position: 95%;
+  background-size: 9%;
+
+}

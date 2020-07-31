@@ -153,24 +153,39 @@ export default {
 
 };
 
+
+function showValidMarkup() {
+  return `<div class = "helper-text-div"><span class="helper-text-valid"></span></div>`;
+};
+
+function showInValidMarkup() {
+  return `<div class = "helper-text-div"><span class="helper-text-invalid"></span></div>`;
+};
+
+
+
 function userInfoMarkup() {
   const infoMarkup = () => {
     return `
         <form name="infoForm"  data-form="infoForm" id="form" class="active-form js-active-tab tabs__panel">
                   <div class="form-group">
                     <label id="name-label" for="name"><em> * </em>Имя, Отчество</label>
-                    <input type="text" name="name"  class="form-control" placeholder="Username" required />
+                    <input type="text" name="name" id="name" class="form-control" placeholder="Username"  required />
+
     
                     <label id="name-label" for="name"><em> * </em>Фамилия</label>
-                    <input type="text" name="surname"  class="form-control" placeholder="Username2" required />
-    
+                    <input type="text" name="surname" id="surname" class="form-control" placeholder="Username2"   required />
+
     
                     <label id="email-label" for="email"><em> * </em>Email</label>
-                    <input type="email" name="email" id="email" class="form-control" placeholder="user@mail.com" required />
-                    
+                    <input type="email" name="email" id="email" class="form-control" placeholder="user@mail.com"  required />
+
+
                     <label id="phone-number" for="phone-number"><em> * </em>Телефон</label>
-                    <input type="tel" name="phone" id="phone-number" class="form-control"
+                    <input type="tel" name="phone" id="phone" class="form-control"
                       placeholder="+38 (093) 333 99 99" required />
+
+                      
     
                       
                       </div>
@@ -193,10 +208,12 @@ function passwordMarkup() {
                     <label id="name-label" for="password"><em> * </em>Пароль</label>
                     <input type="password" name="password" id="password" class="form-control" placeholder="******"
                       required />
+
     
                     <label id="name-label" for="password"><em> * </em>Подтвердите пароль</label>
                     <input type="password" name="confirmPassword" id="passwordConfirm" class="form-control" placeholder="******"
                       required />
+
     
                       
                       </div>
@@ -226,7 +243,7 @@ function addressFormMarkup() {
     
                     <label id="name-label" for="name"><em> * </em>Регион/Область</label>
                     <input type="text" name="city"  class="form-control" placeholder="Киевская" required />
-    
+
                     <label id="name-label" for="name"><em> * </em>Город</label>
                     <input type="text" name="place"  class="form-control" placeholder="Киев" autocomplete="section-blue shipping street-address" required />
     
@@ -241,10 +258,12 @@ function addressFormMarkup() {
                     <label id="name-label" for="name">Блок</label>
                     <input type="text" name="block"  class="form-control  form-control__address"
                       placeholder="Блок" required />
-    
+
                     <label id="name-label" for="name">Квартира</label>
                     <input type="text" name="flat"  class="form-control  form-control__address"
                       placeholder="Квартира" required />
+                  
+
     
                     <label id="name-label" for="name"><em> * </em>Почтовый индекс</label>
                     <input type="text" name="postIndex"  class="form-control  form-control__address" placeholder="00000"
@@ -345,14 +364,21 @@ function advertisementFormMarkup() {
               <label  class="adv-label" for="name">Название товара</label>
               <input type="text" name="name" id="name" class="advertisement-inputs form-control-advertisement" placeholder="Название"
                 required />
+               
+
     
               <label class="adv-label"  for="name">Фото</label>
               <input type="file" id="img" name="img" class="input-photo form-control " accept="image/*"
                 class="form-control" required />
+
+               
+
     
               <label  class="adv-label" for="name">Описание товара</label>
               <textarea style="resize:none"  name="description" id="comments" class="advertisement-inputs form-control-advertisement  input-textarea " name="comment"
                 placeholder="Описание"></textarea>
+             
+
     
               <label  class="adv-label" for="name">Категория товара</label>
               <select id="dropdown" name="category" class="advertisement-inputs form-control-advertisement" required>
@@ -363,6 +389,8 @@ function advertisementFormMarkup() {
                 <option value="preferNo">5</option>
                 <option value="other">6</option>
               </select>
+               
+
     
               <label class="adv-label"  id="name-label" for="name">Цена</label>
               <input type="text" name="price" class="form-control form-control__address" placeholder="0.000 &#x20b4;"
@@ -407,14 +435,209 @@ function deleteActive() {
 };
 
 function getInfo(event) {
-  const key = event.target.closest('[data-form]').dataset.form;
+  let key = event.target.closest('[data-form]').dataset.form;
   forms[key][event.target.name] = event.target.value;
-  console.log(forms[key]);
+
+  forms[key][event.target] = event.target;
+  console.log('forms[key]', forms[key]);
+  console.log('event.target : ', event.target);
+  console.log('forms[key][event.target.name] :>> ', forms[key][event.target.name]);
+
 };
 
 function addInfoListener(key) {
   const form = document.querySelector('#profile');
-  console.log(forms[key]);
+  // console.log(forms[key]);
   const inputForm = form.querySelector(`[data-form="${key}"]`);
   inputForm.addEventListener('input', getInfo);
+  console.log('inputForm', inputForm.dataset.form);
 };
+//=====================VALIDATION=====CONTACTS========
+
+// const firstName = document.getElementById('name');
+// const LastName = document.getElementById('surname');
+// const email = document.getElementById('email');
+// const phone = document.getElementById('phone');
+// const form = document.getElementById('form');
+
+
+// const green = '#4CAF50';
+// const red = '#F44336';
+
+// form.addEventListener('submit', function (event) {
+//   // Prevent default behaviour
+//   event.preventDefault();
+//   if (
+//     validateFirstName() &&
+//     validateLastName() &&
+//     validatePassword() &&
+//     validateConfirmPassword() &&
+//     validateEmail()
+//   ) {
+//     return true;
+//   }
+// });
+
+// function validateFirstName() {
+//   if (checkIfEmpty(firstName)) return;
+//   if (!checkIfOnlyLetters(firstName)) return;
+//   return true;
+
+// }
+
+// function validateLastName() {
+//   if (checkIfEmpty(lastName)) return;
+//   if (!checkIfOnlyLetters(lastName)) return;
+//   return true;
+
+// }
+
+// // function validatePassword() {
+// //   if (checkIfEmpty(password)) return;
+// //   if (!meetLength(password, 4, 100)) return;
+// //   return true;
+// // }
+
+// // function validatePassword() {
+// //   // Empty check
+// //   if (checkIfEmpty(password)) return;
+// //   // Must of in certain length
+// //   if (!meetLength(password, 4, 100)) return;
+// //   // check password against our character set
+// //   // 1- a
+// //   // 2- a 1
+// //   // 3- A a 1
+// //   // 4- A a 1 @
+// //   //   if (!containsCharacters(password, 4)) return;
+// //   return true;
+// // }
+
+// // function validateConfirmPassword() {
+// //   if (password.className !== 'valid') {
+// //     setInvalid(confirmPassword, 'Password must be valid');
+// //     return;
+// //   }
+// //   // If they match
+// //   if (password.value !== confirmPassword.value) {
+// //     setInvalid(confirmPassword, 'Passwords must match');
+// //     return;
+// //   } else {
+// //     setValid(confirmPassword);
+// //   }
+// //   return true;
+// // }
+
+// function validateEmail() {
+//   if (checkIfEmpty(email)) return;
+//   if (!containsCharacters(email, 5)) return;
+//   return true;
+// }
+// //========
+
+// function checkIfEmpty(field) {
+//   if (isEmpty(field.value.trim())) {
+//     setInvalid(field, `${field.name} must not be empty`)
+//     return true
+//   } else {
+//     setValid(field);
+//     return false;
+//   }
+// }
+
+// function isEmpty(value) {
+//   if (value === '') return true;
+//   return false;
+// }
+
+// function setInvalid(field, message) {
+//   field.className('invalid');
+//   field.nextElementSibling.innerHTML = message;
+//   field.nextElementSibling.style.color = red;
+// }
+
+// function setValid(field) {
+//   field.className('valid');
+//   field.nextElementSibling.innerHTML = '';
+//   field.nextElementSibling.style.color = green;
+// }
+
+// function checkIfOnlyLetters(field) {
+//   if (/^[a-zA-Z ]+$/.test(field.value)) {
+//     setValid(field);
+//     return true;
+//   } else {
+//     setInvalid(field, `${field.name} must contain only letters`);
+//     return false;
+//   }
+
+// }
+
+// function meetLength(field, minLength, maxLength) {
+//   if (field.value.length >= minLength && field.value.length < maxLength) {
+//     setValid(field);
+//     return true;
+//   } else if (field.value.length < minLength) {
+//     setInvalid(
+//       field,
+//       `${field.name} must be at least ${minLength} characters long`
+//     );
+//     return false;
+//   } else {
+//     setInvalid(
+//       field,
+//       `${field.name} must be shorter than ${maxLength} characters`
+//     );
+//     return false;
+//   }
+// }
+
+// function containsCharacters(field, code) {
+//   let regEx;
+//   switch (code) {
+//     case 1:
+//       // letters
+//       regEx = /(?=.*[a-zA-Z])/;
+//       return matchWithRegEx(regEx, field, 'Must contain at least one letter');
+//     case 2:
+//       // letter and numbers
+//       regEx = /(?=.*\d)(?=.*[a-zA-Z])/;
+//       return matchWithRegEx(
+//         regEx,
+//         field,
+//         'Must contain at least one letter and one number'
+//       );
+//     case 3:
+//       // uppercase, lowercase and number
+//       regEx = /(?=.*\d)(?=.*[a-z])(?=.*[A-Z])/;
+//       return matchWithRegEx(
+//         regEx,
+//         field,
+//         'Must contain at least one uppercase, one lowercase letter and one number'
+//       );
+//     case 4:
+//       // uppercase, lowercase, number and special char
+//       regEx = /(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*\W)/;
+//       return matchWithRegEx(
+//         regEx,
+//         field,
+//         'Must contain at least one uppercase, one lowercase letter, one number and one special character'
+//       );
+//     case 5:
+//       // Email pattern
+//       regEx = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+//       return matchWithRegEx(regEx, field, 'Must be a valid email address');
+//     default:
+//       return false;
+//   }
+// }
+
+// function matchWithRegEx(regEx, field, message) {
+//   if (field.value.match(regEx)) {
+//     setValid(field);
+//     return true;
+//   } else {
+//     setInvalid(field, message);
+//     return false;
+//   }
+// }
+//===========MY Functions=======
