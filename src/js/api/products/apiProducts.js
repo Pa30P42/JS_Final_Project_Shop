@@ -1,4 +1,6 @@
-import { getAppliances } from './services';
+import {
+  getAppliances
+} from './services';
 import axios from 'axios';
 
 import userData from '../../userData';
