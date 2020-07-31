@@ -3,4 +3,5 @@ export const refs = {
   sections: document.querySelector('.sections'),
   header: document.querySelector('.header'),
   sidebar: document.querySelector('.sidebar'),
+  search_sideBar: document.querySelector('.search_sideBar'),
 };

@@ -19,7 +19,7 @@ const container = document.querySelector('.modalModule');
 
 //  === MODAL MODULE ===
 
-const modalModule = (component, listeners) => {
+export const modalModule = (component, listeners) => {
   const closeModalComponent = () => {
     container.innerHTML = '';
   };
