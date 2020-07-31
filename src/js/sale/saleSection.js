@@ -1,10 +1,13 @@
 import { createSingleCardMarkup } from './cardModule';
 
 const createListMarkup = array => {
-  return `<ul class="card_list">${array.reduce((acc, element) => {
+  return `
+  <section class="card container">
+  <h2 class="card_description">Акции</h2>
+  <ul class="card_list">${array.reduce((acc, element) => {
     acc += createSingleCardMarkup(element, 'sale');
     return acc;
-  }, '')}</ul>`;
+  }, '')}</ul></section>`;
 };
 
 const getItem = event => {

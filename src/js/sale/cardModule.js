@@ -1,8 +1,9 @@
 import apiProducts from '../api/products/apiProducts';
+
 const userData = {
-  isMobile: true,
+  isMobile: false,
   isTablet: false,
-  isDesktop: false,
+  isDesktop: true,
 };
 
 // apiProducts.searchProductsbyCategory('new').then(data => parsData(data.data));
@@ -55,9 +56,8 @@ export const createSingleCardMarkup = (element, sale) => {
   };
   return cardItemMarkup(element);
 };
-
 // const createListMarkup = array => {
-//   return `<ul class="card_list">${array.reduce((acc, element) => {
+// return `<ul class="card_list">${array.reduce((acc, element) => {
 //     acc += cardCartItem(element);
 //     return acc;
 //   }, '')}</ul>`;
