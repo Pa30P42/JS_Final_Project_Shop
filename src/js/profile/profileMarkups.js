@@ -2,37 +2,30 @@
 //   apiAuth
 // } from './api/users/apiUsers';
 
-
-
 //
 // apiAuth.getCurrentUser()   role: "ADMIN"
 //
 // const role = "ADMIN";
-
-
+import Inputmask from 'inputmask';
 const userData = {
-
-  name: "admin",
-  email: "admin@gmail.com",
-  password: "qwerty321",
-  role: "ADMIN",
-
+  name: 'admin',
+  email: 'admin@gmail.com',
+  password: 'qwerty321',
+  role: 'ADMIN',
 };
 
-import {
-  refs
-} from "../components/refs";
+import { refs } from '../components/refs';
 
 const forms = {
   infoForm: {
     name: '',
     surname: '',
     phone: '',
-    email: ''
+    email: '',
   },
   passwordForm: {
     password: '',
-    confirmPassword: ''
+    confirmPassword: '',
   },
   addressForm: {
     country: '',
@@ -51,25 +44,20 @@ const forms = {
     images: [],
     totalQuantity: 0,
   },
-
 };
-
 
 export default {
   refs: {
-    curentActiveTab: "",
-    sectionRef: "",
+    curentActiveTab: '',
+    sectionRef: '',
   },
-
-
-
 
   maintabsMarkup() {
     console.log(this);
-    this.sectionRef = document.querySelector(".container");
+    this.sectionRef = document.querySelector('.container');
     console.log('sectionRef :>> ', this.sectionRef);
 
-    this.sectionRef.innerHTML = "";
+    this.sectionRef.innerHTML = '';
     const accountTabsMarkup = () => {
       return ` 
       <section class="profile tabs__panel"  id="profile">
@@ -91,8 +79,12 @@ export default {
       <button class="profile__button password" type="button" title="password">Изменить пароль</button>
       <button class="profile__button address" type="button" title="address">Мой Адрес</button>
       <button class="profile__button favorites" type="button" title="favorites">Избранное</button>
-      ${(userData.role === "ADMIN")? `<button class="profile__button advertisement" type="button" title="advertisement">Создать
-      объявление</button>`:``}
+      ${
+        userData.role === 'ADMIN'
+          ? `<button class="profile__button advertisement" type="button" title="advertisement">Создать
+      объявление</button>`
+          : ``
+      }
       
       </div>
       
@@ -103,62 +95,54 @@ export default {
     };
     console.log('refs.sections :>> ', refs.sections);
     this.sectionRef.innerHTML = accountTabsMarkup();
-    const mainTabsNav = document.querySelector("#parent_profile");
+    const mainTabsNav = document.querySelector('#parent_profile');
 
     console.log(mainTabsNav);
-    mainTabsNav.addEventListener("click", this.getMarkup);
-
+    mainTabsNav.addEventListener('click', this.getMarkup);
   },
   getMarkup(event) {
-
-    if (event.target.nodeName !== "BUTTON") {
-      console.log("Not a button");
+    if (event.target.nodeName !== 'BUTTON') {
+      console.log('Not a button');
       return;
     }
-    const currentActiveBtn = document.querySelector(".active");
-
+    const currentActiveBtn = document.querySelector('.active');
 
     if (currentActiveBtn) {
-      currentActiveBtn.classList.remove("active");
+      currentActiveBtn.classList.remove('active');
       deleteActive();
     }
     const controlItem = event.target;
-    controlItem.classList.add("active");
-
-
+    controlItem.classList.add('active');
 
     switch (controlItem.title) {
-      case "contacts":
+      case 'contacts':
         userInfoMarkup();
-        addInfoListener('infoForm')
+        addInfoListener('infoForm');
 
         break;
-      case "password":
+      case 'password':
         passwordMarkup();
-        addInfoListener('passwordForm')
+        addInfoListener('passwordForm');
 
         break;
-      case "address":
+      case 'address':
         addressFormMarkup();
-        addInfoListener('addressForm')
+        addInfoListener('addressForm');
         break;
-      case "favorites":
+      case 'favorites':
         favoritesFormMarkup();
 
         break;
-      case "advertisement":
+      case 'advertisement':
         advertisementFormMarkup();
-        addInfoListener('advertisementForm')
+        addInfoListener('advertisementForm');
         break;
 
       default:
         break;
     }
   },
-
 };
-
-
 
 //<span class="helper-text-valid">Successfull</span>
 //<span class="helper-text-invalid">Failed</span>
@@ -186,8 +170,8 @@ function userInfoMarkup() {
 
 
                     <label id="phone-number" for="phone-number"><em> * </em>Телефон</label>
-                    <input type="tel" name="tel"  for="tel" id="phone" class="form-control"
-                       value="+375 (__) ___-__-__" pattern="^\+375(\s+)?\(?(17|25|29|33|44)\)?(\s+)?[0-9]{3}-?[0-9]{2}-?[0-9]{2}$" required />
+                    <input type="tel" name="tel"  for="tel" id="tel" class="form-control"
+                       required />
                      <div class="helper-text-div"></div>
 
 
@@ -201,10 +185,10 @@ function userInfoMarkup() {
                 </form>
           `;
   };
-  const contactsBtn = document.querySelector(".contacts");
-  contactsBtn.insertAdjacentHTML("afterend", infoMarkup());
+  const contactsBtn = document.querySelector('.contacts');
+  contactsBtn.insertAdjacentHTML('afterend', infoMarkup());
   setActive();
-};
+}
 
 function passwordMarkup() {
   const passwordFormMarkup = () => {
@@ -229,10 +213,10 @@ function passwordMarkup() {
                 </form>
             `;
   };
-  const changePasswordBtn = document.querySelector(".password");
-  changePasswordBtn.insertAdjacentHTML("afterend", passwordFormMarkup());
+  const changePasswordBtn = document.querySelector('.password');
+  changePasswordBtn.insertAdjacentHTML('afterend', passwordFormMarkup());
   setActive();
-};
+}
 
 function addressFormMarkup() {
   const formMarkup = () => {
@@ -287,10 +271,10 @@ function addressFormMarkup() {
                 </form>
             `;
   };
-  const myAddressBtn = document.querySelector(".address");
-  myAddressBtn.insertAdjacentHTML("afterend", formMarkup());
+  const myAddressBtn = document.querySelector('.address');
+  myAddressBtn.insertAdjacentHTML('afterend', formMarkup());
   setActive();
-};
+}
 
 function favoritesFormMarkup() {
   const favoritesMarkup = () => {
@@ -353,10 +337,10 @@ function favoritesFormMarkup() {
               </div>
           `;
   };
-  const favoritesBtn = document.querySelector(".favorites");
-  favoritesBtn.insertAdjacentHTML("afterend", favoritesMarkup());
+  const favoritesBtn = document.querySelector('.favorites');
+  favoritesBtn.insertAdjacentHTML('afterend', favoritesMarkup());
   setActive();
-};
+}
 
 function advertisementFormMarkup() {
   const advertisementMarkup = () => {
@@ -417,28 +401,26 @@ function advertisementFormMarkup() {
           </form>
     `;
   };
-  const advertisementBtn = document.querySelector(".advertisement");
-  advertisementBtn.insertAdjacentHTML("afterend", advertisementMarkup());
+  const advertisementBtn = document.querySelector('.advertisement');
+  advertisementBtn.insertAdjacentHTML('afterend', advertisementMarkup());
   setActive();
-};
+}
 
 function setActive() {
-  const formRef = document.querySelector("#form");
+  const formRef = document.querySelector('#form');
 
-  return formRef.setAttribute("data-active", "true");
+  return formRef.setAttribute('data-active', 'true');
   //console.log(formRef.dataset.active);
-};
+}
 
 function deleteActive() {
-  const activePanel = document.querySelector(
-    '#form[data-active="true"]'
-  );
-  activePanel.removeAttribute("data-active");
+  const activePanel = document.querySelector('#form[data-active="true"]');
+  activePanel.removeAttribute('data-active');
 
-  const parent = document.querySelector("#parent_profile");
-  const child = document.querySelector("#form");
+  const parent = document.querySelector('#parent_profile');
+  const child = document.querySelector('#form');
   parent.removeChild(child);
-};
+}
 
 // function getInfo(event) {
 //   let key = event.target.closest('[data-form]').dataset.form;
@@ -457,12 +439,9 @@ function addInfoListener(key) {
   const inputForm = form.querySelector(`[data-form="${key}"]`);
   inputForm.addEventListener('input', getInfo);
   console.log('inputForm', inputForm.dataset.form);
-
-
-};
+}
 
 function getInfo(event) {
-
   let key = event.target.closest('[data-form]').dataset.form;
   forms[key][event.target.name] = event.target.value;
 
@@ -477,44 +456,27 @@ function getInfo(event) {
 
   console.log('nameOfInput', nameOfInput);
 
-
   console.log('field.getAttribute("name") :>> ', field.getAttribute('name'));
 
   //=====text validation ====
   if (nameOfInput === 'name') {
-
-    ((inputLength > 6)) ?
-    field.nextElementSibling.innerHTML = `<span class="helper-text-valid">Successfull</span>`: field.nextElementSibling.innerHTML = `<span class="helper-text-invalid">Failed</span>`;
+    inputLength > 6
+      ? (field.nextElementSibling.innerHTML = `<span class="helper-text-valid">Successfull</span>`)
+      : (field.nextElementSibling.innerHTML = `<span class="helper-text-invalid">Failed</span>`);
   } else if (nameOfInput === 'surname') {
-
-
-    (inputLength < 35 && (inputLength > 6)) ?
-    field.nextElementSibling.innerHTML = `<span class="helper-text-valid">Successfull</span>`: field.nextElementSibling.innerHTML = `<span class="helper-text-invalid">Need <35</span>`;
+    inputLength < 35 && inputLength > 6
+      ? (field.nextElementSibling.innerHTML = `<span class="helper-text-valid">Successfull</span>`)
+      : (field.nextElementSibling.innerHTML = `<span class="helper-text-invalid">Need <35</span>`);
   } else if (nameOfInput === 'email') {
-
     const regExEmail = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{3,}))$/;
-    ((nameOfInput === 'email') && (inputValue.match(regExEmail))) ?
-    field.nextElementSibling.innerHTML = `<span class="helper-text-valid">Successfull</span>`:
-      field.nextElementSibling.innerHTML = `<span class="helper-text-invalid">Need <35</span>`
+    nameOfInput === 'email' && inputValue.match(regExEmail)
+      ? (field.nextElementSibling.innerHTML = `<span class="helper-text-valid">Successfull</span>`)
+      : (field.nextElementSibling.innerHTML = `<span class="helper-text-invalid">Need <35</span>`);
   } else if (nameOfInput === 'tel') {
-
-    const regEx = /^[a-zA-Zа-яА-ЯёЁ'][a-zA-Z-а-яА-ЯёЁ' ]+[a-zA-Zа-яА-ЯёЁ']?$/;
-    ((inputValue.match(regEx))) ?
-    field.nextElementSibling.innerHTML = `<span class="helper-text-valid">Successfull</span>`:
-      field.nextElementSibling.innerHTML = `<span class="helper-text-invalid">Need <35</span>`
-  } else if (nameOfInput === 'tel') {
-
-
-
-
-    field.nextElementSibling.innerHTML = `<span class="helper-text-valid">Successfull</span>`;
-    //     field.nextElementSibling.innerHTML = `<span class="helper-text-invalid">Need <35</span>`
+    let selector = document.querySelector('input[type="tel"]');
+    console.log('selector :>> ', selector);
+    let im = new Inputmask('+38 (999) 999-99-99');
+    im.mask(selector);
+    //field.nextElementSibling.innerHTML = `<span class="helper-text-valid">Successfull</span>`;
   }
 }
-
-//placeholder="+38 (093) 333 99 99" 
-
-// // field.mask("+7(999) 999-9999");
-// ((field.getAttribute('name') === 'tel') && (inputValue.match(telRegEx))) ?
-// field.nextElementSibling.innerHTML = `<span class="helper-text-valid">Successfull</span>`:
-//   field.nextElementSibling.innerHTML = `<span class="helper-text-invalid">Need <35</span>`

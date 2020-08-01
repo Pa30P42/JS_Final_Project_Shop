@@ -55,6 +55,7 @@
     "debounce": "^1.2.0",
     "fuse.js": "^6.4.1",
     "handlebars": "^4.7.3",
+    "inputmask": "^5.0.3",
     "moment": "^2.27.0",
     "siema": "^1.5.1"
   }
