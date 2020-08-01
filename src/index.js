@@ -6,7 +6,7 @@ import apiUsers from './js/api/users/apiUsers';
 import './js/category/category-markup';
 import { containerHandler } from './js/container/container';
 
-import { cardItem } from './js/sale/cardModule';
+// import { cardItem } from './js/sale/cardModule';
 import { createSingleCardMarkup } from './js/sale/cardModule';
 import { refs } from './js/components/refs';
 //containerHandler();
