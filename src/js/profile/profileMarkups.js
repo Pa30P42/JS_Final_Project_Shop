@@ -198,11 +198,13 @@ function passwordMarkup() {
                     <label id="name-label" for="password"><em> * </em>Пароль</label>
                     <input type="password" name="password" id="password" class="form-control" placeholder="******"
                       required />
+                     
 
     
                     <label id="name-label" for="password"><em> * </em>Подтвердите пароль</label>
                     <input type="password" name="confirmPassword" id="passwordConfirm" class="form-control" placeholder="******"
                       required />
+                      <div class="helper-text-div"></div>
 
     
                       
@@ -230,34 +232,36 @@ function addressFormMarkup() {
     
                     <label id="name-label" for="name"><em> * </em>Страна</label>
                     <input type="text" name="country"  class="form-control" placeholder="Страна" required />
-    
+    <div class="helper-text-div"></div>
                     <label id="name-label" for="name"><em> * </em>Регион/Область</label>
                     <input type="text" name="city"  class="form-control" placeholder="Киевская" required />
-
+<div class="helper-text-div"></div>
                     <label id="name-label" for="name"><em> * </em>Город</label>
                     <input type="text" name="place"  class="form-control" placeholder="Киев" autocomplete="section-blue shipping street-address" required />
-    
+    <div class="helper-text-div"></div>
                     <label id="name-label" for="name"><em> * </em>Улица</label>
                     <input type="text" name="street"  class="form-control" placeholder="Пушкинская" autocomplete="section-blue shipping street-address" required />
-    </div>
+    <div class="helper-text-div"></div>
+                    </div>
     <div class="section-two" >
                     <label id="name-label" for="name"><em> * </em>Дом</label>
                     <input type="text" name="building"  class="form-control form-control__address" placeholder="Дом"
                      autocomplete="section-blue shipping street-address"  required />
-    
+    <div class="helper-text-div"></div>
                     <label id="name-label" for="name">Блок</label>
                     <input type="text" name="block"  class="form-control  form-control__address"
                       placeholder="Блок" required />
-
+<div class="helper-text-div"></div>
                     <label id="name-label" for="name">Квартира</label>
                     <input type="text" name="flat"  class="form-control  form-control__address"
                       placeholder="Квартира" required />
-                  
+                  <div class="helper-text-div"></div>
 
     
                     <label id="name-label" for="name"><em> * </em>Почтовый индекс</label>
                     <input type="text" name="postIndex"  class="form-control  form-control__address" placeholder="00000"
                       required />
+                      <div class="helper-text-div"></div>
                       </div>
     
     
@@ -446,27 +450,38 @@ function getInfo(event) {
   forms[key][event.target.name] = event.target.value;
 
   forms[key][event.target] = event.target;
+  console.log('key :>> ', key);
   console.log('forms[key]', forms[key]);
   console.log('event.target : ', event.target);
+  console.log(
+    'forms[key][event.target.name] :>> ',
+    forms[key][event.target.name],
+  );
 
   const field = event.target;
   const inputValue = event.target.value;
   const inputLength = event.target.value.length;
   const nameOfInput = field.getAttribute('name');
+  const textInput = field.getAttribute('type');
 
   console.log('nameOfInput', nameOfInput);
+  ['[object HTMLInputElement]'].value;
 
-  console.log('field.getAttribute("name") :>> ', field.getAttribute('name'));
-
+  //console.log('field.getAttribute("name") :>> ', field.getAttribute('name'));
+  //^[a-zA-Zа-яА-Я0-9_]*$
+  ///[^a-zа-яё ]/iu;
   //=====text validation ====
+  const onlyLettersRegEx = /^(?=.*[A-Z])[a-zA-Zа-яА-Я_-]*$/;
+
+  const numbersRegEx = /(?=.*\d)(?=.*\W)/;
   if (nameOfInput === 'name') {
-    inputLength > 6
+    inputLength > 6 && inputLength < 35 && inputValue.match(onlyLettersRegEx)
       ? ((field.nextElementSibling.innerHTML = `<span class="helper-text-valid">Successfull</span>`),
         (field.style.outlineColor = '#109b17'))
       : ((field.nextElementSibling.innerHTML = `<span class="helper-text-invalid">Failed</span>`),
         (field.style.outlineColor = '#FF8A9D'));
   } else if (nameOfInput === 'surname') {
-    inputLength < 35 && inputLength > 6
+    inputLength < 35 && inputLength > 6 && inputValue.match(onlyLettersRegEx)
       ? ((field.nextElementSibling.innerHTML = `<span class="helper-text-valid">Successfull</span>`),
         (field.style.outlineColor = '#109b17'))
       : ((field.nextElementSibling.innerHTML = `<span class="helper-text-invalid">Failed</span>`),
@@ -479,9 +494,33 @@ function getInfo(event) {
       : ((field.nextElementSibling.innerHTML = `<span class="helper-text-invalid">Failed</span>`),
         (field.style.outlineColor = '#FF8A9D'));
     let selector = document.querySelector('input[type="tel"]');
-    console.log('selector :>> ', selector);
+
     let im = new Inputmask('+38 (999) 999-99-99');
     im.mask(selector);
     //field.nextElementSibling.innerHTML = `<span class="helper-text-valid">Successfull</span>`;
+  } else if (key === 'passwordForm') {
+    //console.log('forms[key][event.target.password] :>> ', forms[key][password]);
+    let password = document.querySelector('[name="password"]').value;
+    console.log('password :>> ', password);
+    let confirmPassword = document.querySelector('[name="confirmPassword"]')
+      .value;
+    console.log('confirmPassword :>> ', confirmPassword);
+    const errorDiv = document.querySelector('.helper-text-div');
+    console.log('errorDiv :>> ', errorDiv);
+
+    password === confirmPassword
+      ? ((errorDiv.innerHTML = `<span class="helper-text-valid">Sucsess</span>`),
+        (field.style.outlineColor = '#109b17'))
+      : ((errorDiv.innerHTML = `<span class="helper-text-invalid">Need to confirm password</span>`),
+        (field.style.outlineColor = '#FF8A9D'));
+  } else if (textInput === 'text') {
+    inputLength > 2 && inputLength < 35 && inputValue.match(onlyLettersRegEx)
+      ? ((field.nextElementSibling.innerHTML = `<span class="helper-text-valid">Successfull</span>`),
+        (field.style.outlineColor = '#109b17'))
+      : ((field.nextElementSibling.innerHTML = `<span class="helper-text-invalid">Failed</span>`),
+        (field.style.outlineColor = '#FF8A9D'));
   }
+
+  //======= adddress==========
 }
+//^\d{5}(?:[-\s]\d{4})?$ /
