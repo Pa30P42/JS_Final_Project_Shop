@@ -1,9 +1,9 @@
 import { sliderItemMarkup } from './sliderMarkup';
 import { refs } from '../components/refs';
 // ./images/slider/slider_mb/new/img2.jpg
-const sliderRef = document.querySelector('.slider-wrapper');
+// const sliderRef = document.querySelector('.slider-wrapper');
 console.log(refs.sections);
-refs.sections.innerHTML = sliderItemMarkup();
+// refs.sections.innerHTML = sliderItemMarkup();
 
 export function Sim(sldrId) {
   let id = document.getElementById(sldrId);
@@ -208,4 +208,4 @@ Sim.initialize = function (that) {
   }
 };
 
-new Sim();
+// new Sim();

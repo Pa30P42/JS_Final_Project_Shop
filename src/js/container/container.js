@@ -1,5 +1,6 @@
 import { refs } from '../components/refs';
 import { categoriesListMarkup, categories } from '../category/category-markup';
+import { sliderItemMarkup } from '../slider/sliderMarkup';
 
 //В каждом диве запустить функцию определенного модуля который булет отрисовывать блок.
 
@@ -15,7 +16,7 @@ const containerFooterMarkup = function () {
 };
 const containerSectionsMarkup = function () {
   return ` 
-    <div class="slider-wrapper"></div>
+    <div class="slider-wrapper">${sliderItemMarkup()}</div>
     <div class="category-wrapper">${categoriesListMarkup(categories)}</div>
     <div class="new-products-wrapper"></div>
     <div class="last-seen-wrapper"></div>

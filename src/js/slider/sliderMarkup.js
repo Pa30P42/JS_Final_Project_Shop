@@ -1,4 +1,5 @@
 import screen from '../../images/slider/slider_mb/new/img2.jpg';
+import image2Mb from '../../images/slider/slider_mb/new/img2_mb.jpg';
 import image1 from '../../images/slider/slider_mb/new/img1.jpg';
 import image4 from '../../images/slider/slider_mb/new/img4.jpg';
 import image3 from '../../images/slider/slider_mb/new/img3.jpg';
@@ -9,10 +10,12 @@ export const sliderItemMarkup = () => {
   return `<div class="sim-slider">
 <ul class="sim-slider-list">
 <li><img
-  src="${screen}"
-  alt="screen"
-  class="sim-slider-list-image"
-/>
+        srcset="${image2Mb} 280w, ${screen} 1080w"
+        src="${image2Mb}"
+        alt="screen"
+        sizes="280px"
+        class="sim-slider-list-image"
+    />
 </li>
 <li class="sim-slider-element">
 <img

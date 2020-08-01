@@ -2,13 +2,14 @@ import './sass/main.scss';
 
 import './js/category/category-markup';
 import { containerHandler } from './js/container/container';
-import './js/slider/slider';
+import { Sim } from './js/slider/slider';
 // import services from './js/services/services';
 // import apiProducts from './js/api/products/apiProducts';
 // import userData from './js/userData';
 // import './js/slider/slider.js';
 // import { Sim } from './js/slider/slider';
-// containerHandler();
+containerHandler();
+new Sim();
 
 // apiProducts.getCategories().then(data => console.log(userData));
 
