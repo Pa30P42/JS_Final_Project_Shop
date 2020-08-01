@@ -1,3 +1,4 @@
+import chooseCategory from '../../profile/profileMarkups'
 import {
   getAppliances
 } from './services';
@@ -45,7 +46,7 @@ export default {
         userData.categoriesItems = [...response.data.categories];
 
         // console.log('user', userData.categoriesItems);
-
+        // chooseCategory(userData.categoriesItems)
         getAppliances(userData.categoriesItems);
         return userData.categoriesItems;
       } catch (err) {

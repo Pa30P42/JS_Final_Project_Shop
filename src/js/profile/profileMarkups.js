@@ -1,3 +1,7 @@
+import apiProducts from '../api/products/apiProducts'
+import globeUserData from '../userData'
+import axios from 'axios';
+
 // import {
 //   apiAuth
 // } from './api/users/apiUsers';
@@ -352,7 +356,7 @@ function favoritesFormMarkup() {
   setActive();
 };
 
-function advertisementFormMarkup() {
+export function advertisementFormMarkup() {
   const advertisementMarkup = () => {
     return `
         
@@ -362,50 +366,49 @@ function advertisementFormMarkup() {
             <div class="form-group">
     
               <label  class="adv-label" for="name">Название товара</label>
-              <input type="text" name="name" id="name" class="advertisement-inputs form-control-advertisement" placeholder="Название"
+              <input type="text" name="productName" id="productName" class="advertisement-inputs form-control-advertisement productName" placeholder="Название"
                 required />
                
 
     
               <label class="adv-label"  for="name">Фото</label>
-              <input type="file" id="img" name="img" class="input-photo form-control " accept="image/*"
+              <input type="file" id="productImage" name="productImage" class="input-photo form-control productImage" accept="image/*"
                 class="form-control" required />
 
                
 
     
               <label  class="adv-label" for="name">Описание товара</label>
-              <textarea style="resize:none"  name="description" id="comments" class="advertisement-inputs form-control-advertisement  input-textarea " name="comment"
+              <textarea style="resize:none"  name="productDescription" id="comments" class="advertisement-inputs form-control-advertisement  input-textarea productDescription"
                 placeholder="Описание"></textarea>
              
 
     
               <label  class="adv-label" for="name">Категория товара</label>
-              <select id="dropdown" name="category" class="advertisement-inputs form-control-advertisement" required>
-                <option disabled selected value class="input-select">Выберите категорию</option>
-                <option value="student">2</option>
-                <option value="job">3</option>
-                <option value="learner">4</option>
-                <option value="preferNo">5</option>
-                <option value="other">6</option>
-              </select>
+              <select id="productCatygory" name="productCatygory" class="advertisement-inputs form-control-advertisement productCatygory" required>
+              <option disabled selected value class="input-select">Выберите категорию</option>
+              <option value="student">2</option>
+              <option value="job">3</option>
+              <option value="learner">4</option>
+              <option value="preferNo">5</option>
+              <option value="other">6</option>
+               </select>
                
 
     
               <label class="adv-label"  id="name-label" for="name">Цена</label>
-              <input type="text" name="price" class="form-control form-control__address" placeholder="0.000 &#x20b4;"
+              <input type="text" name="productPrice" class="form-control form-control__address productPrice" placeholder="0.000 &#x20b4;"
                 required />
 
-                <label class="adv-label" id="phone-number">Количество</label>
-              <input type="tel" name="totalQuantity" class="form-control form-control__address"
+                <label class="adv-label" id="phone-number">Телефон</label>
+              <input type="tel" name="productPhone" class="form-control form-control__address productPhone"
                 placeholder="+38 (093) 333 99 99" required />
-    
+
               
     
     
-    
             </div>
-            <button type="submit" id="submit" class="save-button">
+            <button type="submit" data-create="addProdact" id="submit" class="save-button">
               Создать
             </button>
           </form>
@@ -414,6 +417,15 @@ function advertisementFormMarkup() {
   const advertisementBtn = document.querySelector(".advertisement");
   advertisementBtn.insertAdjacentHTML("afterend", advertisementMarkup());
   setActive();
+  
+  //! ============================= Kostya ==================
+  const btnAddProduct = document.querySelector('.js-active-tab-advertisement')
+  btnAddProduct.addEventListener('click', addProduct)
+
+  // const optin = document.querySelector('.js__option')
+  // optin.insertAdjacentHTML('beforeend', chooseCategory());
+
+  //! ===============================================
 };
 
 function setActive() {
@@ -464,17 +476,86 @@ function addInfoListener(key) {
 
 //===========MY Functions=======
 
+
+
+//! ==================== Kostya ==================
+const product = {
+  "images": [],
+  "totalQuantity": 1,
+  "name": "",
+  "category": "",
+  "price": 0,
+  "description": ""
+  }
+
+// export async function wayToCategory() {
+//   const response = await axios.get(
+//     'https://goit-store.herokuapp.com/products/getCategories',
+//   )
+//   chooseCategory(response.data)
+// };
+// wayToCategory()
+
+
+
+// function chooseCategory(categories) {
+//   const values = Object.values(categories)
+//   console.log(values);
+// // console.log(valueCategories);
+//   // console.log(values);
+//   const arrValues = values[0]
+//   return arrValues.reduce((acc, value) => {
+//     acc += `
+//     <option value="${value.name}">${value.name}</option>
+//     `
+//     return acc;
+//   }, '');
+
+//   };
+
+
+
+
+  function addProduct (e) {
+  console.log("e.target", e.target);
+  if ((e.target.nodeName === "BUTTON")  && e.target.closest('[data-create]')) {
+    const createBtn = e.target.closest('[data-create]').dataset.create
+    console.log("createBtn", createBtn);
+    apiProducts.CreateNewProduct(product)
+  } else return
+  }
+  
+
 function getInfo(event) {
+ if (event.target.name === "productPrice") {
+    product.price = event.target.value
+}
+ if (event.target.name === "productName") {
+  product.name = event.target.value
+}
+ if (event.target.name === "productDescription") {
+  product.description = event.target.value
+}
+ if (event.target.name === "productCatygory") {
+  product.category = event.target.value
+}
+console.log("PRODUCT", product);
+console.log("&&&&&&&", event.target);
+// apiProducts.CreateNewProduct(product)
 
 
+//! =======================================
 
   let key = event.target.closest('[data-form]').dataset.form;
   forms[key][event.target.name] = event.target.value;
+  // console.log("KEY", key);
+  // console.log("!!!!!!", event.target.name);
+  // console.log("&&&&&&&", event.target.value);
 
   forms[key][event.target] = event.target;
-  console.log('forms[key]', forms[key]);
-  console.log('event.target : ', event.target);
-  console.log('forms[key][event.target.name] :>> ', forms[key][event.target.name]);
+  // console.log('forms[key]', forms[key]);
+  // console.log('event.target : ', event.target);
+  // console.log('forms[key][event.target.name] :>> ', forms[key][event.target.name]);
 
   const inputValue = forms[key][event.target.name];
   const field = forms[key][event.target];

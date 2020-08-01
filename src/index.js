@@ -13,8 +13,21 @@ import axios from 'axios';
 import apiAuth from './js/api/auth/apiAuth';
 
 // =========== adv ==============
-import productCard from './js/adv/productCard';
-apiAuth.login({email:'unotest2@gmail.com',password:'testuno111'} );
+import productCard from "./js/adv/productCard";
+// apiAuth.register({
+//     name: 'Kostya',
+//     email: 'kost927@gmail.com',
+//     password: 'qwerty123456',
+//   })
+// axios.post("https://goit-store.herokuapp.com/auth/login", {email: 'kos123321@gmail.com',
+// password: 'q1w2e3r4t5'}).then(data => localStorage.setItem("user", JSON.stringify(data.data)))
+
+// apiAuth.login({
+//   email: 'unotest2@gmail.com', 
+//   password: 'testuno111',
+// })
+
+
 const btnShowModal = document.getElementById('btnShowModal');
 
 let currentItem = null;
@@ -37,3 +50,5 @@ const initialAction = async () => {
   // trigger.triggerFn();
 };
 initialAction();
+
+
