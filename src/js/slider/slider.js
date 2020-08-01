@@ -1,4 +1,6 @@
-function Sim(sldrId) {
+import screen from '';
+// ./images/slider/slider_mb/new/img2.jpg
+export function Sim(sldrId) {
   let id = document.getElementById(sldrId);
   if (id) {
     this.sldrRoot = id;
@@ -17,7 +19,91 @@ function Sim(sldrId) {
   // Initialization
   this.options = Sim.defaults;
   Sim.initialize(this);
+
+  const sliderItemMarkup = element => {
+    return `<div class="sim-slider">
+  <ul class="sim-slider-list">
+    <li><img
+    src="${screen}"
+    alt="screen"
+    class="sim-slider-list-image"
+  />
+</li>
+<img
+              src="${screen}"
+              alt="0"
+              class="sim-slider-list-image"
+            />
+          </li>
+          <li class="sim-slider-element">
+<li class="sim-slider-element">
+<img
+              src="./images/slider/slider_mb/new/img1.jpg"
+              alt="1"
+              class="sim-slider-list-image"
+            />
+          </li>
+          <li class="sim-slider-element">
+          <img
+              src="./images/slider/slider_mb/new/img4.jpg"
+              alt="2"
+              class="sim-slider-list-image"
+            />
+          </li>
+          <li class="sim-slider-element">
+          <img
+              src="./images/slider/slider_mb/new/img3.jpg"
+              alt="3"
+              class="sim-slider-list-image"
+            />
+          </li>
+          </ul>
+
+        <div class="sim-slider-arrow-left">
+          <img
+            class="sim-slider-arrow-left-img"
+            src="./images/slider/slider_mb/btn_left.png"
+          />
+        </div>
+        <div class="sim-slider-arrow-right">
+          <img
+            class="sim-slider-arrow-right-img"
+            src="./images/slider/slider_mb/btn_right.png"
+          />
+        </div>
+
+        <div class="sim-slider-dots"></div>
+      </div>`;
+  };
+  return sliderItemMarkup(element);
 }
+// return `<li class="card_item" data-id=${element._id}>
+// // <div class="card-image">
+// // ${
+//   userData.isMobile
+//     ? ` <img class="card_img" src="${element.images[0]}" alt="${element.name}" width="86"/>`
+//     : `<img class="card_img-tablet" src="${element.images[0]}" alt="${element.name}" width="149"/>`
+// }
+
+// </div>
+// <img class="card_vector" src="./images/sale/Vector.svg" />
+// <p class="card_name">${element.name}</p>
+// <ul class="card_rating-list">${rating()}</ul>
+// <div class="card_prise-block">
+//    ${
+//      sale
+//        ? `<p class="card_price">${
+//            element.price * 1.3
+//          }<span> &#8372;</span></p>
+//       <p class="card_price-sale">${element.price}<span> &#8372;</span></p>`
+//        : `<p class="card_price-sale">${element.price}<span> &#8372;</span></p>`
+//    }
+
+// </div>
+// </li>`;
+// };
+// return cardItemMarkup(element);
+// }
 
 Sim.defaults = {
   // Default options for the carousel
