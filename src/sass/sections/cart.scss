@@ -14,6 +14,7 @@
 }
 
 .btn-close {
+  cursor: pointer;
   svg {
     stroke: $main--text-color;
   }
@@ -141,12 +142,14 @@
         border-radius: 50%;
         font-weight: bold;
         background: linear-gradient(47.73deg, #6368e5 15.48%, #b884f3 81.25%);
+        cursor: pointer;
         @media (min-width: 768px) {
           margin-right: 10px;
         }
-        // @media (min-width: 1200px) {
-        //   margin-bottom: 30px;
-        // }
+        &:hover,
+        &:active {
+          background: $secondary-gradient;
+        }
       }
 
       button:last-child {
@@ -246,8 +249,13 @@
     font-size: 18px;
     letter-spacing: 0.2em;
     background: $main-gradient;
+    cursor: pointer;
     @media (min-width: 768px) {
       margin: 0;
+    }
+    &:hover,
+    &:focus {
+      background: #6368e5;
     }
 
     &_back {
@@ -257,6 +265,10 @@
       svg {
         margin-right: 20px;
         fill: $main-color;
+      }
+      &:hover,
+      &:focus {
+        color: #ffffff;
       }
     }
 

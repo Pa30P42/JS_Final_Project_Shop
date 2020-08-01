@@ -103,60 +103,66 @@ const addToCart = product => {
   }
 };
 
-const listeners = action => {
-  const btnComponent = document.querySelector('.btn-close');
-  btnComponent.addEventListener('click', action);
-};
-
 const inputQuantityHandler = ({ target }) => {
-  if (target.name !== 'quantity') {
+  if (target.dataset.input !== 'inputNumber') {
     return;
   }
+  const listItem = target.closest('[data-id]');
+  const cartItemAmount = listItem.querySelector('.cart__item-amount');
+  const cartTotalPrice = document.querySelector('.cart__total-amount');
   let newCount = Number(target.value);
-  if (newCount <= 1) {
+  if (newCount < 1) {
     newCount = 1;
   }
   if (newCount > 999) {
     newCount = 999;
   }
   target.value = newCount;
-  const parent = target.closest('[data-id]');
-  const id = parent.dataset.id;
-  // changeCartCount(id, newCount);
-  createCartMarkup();
+  const id = listItem.dataset.id;
+  const element = userData.cart.cartItems.find(item => item.id === id);
+  element.quantity = newCount;
+  cartItemAmount.textContent = element.quantity * element.price;
+  const totalAmount = getTotalPrice(userData.cart.cartItems);
+  cartTotalPrice.textContent = totalAmount + ' ₴';
+  userData.cart.totalAmount = totalAmount + ' ₴';
+  userData.cart.totalQuantity = getTotalQuantity(userData.cart.cartItems);
 };
 
 const counterHandler = e => {
   const counterBtn = e.target.closest('[data-button]');
-  if (!counterBtn) return;
   if (
-    counterBtn.dataset.button !== 'decrement' &&
-    counterBtn.dataset.button !== 'increment'
-  ) {
+    !counterBtn ||
+    (counterBtn.dataset.button !== 'decrement' &&
+      counterBtn.dataset.button !== 'increment')
+  )
     return;
-  }
   const listItem = counterBtn.closest('[data-id]');
+  const buttonDecrement = listItem.querySelector('[data-button="decrement"]');
+  const inputNumber = listItem.querySelector('[data-input="inputNumber"]');
+  const cartItemAmount = listItem.querySelector('.cart__item-amount');
+  const cartTotalPrice = document.querySelector('.cart__total-amount');
   const id = listItem.dataset.id;
   const element = userData.cart.cartItems.find(item => item.id === id);
-  const buttonDecrement = listItem.querySelector('[data-button="decrement"]');
-  const cartTotalPrice = document.querySelector('.cart__total-amount');
-
   if (counterBtn.dataset.button === 'decrement') {
     if (element.quantity <= 1) {
       element.quantity = 1;
     } else element.quantity -= 1;
-
     if (element.quantity === 1) {
       buttonDecrement.disabled = true;
     }
   }
   if (counterBtn.dataset.button === 'increment') {
-    element.quantity += 1;
+    if (element.quantity >= 999) {
+      element.quantity = 999;
+    } else element.quantity += 1;
     buttonDecrement.disabled = false;
   }
-  const inputNumber = listItem.querySelector('[data-input="inputNumber"]');
   inputNumber.value = element.quantity;
-  cartTotalPrice.textContent = getTotalPrice(userData.cart.cartItems);
+  cartItemAmount.textContent = element.quantity * element.price + ' ₴';
+  const totalAmount = getTotalPrice(userData.cart.cartItems);
+  cartTotalPrice.textContent = totalAmount + ' ₴';
+  userData.cart.totalAmount = totalAmount;
+  userData.cart.totalQuantity = getTotalQuantity(userData.cart.cartItems);
 };
 
 const removeCartItem = e => {
@@ -170,10 +176,7 @@ const removeCartItem = e => {
   userData.cart.cartItems = [
     ...userData.cart.cartItems.filter(item => item.id !== id),
   ];
-  document.querySelector('.cart').innerHTML = createCartListMarkup(
-    userData.cart,
-    userData.cart.totalAmount,
-  );
+  document.querySelector('.cart').innerHTML = createCartMarkup();
   const cartList = document.querySelector('.cart__list');
   cartList.addEventListener('click', counterHandler);
   cartList.addEventListener('click', removeCartItem);
@@ -197,10 +200,30 @@ const getTotalQuantity = cartItems => {
   return total;
 };
 
+const listeners = closeModal => {
+  const btnClose = document.querySelector('.btn-close');
+  console.log(btnClose);
+  const btnBackToProducts = document.querySelector('.cart__button_back');
+  const btnConfirm = document.querySelector('.cart__button_confirm');
+  btnClose.addEventListener('click', closeModal);
+  btnBackToProducts.addEventListener('click', closeModal);
+  btnConfirm.addEventListener('click', () => createOrder(closeModal));
+};
+
+const createOrder = closeModal => {
+  closeModal();
+  if (localStorage.getItem('info')) {
+    // send order
+    userData.cart.cartItems = [];
+  } else {
+    // go to authorization
+  }
+};
+
 const showCart = () => {
   // alert('Корзина пуста');
   // console.log(container);
-  modalModule(createTemplateMarkup, listeners);
+  // modalModule(createTemplateMarkup, listeners);
   // refs.cartList = document.querySelector('.cart');
   // console.log(refs.cartList);
   // refs.cartList.addEventListener('click', e => console.dir(e));
