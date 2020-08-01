@@ -1,5 +1,5 @@
 import apiProducts from '../api/products/apiProducts';
-
+// import vector from '';
 const userData = {
   isMobile: false,
   isTablet: false,

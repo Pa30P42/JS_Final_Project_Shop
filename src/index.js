@@ -11,6 +11,7 @@ import { createSingleCardMarkup } from './js/sale/cardModule';
 import { refs } from './js/components/refs';
 //containerHandler();
 import { createList } from './js/sale/saleSection';
+
 import './js/components/modalModule/modalModule';
 import apiProducts from './js/api/products/apiProducts';
 import userData from './js/userData';

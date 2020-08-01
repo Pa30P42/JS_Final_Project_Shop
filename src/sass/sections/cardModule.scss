@@ -9,7 +9,7 @@ body {
   padding-bottom: 15px;
 }
 .card_description {
-  width: 137px;
+  width: 100%;
   height: 32px;
   font-family: Montserrat Alternates;
   font-style: normal;
@@ -18,17 +18,17 @@ body {
   line-height: 32px;
   color: #53535c;
   margin-bottom: 74px;
-  padding-left: 15px;
+  padding-left: 1%;
 }
 
 .card_list {
   // position: relative;
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  // justify-content: space-around;
   flex-wrap: wrap;
-  padding-left: 18px;
-  padding-right: 18px;
+  // padding-left: 18px;
+  // padding-right: 18px;
 }
 
 .card_item {
@@ -137,7 +137,7 @@ body {
     padding-bottom: 45px;
   }
   .card_description {
-    width: 92px;
+    width: 100%;
     height: 32px;
     margin-bottom: 20px;
   }
@@ -166,8 +166,8 @@ body {
     // align-items: center;
     // justify-content: space-between;
     // flex-wrap: wrap;
-    padding-left: 60px;
-    padding-right: 60px;
+    // padding-left: 60px;
+    // padding-right: 60px;
   }
   .card_item {
     width: 204px;
@@ -209,6 +209,14 @@ body {
   }
 }
 @media (min-width: 1200px) {
+  .container {
+    align-items: center;
+    justify-content: center;
+    width: 1200px;
+  }
+  .card {
+    width: 1080px;
+  }
   // .card_item-dt {
   //   list-style: none;
   //   position: relative;
@@ -243,5 +251,6 @@ body {
     // margin-bottom: 10px;
     text-align: right;
     padding: 17px 19px 17px 20px;
+    margin: 1%;
   }
 }
