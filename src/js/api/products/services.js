@@ -3,6 +3,7 @@ import userData from '../../userData';
 export const getAppliances = categories => {
   const getCategoryItems = key => {
     const result = categories.reduce((acc, category) => {
+      
       for (const item of userData.appliances[key].filter) {
         // console.log('item', item);
         // console.log('USER.DATA', userData.appliances[key].filter);
@@ -22,4 +23,5 @@ export const getAppliances = categories => {
     getCategoryItems(key);
     // console.log(getCategoryItems(key));
   }
-};
+}
+

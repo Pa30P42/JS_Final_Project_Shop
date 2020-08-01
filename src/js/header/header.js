@@ -4,10 +4,11 @@ import trigger from '../components/trigger';
 // import trigger from './js/components/trigger';
 import { refs } from '../components/refs.js';
 import { headerMenu, closeHeaderMenu } from '../sideBar/headerSideBar.js';
+// import { contactMarkUp } from '../contacts/contacts.js';
+import {catalogListMarkup, listeners, catalogListMarkupAddListeners} from '../catalog/catalog'
 
 import {
   categoriesListMarkup,
-  categories,
   categoriesListMarkupAddListeners,
 } from '../category/category-markup';
 import { modalModule } from '../components/modalModule/modalModule.js';
@@ -52,8 +53,13 @@ const headerButton = event => {
   } else if (dataname === 'name_menu') {
     headerMenu();
   } else if (dataname === 'name_catalog') {
-    console.log('catalog');
+    modalModule(catalogListMarkup, listeners);
+    catalogListMarkupAddListeners()
+
+    // console.log('catalog'); 
   }
 };
 
 refs.header.addEventListener('click', headerButton);
+
+

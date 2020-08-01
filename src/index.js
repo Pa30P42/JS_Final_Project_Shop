@@ -1,18 +1,32 @@
 import './sass/main.scss';
-import './js/api/auth/apiAuth';
-
 import './js/category/category-markup';
 import trigger from './js/components/trigger';
 import { containerHandler } from './js/container/container';
+import './js/catalog/catalog'
+import userData from './js/userData';
 import './js/components/modalModule/modalModule';
 import apiProducts from './js/api/products/apiProducts';
 import apiOrders from './js/api/orders/apiOrders';
 import setting from './js/setting';
 import './js/category/category-markup';
 import axios from 'axios';
+import apiAuth from './js/api/auth/apiAuth';
 
 // =========== adv ==============
-import productCard from './js/adv/productCard';
+import productCard from "./js/adv/productCard";
+// apiAuth.register({
+//     name: 'Kostya',
+//     email: 'kost927@gmail.com',
+//     password: 'qwerty123456',
+//   })
+// axios.post("https://goit-store.herokuapp.com/auth/login", {email: 'kos123321@gmail.com',
+// password: 'q1w2e3r4t5'}).then(data => localStorage.setItem("user", JSON.stringify(data.data)))
+
+// apiAuth.login({
+//   email: 'unotest2@gmail.com', 
+//   password: 'testuno111',
+// })
+
 
 const btnShowModal = document.getElementById('btnShowModal');
 
@@ -36,3 +50,5 @@ const initialAction = async () => {
   // trigger.triggerFn();
 };
 initialAction();
+
+

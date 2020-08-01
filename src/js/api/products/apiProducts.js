@@ -1,3 +1,4 @@
+import chooseCategory from '../../profile/profileMarkups'
 import {
   getAppliances
 } from './services';
@@ -7,6 +8,7 @@ import userData from '../../userData';
 axios.defaults.headers['Authorization'] = JSON.parse(
   localStorage.getItem('info'),
 );
+
 
 // ========= services product ==== Все катигории и продукты и залиті в ЮЗЕРДАТУ
 // 1.apiProducts.getCategories().then(data => console.log(userData));
@@ -43,8 +45,8 @@ export default {
 
         userData.categoriesItems = [...response.data.categories];
 
-        console.log('user', userData.categoriesItems);
-
+        // console.log('user', userData.categoriesItems);
+        // chooseCategory(userData.categoriesItems)
         getAppliances(userData.categoriesItems);
         return userData.categoriesItems;
       } catch (err) {
