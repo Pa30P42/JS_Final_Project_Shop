@@ -160,7 +160,8 @@ export default {
 
 
 
-
+//<span class="helper-text-valid">Successfull</span>
+//<span class="helper-text-invalid">Failed</span>
 
 function userInfoMarkup() {
   const infoMarkup = () => {
@@ -169,21 +170,26 @@ function userInfoMarkup() {
                   <div class="form-group">
                     <label id="name-label" for="name"><em> * </em>Имя, Отчество</label>
                     <input type="text" name="name" id="name" class="form-control" placeholder="Username"  required/>
-                    <div class="helper-text-div"><span class="helper-text-valid">Successfull</span></div>
+                    <div class="helper-text-div"></div>
+                    <div class="helper-text-div__info"></div>
+                    
 
     
                     <label id="name-label" for="name"><em> * </em>Фамилия</label>
                     <input type="text" name="surname" id="surname" class="form-control" placeholder="Username2"   required />
-                    <div class="helper-text-div"><span class="helper-text-invalid">Failed</span></div>
+                    <div class="helper-text-div"></div>
 
     
                     <label id="email-label" for="email"><em> * </em>Email</label>
                     <input type="email" name="email" id="email" class="form-control" placeholder="user@mail.com"  required />
+                    <div class="helper-text-div"></div>
 
 
                     <label id="phone-number" for="phone-number"><em> * </em>Телефон</label>
-                    <input type="tel" name="phone" id="phone" class="form-control"
-                      placeholder="+38 (093) 333 99 99" required />
+                    <input type="tel" name="tel"  for="tel" id="phone" class="form-control"
+                       value="+375 (__) ___-__-__" pattern="^\+375(\s+)?\(?(17|25|29|33|44)\)?(\s+)?[0-9]{3}-?[0-9]{2}-?[0-9]{2}$" required />
+                     <div class="helper-text-div"></div>
+
 
                       
     
@@ -451,22 +457,11 @@ function addInfoListener(key) {
   const inputForm = form.querySelector(`[data-form="${key}"]`);
   inputForm.addEventListener('input', getInfo);
   console.log('inputForm', inputForm.dataset.form);
+
+
 };
-//=====================VALIDATION=====CONTACTS========
-// function showValidMarkup() {
-//   return `<span class="helper-text-valid"></span>`;
-// };
-
-// function showInValidMarkup() {
-//   return `<span class="helper-text-invalid">Failed Validation</span>`;
-// };
-
-
-//===========MY Functions=======
 
 function getInfo(event) {
-
-
 
   let key = event.target.closest('[data-form]').dataset.form;
   forms[key][event.target.name] = event.target.value;
@@ -474,28 +469,52 @@ function getInfo(event) {
   forms[key][event.target] = event.target;
   console.log('forms[key]', forms[key]);
   console.log('event.target : ', event.target);
-  console.log('forms[key][event.target.name] :>> ', forms[key][event.target.name]);
 
-  const inputValue = forms[key][event.target.name];
-  const field = forms[key][event.target];
-  // field.nextElementSibling.innerHTML = '';
-
-  const inputNew = event.target.value.length;
-
-
-  console.log('field', field);
+  const field = event.target;
+  const inputValue = event.target.value;
+  const inputLength = event.target.value.length;
   const nameOfInput = field.getAttribute('name');
 
-  //&& (inputNew > 35) && (inputNew < 6) && (inputNew.match(regEx))
-  let regEx = /^[a-zA-Zа-яА-ЯёЁ'][a-zA-Z-а-яА-ЯёЁ' ]+[a-zA-Zа-яА-ЯёЁ']?$/;
-  //((!inputValue)) ? field.nextElementSibling.insertAdjacentHTML('beforeend', showValidMarkup()): field.nextElementSibling.insertAdjacentHTML('beforeend', showInValidMarkup());
-
-  // ((!inputValue)) ? field.nextElementSibling.innerHTML = showValidMarkup(): field.nextElementSibling.innerHTML = showInValidMarkup();
-  // console.log('field.nextElementSibling :>> ', field.nextElementSibling);
+  console.log('nameOfInput', nameOfInput);
 
 
+  console.log('field.getAttribute("name") :>> ', field.getAttribute('name'));
+
+  //=====text validation ====
+  if (nameOfInput === 'name') {
+
+    ((inputLength > 6)) ?
+    field.nextElementSibling.innerHTML = `<span class="helper-text-valid">Successfull</span>`: field.nextElementSibling.innerHTML = `<span class="helper-text-invalid">Failed</span>`;
+  } else if (nameOfInput === 'surname') {
+
+
+    (inputLength < 35 && (inputLength > 6)) ?
+    field.nextElementSibling.innerHTML = `<span class="helper-text-valid">Successfull</span>`: field.nextElementSibling.innerHTML = `<span class="helper-text-invalid">Need <35</span>`;
+  } else if (nameOfInput === 'email') {
+
+    const regExEmail = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{3,}))$/;
+    ((nameOfInput === 'email') && (inputValue.match(regExEmail))) ?
+    field.nextElementSibling.innerHTML = `<span class="helper-text-valid">Successfull</span>`:
+      field.nextElementSibling.innerHTML = `<span class="helper-text-invalid">Need <35</span>`
+  } else if (nameOfInput === 'tel') {
+
+    const regEx = /^[a-zA-Zа-яА-ЯёЁ'][a-zA-Z-а-яА-ЯёЁ' ]+[a-zA-Zа-яА-ЯёЁ']?$/;
+    ((inputValue.match(regEx))) ?
+    field.nextElementSibling.innerHTML = `<span class="helper-text-valid">Successfull</span>`:
+      field.nextElementSibling.innerHTML = `<span class="helper-text-invalid">Need <35</span>`
+  } else if (nameOfInput === 'tel') {
 
 
 
 
-};
+    field.nextElementSibling.innerHTML = `<span class="helper-text-valid">Successfull</span>`;
+    //     field.nextElementSibling.innerHTML = `<span class="helper-text-invalid">Need <35</span>`
+  }
+}
+
+//placeholder="+38 (093) 333 99 99" 
+
+// // field.mask("+7(999) 999-9999");
+// ((field.getAttribute('name') === 'tel') && (inputValue.match(telRegEx))) ?
+// field.nextElementSibling.innerHTML = `<span class="helper-text-valid">Successfull</span>`:
+//   field.nextElementSibling.innerHTML = `<span class="helper-text-invalid">Need <35</span>`
