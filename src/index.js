@@ -12,24 +12,13 @@ import apiProducts from './js/api/products/apiProducts';
 import userData from './js/userData';
 import setting from './js/setting'
 
-
+// apiProducts.getCategories().then(data => console.log(data.data));
 const initialAction = async () => {
-  // await apiProducts.getCategories();
+  // await apiProducts.getCategories().then(data => console.log(data.data));
   setting.getDevice(document.documentElement.clientWidth);
   containerHandler();
 };
 initialAction();
 // if (setting.isDesktop) {
-//   console.log('WORK')
-// } ПЕРЕПРОВЕРКА
-
-
-
-
-
-// btnRef.addEventListener('click', () => {
-//   apiUsers.deleteFavorite('5f2155d59e8747001767cdf7');
-// });
-// btnRef2.addEventListener('click', () => {
-//   apiUsers.getInfo();
-// });
+//   console.log()
+// }

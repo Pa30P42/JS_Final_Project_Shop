@@ -4,16 +4,20 @@ export default {
   isDesktop: false,
 
   getDevice(width) {
-
     if (width < 768) {
       this.isMobile = true;
-      console.log('isMobile');
-    } else if (width >= 768 && width < 1200) {
+      this.isTablet = false;
+      this.isDesktop = false;
+    }
+    if (width >= 768 && width < 1200) {
       this.isTablet = true;
-      console.log('isTablet');
-    } else if (width >= 1200) {
+      this.isMobile = false;
+      this.isDesktop = false;
+    }
+    if (width >= 1200) {
       this.isDesktop = true;
-      console.log('isDesktop');
+      this.isMobile = false;
+      this.isTablet = false;
     }
   }
 };

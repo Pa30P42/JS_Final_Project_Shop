@@ -4,6 +4,7 @@ import {
 import axios from 'axios';
 
 import userData from '../../userData';
+
 axios.defaults.headers['Authorization'] = JSON.parse(
   localStorage.getItem('info'),
 ).token;
@@ -43,7 +44,7 @@ export default {
 
         userData.categoriesItems = [...response.data.categories];
 
-        console.log('user', userData.categoriesItems);
+        // console.log('user', userData.categoriesItems);
 
         getAppliances(userData.categoriesItems);
         return userData.categoriesItems;

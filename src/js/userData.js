@@ -1,5 +1,5 @@
 export default {
- 
+
   user:{
     favorites:[],
     name:'',
@@ -17,7 +17,21 @@ export default {
     },
 
   },
-  
+
+  cartItem: {
+    id: '',
+    name: '',
+    price: 0,
+    image: '',
+    quantity: 0,
+  },
+
+  cart: {
+    cartItems: [],
+    totalAmount: 0,
+    totalQuantity: 0,
+  },
+
   categoriesItems: [],
   appliances : {
     large_home_appliances: {
