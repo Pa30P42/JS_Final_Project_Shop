@@ -76,12 +76,12 @@ Sim.prototype.elemNext = function (num) {
 
 Sim.prototype.dotOn = function (num) {
   this.indicatorDotsAll[num].style.cssText =
-    'background-color:#BBB; cursor:pointer;';
+    'background-color:#B3B3B3; cursor:pointer;';
 };
 
 Sim.prototype.dotOff = function (num) {
   this.indicatorDotsAll[num].style.cssText =
-    'background-color:#556; cursor:default;';
+    'background-image:linear-gradient(11.4deg, #6368e5 15.48%, #b884f3 81.25%); cursor:default;';
 };
 
 Sim.initialize = function (that) {
@@ -171,7 +171,7 @@ Sim.initialize = function (that) {
     let sum = '',
       diffNum;
     for (let i = 0; i < that.elemCount; i++) {
-      sum += '<span class="sim-dot"></span>';
+      sum += '<span class="sim-dot" ></span>';
     }
     that.indicatorDots.innerHTML = sum;
     that.indicatorDotsAll = that.sldrRoot.querySelectorAll('span.sim-dot');

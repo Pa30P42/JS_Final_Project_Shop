@@ -1,4 +1,4 @@
-img {
+.img {
   width: 100%;
 }
 
@@ -33,41 +33,47 @@ img {
   top: 0;
   display: block;
   border-radius: 10px;
-  height: 410px;
+  height: 400px;
+  // height: 400px;
+  // width: 280px;
 }
 .sim-slider-list-image {
   width: 280px;
   height: 400px;
   border-radius: 10px;
+  object-fit: cover;
 }
 
 /* Navigation item styles */
 div.sim-slider-arrow-left,
 div.sim-slider-arrow-right {
-  width: 20px;
-  height: 20px;
+  width: 40px;
+  height: 40px;
+  position: relative;
   position: absolute;
   cursor: pointer;
   opacity: 0.6;
   z-index: 4;
-  border: 1px solid #000000;
-  border-radius: 10px;
+  // border: 1px solid #000000;
+  border-radius: 20px;
   background-color: #ffffff;
+  // filter: drop-shadow(0px 3px 10px rgba(0, 0, 0, 0.15));
+  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.5);
 }
 
 div.sim-slider-arrow-left {
-  left: 10px;
-  top: 40%;
+  left: -20px;
+  top: 45%;
   display: block;
-  background-image: url('/src/images/slider/slider_mb/btn_left.png');
+  // background-image: url('src/images/slider/slider_mb/btn_left.png');
   // no-repeat;
 }
 
 div.sim-slider-arrow-right {
   // width: 20px;
   // height: 20px;
-  right: 10px;
-  top: 40%;
+  right: -20px;
+  top: 45%;
   display: block;
   // background: url('http://pvbk.spb.ru/inc/slider/sim-files/sim-arrow-right.png')
   // no-repeat;
@@ -82,7 +88,16 @@ div.sim-slider-arrow-left:hover {
 div.sim-slider-arrow-right:hover {
   opacity: 1;
 }
-
+.sim-slider-arrow-left-img {
+  position: absolute;
+  top: 12px;
+  left: 13px;
+}
+.sim-slider-arrow-right-img {
+  position: absolute;
+  bottom: 12px;
+  right: 13px;
+}
 div.sim-slider-dots {
   width: 100%;
   height: auto;
@@ -99,9 +114,10 @@ span.sim-dot {
   margin: 5px 7px;
   padding: 0;
   display: inline-block;
-  background-color: #bbb;
+  // background-color: #bbb;
   border-radius: 5px;
   cursor: pointer;
+  // background-image: $main-gradient;
 }
 @media (min-width: 768px) {
   .sim-slider-list-image {
