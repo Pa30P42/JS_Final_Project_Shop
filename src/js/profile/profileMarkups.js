@@ -461,18 +461,23 @@ function getInfo(event) {
   //=====text validation ====
   if (nameOfInput === 'name') {
     inputLength > 6
-      ? (field.nextElementSibling.innerHTML = `<span class="helper-text-valid">Successfull</span>`)
-      : (field.nextElementSibling.innerHTML = `<span class="helper-text-invalid">Failed</span>`);
+      ? ((field.nextElementSibling.innerHTML = `<span class="helper-text-valid">Successfull</span>`),
+        (field.style.outlineColor = '#109b17'))
+      : ((field.nextElementSibling.innerHTML = `<span class="helper-text-invalid">Failed</span>`),
+        (field.style.outlineColor = '#FF8A9D'));
   } else if (nameOfInput === 'surname') {
     inputLength < 35 && inputLength > 6
-      ? (field.nextElementSibling.innerHTML = `<span class="helper-text-valid">Successfull</span>`)
-      : (field.nextElementSibling.innerHTML = `<span class="helper-text-invalid">Need <35</span>`);
+      ? ((field.nextElementSibling.innerHTML = `<span class="helper-text-valid">Successfull</span>`),
+        (field.style.outlineColor = '#109b17'))
+      : ((field.nextElementSibling.innerHTML = `<span class="helper-text-invalid">Failed</span>`),
+        (field.style.outlineColor = '#FF8A9D'));
   } else if (nameOfInput === 'email') {
     const regExEmail = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{3,}))$/;
     nameOfInput === 'email' && inputValue.match(regExEmail)
-      ? (field.nextElementSibling.innerHTML = `<span class="helper-text-valid">Successfull</span>`)
-      : (field.nextElementSibling.innerHTML = `<span class="helper-text-invalid">Need <35</span>`);
-  } else if (nameOfInput === 'tel') {
+      ? ((field.nextElementSibling.innerHTML = `<span class="helper-text-valid">Successfull</span>`),
+        (field.style.outlineColor = '#109b17'))
+      : ((field.nextElementSibling.innerHTML = `<span class="helper-text-invalid">Failed</span>`),
+        (field.style.outlineColor = '#FF8A9D'));
     let selector = document.querySelector('input[type="tel"]');
     console.log('selector :>> ', selector);
     let im = new Inputmask('+38 (999) 999-99-99');
