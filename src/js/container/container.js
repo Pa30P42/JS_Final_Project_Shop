@@ -1,6 +1,19 @@
 import { refs } from '../components/refs';
-import { categoriesListMarkup, categories } from '../category/category-markup';
+
+
 import { sliderItemMarkup } from '../slider/sliderMarkup';
+
+import { catalogListMarkup} from '../catalog/catalog'
+import { header } from '../header/header';
+import {
+  categoriesListMarkup,
+  categoriesListMarkupAddListeners,
+} from '../category/category-markup';
+import {
+  searchSideBar
+} from '../search/searchsidebar/searchSideBar.js';
+
+
 
 //В каждом диве запустить функцию определенного модуля который булет отрисовывать блок.
 
@@ -15,9 +28,10 @@ const containerFooterMarkup = function () {
     `;
 };
 const containerSectionsMarkup = function () {
-  return ` 
+
+  return `
     <div class="slider-wrapper">${sliderItemMarkup()}</div>
-    <div class="category-wrapper">${categoriesListMarkup(categories)}</div>
+    <div class="category-wrapper">${categoriesListMarkup()}</div>
     <div class="new-products-wrapper"></div>
     <div class="last-seen-wrapper"></div>
     `;
@@ -27,6 +41,7 @@ export const containerHandler = () => {
   refs.container.insertAdjacentHTML('afterbegin', containerHeaderMarkup());
   refs.container.insertAdjacentHTML('beforeend', containerFooterMarkup());
   refs.sections.innerHTML = containerSectionsMarkup();
+  categoriesListMarkupAddListeners();
 };
 
 // categoriesListMarkup(categories);

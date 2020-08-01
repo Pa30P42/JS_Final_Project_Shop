@@ -1,0 +1,9 @@
+<svg aria-hidden="true" style="position: absolute; width: 0; height: 0; overflow: hidden;" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<defs>
+<symbol id="icon-close" viewBox="0 0 32 32">
+<title>close</title>
+<path d="M28.547 0.317l3.133 3.136-28.227 28.23-3.133-3.139 28.227-28.227z"></path>
+<path d="M3.453 0.317l28.227 28.227-3.133 3.136-28.227-28.224 3.133-3.139z"></path>
+</symbol>
+</defs>
+</svg>
