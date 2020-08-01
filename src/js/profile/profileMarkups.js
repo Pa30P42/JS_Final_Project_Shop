@@ -472,8 +472,9 @@ function getInfo(event) {
   ///[^a-zа-яё ]/iu;
   //=====text validation ====
   const onlyLettersRegEx = /^(?=.*[A-Z])[a-zA-Zа-яА-Я_-]*$/;
+  const numbersRegEx = /^[a-zA-Zа-яА-Я0-9_/-]*$/;
+  const zipRegEx = /^[0-9_/-]*$/;
 
-  const numbersRegEx = /(?=.*\d)(?=.*\W)/;
   if (nameOfInput === 'name') {
     inputLength > 6 && inputLength < 35 && inputValue.match(onlyLettersRegEx)
       ? ((field.nextElementSibling.innerHTML = `<span class="helper-text-valid">Successfull</span>`),
@@ -513,14 +514,33 @@ function getInfo(event) {
         (field.style.outlineColor = '#109b17'))
       : ((errorDiv.innerHTML = `<span class="helper-text-invalid">Need to confirm password</span>`),
         (field.style.outlineColor = '#FF8A9D'));
-  } else if (textInput === 'text') {
+  } else if (
+    nameOfInput === 'country' ||
+    nameOfInput === 'city' ||
+    nameOfInput === 'place' ||
+    nameOfInput === 'street'
+  ) {
     inputLength > 2 && inputLength < 35 && inputValue.match(onlyLettersRegEx)
       ? ((field.nextElementSibling.innerHTML = `<span class="helper-text-valid">Successfull</span>`),
         (field.style.outlineColor = '#109b17'))
       : ((field.nextElementSibling.innerHTML = `<span class="helper-text-invalid">Failed</span>`),
         (field.style.outlineColor = '#FF8A9D'));
+  } else if (
+    nameOfInput === 'building' ||
+    nameOfInput === 'block' ||
+    nameOfInput === 'flat'
+  ) {
+    inputLength > 0 && inputLength < 9 && inputValue.match(numbersRegEx)
+      ? ((field.nextElementSibling.innerHTML = `<span class="helper-text-valid">Successfull</span>`),
+        (field.style.outlineColor = '#109b17'))
+      : ((field.nextElementSibling.innerHTML = `<span class="helper-text-invalid">Failed</span>`),
+        (field.style.outlineColor = '#FF8A9D'));
+    //======= address==========
+  } else if (nameOfInput === 'postIndex') {
+    inputLength === 5 && inputValue.match(zipRegEx)
+      ? ((field.nextElementSibling.innerHTML = `<span class="helper-text-valid">Successfull</span>`),
+        (field.style.outlineColor = '#109b17'))
+      : ((field.nextElementSibling.innerHTML = `<span class="helper-text-invalid">Failed</span>`),
+        (field.style.outlineColor = '#FF8A9D'));
   }
-
-  //======= adddress==========
 }
-//^\d{5}(?:[-\s]\d{4})?$ /
