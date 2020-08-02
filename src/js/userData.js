@@ -9,7 +9,7 @@ export default {
         "country": "",
       "city": "",
       "place": "",
-      "street": " ",
+      "street": "",
       "block": "",
       "building": "",
       "flat": "",
