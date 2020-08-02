@@ -56,6 +56,7 @@
     "fs": "0.0.1-security",
     "fuse.js": "^6.4.1",
     "handlebars": "^4.7.6",
+    "inputmask": "^5.0.3",
     "moment": "^2.27.0",
     "siema": "^1.5.1"
   }
