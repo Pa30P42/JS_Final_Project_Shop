@@ -5,7 +5,11 @@ import trigger from '../components/trigger';
 import { refs } from '../components/refs.js';
 import { headerMenu, closeHeaderMenu } from '../sideBar/headerSideBar.js';
 // import { contactMarkUp } from '../contacts/contacts.js';
-import {catalogListMarkup, listeners, catalogListMarkupAddListeners} from '../catalog/catalog'
+import {
+  catalogListMarkup,
+  listeners,
+  catalogListMarkupAddListeners,
+} from '../catalog/catalog';
 
 import {
   categoriesListMarkup,
@@ -54,12 +58,10 @@ const headerButton = event => {
     headerMenu();
   } else if (dataname === 'name_catalog') {
     modalModule(catalogListMarkup, listeners);
-    catalogListMarkupAddListeners()
+    catalogListMarkupAddListeners();
 
-    // console.log('catalog'); 
+    // console.log('catalog');
   }
 };
 
 refs.header.addEventListener('click', headerButton);
-
-
