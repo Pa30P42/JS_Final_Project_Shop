@@ -2,7 +2,7 @@ import { sliderItemMarkup } from './sliderMarkup';
 import { refs } from '../components/refs';
 // ./images/slider/slider_mb/new/img2.jpg
 // const sliderRef = document.querySelector('.slider-wrapper');
-console.log(refs.sections);
+// console.log(refs.sections);
 // refs.sections.innerHTML = sliderItemMarkup();
 
 export function Sim(sldrId) {

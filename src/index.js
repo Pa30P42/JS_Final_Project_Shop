@@ -16,6 +16,7 @@ import apiAuth from './js/api/auth/apiAuth';
 // =========== adv ==============
 import productCard from './js/adv/productCard';
 import { pseudoProfile } from './js/profile/profileTabs';
+import './js/pagination/pagination';
 
 const btnShowModal = document.getElementById('btnShowModal');
 

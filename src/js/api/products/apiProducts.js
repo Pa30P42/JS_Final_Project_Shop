@@ -85,7 +85,7 @@ export default {
         `https://goit-store.herokuapp.com/products?search=${inputSearch}`,
       );
 
-      console.log(dataName);
+      // console.log(dataName);
       return dataName;
     } catch (err) {
       throw new Error(err);
@@ -97,7 +97,7 @@ export default {
       const dataCategory = await axios.get(
         `https://goit-store.herokuapp.com/products?search=&category=${inputSearch}`,
       );
-      console.log(dataCategory);
+      // console.log(dataCategory);
       return dataCategory;
     } catch (err) {
       throw new Error(err);
@@ -116,11 +116,14 @@ export default {
   },
 
   async getProductsWithPagination(PerPage, page = 1, category) {
+    console.log('PerPage', PerPage);
+    console.log('page', page);
+    console.log('category', category);
     try {
       const response = await axios.get(
         `https://goit-store.herokuapp.com/products?itemsPerPage=${PerPage}&page=${page}&category=${category}`,
       );
-      console.log(response);
+      // console.log(response);
 
       return response;
     } catch (err) {

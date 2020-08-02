@@ -1,6 +1,7 @@
 import './category.scss';
 import categoriesList from '../userData';
 import { modalModule } from '../components/modalModule/modalModule';
+import apiProducts from '../api/products/apiProducts';
 
 const refs = {
   modalCategory: document.querySelector('.modalModule'),
@@ -12,7 +13,6 @@ const globalCategoriesObjects = Object.values(categoriesList.appliances);
 
 function getLink(e) {
   //link можно добавить в хлебные крошки//
-  console.log('e.target :>> ', e.target);
   if (
     e.target.nodeName === 'LI' ||
     e.target.nodeName === 'P' ||
@@ -34,7 +34,7 @@ function getLink(e) {
 function getSubCategoryItemName() {
   refs.subcategoriesListInsert = document.querySelector('.subcategories__list');
   refs.subcategoriesListInsert.addEventListener('click', e => {
-    console.log('hi', e.target);
+    // console.log('hi', e.target);
   });
 }
 
@@ -47,7 +47,7 @@ export function categoriesListMarkup() {
 }
 
 function getSubCategoryListMarkup(subCategory) {
-  console.log(subCategory);
+  // console.log(subCategory);
   const result = categoriesList.appliances[subCategory].categories.reduce(
     (acc, subCategoryItem) => {
       acc += getSubCategoryListItemMarkup(subCategoryItem);
@@ -64,7 +64,7 @@ function getSubCategoryListMarkup(subCategory) {
 function getSubCategoryListItemMarkup(subCategoryItem) {
   // console.log(subCategoryItem);
   return `
-          <li class="subcategories__item" data-sublink="${subCategoryItem.value}"> 
+          <li class="subcategories__item" data-categoryName="${subCategoryItem.name}" data-sublink="${subCategoryItem.value}"> 
 <img class="subcategories__image" src="data:image/svg+xml;base64,PHN2ZyBoZWlnaHQ9IjUxMiIgdmlld0JveD0iMCAwIDEyOCAxMjgiIHdpZHRoPSI1MTIiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGc+PHBhdGggZD0ibTUxLjUzIDEwOS41aDcuOTd2Ny44NzVoLTcuOTd6IiBmaWxsPSIjZDhkOGQ4Ii8+PHBhdGggZD0ibTY4LjUgMTA5LjVoNy45N3Y3Ljg3NWgtNy45N3oiIGZpbGw9IiNkOGQ4ZDgiLz48cGF0aCBkPSJtMjQuMTkyIDExNS41aDc5LjYxNXY2aC03OS42MTV6IiBmaWxsPSIjZWFlYWYwIi8+PHBhdGggZD0ibTk5LjM1NSA2OC45OTNjMCAxOS4yMDctMTUuODQ0IDM0LjgxNy0zNS4zNTUgMzQuODE3cy0zNS4zNTUtMTUuNjEtMzUuMzU1LTM0LjgxN2MwLTE1LjI2NSA5LjU4My0yOC4zNDIgOS42MjgtNDEuNzUzYTYwLjk1OSA2MC45NTkgMCAwIDEgMTAuMTExIDEyLjUyM2M2LjAzMy0xNC4xMjggMTUuODktMTguNzkgMjMuMjMzLTMzLjI2M2E4MC42NDUgODAuNjQ1IDAgMCAxIDEzLjQ1OCAzOC42ODZzMy4zLTEwLjQ5MSAxMi40NDItMTQuMTE3Yy0xLjkxIDE0Ljg3OSAxLjgzOCAyNy4wMzYgMS44MzggMzcuOTI0eiIgZmlsbD0iI2Y3NTAyZiIvPjxwYXRoIGQ9Im0zNC43IDY4Ljk4aC0uMWExLjc1MiAxLjc1MiAwIDAgMSAtMS42NTEtMS44NDUgNDIuMTQ3IDQyLjE0NyAwIDAgMSAxLjE1MS03LjUzIDEuNzUgMS43NSAwIDEgMSAzLjQuODE0IDM4LjgzNyAzOC44MzcgMCAwIDAgLTEuMDY0IDYuOTA4IDEuNzQ5IDEuNzQ5IDAgMCAxIC0xLjczNiAxLjY1M3oiIGZpbGw9IiNkOTM5MjIiLz48cGF0aCBkPSJtODAuNjU3IDg3LjQwNmExNi42NTkgMTYuNjU5IDAgMCAxIC0zMy4zMTQgMGMwLTcuMTkyIDQuMTY2LTE0LjQ2MiA0LjE4Ny0yMC43ODEgMi43MiAxIDQuNjU2IDMuOTQxIDYuNzIgNy42MjUgMi4wNjItOC44NzUgNi4wNjItOC44MTIgOS4zMzktMTYuMjg3YTMzLjg1NyAzMy44NTcgMCAwIDEgNS42IDE4LjcyNXMyLjIzLTUuNTIxIDcuNDctNy43NzFjLTEuMDc2IDktLjAwMiAxMy4zNi0uMDAyIDE4LjQ4OXoiIGZpbGw9IiNmZGQ4MmUiLz48L2c+PC9zdmc+" width="50" height="50"/>          <p>${subCategoryItem.name}</p>
           </li>
     `;
@@ -89,23 +89,18 @@ export function categoriesListMarkupAddListeners() {
   refs.categoriesListInsert.addEventListener('click', showModal);
 }
 
-// function categoriesListMarkupRemoveListeners() {
-//   this.refs.categoriesListInsert.removeEventListener(
-//     'click',
-//     this.getLink.bind(this),
-//   );
-// }
-
 function listeners(action) {
   const getSubCategoryLink = e => {
     const link = getLink(e);
+    apiProducts
+      .searchProductsbyCategory(`${link}`)
+      .then(data => console.log(data.data));
+    // console.log(link);
 
-    console.log(link);
+    // вместо console.log(data.data) вставляем функцию Ани //
     if (link) {
       action();
     }
-
-    // Чужая функция,в которую передать полученную категорию в виде массива
   };
   const subCategoryList = document.querySelector('.subcategories__list');
   subCategoryList.addEventListener('click', getSubCategoryLink);
