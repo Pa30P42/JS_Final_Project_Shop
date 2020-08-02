@@ -9,6 +9,10 @@
   @media (min-width: 1200px) {
     padding-bottom: 160px;
   }
+
+  @media (min-width: 1380px) {
+    padding-bottom: 248px;
+  }
 }
 
 .profile__title {
@@ -679,58 +683,65 @@ label.adv-label {
 
 //==================VALIDATION=====
 
+input {
+  outline-color: #53535C;
 
-// input[type="text"],
-// input[type="tel"],
-// input[type="email"],
-// input[type="password"] {
-//   &:invalid {
-//     outline-color: red;
-//   }
-
-//   &:valid {
-//     outline-color: green;
-
-//   }
-// }
+}
 
 div.helper-text-div {
   position: relative;
+
+
 }
 
 .helper-text-invalid {
   font-size: 12px;
   display: inline-block;
-  padding-top: 52px;
-  vertical-align: bottom;
-  text-align: end;
-  // width: 280px;
   height: auto;
   position: absolute;
-  top: -71px;
+  top: -18px;
   right: 5px;
   color: red;
-  background-image: url("../images/profile/error.svg");
-  background-repeat: no-repeat;
-  background-position: 95%;
-  background-size: 48%;
+
+  &:before {
+    display: block;
+    content: " ";
+    position: absolute;
+    top: -43px;
+    right: 0;
+    width: 42px;
+    height: 42px;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 50%;
+    background-image: url("../images/profile/error.svg");
+  }
 
 }
 
 .helper-text-valid {
   font-size: 12px;
   display: inline-block;
-  padding-top: 48px;
-  vertical-align: bottom;
-  // width: 280px;
+
   height: auto;
   position: absolute;
-  top: -68px;
+  top: -18px;
   right: 7px;
   color: rgb(16, 155, 23);
-  background-image: url("../images/profile/valid.svg");
-  background-repeat: no-repeat;
-  background-position: 95%;
-  background-size: 40%;
+
+  &:before {
+    display: block;
+    content: " ";
+    position: absolute;
+    right: 0;
+    top: -40px;
+    width: 42px;
+    height: 42px;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 73%;
+    background-image: url("../images/profile/valid.svg");
+  }
+
 
 }

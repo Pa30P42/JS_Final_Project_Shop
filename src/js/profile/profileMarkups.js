@@ -198,13 +198,14 @@ function passwordMarkup() {
                     <label id="name-label" for="password"><em> * </em>Пароль</label>
                     <input type="password" name="password" id="password" class="form-control" placeholder="******"
                       required />
+                      <div class="helper-text-div" ></div>
                      
 
     
                     <label id="name-label" for="password"><em> * </em>Подтвердите пароль</label>
                     <input type="password" name="confirmPassword" id="passwordConfirm" class="form-control" placeholder="******"
                       required />
-                      <div class="helper-text-div"></div>
+                      <div class="helper-text-div" id="helper-text-div"></div>
 
     
                       
@@ -470,49 +471,65 @@ function getInfo(event) {
   //console.log('field.getAttribute("name") :>> ', field.getAttribute('name'));
   //^[a-zA-Zа-яА-Я0-9_]*$
   ///[^a-zа-яё ]/iu;
+  //inputValue.match(onlyLetAndSymbolRegEx)) ||
+  // const onlyLettersRegEx = /^(?=.*[А-Я][а-яё\s]+|(?=.*[A-Z][a-z\s]+))$/iu;
   //=====text validation ====
-  const onlyLettersRegEx = /^(?=.*[A-Z])[a-zA-Zа-яА-Я_-]*$/;
+  const onlyLetAndSymbolRegEx = /^(?=.*[A-ZА-Я])[a-zA-Zа-яА-Я_ -]*$/;
   const numbersRegEx = /^[a-zA-Zа-яА-Я0-9_/-]*$/;
   const zipRegEx = /^[0-9_/-]*$/;
+  //const onlyLettersRegEx = /^[а-яё\s]+|(?=.*[A-Z])[a-z\s]+$/iu;
 
   if (nameOfInput === 'name') {
-    inputLength > 6 && inputLength < 35 && inputValue.match(onlyLettersRegEx)
-      ? ((field.nextElementSibling.innerHTML = `<span class="helper-text-valid">Successfull</span>`),
+    inputLength > 1 &&
+    inputLength < 35 &&
+    inputValue.match(onlyLetAndSymbolRegEx)
+      ? ((field.nextElementSibling.innerHTML = `<span class="helper-text-valid"></span>`),
         (field.style.outlineColor = '#109b17'))
-      : ((field.nextElementSibling.innerHTML = `<span class="helper-text-invalid">Failed</span>`),
+      : ((field.nextElementSibling.innerHTML = `<span class="helper-text-invalid">Введите имя, отчество </span>`),
         (field.style.outlineColor = '#FF8A9D'));
   } else if (nameOfInput === 'surname') {
-    inputLength < 35 && inputLength > 6 && inputValue.match(onlyLettersRegEx)
-      ? ((field.nextElementSibling.innerHTML = `<span class="helper-text-valid">Successfull</span>`),
+    inputLength < 35 &&
+    inputLength > 1 &&
+    inputValue.match(onlyLetAndSymbolRegEx)
+      ? ((field.nextElementSibling.innerHTML = `<span class="helper-text-valid"></span>`),
         (field.style.outlineColor = '#109b17'))
-      : ((field.nextElementSibling.innerHTML = `<span class="helper-text-invalid">Failed</span>`),
+      : ((field.nextElementSibling.innerHTML = `<span class="helper-text-invalid">Введите фамилию</span>`),
         (field.style.outlineColor = '#FF8A9D'));
   } else if (nameOfInput === 'email') {
     const regExEmail = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{3,}))$/;
     nameOfInput === 'email' && inputValue.match(regExEmail)
-      ? ((field.nextElementSibling.innerHTML = `<span class="helper-text-valid">Successfull</span>`),
+      ? ((field.nextElementSibling.innerHTML = `<span class="helper-text-valid"></span>`),
         (field.style.outlineColor = '#109b17'))
-      : ((field.nextElementSibling.innerHTML = `<span class="helper-text-invalid">Failed</span>`),
+      : ((field.nextElementSibling.innerHTML = `<span class="helper-text-invalid">Неверный адрес почты</span>`),
         (field.style.outlineColor = '#FF8A9D'));
+  } else if (nameOfInput === 'tel') {
     let selector = document.querySelector('input[type="tel"]');
 
     let im = new Inputmask('+38 (999) 999-99-99');
     im.mask(selector);
+    inputLength > 18
+      ? ((field.nextElementSibling.innerHTML = `<span class="helper-text-valid"></span>`),
+        (field.style.outlineColor = '#109b17'))
+      : ((field.nextElementSibling.innerHTML = `<span class="helper-text-invalid">Введите номер телефона</span>`),
+        (field.style.outlineColor = '#FF8A9D'));
     //field.nextElementSibling.innerHTML = `<span class="helper-text-valid">Successfull</span>`;
-  } else if (key === 'passwordForm') {
-    //console.log('forms[key][event.target.password] :>> ', forms[key][password]);
+  } else if (nameOfInput === 'password') {
+    nameOfInput === 'password' && inputLength > 5
+      ? ((field.nextElementSibling.innerHTML = `<span class="helper-text-valid"></span>`),
+        (field.style.outlineColor = '#109b17'))
+      : ((field.nextElementSibling.innerHTML = `<span class="helper-text-invalid"><small>Пароль должен содержать не менее 6 символов</small></span>`),
+        (field.style.outlineColor = '#FF8A9D'));
+  } else if (nameOfInput === 'confirmPassword') {
     let password = document.querySelector('[name="password"]').value;
-    console.log('password :>> ', password);
     let confirmPassword = document.querySelector('[name="confirmPassword"]')
       .value;
-    console.log('confirmPassword :>> ', confirmPassword);
-    const errorDiv = document.querySelector('.helper-text-div');
+    const errorDiv = document.querySelector('#helper-text-div');
     console.log('errorDiv :>> ', errorDiv);
 
     password === confirmPassword
-      ? ((errorDiv.innerHTML = `<span class="helper-text-valid">Sucsess</span>`),
+      ? ((errorDiv.innerHTML = `<span class="helper-text-valid"></span>`),
         (field.style.outlineColor = '#109b17'))
-      : ((errorDiv.innerHTML = `<span class="helper-text-invalid">Need to confirm password</span>`),
+      : ((errorDiv.innerHTML = `<span class="helper-text-invalid"><small>Подтвердите пароль</small></span>`),
         (field.style.outlineColor = '#FF8A9D'));
   } else if (
     nameOfInput === 'country' ||
@@ -520,10 +537,12 @@ function getInfo(event) {
     nameOfInput === 'place' ||
     nameOfInput === 'street'
   ) {
-    inputLength > 2 && inputLength < 35 && inputValue.match(onlyLettersRegEx)
-      ? ((field.nextElementSibling.innerHTML = `<span class="helper-text-valid">Successfull</span>`),
+    inputLength > 2 &&
+    inputLength < 35 &&
+    inputValue.match(onlyLetAndSymbolRegEx)
+      ? ((field.nextElementSibling.innerHTML = `<span class="helper-text-valid"></span>`),
         (field.style.outlineColor = '#109b17'))
-      : ((field.nextElementSibling.innerHTML = `<span class="helper-text-invalid">Failed</span>`),
+      : ((field.nextElementSibling.innerHTML = `<span class="helper-text-invalid">Введите данные</span>`),
         (field.style.outlineColor = '#FF8A9D'));
   } else if (
     nameOfInput === 'building' ||
@@ -531,16 +550,16 @@ function getInfo(event) {
     nameOfInput === 'flat'
   ) {
     inputLength > 0 && inputLength < 9 && inputValue.match(numbersRegEx)
-      ? ((field.nextElementSibling.innerHTML = `<span class="helper-text-valid">Successfull</span>`),
+      ? ((field.nextElementSibling.innerHTML = `<span class="helper-text-valid"></span>`),
         (field.style.outlineColor = '#109b17'))
-      : ((field.nextElementSibling.innerHTML = `<span class="helper-text-invalid">Failed</span>`),
+      : ((field.nextElementSibling.innerHTML = `<span class="helper-text-invalid">Введите данные</span>`),
         (field.style.outlineColor = '#FF8A9D'));
     //======= address==========
   } else if (nameOfInput === 'postIndex') {
     inputLength === 5 && inputValue.match(zipRegEx)
-      ? ((field.nextElementSibling.innerHTML = `<span class="helper-text-valid">Successfull</span>`),
+      ? ((field.nextElementSibling.innerHTML = `<span class="helper-text-valid"></span>`),
         (field.style.outlineColor = '#109b17'))
-      : ((field.nextElementSibling.innerHTML = `<span class="helper-text-invalid">Failed</span>`),
+      : ((field.nextElementSibling.innerHTML = `<span class="helper-text-invalid">Введите 5 цифр индекса</span>`),
         (field.style.outlineColor = '#FF8A9D'));
   }
 }
