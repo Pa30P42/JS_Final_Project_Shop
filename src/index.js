@@ -1,14 +1,47 @@
 import './sass/main.scss';
-import './js/api/auth/apiAuth';
-
-import apiAuth from './js/api/auth/apiAuth';
-import apiUsers from './js/api/users/apiUsers';
 import './js/category/category-markup';
+import trigger from './js/components/trigger';
 import { containerHandler } from './js/container/container';
-import { modalModule } from './js/components/modalModule/modalModule';
+import { Sim } from './js/slider/slider';
+
+import './js/catalog/catalog';
+import userData from './js/userData';
+import './js/components/modalModule/modalModule';
 import apiProducts from './js/api/products/apiProducts';
 import apiOrders from './js/api/orders/apiOrders';
 import setting from './js/setting';
+import './js/category/category-markup';
+import axios from 'axios';
+import apiAuth from './js/api/auth/apiAuth';
+
+// =========== adv ==============
+import productCard from './js/adv/productCard';
+// apiAuth.register({
+//     name: 'Kostya',
+//     email: 'kost927@gmail.com',
+//     password: 'qwerty123456',
+//   })
+// axios.post("https://goit-store.herokuapp.com/auth/login", {email: 'kos123321@gmail.com',
+// password: 'q1w2e3r4t5'}).then(data => localStorage.setItem("user", JSON.stringify(data.data)))
+
+// apiAuth.login({
+//   email: 'unotest2@gmail.com',
+//   password: 'testuno111',
+// })
+
+const btnShowModal = document.getElementById('btnShowModal');
+
+let currentItem = null;
+
+btnShowModal.addEventListener('click', async () => {
+  const response = await axios.get('https://goit-store.herokuapp.com/products');
+  const item = response.data[8];
+  currentItem = item;
+  console.log(response);
+  productCard(item);
+});
+
+import { pseudoProfile } from './js/profile/profileTabs';
 
 import markupInformation from './js/information/markup_info';
 
@@ -20,18 +53,8 @@ const initialAction = async () => {
   await apiProducts.getCategories();
   setting.getDevice(document.documentElement.clientWidth);
   containerHandler();
+  pseudoProfile();
+  new Sim();
+  // trigger.triggerFn();
 };
 initialAction();
-// if (setting.isMobile) {
-//   console.log('WORK')
-// } перепроверка ширирны
-
-// btnRef.addEventListener('click', markupInformation);
-// btnRef2.addEventListener('click', () =>
-//   modalModule(informationModal, listeners),
-// );
-// apiAuth.register({
-//   name: 'Vygovska',
-//   email: 'pillowforneedles@gmail.com',
-//   password: 'qwerty123',
-// });
