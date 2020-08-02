@@ -1,4 +1,7 @@
+
+
 export default{
+  wrappenForCrumbs: document.querySelector()
   breadCrumbs(){
 return` <ul id="breadcrumbs-one">
  <li><a href="">Крошки1</a></li>
@@ -9,4 +12,5 @@ return` <ul id="breadcrumbs-one">
 </ul>`
   }
 
+ 
 }

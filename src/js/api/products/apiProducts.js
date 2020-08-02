@@ -1,13 +1,14 @@
+import chooseCategory from '../../profile/profileMarkups'
 import {
   getAppliances
 } from './services';
 import axios from 'axios';
-
 import userData from '../../userData';
 
 axios.defaults.headers['Authorization'] = JSON.parse(
   localStorage.getItem('info'),
-).token;
+);
+
 
 // ========= services product ==== Все катигории и продукты и залиті в ЮЗЕРДАТУ
 // 1.apiProducts.getCategories().then(data => console.log(userData));
@@ -43,9 +44,6 @@ export default {
         );
 
         userData.categoriesItems = [...response.data.categories];
-
-        // console.log('user', userData.categoriesItems);
-
         getAppliances(userData.categoriesItems);
         return userData.categoriesItems;
       } catch (err) {
@@ -62,6 +60,7 @@ export default {
         const response = await axios.get(
           'https://goit-store.herokuapp.com/products',
         );
+
         return response;
       } catch (err) {
         throw new Error(err);

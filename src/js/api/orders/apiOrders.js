@@ -3,6 +3,7 @@ import axios from 'axios';
 axios.defaults.headers['Authorization'] = JSON.parse(
   localStorage.getItem('info'),
 ).token;
+
 // * >>>> Orders >>>
 // 1*Выводит все заказы
 // apiOrders.GetAllOrders().then(data => console.log(data.data));
