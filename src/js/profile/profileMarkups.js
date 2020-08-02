@@ -1,3 +1,7 @@
+import apiProducts from '../api/products/apiProducts';
+import globeUserData from '../userData';
+import axios from 'axios';
+import apiUsers from '../api/users/apiUsers';
 // import {
 //   apiAuth
 // } from './api/users/apiUsers';
@@ -16,7 +20,9 @@ const userData = {
   role: 'ADMIN',
 };
 
-import { refs } from '../components/refs';
+import {
+  refs
+} from '../components/refs';
 
 const forms = {
   infoForm: {
@@ -80,7 +86,7 @@ export default {
       
       <button class="profile__button password" type="button" title="password">Изменить пароль</button>
       <button class="profile__button address" type="button" title="address">Мой Адрес</button>
-      <button class="profile__button favorites" type="button" title="favorites">Избранное</button>
+      <button class="profile__button favourites" type="button" title="favourites">Избранное</button>
       ${
         userData.role === 'ADMIN'
           ? `<button class="profile__button advertisement" type="button" title="advertisement">Создать
@@ -101,7 +107,21 @@ export default {
 
     console.log(mainTabsNav);
     mainTabsNav.addEventListener('click', this.getMarkup);
+
+    const favouritesBtn = document.querySelector('.favourites');
+    // console.log('favouritesBtn :>> ', favouritesBtn);
+    favouritesBtn.addEventListener('click', event => {
+      console.log('event.target :>> ', event.target);
+
+    })
+
+
+
+
+
   },
+
+
   getMarkup(event) {
     if (event.target.nodeName !== 'BUTTON') {
       console.log('Not a button');
@@ -131,8 +151,8 @@ export default {
         addressFormMarkup();
         addInfoListener('addressForm');
         break;
-      case 'favorites':
-        favoritesFormMarkup();
+      case 'favourites':
+        favouritesFormMarkup();
 
         break;
       case 'advertisement':
@@ -283,15 +303,15 @@ function addressFormMarkup() {
   setActive();
 }
 
-function favoritesFormMarkup() {
-  const favoritesMarkup = () => {
+function favouritesFormMarkup() {
+  const favouritesMarkup = () => {
     return `
-          <div class="favorites-wrapper tabs__panel" id="form">
-          <div class="favorites-wrapper__position">
+          <div class="favourites-wrapper tabs__panel" id="form" data-form="favourites">
+          <div class="favourites-wrapper__position">
     
-                <ul class="favorites-list ">
-                  <li class="favorites-list__items"  data-id=${element._id}>
-                    <button class="favorites-list__favorite-button"><span tooltip="Убрать из избранного">o</span>
+                <ul class="favourites-list ">
+                  <li class="favourites-list__items"  >
+                    <button class="favourites-list__favorite-button"><span tooltip="Убрать из избранного">o</span>
                       <img src="./images/profile/heart.svg" alt="" class="item__favorite-icon">
                     </button>
     
@@ -305,14 +325,14 @@ function favoritesFormMarkup() {
                       <img src="./images/profile/circle.svg" alt="" class="item-rate__img">
                     </div>
                     <div class="item-price">
-                      <p class="item-price__old"><s>${element.price} &#x20b4;</s></p>
-                      <p class="item-price__new">${element.price} &#x20b4;</p>
+                      <p class="item-price__old"><s>&#x20b4;</s></p>
+                      <p class="item-price__new"> &#x20b4;</p>
                     </div>
     
                   </li>
     
-                  <li class="favorites-list__items">
-                    <button class="favorites-list__favorite-button"><span tooltip="Убрать из избранного">o</span>
+                  <li class="favourites-list__items">
+                    <button class="favourites-list__favorite-button"><span tooltip="Убрать из избранного">o</span>
                 
                       <img src="./images/profile/heart.svg" alt="" class="item__favorite-icon">
                     </button>
@@ -344,12 +364,12 @@ function favoritesFormMarkup() {
               </div>
           `;
   };
-  const favoritesBtn = document.querySelector('.favorites');
-  favoritesBtn.insertAdjacentHTML('afterend', favoritesMarkup());
+  const favouritesBtn = document.querySelector('.favourites');
+  favouritesBtn.insertAdjacentHTML('afterend', favouritesMarkup());
   setActive();
 }
 
-function advertisementFormMarkup() {
+export function advertisementFormMarkup() {
   const advertisementMarkup = () => {
     return `
         
@@ -359,50 +379,49 @@ function advertisementFormMarkup() {
             <div class="form-group">
     
               <label  class="adv-label" for="name">Название товара</label>
-              <input type="text" name="name" id="name" class="advertisement-inputs form-control-advertisement" placeholder="Название"
+              <input type="text" name="productName" id="productName" class="advertisement-inputs form-control-advertisement productName" placeholder="Название"
                 required />
                
 
     
               <label class="adv-label"  for="name">Фото</label>
-              <input type="file" id="img" name="img" class="input-photo form-control " accept="image/*"
+              <input type="file" id="productImage" name="productImage" class="input-photo form-control productImage" accept="image/*"
                 class="form-control" required />
 
                
 
     
               <label  class="adv-label" for="name">Описание товара</label>
-              <textarea style="resize:none"  name="description" id="comments" class="advertisement-inputs form-control-advertisement  input-textarea " name="comment"
+              <textarea style="resize:none"  name="productDescription" id="comments" class="advertisement-inputs form-control-advertisement  input-textarea productDescription"
                 placeholder="Описание"></textarea>
              
 
     
               <label  class="adv-label" for="name">Категория товара</label>
-              <select id="dropdown" name="category" class="advertisement-inputs form-control-advertisement" required>
-                <option disabled selected value class="input-select">Выберите категорию</option>
-                <option value="student">2</option>
-                <option value="job">3</option>
-                <option value="learner">4</option>
-                <option value="preferNo">5</option>
-                <option value="other">6</option>
-              </select>
+              <select id="productCatygory" name="productCatygory" class="advertisement-inputs form-control-advertisement productCatygory" required>
+              <option disabled selected value class="input-select">Выберите категорию</option>
+              <option value="student">2</option>
+              <option value="job">3</option>
+              <option value="learner">4</option>
+              <option value="preferNo">5</option>
+              <option value="other">6</option>
+               </select>
                
 
     
               <label class="adv-label"  id="name-label" for="name">Цена</label>
-              <input type="text" name="price" class="form-control form-control__address" placeholder="0.000 &#x20b4;"
+              <input type="text" name="productPrice" class="form-control form-control__address productPrice" placeholder="0.000 &#x20b4;"
                 required />
 
-                <label class="adv-label" id="phone-number">Количество</label>
-              <input type="tel" name="totalQuantity" class="form-control form-control__address"
+                <label class="adv-label" id="phone-number">Телефон</label>
+              <input type="tel" name="productPhone" class="form-control form-control__address productPhone"
                 placeholder="+38 (093) 333 99 99" required />
-    
+
               
     
     
-    
             </div>
-            <button type="submit" id="submit" class="save-button">
+            <button type="submit" data-create="addProdact" id="submit" class="save-button">
               Создать
             </button>
           </form>
@@ -411,6 +430,15 @@ function advertisementFormMarkup() {
   const advertisementBtn = document.querySelector('.advertisement');
   advertisementBtn.insertAdjacentHTML('afterend', advertisementMarkup());
   setActive();
+
+  //! ============================= Kostya ==================
+  const btnAddProduct = document.querySelector('.js-active-tab-advertisement');
+  btnAddProduct.addEventListener('click', addProduct);
+
+  // const optin = document.querySelector('.js__option')
+  // optin.insertAdjacentHTML('beforeend', chooseCategory());
+
+  //! ===============================================
 }
 
 function setActive() {
@@ -446,20 +474,87 @@ function addInfoListener(key) {
   const inputForm = form.querySelector(`[data-form="${key}"]`);
   inputForm.addEventListener('input', getInfo);
   console.log('inputForm', inputForm.dataset.form);
+
+
+
+
+}
+//! ==================== Kostya ==================
+const product = {
+  images: [],
+  totalQuantity: 1,
+  name: '',
+  category: '',
+  price: 0,
+  description: '',
+};
+
+// export async function wayToCategory() {
+//   const response = await axios.get(
+//     'https://goit-store.herokuapp.com/products/getCategories',
+//   )
+//   chooseCategory(response.data)
+// };
+// wayToCategory()
+
+// function chooseCategory(categories) {
+//   const values = Object.values(categories)
+//   console.log(values);
+// // console.log(valueCategories);
+//   // console.log(values);
+//   const arrValues = values[0]
+//   return arrValues.reduce((acc, value) => {
+//     acc += `
+//     <option value="${value.name}">${value.name}</option>
+//     `
+//     return acc;
+//   }, '');
+
+//   };
+
+function addProduct(e) {
+  console.log('e.target', e.target);
+  if (e.target.nodeName === 'BUTTON' && e.target.closest('[data-create]')) {
+    const createBtn = e.target.closest('[data-create]').dataset.create;
+    console.log('createBtn', createBtn);
+    apiProducts.CreateNewProduct(product);
+  } else return;
 }
 
 function getInfo(event) {
+  if (event.target.name === 'productPrice') {
+    product.price = event.target.value;
+  }
+  if (event.target.name === 'productName') {
+    product.name = event.target.value;
+  }
+  if (event.target.name === 'productDescription') {
+    product.description = event.target.value;
+  }
+  if (event.target.name === 'productCatygory') {
+    product.category = event.target.value;
+  }
+  console.log('PRODUCT', product);
+  console.log('&&&&&&&', event.target);
+  // apiProducts.CreateNewProduct(product)
+
+  //! =======================================
+
   let key = event.target.closest('[data-form]').dataset.form;
   forms[key][event.target.name] = event.target.value;
+  // console.log("KEY", key);
+  // console.log("!!!!!!", event.target.name);
+  // console.log("&&&&&&&", event.target.value);
 
   forms[key][event.target] = event.target;
-  console.log('key :>> ', key);
-  console.log('forms[key]', forms[key]);
-  console.log('event.target : ', event.target);
-  console.log(
-    'forms[key][event.target.name] :>> ',
-    forms[key][event.target.name],
-  );
+  // console.log('forms[key]', forms[key]);
+  // console.log('event.target : ', event.target);
+  // console.log('forms[key][event.target.name] :>> ', forms[key][event.target.name]);
+
+  // const field = forms[key][event.target];
+  // field.nextElementSibling.innerHTML = '';
+
+  const inputNew = event.target.value.length;
 
   const field = event.target;
   const inputValue = event.target.value;
@@ -473,7 +568,7 @@ function getInfo(event) {
   //console.log('field.getAttribute("name") :>> ', field.getAttribute('name'));
   //^[a-zA-Zа-яА-Я0-9_]*$
   ///[^a-zа-яё ]/iu;
-  //inputValue.match(onlyLetAndSymbolRegEx)) ||
+  //inputValue.match(onlyLetAndSymbolRegEx) ||
   // const onlyLettersRegEx = /^(?=.*[А-Я][а-яё\s]+|(?=.*[A-Z][a-z\s]+))$/iu;
   //=====text validation ====
   const onlyLetAndSymbolRegEx = /^(?=.*[A-ZА-Я])[a-zA-Zа-яА-Я_ -]*$/;
@@ -483,43 +578,43 @@ function getInfo(event) {
 
   if (nameOfInput === 'name') {
     inputLength > 1 &&
-    inputLength < 35 &&
-    inputValue.match(onlyLetAndSymbolRegEx)
-      ? ((field.nextElementSibling.innerHTML = `<span class="helper-text-valid"></span>`),
-        (field.style.outlineColor = '#109b17'))
-      : ((field.nextElementSibling.innerHTML = `<span class="helper-text-invalid">Введите имя, отчество </span>`),
+      inputLength < 35 &&
+      inputValue.match(onlyLetAndSymbolRegEx) ?
+      ((field.nextElementSibling.innerHTML = `<span class="helper-text-valid"></span>`),
+        (field.style.outlineColor = '#109b17')) :
+      ((field.nextElementSibling.innerHTML = `<span class="helper-text-invalid">Введите имя, отчество </span>`),
         (field.style.outlineColor = '#FF8A9D'));
   } else if (nameOfInput === 'surname') {
     inputLength < 35 &&
-    inputLength > 1 &&
-    inputValue.match(onlyLetAndSymbolRegEx)
-      ? ((field.nextElementSibling.innerHTML = `<span class="helper-text-valid"></span>`),
-        (field.style.outlineColor = '#109b17'))
-      : ((field.nextElementSibling.innerHTML = `<span class="helper-text-invalid">Введите фамилию</span>`),
+      inputLength > 1 &&
+      inputValue.match(onlyLetAndSymbolRegEx) ?
+      ((field.nextElementSibling.innerHTML = `<span class="helper-text-valid"></span>`),
+        (field.style.outlineColor = '#109b17')) :
+      ((field.nextElementSibling.innerHTML = `<span class="helper-text-invalid">Введите фамилию</span>`),
         (field.style.outlineColor = '#FF8A9D'));
   } else if (nameOfInput === 'email') {
     const regExEmail = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{3,}))$/;
-    nameOfInput === 'email' && inputValue.match(regExEmail)
-      ? ((field.nextElementSibling.innerHTML = `<span class="helper-text-valid"></span>`),
-        (field.style.outlineColor = '#109b17'))
-      : ((field.nextElementSibling.innerHTML = `<span class="helper-text-invalid">Неверный адрес почты</span>`),
+    nameOfInput === 'email' && inputValue.match(regExEmail) ?
+      ((field.nextElementSibling.innerHTML = `<span class="helper-text-valid"></span>`),
+        (field.style.outlineColor = '#109b17')) :
+      ((field.nextElementSibling.innerHTML = `<span class="helper-text-invalid">Неверный адрес почты</span>`),
         (field.style.outlineColor = '#FF8A9D'));
   } else if (nameOfInput === 'tel') {
     let selector = document.querySelector('input[type="tel"]');
 
     let im = new Inputmask('+38 (999) 999-99-99');
     im.mask(selector);
-    inputLength > 18
-      ? ((field.nextElementSibling.innerHTML = `<span class="helper-text-valid"></span>`),
-        (field.style.outlineColor = '#109b17'))
-      : ((field.nextElementSibling.innerHTML = `<span class="helper-text-invalid">Введите номер телефона</span>`),
+    inputLength > 18 ?
+      ((field.nextElementSibling.innerHTML = `<span class="helper-text-valid"></span>`),
+        (field.style.outlineColor = '#109b17')) :
+      ((field.nextElementSibling.innerHTML = `<span class="helper-text-invalid">Введите номер телефона</span>`),
         (field.style.outlineColor = '#FF8A9D'));
     //field.nextElementSibling.innerHTML = `<span class="helper-text-valid">Successfull</span>`;
   } else if (nameOfInput === 'password') {
-    nameOfInput === 'password' && inputLength > 5
-      ? ((field.nextElementSibling.innerHTML = `<span class="helper-text-valid"></span>`),
-        (field.style.outlineColor = '#109b17'))
-      : ((field.nextElementSibling.innerHTML = `<span class="helper-text-invalid"><small>Пароль должен содержать не менее 6 символов</small></span>`),
+    nameOfInput === 'password' && inputLength > 5 ?
+      ((field.nextElementSibling.innerHTML = `<span class="helper-text-valid"></span>`),
+        (field.style.outlineColor = '#109b17')) :
+      ((field.nextElementSibling.innerHTML = `<span class="helper-text-invalid"><small>Пароль должен содержать не менее 6 символов</small></span>`),
         (field.style.outlineColor = '#FF8A9D'));
   } else if (nameOfInput === 'confirmPassword') {
     let password = document.querySelector('[name="password"]').value;
@@ -528,10 +623,10 @@ function getInfo(event) {
     const errorDiv = document.querySelector('#helper-text-div');
     console.log('errorDiv :>> ', errorDiv);
 
-    password === confirmPassword
-      ? ((errorDiv.innerHTML = `<span class="helper-text-valid"></span>`),
-        (field.style.outlineColor = '#109b17'))
-      : ((errorDiv.innerHTML = `<span class="helper-text-invalid"><small>Подтвердите пароль</small></span>`),
+    password === confirmPassword ?
+      ((errorDiv.innerHTML = `<span class="helper-text-valid"></span>`),
+        (field.style.outlineColor = '#109b17')) :
+      ((errorDiv.innerHTML = `<span class="helper-text-invalid"><small>Подтвердите пароль</small></span>`),
         (field.style.outlineColor = '#FF8A9D'));
   } else if (
     nameOfInput === 'country' ||
@@ -540,29 +635,68 @@ function getInfo(event) {
     nameOfInput === 'street'
   ) {
     inputLength > 2 &&
-    inputLength < 35 &&
-    inputValue.match(onlyLetAndSymbolRegEx)
-      ? ((field.nextElementSibling.innerHTML = `<span class="helper-text-valid"></span>`),
-        (field.style.outlineColor = '#109b17'))
-      : ((field.nextElementSibling.innerHTML = `<span class="helper-text-invalid">Введите данные</span>`),
+      inputLength < 35 &&
+      inputValue.match(onlyLetAndSymbolRegEx) ?
+      ((field.nextElementSibling.innerHTML = `<span class="helper-text-valid"></span>`),
+        (field.style.outlineColor = '#109b17')) :
+      ((field.nextElementSibling.innerHTML = `<span class="helper-text-invalid">Введите данные</span>`),
         (field.style.outlineColor = '#FF8A9D'));
   } else if (
     nameOfInput === 'building' ||
     nameOfInput === 'block' ||
     nameOfInput === 'flat'
   ) {
-    inputLength > 0 && inputLength < 9 && inputValue.match(numbersRegEx)
-      ? ((field.nextElementSibling.innerHTML = `<span class="helper-text-valid"></span>`),
-        (field.style.outlineColor = '#109b17'))
-      : ((field.nextElementSibling.innerHTML = `<span class="helper-text-invalid">Введите данные</span>`),
+    inputLength > 0 && inputLength < 9 && inputValue.match(numbersRegEx) ?
+      ((field.nextElementSibling.innerHTML = `<span class="helper-text-valid"></span>`),
+        (field.style.outlineColor = '#109b17')) :
+      ((field.nextElementSibling.innerHTML = `<span class="helper-text-invalid">Введите данные</span>`),
         (field.style.outlineColor = '#FF8A9D'));
     //======= address==========
   } else if (nameOfInput === 'postIndex') {
-    inputLength === 5 && inputValue.match(zipRegEx)
-      ? ((field.nextElementSibling.innerHTML = `<span class="helper-text-valid"></span>`),
-        (field.style.outlineColor = '#109b17'))
-      : ((field.nextElementSibling.innerHTML = `<span class="helper-text-invalid">Введите 5 цифр индекса</span>`),
+    inputLength === 5 && inputValue.match(zipRegEx) ?
+      ((field.nextElementSibling.innerHTML = `<span class="helper-text-valid"></span>`),
+        (field.style.outlineColor = '#109b17')) :
+      ((field.nextElementSibling.innerHTML = `<span class="helper-text-invalid">Введите 5 цифр индекса</span>`),
         (field.style.outlineColor = '#FF8A9D'));
+    // } else if (inputForm.dataset.form === 'favourites') {
+    //   console.log('key :>> ', event.target.dataset.form);
   }
 }
-//============ Favorites==========
+//============ Favourites==========
+
+
+//5f257c74dd556c0017611105
+//5f253901dd556c0017610f5c
+//5f256443dd556c0017611101
+
+// apiUsers.addFavorite('5f253901dd556c0017610f5c');
+
+// function profileGetFavourites() {
+
+//   apiUsers.getCurrentUser().then(data => profileGetProducts(data));
+
+// }
+// profileGetFavourites();
+
+
+// function profileGetProducts(favourites) {
+//   // console.log('array :>> ', array.data);
+//   // initialActProfile().then(data => console.log(data))
+//   const response = axios.get(
+//     'https://goit-store.herokuapp.com/products',
+
+//   );
+
+//   // console.log(favourites);
+//   console.log(response);
+//   // profileFindProduct(response)
+
+// }
+
+
+
+
+// function profileFindProduct(favourites, products) {
+//   console.log(favourites)
+//   console.log(products)
+// }
