@@ -1,32 +1,72 @@
-const header = document.querySelector('.header');
+import { contactMarkUp } from '../contacts/contacts.js';
 
+import trigger from '../components/trigger';
+// import trigger from './js/components/trigger';
+import { refs } from '../components/refs.js';
+import { headerMenu, closeHeaderMenu } from '../sideBar/headerSideBar.js';
+// import { contactMarkUp } from '../contacts/contacts.js';
+import {
+  catalogListMarkup,
+  listeners,
+  catalogListMarkupAddListeners,
+} from '../catalog/catalog';
+
+import {
+  categoriesListMarkup,
+  categoriesListMarkupAddListeners,
+} from '../category/category-markup';
+import { modalModule } from '../components/modalModule/modalModule.js';
+
+import { pseudoProfile } from '../profile/profileTabs';
+
+import {
+  searshForm,
+  listenersForSearch,
+} from '../search/searchdesktop/searchDesktop';
 const headerButton = event => {
   const dataname = event.target.dataset.name;
   if (dataname === 'name_logo') {
-    console.log('logo');
+    refs.container.innerHTML = categoriesListMarkup();
+    categoriesListMarkupAddListeners();
+
+    //вставить слушателей для профайл табс
+    pseudoProfile();
+    //======надо будет удалить=====
   } else if (dataname === 'name_phone') {
+    trigger.triggerFn();
+    // trigger.openTrigger();
     console.log('phone');
   } else if (dataname === 'name_search') {
-    console.log('search');
+    modalModule(searshForm, listenersForSearch);
+    closeHeaderMenu();
   } else if (dataname === 'name_buttonClose') {
-    console.log('buttonClose');
+    closeHeaderMenu();
   } else if (dataname === 'name_sale') {
     console.log('sale');
+    closeHeaderMenu();
   } else if (dataname === 'name_info') {
     console.log('info');
+    closeHeaderMenu();
   } else if (dataname === 'name_contacts') {
-    console.log('contacts');
+    contactMarkUp();
+    closeHeaderMenu();
   } else if (dataname === 'name_user') {
     console.log('user');
+    closeHeaderMenu();
   } else if (dataname === 'name_like') {
     console.log('like');
+    closeHeaderMenu();
   } else if (dataname === 'name_cart') {
     console.log('cart');
+    closeHeaderMenu();
   } else if (dataname === 'name_menu') {
-    console.log('menu');
+    headerMenu();
   } else if (dataname === 'name_catalog') {
-    console.log('catalog');
+    modalModule(catalogListMarkup, listeners);
+    catalogListMarkupAddListeners();
+
+    // console.log('catalog');
   }
 };
 
-header.addEventListener('click', headerButton);
+refs.header.addEventListener('click', headerButton);
