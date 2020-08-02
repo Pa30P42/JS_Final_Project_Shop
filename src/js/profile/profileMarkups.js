@@ -7,6 +7,8 @@
 //
 // const role = "ADMIN";
 import Inputmask from 'inputmask';
+import image6 from '../../images/profile/image6.png';
+
 const userData = {
   name: 'admin',
   email: 'admin@gmail.com',
@@ -288,12 +290,12 @@ function favoritesFormMarkup() {
           <div class="favorites-wrapper__position">
     
                 <ul class="favorites-list ">
-                  <li class="favorites-list__items">
+                  <li class="favorites-list__items"  data-id=${element._id}>
                     <button class="favorites-list__favorite-button"><span tooltip="Убрать из избранного">o</span>
                       <img src="./images/profile/heart.svg" alt="" class="item__favorite-icon">
                     </button>
     
-                    <img src="./images/profile/image 6.png" alt="" class="item-img" width="80">
+                    <img src="./images/profile/image6.png" alt="img" class="item-img" width="80">
                     <p class="item-name">Духовой шкаф электрический</p>
                     <div class="item-rate">
                       <img src="./images/profile/circle.svg" alt="" class="item-rate__img">
@@ -303,8 +305,8 @@ function favoritesFormMarkup() {
                       <img src="./images/profile/circle.svg" alt="" class="item-rate__img">
                     </div>
                     <div class="item-price">
-                      <p class="item-price__old"><s> 10 555 &#x20b4;</s></p>
-                      <p class="item-price__new"> 13 999 &#x20b4;</p>
+                      <p class="item-price__old"><s>${element.price} &#x20b4;</s></p>
+                      <p class="item-price__new">${element.price} &#x20b4;</p>
                     </div>
     
                   </li>
@@ -563,3 +565,4 @@ function getInfo(event) {
         (field.style.outlineColor = '#FF8A9D'));
   }
 }
+//============ Favorites==========
