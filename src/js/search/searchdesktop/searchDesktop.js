@@ -1,6 +1,7 @@
 import { refs } from '../../components/refs.js';
 import apiProducts from '../../api/products/apiProducts.js';
 import sprite from '../../../images/svgHeader/sprite.svg';
+import { createList } from '../../searchMarkUp/searchSection';
 export const searshForm = () => {
   return ` <div class="search">
   <div class="search__block">
@@ -28,7 +29,7 @@ export const listenersForSearch = clsmodal => {
 
     apiProducts
       .searchProductsbyName(event.target[0].value)
-      .then(res => console.log(res.data));
+      .then(res => createList(res.data));
     event.target[0].value = '';
     clsmodal();
   };
