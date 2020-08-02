@@ -71,7 +71,8 @@ body {
   display: none;
 }
 
-.card_vector {
+.card_vector-notActiv,
+.card_vector-isActiv {
   position: absolute;
   width: 20px;
   height: 17.79px;
@@ -154,7 +155,8 @@ body {
     width: auto;
     max-height: 140px;
   }
-  .card_vector {
+  .card_vector-notActiv,
+  .card_vector-isActiv {
     width: 20px;
     height: 17.79px;
     left: 175px;

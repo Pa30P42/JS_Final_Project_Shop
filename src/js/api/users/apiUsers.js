@@ -112,6 +112,7 @@ export default {
       ).token;
       const response = await axios.get(this.getUserInfoUrl);
       console.log(response);
+      return response;
     } catch (error) {
       console.log(error);
       // throw error;
@@ -144,4 +145,3 @@ export default {
     }
   },
 };
-
