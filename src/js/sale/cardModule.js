@@ -1,3 +1,4 @@
+import vector from '../../images/sale/Vector.svg';
 import apiProducts from '../api/products/apiProducts';
 // import vector from '';
 const userData = {
@@ -38,7 +39,7 @@ export const createSingleCardMarkup = (element, sale) => {
   }
  
   </div>
-  <img class="card_vector" src="./images/sale/Vector.svg" />
+  <img class="card_vector" src="${vector}" />
   <p class="card_name">${element.name}</p>
   <ul class="card_rating-list">${rating()}</ul>
   <div class="card_prise-block">

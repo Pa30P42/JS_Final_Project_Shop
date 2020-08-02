@@ -14,7 +14,7 @@ const getItem = event => {
   if (event.target !== current.target) {
     const id = event.target.closest('[data-id]').dataset.id;
     console.log(id);
-    // функция Ани(id)
+    productCard(id); // функция Ани(id)
   } else return id;
 };
 export const createList = array => {
