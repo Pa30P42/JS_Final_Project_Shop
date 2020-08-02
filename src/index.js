@@ -17,17 +17,17 @@ import apiAuth from './js/api/auth/apiAuth';
 // =========== adv ==============
 import productCard from './js/adv/productCard';
 // apiAuth.register({
-//     name: 'Kostya',
-//     email: 'kost927@gmail.com',
-//     password: 'qwerty123456',
-//   })
+//   name: 'Kristi',
+//   email: 'kristina.malitowska@gmail.com',
+//   password: 'qwerty123456',
+// });
 // axios.post("https://goit-store.herokuapp.com/auth/login", {email: 'kos123321@gmail.com',
 // password: 'q1w2e3r4t5'}).then(data => localStorage.setItem("user", JSON.stringify(data.data)))
 
 // apiAuth.login({
-//   email: 'unotest2@gmail.com',
-//   password: 'testuno111',
-// })
+//   email: 'kristina.malitowska@gmail.com',
+//   password: 'qwerty123456',
+// });
 
 const btnShowModal = document.getElementById('btnShowModal');
 
