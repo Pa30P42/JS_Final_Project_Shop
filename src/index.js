@@ -3,7 +3,7 @@ import './js/category/category-markup';
 import trigger from './js/components/trigger';
 import { containerHandler } from './js/container/container';
 import { Sim } from './js/slider/slider';
-
+import { addNewProducts } from './js/components/new/new';
 import './js/catalog/catalog';
 import userData from './js/userData';
 import './js/components/modalModule/modalModule';
@@ -47,8 +47,11 @@ const initialAction = async () => {
   await apiProducts.getCategories();
   setting.getDevice(document.documentElement.clientWidth);
   containerHandler();
+  addNewProducts();
   pseudoProfile();
   new Sim();
   // trigger.triggerFn();
 };
 initialAction();
+
+// apiAuth.login({ email: 'unotest2@gmail.com', password: 'testuno111' });

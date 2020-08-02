@@ -1,14 +1,9 @@
-import chooseCategory from '../../profile/profileMarkups'
-import {
-  getAppliances
-} from './services';
+import chooseCategory from '../../profile/profileMarkups';
+import { getAppliances } from './services';
 import axios from 'axios';
 import userData from '../../userData';
 
-axios.defaults.headers['Authorization'] = JSON.parse(
-  localStorage.getItem('info'),
-);
-
+axios.defaults.headers['Authorization'] = JSON.parse(localStorage.getItem('info'));
 
 // ========= services product ==== Все катигории и продукты и залиті в ЮЗЕРДАТУ
 // 1.apiProducts.getCategories().then(data => console.log(userData));
@@ -39,9 +34,7 @@ export default {
       return userData.categoriesItems;
     } else {
       try {
-        const response = await axios.get(
-          'https://goit-store.herokuapp.com/products/getCategories',
-        );
+        const response = await axios.get('https://goit-store.herokuapp.com/products/getCategories');
 
         userData.categoriesItems = [...response.data.categories];
 
@@ -60,9 +53,7 @@ export default {
       return userData.categoriesItems;
     } else {
       try {
-        const response = await axios.get(
-          'https://goit-store.herokuapp.com/products',
-        );
+        const response = await axios.get('https://goit-store.herokuapp.com/products');
         return response;
       } catch (err) {
         throw new Error(err);
@@ -72,10 +63,7 @@ export default {
 
   async CreateNewProduct(product) {
     try {
-      const response = await axios.post(
-        'https://goit-store.herokuapp.com/products',
-        product,
-      );
+      const response = await axios.post('https://goit-store.herokuapp.com/products', product);
       return response;
     } catch (err) {
       throw new Error(err);
@@ -88,7 +76,7 @@ export default {
         `https://goit-store.herokuapp.com/products?search=${inputSearch}`,
       );
 
-      console.log(dataName);
+      // console.log(dataName);
       return dataName;
     } catch (err) {
       throw new Error(err);
@@ -100,7 +88,7 @@ export default {
       const dataCategory = await axios.get(
         `https://goit-store.herokuapp.com/products?search=&category=${inputSearch}`,
       );
-      console.log(dataCategory);
+      // console.log(dataCategory);
       return dataCategory;
     } catch (err) {
       throw new Error(err);
@@ -123,7 +111,7 @@ export default {
       const response = await axios.get(
         `https://goit-store.herokuapp.com/products?itemsPerPage=${PerPage}&page=${page}&category=${category}`,
       );
-      console.log(response);
+      // console.log(response);
 
       return response;
     } catch (err) {
