@@ -1,4 +1,7 @@
 import { createSingleCardMarkup } from './cardModule';
+import productCard from '../adv/productCard';
+import { refs } from '../components/refs';
+
 // /* <section class="card container"></section> *
 const createListMarkup = array => {
   if (array.length < 1) {
@@ -17,17 +20,17 @@ const createListMarkup = array => {
 };
 
 const getItem = event => {
-  if (event.target !== current.target) {
+  if (event.target !== event.currentTarget) {
     const id = event.target.closest('[data-id]').dataset.id;
     console.log(id);
-    productCard(id); // функция Ани(id)
+    productCard(id);
   } else return id;
 };
 export const createList = array => {
-  const container = document.querySelector('.container');
   // console.log(createListMarkup(array));
-  container.innerHTML = createListMarkup(array);
-  container.addEventListener('click', getItem);
+  refs.container.innerHTML = createListMarkup(array);
+
+  refs.container.addEventListener('click', getItem);
 
   // cardList.addEventListener('click', getVector);
 };
