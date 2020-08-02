@@ -5,14 +5,18 @@ import trigger from '../components/trigger';
 import { refs } from '../components/refs.js';
 import { headerMenu, closeHeaderMenu } from '../sideBar/headerSideBar.js';
 // import { contactMarkUp } from '../contacts/contacts.js';
-import {catalogListMarkup, listeners, catalogListMarkupAddListeners} from '../catalog/catalog'
+import {
+  catalogListMarkup,
+  listeners,
+  catalogListMarkupAddListeners,
+} from '../catalog/catalog';
 
 import {
   categoriesListMarkup,
   categoriesListMarkupAddListeners,
 } from '../category/category-markup';
 import { modalModule } from '../components/modalModule/modalModule.js';
-import markupInformation from '../information/markup_info';
+import information from '../information/information';
 
 import { pseudoProfile } from '../profile/profileTabs';
 
@@ -42,7 +46,7 @@ const headerButton = event => {
     console.log('sale');
   } else if (dataname === 'name_info') {
     console.log('info');
-    markupInformation();
+    information();
   } else if (dataname === 'name_contacts') {
     console.log('cont');
     contactMarkUp();
@@ -56,12 +60,10 @@ const headerButton = event => {
     headerMenu();
   } else if (dataname === 'name_catalog') {
     modalModule(catalogListMarkup, listeners);
-    catalogListMarkupAddListeners()
+    catalogListMarkupAddListeners();
 
-    // console.log('catalog'); 
+    // console.log('catalog');
   }
 };
 
 refs.header.addEventListener('click', headerButton);
-
-

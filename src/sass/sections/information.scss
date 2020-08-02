@@ -3,7 +3,20 @@
   background-color: rgb(244, 244, 244);
   box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.15);
   border-radius: 10px;
-  margin-bottom: 14px;
+}
+
+.information__close {
+  position: absolute;
+  right: 20px;
+  top: 10px;
+  line-height: 40px;
+  font-size: 20px;
+  font-weight: bold;
+  border: none;
+  color: $main--text-color;
+  background-color: rgba(0, 0, 0, 0);
+  transform: matrix(0, 1, 1, 0, 0, 0);
+  cursor: pointer;
 }
 
 .information__list_item {
@@ -39,7 +52,7 @@
 
 @media (min-width: 768px) {
   .information {
-    padding: 20px 60px;
+    padding: 30px 60px 0px 60px;
   }
   .information__list {
     display: flex;
