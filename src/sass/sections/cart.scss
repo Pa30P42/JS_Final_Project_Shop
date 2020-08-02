@@ -14,7 +14,8 @@
 }
 
 .btn-close {
-  cursor: pointer;
+  @extend %btn;
+  background-color: transparent;
   svg {
     stroke: $main--text-color;
   }
@@ -34,9 +35,13 @@
   }
 
   &__list {
-    margin-bottom: 43px;
-    padding: 22px 20px 20px;
-    background: #f4f4f4;
+    &-wrap {
+      margin-bottom: 43px;
+      padding: 22px 0;
+      background: #f4f4f4;
+    }
+    padding: 0 20px;
+    overflow-y: auto;
     @media (min-width: 768px) {
       padding-left: 40px;
       padding-right: 30px;
@@ -58,6 +63,7 @@
     }
     @media (min-width: 1200px) {
       flex-wrap: nowrap;
+      min-height: auto;
     }
 
     &-image {
@@ -186,6 +192,13 @@
     }
   }
 
+  &__item:not(:last-child) {
+    margin-bottom: 60px;
+    @media (min-width: 1200px) {
+      margin-bottom: 40px;
+    }
+  }
+
   &__btn-delete {
     width: 30px;
     height: 30px;
@@ -195,6 +208,7 @@
     border-width: 0;
     border-radius: 50%;
     background: #b3b3b3;
+    cursor: pointer;
     @media (min-width: 1200px) {
       order: 3;
     }

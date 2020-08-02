@@ -10,31 +10,64 @@ import { modalModule } from './modalModule/modalModule';
 // divRef.innerHTML = markup;
 // divRef.style.display = 'none';
 // refs.container.insertAdjacentElement('afterend', divRef);
+
+const headerRef = document.querySelector('.header');
+const setCartCounter = () => {
+  let container; // headerNav
+  if (settings.isMobile) container = headerRef.querySelector('.phone');
+  if (settings.isTablet) container = headerRef.querySelector('.tablet');
+  if (settings.isDesktop) container = headerRef.querySelector('.desktop');
+  const headerNav = container.querySelector('.header__nav');
+  const cartCounter = headerNav.querySelector('.amount_cart');
+  console.log(cartCounter);
+  cartCounter.innerHTML = getTotalQuantity(userData.cart.cartItems);
+};
+
 const createTemplateMarkup = () => {
   return cartItems(userData.cart.cartItems);
 };
 
 const createCartMarkup = () => {
   const cartItems = userData.cart.cartItems;
-  const totalAmount = userData.cart.totalAmount;
+  const totalAmount = getTotalAmount(cartItems);
+  const heightList = document.documentElement.clientHeight - 300;
+  console.log(
+    (10500).toLocaleString('ua-UA', { style: 'currency', currency: 'UAH' }),
+  ); //"89,30 $"
+  // Create our number formatter.
+  const formatter = new Intl.NumberFormat('ua-UA', {
+    useGrouping: true,
+    // style: 'currency',
+    // currency: 'UAH',
+    // currencyDisplay: 'symbol',
+    // minimumFractionDigits: 0,
+    // the default value for minimumFractionDigits depends on the currency
+    // and is usually already 2
+  });
+
+  console.log(formatter.format(10500), '₴'); /* $2,500.00 */
   return `
   <div class="cart">
     <div class="modal__heading">
     <h3>Корзина</h3>
-    <div class="btn-close">
+    <button class="btn-close" type="button">
       <svg width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
         <path d="M2 13.3135L13.3137 1.99977" stroke-width="2" stroke-linecap="round"/>
         <path d="M2 2L13.3137 13.3137" stroke-width="2" stroke-linecap="round"/>
       </svg>
+    </button>
     </div>
-    </div>
-    <ul class="cart__list">
+    <div class="cart__list-wrap">
+    <ul class="cart__list" style="max-height: ${heightList}px">
       ${cartItems.reduce((acc, cartItem) => {
         acc += createCartItemMarkup(cartItem);
         return acc;
       }, '')}
     </ul>
-    <div class="cart__total"><span class="cart__total-label">Итого</span><span class="cart__total-amount">${totalAmount} ₴</span></div>
+    </div>
+    <div class="cart__total"><span class="cart__total-label">Итого</span><span class="cart__total-amount">${new Intl.NumberFormat(
+      'ua-UA',
+    ).format(totalAmount)} ₴</span></div>
     <div class="cart__buttons-wrap">
       <button type="button" class="cart__button cart__button_confirm" data-button="confirmOrder">Оформить заказ</button>
       <button type="button" class="cart__button cart__button_back" data-button="backToProducts">
@@ -54,7 +87,9 @@ const createCartItemMarkup = item => {
   }" width="85" height="80" />
     <div class="cart__item-props">
       <p class="cart__item-name">${item.name}</p>
-      <p class="cart__item-price">${item.price} ₴</p>
+      <p class="cart__item-price">${new Intl.NumberFormat('ua-UA').format(
+        item.price,
+      )} ₴</p>
     </div>
     <button class="cart__btn-delete" data-button="delete">
       <svg width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
@@ -80,7 +115,9 @@ const createCartItemMarkup = item => {
           </svg>
         </button>
       </div>
-      <p class="cart__item-amount">${item.price * item.quantity} ₴</p>
+      <p class="cart__item-amount">${new Intl.NumberFormat('ua-UA').format(
+        item.price * item.quantity,
+      )} ₴</p>
     </div>
   </li>`;
 };
@@ -121,8 +158,9 @@ const inputQuantityHandler = ({ target }) => {
   const id = listItem.dataset.id;
   const element = userData.cart.cartItems.find(item => item.id === id);
   element.quantity = newCount;
+  setCartCounter();
   cartItemAmount.textContent = element.quantity * element.price;
-  const totalAmount = getTotalPrice(userData.cart.cartItems);
+  const totalAmount = getTotalAmount(userData.cart.cartItems);
   cartTotalPrice.textContent = totalAmount + ' ₴';
   userData.cart.totalAmount = totalAmount + ' ₴';
   userData.cart.totalQuantity = getTotalQuantity(userData.cart.cartItems);
@@ -158,8 +196,9 @@ const counterHandler = e => {
     buttonDecrement.disabled = false;
   }
   inputNumber.value = element.quantity;
+  setCartCounter();
   cartItemAmount.textContent = element.quantity * element.price + ' ₴';
-  const totalAmount = getTotalPrice(userData.cart.cartItems);
+  const totalAmount = getTotalAmount(userData.cart.cartItems);
   cartTotalPrice.textContent = totalAmount + ' ₴';
   userData.cart.totalAmount = totalAmount;
   userData.cart.totalQuantity = getTotalQuantity(userData.cart.cartItems);
@@ -176,15 +215,15 @@ const removeCartItem = e => {
   userData.cart.cartItems = [
     ...userData.cart.cartItems.filter(item => item.id !== id),
   ];
-  document.querySelector('.cart').innerHTML = createCartMarkup();
+  document.querySelector('.modalComponent').innerHTML = createCartMarkup();
   const cartList = document.querySelector('.cart__list');
   cartList.addEventListener('click', counterHandler);
   cartList.addEventListener('click', removeCartItem);
   const cartTotalPrice = document.querySelector('.cart__item-amount');
-  cartTotalPrice.textContent = getTotalPrice(userData.cart.cartItems);
+  cartTotalPrice.textContent = getTotalAmount(userData.cart.cartItems);
 };
 
-const getTotalPrice = cartItems => {
+const getTotalAmount = cartItems => {
   const total = cartItems.reduce((acc, item) => {
     acc += item.price * item.quantity;
     return acc;
@@ -230,10 +269,9 @@ const showCart = () => {
 
   modalModule(createCartMarkup, listeners);
   const cartList = document.querySelector('.cart__list');
-  console.log(cartList);
   cartList.addEventListener('click', counterHandler);
   cartList.addEventListener('change', inputQuantityHandler);
   cartList.addEventListener('click', removeCartItem);
 };
 
-export { showCart };
+export { showCart, setCartCounter };
