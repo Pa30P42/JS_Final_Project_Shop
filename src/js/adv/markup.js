@@ -23,7 +23,6 @@ const productItem = item => {
       </div>
 
       <div class="product__images-wrapper">
-
         <div class="product__card-images">
           <div class="product__image">
             <img
