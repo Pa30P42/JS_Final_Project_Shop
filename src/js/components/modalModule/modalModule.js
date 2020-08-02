@@ -1,4 +1,5 @@
 const container = document.querySelector('.modalModule');
+
 // const btnTest = document.querySelector('.test'); // test button need to be made in index.html
 
 // === Hot to send data in modal module ===
@@ -19,7 +20,7 @@ const container = document.querySelector('.modalModule');
 
 //  === MODAL MODULE ===
 
-const modalModule = (component, listeners) => {
+export const modalModule = (component, listeners) => {
   const closeModalComponent = () => {
     container.innerHTML = '';
   };
@@ -39,11 +40,7 @@ const modalModule = (component, listeners) => {
   
     <div class="modalComponent"></div>
   
-    <button
-        type="button"
-        class="btn__closeModal"
-        data-action="btn__closeModal"
-    ></button>
+
     </div>
     `;
 
@@ -56,7 +53,6 @@ const modalModule = (component, listeners) => {
   modalOverlay.addEventListener('click', closeModalWindow);
   window.addEventListener('keydown', closeModalWindow);
 };
-
 // === test button need to be made in index.html to use it ===
 // btnTest.addEventListener('click', () => modalModule(component, listeners));
 
