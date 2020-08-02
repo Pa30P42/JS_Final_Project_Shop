@@ -13,21 +13,11 @@ import setting from './js/setting';
 import './js/category/category-markup';
 import axios from 'axios';
 import apiAuth from './js/api/auth/apiAuth';
+import { pseudoProfile } from './js/profile/profileTabs';
+import markupInformation from './js/information/markup_info';
 
-// =========== adv ==============
+// ============= adv ===============
 import productCard from './js/adv/productCard';
-// apiAuth.register({
-//     name: 'Kostya',
-//     email: 'kost927@gmail.com',
-//     password: 'qwerty123456',
-//   })
-// axios.post("https://goit-store.herokuapp.com/auth/login", {email: 'kos123321@gmail.com',
-// password: 'q1w2e3r4t5'}).then(data => localStorage.setItem("user", JSON.stringify(data.data)))
-
-// apiAuth.login({
-//   email: 'unotest2@gmail.com',
-//   password: 'testuno111',
-// })
 
 const btnShowModal = document.getElementById('btnShowModal');
 
@@ -40,14 +30,7 @@ btnShowModal.addEventListener('click', async () => {
   console.log(response);
   productCard(item);
 });
-
-import { pseudoProfile } from './js/profile/profileTabs';
-
-import markupInformation from './js/information/markup_info';
-
-// const btnRef = document.querySelector('.check');
-// const btnRef2 = document.querySelector('.check2');
-import userData from './js/userData';
+// =================================
 
 const initialAction = async () => {
   await apiProducts.getCategories();
