@@ -53,8 +53,6 @@ export const modalModule = (component, listeners) => {
   modalOverlay.addEventListener('click', closeModalWindow);
   window.addEventListener('keydown', closeModalWindow);
 };
-
-export default modalModule;
 // === test button need to be made in index.html to use it ===
 // btnTest.addEventListener('click', () => modalModule(component, listeners));
 

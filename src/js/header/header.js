@@ -4,10 +4,15 @@ import trigger from '../components/trigger';
 // import trigger from './js/components/trigger';
 import { refs } from '../components/refs.js';
 import { headerMenu, closeHeaderMenu } from '../sideBar/headerSideBar.js';
+// import { contactMarkUp } from '../contacts/contacts.js';
+import {
+  catalogListMarkup,
+  listeners,
+  catalogListMarkupAddListeners,
+} from '../catalog/catalog';
 
 import {
   categoriesListMarkup,
-  categories,
   categoriesListMarkupAddListeners,
 } from '../category/category-markup';
 import { modalModule } from '../components/modalModule/modalModule.js';
@@ -19,9 +24,9 @@ import {
   listenersForSearch,
 } from '../search/searchdesktop/searchDesktop';
 const headerButton = event => {
-  const dataname = event.target.closest('[data-name]').dataset.name;
+  const dataname = event.target.dataset.name;
   if (dataname === 'name_logo') {
-    refs.container.innerHTML = categoriesListMarkup(categories);
+    refs.container.innerHTML = categoriesListMarkup();
     categoriesListMarkupAddListeners();
 
     //вставить слушателей для профайл табс
@@ -33,26 +38,34 @@ const headerButton = event => {
     console.log('phone');
   } else if (dataname === 'name_search') {
     modalModule(searshForm, listenersForSearch);
-    console.log('search');
+    closeHeaderMenu();
   } else if (dataname === 'name_buttonClose') {
     closeHeaderMenu();
   } else if (dataname === 'name_sale') {
     console.log('sale');
+    closeHeaderMenu();
   } else if (dataname === 'name_info') {
     console.log('info');
+    closeHeaderMenu();
   } else if (dataname === 'name_contacts') {
-    console.log('cont');
     contactMarkUp();
+    closeHeaderMenu();
   } else if (dataname === 'name_user') {
     console.log('user');
+    closeHeaderMenu();
   } else if (dataname === 'name_like') {
     console.log('like');
+    closeHeaderMenu();
   } else if (dataname === 'name_cart') {
     console.log('cart');
+    closeHeaderMenu();
   } else if (dataname === 'name_menu') {
     headerMenu();
   } else if (dataname === 'name_catalog') {
-    console.log('catalog');
+    modalModule(catalogListMarkup, listeners);
+    catalogListMarkupAddListeners();
+
+    // console.log('catalog');
   }
 };
 
