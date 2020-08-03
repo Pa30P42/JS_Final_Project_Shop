@@ -7,9 +7,10 @@ body {
 .card {
   padding-top: 10px;
   padding-bottom: 15px;
+  margin: 0 auto;
 }
 .card_description {
-  width: 100%;
+  // width: 100%;
   height: 32px;
   font-family: Montserrat Alternates;
   font-style: normal;
@@ -18,17 +19,18 @@ body {
   line-height: 32px;
   color: #53535c;
   margin-bottom: 74px;
-  padding-left: 1%;
+  // padding-left: 1%;
 }
 
 .card_list {
   // position: relative;
   display: flex;
   align-items: center;
-  justify-content: space-around;
+  justify-content: space-between;
   flex-wrap: wrap;
   // padding-left: 18px;
   // padding-right: 18px;
+  // margin-bottom: 30px;
 }
 
 .card_item {
@@ -45,6 +47,9 @@ body {
 
   margin-bottom: 10px;
 }
+// .card_item:nth-last-child(n + 1) {
+//   margin-bottom: 10px;
+// }
 // .card_item:not(:nth-child(n + 5)) {
 //   margin-bottom: 10px;
 // }
@@ -71,7 +76,8 @@ body {
   display: none;
 }
 
-.card_vector {
+.card_vector-notActiv,
+.card_vector-isActiv {
   position: absolute;
   width: 20px;
   height: 17.79px;
@@ -154,20 +160,21 @@ body {
     width: auto;
     max-height: 140px;
   }
-  .card_vector {
+  .card_vector-notActiv,
+  .card_vector-isActiv {
     width: 20px;
     height: 17.79px;
     left: 175px;
     top: 10px;
   }
   // .card_list {
-  // // position: relative;
-  // display: flex;
-  // align-items: center;
-  // justify-content: space-between;
-  // flex-wrap: wrap;
-  // padding-left: 60px;
-  // padding-right: 60px;
+  //   // position: relative;
+  //   display: flex;
+  //   align-items: center;
+  //   // justify-content: space-between;
+  //   // flex-wrap: wrap;
+  //   // padding-left: 60px;
+  //   // padding-right: 60px;
   // }
   .card_item {
     width: 204px;
@@ -248,9 +255,9 @@ body {
   .card_item {
     //width: 204px;
     // height: 300px;
-    // margin-bottom: 10px;
+    margin-bottom: 15px;
     text-align: right;
     padding: 17px 19px 17px 20px;
-    margin: 1%;
+    // margin: 1%;
   }
 }

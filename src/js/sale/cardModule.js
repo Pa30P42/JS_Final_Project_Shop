@@ -1,12 +1,17 @@
+import vector_love from '../../images/sale/Vector_love.svg';
 import vector from '../../images/sale/Vector.svg';
 import apiProducts from '../api/products/apiProducts';
+import getVector from './saleSection';
 // import vector from '';
 const userData = {
   isMobile: false,
   isTablet: false,
   isDesktop: true,
 };
-
+const love = {
+  isActiv: true,
+  notActiv: false,
+};
 // apiProducts.searchProductsbyCategory('new').then(data => parsData(data.data));
 
 // function parsData(products) {
@@ -39,15 +44,21 @@ export const createSingleCardMarkup = (element, sale) => {
   }
  
   </div>
-  <img class="card_vector" src="${vector}" />
+  <div class="card-vector">
+ 
+      <img class="card_vector-notActiv" src="${vector}" data-clickVector="notActiv"/>
+  
+  </div>
+
+
   <p class="card_name">${element.name}</p>
   <ul class="card_rating-list">${rating()}</ul>
   <div class="card_prise-block">
      ${
        sale
-         ? `<p class="card_price">${
-             element.price * 1.3
-           }<span> &#8372;</span></p>
+         ? `<p class="card_price">${Math.round(
+             element.price * 1.3,
+           )}<span> &#8372;</span></p>
         <p class="card_price-sale">${element.price}<span> &#8372;</span></p>`
          : `<p class="card_price-sale">${element.price}<span> &#8372;</span></p>`
      }
@@ -57,6 +68,14 @@ export const createSingleCardMarkup = (element, sale) => {
   };
   return cardItemMarkup(element);
 };
+
+// {/* <div class="card-vector">
+//   ${
+//     love.isActive
+//       ? `<img class="card_vector-isActiv" src="${vector_love}" data-clickVector="isActiv"/>`
+//       : `<img class="card_vector-notActiv" src="${vector}" data-clickVector="notActiv"/>`
+//   }
+//   </div> */}
 // const createListMarkup = array => {
 // return `<ul class="card_list">${array.reduce((acc, element) => {
 //     acc += cardCartItem(element);

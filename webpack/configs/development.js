@@ -16,6 +16,10 @@ module.exports = env => ({
         test: /\.scss$/,
         use: ['style-loader', 'css-loader', 'postcss-loader', 'sass-loader'],
       },
+      // {
+      //   test: /\.svg$/,
+      //   loader: 'svg-sprite-loader',
+      // },
     ],
   },
   plugins: [

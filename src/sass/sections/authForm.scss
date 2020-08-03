@@ -1,0 +1,23 @@
+.authForm {
+  display: flex;
+  flex-direction: column;
+  width: 342px;
+  height: 414px;
+  left: 0px;
+  top: 0px;
+  background: #ffffff;
+  border-radius: 10px;
+  z-index: 998;
+}
+
+.Authorization-title {
+  margin: 20px 0 0 20px;
+
+  font-family: Montserrat Alternates;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 22px;
+
+  color: $main--text-color;
+}

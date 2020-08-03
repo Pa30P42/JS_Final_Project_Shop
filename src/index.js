@@ -1,5 +1,9 @@
 import './sass/main.scss';
 import './js/category/category-markup';
+import { containerHandler } from './js/container/container';
+import { createSingleCardMarkup } from './js/sale/cardModule';
+import { createList } from './js/sale/saleSection';
+import { Sim } from './js/slider/slider';
 import './js/catalog/catalog';
 import './js/components/modalModule/modalModule';
 import apiProducts from './js/api/products/apiProducts';
@@ -9,12 +13,14 @@ import { refs } from './js/components/refs';
 import './js/category/category-markup';
 import axios from 'axios';
 import apiAuth from './js/api/auth/apiAuth';
+import apiUsers from './js/api/users/apiUsers';
 import productCard from './js/adv/productCard';
 import { setCartCounter, setupEvents } from './js/components/cart/cart';
-import { pseudoProfile } from './js/profile/profileTabs';
-import { Sim } from './js/slider/slider';
-import { containerHandler } from './js/container/container';
+
 import { addNewAndLastSeen } from './js/components/new';
+import { pseudoProfile } from './js/profile/profileTabs';
+
+// =========== adv ==============
 
 // apiProducts.searchProductsbyCategory('new').then(data => createList(data.data));
 // =========== adv ==============
@@ -42,6 +48,7 @@ const initialAction = async () => {
   // trigger.triggerFn();
 };
 initialAction();
+<<<<<<< HEAD
 
 // apiAuth.login({ email: 'unotest2@gmail.com', password: 'testuno111' });
 // const initialActProfile = async () => {
@@ -50,3 +57,5 @@ initialAction();
 
 // };
 // initialActProfile();
+=======
+>>>>>>> 6b40bcb84c7ce21ff7975ff5ac19bd2dc1abd0d6
