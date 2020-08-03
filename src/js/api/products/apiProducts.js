@@ -58,9 +58,9 @@ export default {
         `https://goit-store.herokuapp.com/products/getCategories?category=${inputSearch}`,
       );
 
-      userData.countOfProducts = [...response.data.countOfProducts];
+      // userData.countOfProducts = [...response.data.countOfProducts];
 
-      console.log('response', userData.countOfProducts);
+      // console.log('response', userData.countOfProducts);
       // chooseCategory(userData.categoriesItems)
       return response.data.countOfProducts;
     } catch (err) {
@@ -75,7 +75,6 @@ export default {
       try {
         const response = await axios.get(
           'https://goit-store.herokuapp.com/products',
-
         );
         // console.log('response :>> ', response);
         return response;

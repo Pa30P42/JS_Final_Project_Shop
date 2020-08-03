@@ -3,6 +3,7 @@ import categoriesList from '../userData';
 import { modalModule } from '../components/modalModule/modalModule';
 import apiProducts from '../api/products/apiProducts';
 import { createList } from '../sale/saleSection';
+// import { refsPagination } from '../pagination/pagination';
 
 const refs = {
   modalCategory: document.querySelector('.modalModule'),
@@ -21,6 +22,10 @@ export function getLink(e) {
   ) {
     if (e.target.closest('[data-sublink]')) {
       const subLink = e.target.closest('[data-sublink]').dataset.sublink;
+      // const subLinkName = e.target.closest('[data-sublink]').dataset
+      //   .categoryname;
+      // console.log(subLinkName);
+      // createList(subLinkName);
       return subLink;
     } else return;
   }
@@ -35,7 +40,7 @@ export function getLink(e) {
 function getSubCategoryItemName() {
   refs.subcategoriesListInsert = document.querySelector('.subcategories__list');
   refs.subcategoriesListInsert.addEventListener('click', e => {
-    // console.log('hi', e.target);
+    console.log(e.target);
   });
 }
 
@@ -93,10 +98,12 @@ export function categoriesListMarkupAddListeners() {
 function listeners(action) {
   const getSubCategoryLink = e => {
     const link = getLink(e);
+    // console.log(e.target.textContent);
+    const sublinkName = e.target.textContent;
     apiProducts
       .searchProductsbyCategory(`${link}`)
       // .then(data => console.log(data.data));
-      .then(data => createList(data.data));
+      .then(data => createList(data.data, sublinkName));
     // console.log(link);
 
     // вместо console.log(data.data) вставляем функцию Ани //
@@ -104,9 +111,23 @@ function listeners(action) {
       action();
     }
   };
+
   const subCategoryList = document.querySelector('.subcategories__list');
   subCategoryList.addEventListener('click', getSubCategoryLink);
 }
+
+// function incomingData(e) {
+//   if (
+//     (e.target.nodeName === 'LI' || e.target.nodeName === 'P') &&
+//     e.target.closest('[data-categoryName]')
+//   ) {
+//     const categoryNameLink = e.target.dataset.categoryname;
+//     console.log('categoryNameLink', categoryNameLink);
+//     //! ==============================================================================
+//     //? вместо console.log вставляем функцию Ани которая принимает массив продуктов для открисовки категории по клику
+//     // apiProducts.searchProductsbyCategory(`${categoryNameLink}`).then(data => console.log(data.data));
+//   }
+// }
 
 function showModal(e) {
   const newLink = getLink(e);

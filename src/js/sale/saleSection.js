@@ -2,17 +2,25 @@ import vector_love from '../../images/sale/Vector_love.svg';
 import vector from '../../images/sale/Vector.svg';
 import { createSingleCardMarkup } from './cardModule';
 import apiUsers from '../api/users/apiUsers';
+import { createPaginationMarkup } from '../pagination/pagination';
+// import { refsPagination } from '../pagination/pagination';
+// import { getPaginationPage } from '../pagination/pagination';
 
 // /* <section class="card container"></section> *
-const createListMarkup = array => {
+const createListMarkup = (array, link) => {
   return `
    <section class="card">
-  <h2 class="card_description">Акции</h2>
+  <h2 class="card_description">${link}</h2>
   <ul class="card_list">${array.reduce((acc, element) => {
     acc += createSingleCardMarkup(element, 'sale');
     return acc;
-  }, '')}</ul></section>`;
+  }, '')}</ul>
+  <div class="pagination_wrapper">
+  ${createPaginationMarkup()}
+  </div>
+  </section>`;
 };
+
 const favoritesArr = [];
 const getItem = event => {
   if (event.target.closest('[data-id]') && event.target.nodeName === 'IMG') {
@@ -53,9 +61,10 @@ apiUsers.getCurrentUser();
 // apiUsers.getCurrentUser().then(data => console.log(data));
 
 const cardList = document.querySelector('.card_list');
-export const createList = array => {
+
+export const createList = (array, link) => {
   const container = document.querySelector('.container');
-  container.innerHTML = createListMarkup(array);
+  container.innerHTML = createListMarkup(array, link);
   container.addEventListener('click', getItem);
   cardList.addEventListener('click', getVector);
 
