@@ -3,9 +3,9 @@ import { getAppliances } from './services';
 import axios from 'axios';
 import userData from '../../userData';
 
-// axios.defaults.headers['Authorization'] = JSON.parse(
-//   localStorage.getItem('info'),
-// );
+axios.defaults.headers['Authorization'] = JSON.parse(
+  localStorage.getItem('info'),
+);
 
 // ========= services product ==== Все катигории и продукты и залиті в ЮЗЕРДАТУ
 // 1.apiProducts.getCategories().then(data => console.log(userData));
@@ -59,7 +59,9 @@ export default {
       try {
         const response = await axios.get(
           'https://goit-store.herokuapp.com/products',
+
         );
+        // console.log('response :>> ', response);
         return response;
       } catch (err) {
         throw new Error(err);

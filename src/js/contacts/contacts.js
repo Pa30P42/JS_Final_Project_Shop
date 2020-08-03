@@ -31,7 +31,8 @@ const developersProject = `<p data-name="name_logo" class="contactsBack" >Гла
         />
       </div>
       <div class="team__item__info">
-        <p class="team__item__title">Исмаил Гаджибейли</p>
+        <p class="team__item__title">Исмаил</p>
+        <p class ="contacts_name"> Гаджибейли</p>
         <p class="team__item__text">
           Team Lead, Container, Telephone triggers, Services
         </p>
@@ -95,7 +96,8 @@ const developersProject = `<p data-name="name_logo" class="contactsBack" >Гла
         />
       </div>
       <div class="team__item__info">
-        <p class="team__item__title">Константин Полишко</p>
+        <p class="team__item__title"> Полишко</p>
+        <p class ="contacts_name">Константин</p>
         <p class="team__item__text">NewADV, Catalog</p>
       </div>
     </li>
