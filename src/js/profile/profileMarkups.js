@@ -1,7 +1,7 @@
-import apiProducts from '../api/products/apiProducts';
-import globeUserData from '../userData';
-import axios from 'axios';
-import apiUsers from '../api/users/apiUsers';
+import apiProducts from "../api/products/apiProducts";
+import globeUserData from "../userData";
+import axios from "axios";
+import apiUsers from "../api/users/apiUsers";
 // import {
 //   apiAuth
 // } from './api/users/apiUsers';
@@ -10,65 +10,79 @@ import apiUsers from '../api/users/apiUsers';
 // apiAuth.getCurrentUser()   role: "ADMIN"
 //
 // const role = "ADMIN";
-import Inputmask from 'inputmask';
-import image6 from '../../images/profile/image6.png';
+import Inputmask from "inputmask";
+import image6 from "../../images/profile/image6.png";
 
 const userData = {
-  name: 'admin',
-  email: 'admin@gmail.com',
-  password: 'qwerty321',
-  role: 'ADMIN',
+  name: "admin",
+  email: "admin@gmail.com",
+  password: "qwerty321",
+  role: "ADMIN",
 };
 
 import {
   refs
-} from '../components/refs';
+} from "../components/refs";
 import {
   createSingleCardMarkup
-} from '../sale/cardModule';
+} from "../sale/cardModule";
 
 const forms = {
   infoForm: {
-    name: '',
-    surname: '',
-    phone: '',
-    email: '',
+    name: "",
+    surname: "",
+    tel: "",
+    email: "",
   },
   passwordForm: {
-    password: '',
-    confirmPassword: '',
+    password: "",
+    confirmPassword: "",
   },
   addressForm: {
-    country: '',
-    city: '',
-    place: '',
-    street: '',
-    block: '',
-    building: '',
-    flat: '',
+    country: "",
+    city: "",
+    place: "",
+    street: "",
+    block: "",
+    building: "",
+    flat: "",
   },
   advertisementForm: {
-    name: '',
-    category: '',
+    name: "",
+    category: "",
     price: 0,
-    description: '',
+    description: "",
     images: [],
     totalQuantity: 0,
   },
 };
+//=============tel===========
+const getTel = (value) => {
+  const telResult = value.split('');
+  return telResult.reduce((acc, char) => {
+    if (char !== ' ' && char !== '(' && char !== ')' && char !== '-' && char !== '+') {
+
+      acc.push(char);
+    }
+    return acc;
+  }, []).join('')
+}
+//  console.log('forms :>> ', forms);
+// console.log('forms :>> ', getTel(forms.infoForm.tel));
+//=============tel===========
 
 export default {
   refs: {
-    curentActiveTab: '',
-    sectionRef: '',
+    curentActiveTab: "",
+    sectionRef: "",
   },
 
   maintabsMarkup() {
     console.log(this);
-    this.sectionRef = document.querySelector('.container');
-    console.log('sectionRef :>> ', this.sectionRef);
+    this.sectionRef = document.querySelector(".container");
+    console.log("sectionRef :>> ", this.sectionRef);
 
-    this.sectionRef.innerHTML = '';
+    this.sectionRef.innerHTML = "";
     const accountTabsMarkup = () => {
       return ` 
       <section class="profile tabs__panel"  id="profile">
@@ -91,7 +105,7 @@ export default {
       <button class="profile__button address" type="button" title="address">Мой Адрес</button>
       <button class="profile__button favourites" type="button" title="favourites">Избранное</button>
       ${
-        userData.role === 'ADMIN'
+        userData.role === "ADMIN"
           ? `<button class="profile__button advertisement" type="button" title="advertisement">Создать
       объявление</button>`
           : ``
@@ -104,56 +118,56 @@ export default {
             </section>
           `;
     };
-    console.log('refs.sections :>> ', refs.sections);
+    console.log("refs.sections :>> ", refs.sections);
     this.sectionRef.innerHTML = accountTabsMarkup();
-    const mainTabsNav = document.querySelector('#parent_profile');
+    const mainTabsNav = document.querySelector("#parent_profile");
 
     console.log(mainTabsNav);
-    mainTabsNav.addEventListener('click', this.getMarkup);
+    mainTabsNav.addEventListener("click", this.getMarkup);
 
-    const favouritesBtn = document.querySelector('.favourites');
+    const favouritesBtn = document.querySelector(".favourites");
     // console.log('favouritesBtn :>> ', favouritesBtn);
-    favouritesBtn.addEventListener('click', event => {
-      console.log('event.target :>> ', event.target);
+    favouritesBtn.addEventListener("click", (event) => {
+      console.log("event.target :>> ", event.target);
     });
   },
 
   getMarkup(event) {
-    if (event.target.nodeName !== 'BUTTON') {
-      console.log('Not a button');
+    if (event.target.nodeName !== "BUTTON") {
+      console.log("Not a button");
       return;
     }
-    const currentActiveBtn = document.querySelector('.active');
+    const currentActiveBtn = document.querySelector(".active");
 
     if (currentActiveBtn) {
-      currentActiveBtn.classList.remove('active');
+      currentActiveBtn.classList.remove("active");
       deleteActive();
     }
     const controlItem = event.target;
-    controlItem.classList.add('active');
+    controlItem.classList.add("active");
 
     switch (controlItem.title) {
-      case 'contacts':
+      case "contacts":
         userInfoMarkup();
-        addInfoListener('infoForm');
+        addInfoListener("infoForm");
 
         break;
-      case 'password':
+      case "password":
         passwordMarkup();
-        addInfoListener('passwordForm');
+        addInfoListener("passwordForm");
 
         break;
-      case 'address':
+      case "address":
         addressFormMarkup();
-        addInfoListener('addressForm');
+        addInfoListener("addressForm");
         break;
-      case 'favourites':
+      case "favourites":
         favouritesFormMarkup();
 
         break;
-      case 'advertisement':
+      case "advertisement":
         advertisementFormMarkup();
-        addInfoListener('advertisementForm');
+        addInfoListener("advertisementForm");
         break;
 
       default:
@@ -175,27 +189,19 @@ function userInfoMarkup() {
                     <div class="helper-text-div"></div>
                     <div class="helper-text-div__info"></div>
                     
-
-    
                     <label id="name-label" for="name"><em> * </em>Фамилия</label>
                     <input type="text" name="surname" id="surname" class="form-control" placeholder="Username2"   required />
                     <div class="helper-text-div"></div>
 
-    
                     <label id="email-label" for="email"><em> * </em>Email</label>
                     <input type="email" name="email" id="email" class="form-control" placeholder="user@mail.com"  required />
                     <div class="helper-text-div"></div>
-
 
                     <label id="phone-number" for="phone-number"><em> * </em>Телефон</label>
                     <input type="tel" name="tel"  for="tel" id="tel" class="form-control"
                        required />
                      <div class="helper-text-div"></div>
 
-
-                      
-    
-                      
                       </div>
                       <button type="submit" id="submit" class="save-button">
                         Сохранить
@@ -203,8 +209,8 @@ function userInfoMarkup() {
                 </form>
           `;
   };
-  const contactsBtn = document.querySelector('.contacts');
-  contactsBtn.insertAdjacentHTML('afterend', infoMarkup());
+  const contactsBtn = document.querySelector(".contacts");
+  contactsBtn.insertAdjacentHTML("afterend", infoMarkup());
   setActive();
 }
 
@@ -234,8 +240,8 @@ function passwordMarkup() {
                 </form>
             `;
   };
-  const changePasswordBtn = document.querySelector('.password');
-  changePasswordBtn.insertAdjacentHTML('afterend', passwordFormMarkup());
+  const changePasswordBtn = document.querySelector(".password");
+  changePasswordBtn.insertAdjacentHTML("afterend", passwordFormMarkup());
   setActive();
 }
 
@@ -291,13 +297,13 @@ function addressFormMarkup() {
                 </form>
             `;
   };
-  const myAddressBtn = document.querySelector('.address');
-  myAddressBtn.insertAdjacentHTML('afterend', formMarkup());
+  const myAddressBtn = document.querySelector(".address");
+  myAddressBtn.insertAdjacentHTML("afterend", formMarkup());
   setActive();
 }
+//=======FAVOURITES=========================
 
 function favouritesFormMarkup(array) {
-
   const favouritesMarkup = (array) => {
     return `
           <div class="favourites-wrapper tabs__panel" id="form" data-form="favourites">
@@ -305,9 +311,9 @@ function favouritesFormMarkup(array) {
     
                 <ul class="favourites-list ">
                 ${array.reduce((acc, element) => {
-      acc += profileCreateSingleCardMarkup(element);
-      return acc;
-    }, '')} </ul>
+                  acc += profileCreateSingleCardMarkup(element);
+                  return acc;
+                }, "")} </ul>
                 <button type="submit" id="submit" class="favorite-button save-button">
                   Купить всё
                 </button>
@@ -316,7 +322,7 @@ function favouritesFormMarkup(array) {
   };
   const profileCreateSingleCardMarkup = (element) => {
     const profileRating = () => {
-      let markup = '';
+      let markup = "";
       let number = profileGetRandomInt(1, 6);
       for (let i = 1; i <= number; i += 1) {
         markup += `<li class="card_rating"></li>`;
@@ -329,15 +335,15 @@ function favouritesFormMarkup(array) {
       return Math.floor(Math.random() * (max - min)) + min;
     };
 
-    const profileCardItemMarkup = element => {
+    const profileCardItemMarkup = (element) => {
       return `
       <li class="favourites-list__items"  data-id=${element._id} >
         <div class="card-image">
   ${
-        userData.isMobile
-          ? ` <img class="card_img" src="${element.images[0]}" alt="${element.name}" width="86"/>`
-          : `<img class="card_img-tablet" src="${element.images[0]}" alt="${element.name}" width="149"/>`
-        }
+    userData.isMobile
+      ? ` <img class="card_img" src="${element.images[0]}" alt="${element.name}" width="86"/>`
+      : `<img class="card_img-tablet" src="${element.images[0]}" alt="${element.name}" width="149"/>`
+  }
  
   </div>
       
@@ -353,22 +359,22 @@ function favouritesFormMarkup(array) {
       ${
         sale
           ? `<p class="item-price__new">${
-          element.price * 1.3
-          }<span> &#x20b4;</span></p>
+              element.price * 1.3
+            }<span> &#x20b4;</span></p>
         <p class="item-price__old">${element.price}<span> &#8372;</span></p>`
           : `<p class="item-price__old">${element.price}<span> &#8372;</span></p>`
-        }
+      }
      </div>
     </li>`;
     };
     return profileCardItemMarkup(element);
   };
 
-
-  const favouritesBtn = document.querySelector('.favourites');
-  favouritesBtn.insertAdjacentHTML('afterend', favouritesMarkup());
+  const favouritesBtn = document.querySelector(".favourites");
+  favouritesBtn.insertAdjacentHTML("afterend", favouritesMarkup());
   setActive();
-};
+}
+//=======FAVOURITES=========================
 
 export function advertisementFormMarkup() {
   const advertisementMarkup = () => {
@@ -419,13 +425,13 @@ export function advertisementFormMarkup() {
           </form>
     `;
   };
-  const advertisementBtn = document.querySelector('.advertisement');
-  advertisementBtn.insertAdjacentHTML('afterend', advertisementMarkup());
+  const advertisementBtn = document.querySelector(".advertisement");
+  advertisementBtn.insertAdjacentHTML("afterend", advertisementMarkup());
   setActive();
 
   //! ============================= Kostya ==================
-  const btnAddProduct = document.querySelector('.js-active-tab-advertisement');
-  btnAddProduct.addEventListener('click', addProduct);
+  const btnAddProduct = document.querySelector(".js-active-tab-advertisement");
+  btnAddProduct.addEventListener("click", addProduct);
 
   // const optin = document.querySelector('.js__option')
   // optin.insertAdjacentHTML('beforeend', chooseCategory());
@@ -434,18 +440,18 @@ export function advertisementFormMarkup() {
 }
 
 function setActive() {
-  const formRef = document.querySelector('#form');
+  const formRef = document.querySelector("#form");
 
-  return formRef.setAttribute('data-active', 'true');
+  return formRef.setAttribute("data-active", "true");
   //console.log(formRef.dataset.active);
 }
 
 function deleteActive() {
   const activePanel = document.querySelector('#form[data-active="true"]');
-  activePanel.removeAttribute('data-active');
+  activePanel.removeAttribute("data-active");
 
-  const parent = document.querySelector('#parent_profile');
-  const child = document.querySelector('#form');
+  const parent = document.querySelector("#parent_profile");
+  const child = document.querySelector("#form");
   parent.removeChild(child);
 }
 
@@ -461,20 +467,20 @@ function deleteActive() {
 // };
 
 function addInfoListener(key) {
-  const form = document.querySelector('#profile');
+  const form = document.querySelector("#profile");
   // console.log(forms[key]);
   const inputForm = form.querySelector(`[data-form="${key}"]`);
-  inputForm.addEventListener('input', getInfo);
-  console.log('inputForm', inputForm.dataset.form);
+  inputForm.addEventListener("input", getInfo);
+  console.log("inputForm", inputForm.dataset.form);
 }
 //! ==================== Kostya ==================
 const product = {
   images: [],
   totalQuantity: 1,
-  name: '',
-  category: '',
+  name: "",
+  category: "",
   price: 0,
-  description: '',
+  description: "",
 };
 
 // export async function wayToCategory() {
@@ -501,34 +507,34 @@ const product = {
 //   };
 
 function addProduct(e) {
-  console.log('e.target', e.target);
-  if (e.target.nodeName === 'BUTTON' && e.target.closest('[data-create]')) {
-    const createBtn = e.target.closest('[data-create]').dataset.create;
-    console.log('createBtn', createBtn);
+  console.log("e.target", e.target);
+  if (e.target.nodeName === "BUTTON" && e.target.closest("[data-create]")) {
+    const createBtn = e.target.closest("[data-create]").dataset.create;
+    console.log("createBtn", createBtn);
     apiProducts.CreateNewProduct(product);
   } else return;
 }
 
 function getInfo(event) {
-  if (event.target.name === 'productPrice') {
+  if (event.target.name === "productPrice") {
     product.price = event.target.value;
   }
-  if (event.target.name === 'productName') {
+  if (event.target.name === "productName") {
     product.name = event.target.value;
   }
-  if (event.target.name === 'productDescription') {
+  if (event.target.name === "productDescription") {
     product.description = event.target.value;
   }
-  if (event.target.name === 'productCatygory') {
+  if (event.target.name === "productCatygory") {
     product.category = event.target.value;
   }
-  console.log('PRODUCT', product);
-  console.log('&&&&&&&', event.target);
+  // console.log("PRODUCT", product);
+  // console.log("&&&&&&&", event.target);
   // apiProducts.CreateNewProduct(product)
 
   //! =======================================
 
-  let key = event.target.closest('[data-form]').dataset.form;
+  let key = event.target.closest("[data-form]").dataset.form;
   forms[key][event.target.name] = event.target.value;
   // console.log("KEY", key);
   // console.log("!!!!!!", event.target.name);
@@ -547,11 +553,11 @@ function getInfo(event) {
   const field = event.target;
   const inputValue = event.target.value;
   const inputLength = event.target.value.length;
-  const nameOfInput = field.getAttribute('name');
-  const textInput = field.getAttribute('type');
+  const nameOfInput = field.getAttribute("name");
+  const textInput = field.getAttribute("type");
 
-  console.log('nameOfInput', nameOfInput);
-  ['[object HTMLInputElement]'].value;
+  console.log("nameOfInput", nameOfInput);
+  ["[object HTMLInputElement]"].value;
 
   //console.log('field.getAttribute("name") :>> ', field.getAttribute('name'));
   //^[a-zA-Zа-яА-Я0-9_]*$
@@ -564,92 +570,95 @@ function getInfo(event) {
   const zipRegEx = /^[0-9_/-]*$/;
   //const onlyLettersRegEx = /^[а-яё\s]+|(?=.*[A-Z])[a-z\s]+$/iu;
 
-  if (nameOfInput === 'name') {
+  if (nameOfInput === "name") {
     inputLength > 1 &&
       inputLength < 35 &&
       inputValue.match(onlyLetAndSymbolRegEx) ?
       ((field.nextElementSibling.innerHTML = `<span class="helper-text-valid"></span>`),
-        (field.style.outlineColor = '#109b17')) :
+        (field.style.outlineColor = "#109b17")) :
       ((field.nextElementSibling.innerHTML = `<span class="helper-text-invalid">Введите имя, отчество </span>`),
-        (field.style.outlineColor = '#FF8A9D'));
-  } else if (nameOfInput === 'surname') {
+        (field.style.outlineColor = "#FF8A9D"));
+  } else if (nameOfInput === "surname") {
     inputLength < 35 &&
       inputLength > 1 &&
       inputValue.match(onlyLetAndSymbolRegEx) ?
       ((field.nextElementSibling.innerHTML = `<span class="helper-text-valid"></span>`),
-        (field.style.outlineColor = '#109b17')) :
+        (field.style.outlineColor = "#109b17")) :
       ((field.nextElementSibling.innerHTML = `<span class="helper-text-invalid">Введите фамилию</span>`),
-        (field.style.outlineColor = '#FF8A9D'));
-  } else if (nameOfInput === 'email') {
+        (field.style.outlineColor = "#FF8A9D"));
+  } else if (nameOfInput === "email") {
     const regExEmail = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{3,}))$/;
-    nameOfInput === 'email' && inputValue.match(regExEmail) ?
+    nameOfInput === "email" && inputValue.match(regExEmail) ?
       ((field.nextElementSibling.innerHTML = `<span class="helper-text-valid"></span>`),
-        (field.style.outlineColor = '#109b17')) :
+        (field.style.outlineColor = "#109b17")) :
       ((field.nextElementSibling.innerHTML = `<span class="helper-text-invalid">Неверный адрес почты</span>`),
-        (field.style.outlineColor = '#FF8A9D'));
-  } else if (nameOfInput === 'tel') {
+        (field.style.outlineColor = "#FF8A9D"));
+  } else if (nameOfInput === "tel") {
     let selector = document.querySelector('input[type="tel"]');
 
-    let im = new Inputmask('+38 (999) 999-99-99');
+    let im = new Inputmask("+38 (999) 999-99-99");
     im.mask(selector);
     inputLength > 18 ?
       ((field.nextElementSibling.innerHTML = `<span class="helper-text-valid"></span>`),
-        (field.style.outlineColor = '#109b17')) :
+        (field.style.outlineColor = "#109b17")) :
       ((field.nextElementSibling.innerHTML = `<span class="helper-text-invalid">Введите номер телефона</span>`),
-        (field.style.outlineColor = '#FF8A9D'));
+        (field.style.outlineColor = "#FF8A9D"));
+
     //field.nextElementSibling.innerHTML = `<span class="helper-text-valid">Successfull</span>`;
-  } else if (nameOfInput === 'password') {
-    nameOfInput === 'password' && inputLength > 5 ?
+  } else if (nameOfInput === "password") {
+    nameOfInput === "password" && inputLength > 5 ?
       ((field.nextElementSibling.innerHTML = `<span class="helper-text-valid"></span>`),
-        (field.style.outlineColor = '#109b17')) :
+        (field.style.outlineColor = "#109b17")) :
       ((field.nextElementSibling.innerHTML = `<span class="helper-text-invalid"><small>Пароль должен содержать не менее 6 символов</small></span>`),
-        (field.style.outlineColor = '#FF8A9D'));
-  } else if (nameOfInput === 'confirmPassword') {
+        (field.style.outlineColor = "#FF8A9D"));
+  } else if (nameOfInput === "confirmPassword") {
     let password = document.querySelector('[name="password"]').value;
     let confirmPassword = document.querySelector('[name="confirmPassword"]')
       .value;
-    const errorDiv = document.querySelector('#helper-text-div');
-    console.log('errorDiv :>> ', errorDiv);
+    const errorDiv = document.querySelector("#helper-text-div");
+    console.log("errorDiv :>> ", errorDiv);
 
     password === confirmPassword ?
       ((errorDiv.innerHTML = `<span class="helper-text-valid"></span>`),
-        (field.style.outlineColor = '#109b17')) :
+        (field.style.outlineColor = "#109b17")) :
       ((errorDiv.innerHTML = `<span class="helper-text-invalid"><small>Подтвердите пароль</small></span>`),
-        (field.style.outlineColor = '#FF8A9D'));
+        (field.style.outlineColor = "#FF8A9D"));
   } else if (
-    nameOfInput === 'country' ||
-    nameOfInput === 'city' ||
-    nameOfInput === 'place' ||
-    nameOfInput === 'street'
+    nameOfInput === "country" ||
+    nameOfInput === "city" ||
+    nameOfInput === "place" ||
+    nameOfInput === "street"
   ) {
     inputLength > 2 &&
       inputLength < 35 &&
       inputValue.match(onlyLetAndSymbolRegEx) ?
       ((field.nextElementSibling.innerHTML = `<span class="helper-text-valid"></span>`),
-        (field.style.outlineColor = '#109b17')) :
+        (field.style.outlineColor = "#109b17")) :
       ((field.nextElementSibling.innerHTML = `<span class="helper-text-invalid">Введите данные</span>`),
-        (field.style.outlineColor = '#FF8A9D'));
+        (field.style.outlineColor = "#FF8A9D"));
   } else if (
-    nameOfInput === 'building' ||
-    nameOfInput === 'block' ||
-    nameOfInput === 'flat'
+    nameOfInput === "building" ||
+    nameOfInput === "block" ||
+    nameOfInput === "flat"
   ) {
     inputLength > 0 && inputLength < 9 && inputValue.match(numbersRegEx) ?
       ((field.nextElementSibling.innerHTML = `<span class="helper-text-valid"></span>`),
-        (field.style.outlineColor = '#109b17')) :
+        (field.style.outlineColor = "#109b17")) :
       ((field.nextElementSibling.innerHTML = `<span class="helper-text-invalid">Введите данные</span>`),
-        (field.style.outlineColor = '#FF8A9D'));
+        (field.style.outlineColor = "#FF8A9D"));
     //======= address==========
-  } else if (nameOfInput === 'postIndex') {
+  } else if (nameOfInput === "postIndex") {
     inputLength === 5 && inputValue.match(zipRegEx) ?
       ((field.nextElementSibling.innerHTML = `<span class="helper-text-valid"></span>`),
-        (field.style.outlineColor = '#109b17')) :
+        (field.style.outlineColor = "#109b17")) :
       ((field.nextElementSibling.innerHTML = `<span class="helper-text-invalid">Введите 5 цифр индекса</span>`),
-        (field.style.outlineColor = '#FF8A9D'));
+        (field.style.outlineColor = "#FF8A9D"));
     // } else if (inputForm.dataset.form === 'favourites') {
-    //   console.log('key :>> ', event.target.dataset.form);
+    //console.log('key :>> ', event.target.dataset.form);
   }
+
 }
+
 //============ Favourites==========
 
 //5f257c74dd556c0017611105
