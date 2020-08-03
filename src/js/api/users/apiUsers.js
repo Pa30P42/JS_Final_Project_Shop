@@ -15,6 +15,11 @@ export default {
   deleteFavoriteUrl:
     'https://goit-store.herokuapp.com/users/removeFavoriteProduct/',
   // should get a prod id
+
+//   {
+//     "email": "olysik@gmail.com",
+//     "password": "olysik34"
+// }
   async addFavorite(id) {
     try {
       // console.log(JSON.parse(localStorage.getItem('info')).token);
@@ -112,6 +117,7 @@ export default {
       ).token;
       const response = await axios.get(this.getUserInfoUrl);
       console.log(response);
+      return response;
     } catch (error) {
       console.log(error);
       // throw error;
@@ -144,4 +150,3 @@ export default {
     }
   },
 };
-
