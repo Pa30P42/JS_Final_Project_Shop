@@ -18,7 +18,7 @@ const createListMarkup = (array, link) => {
     return acc;
   }, '')}</ul>
   <div class="pagination_wrapper">
-  ${createPaginationMarkup(array.length)}
+  ${createPaginationMarkup(array)}
   </div>
   </section>`;
 };
@@ -75,10 +75,10 @@ export const createList = (array, link) => {
   container.addEventListener('click', getItem);
   cardList.addEventListener('click', getVector);
 
-  const list = document.querySelector('.products_pagination');
-  console.log('list', list);
+  // const list = document.querySelector('.products_pagination');
+  // console.log('list', list);
 
-  list.addEventListener('click', getPaginationPage);
+  container.addEventListener('click', getPaginationPage);
 
   // cardList.addEventListener('click', getVector);
 };

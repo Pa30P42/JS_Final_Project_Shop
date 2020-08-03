@@ -16,32 +16,28 @@ const userData = {
   },
 };
 
-// function deviceWidthPagination(deviceWidth) {
-//   if (deviceWidth.isMobile) {
-//     userData.pagination.perPage = 6;
-//   } else if (deviceWidth.isTablet) {
-//     userData.pagination.perPage = 9;
-//   } else if (deviceWidth.isDesktop) {
-//     userData.pagination.perPage = 10;
-//     // console.log('deviceWidth', userData);
-//   }
-// }
-
-// deviceWidthPagination(deviceWidth);
-
 export const createPaginationMarkup = totalProducts => {
-  // console.log('DATA', totalProducts);
-  userData.pagination.totalProducts = totalProducts;
+  console.log('DATA', totalProducts);
+  userData.pagination.totalProducts = totalProducts.length;
+
+  if (deviceWidth.isMobile) {
+    userData.pagination.perPage = 6;
+  } else if (deviceWidth.isTablet) {
+    userData.pagination.perPage = 9;
+  } else if (deviceWidth.isDesktop) {
+    userData.pagination.perPage = 10;
+  }
 
   if (
     (deviceWidth.isMobile || deviceWidth.isTablet || deviceWidth.isDesktop) &&
     userData.pagination.totalProducts > userData.pagination.perPage
   ) {
-    // console.log(
-    //   'userData.pagination.totalProducts',
-    //   userData.pagination.totalProducts,
-    // );
-    return `
+    console.log(
+      'userData.pagination.totalProducts',
+      userData.pagination.totalProducts,
+    );
+
+    const markup = `
       <ul class="products_pagination">
         <li class="products_pagination__item" data-pagenumber="1"><span class="products_pagination__item_number">1</span>
         </li>
@@ -56,34 +52,14 @@ export const createPaginationMarkup = totalProducts => {
         </li>
       </ul>
   
-        <p class="products_pagination__description">Показано с 1 по 20 из ${totalProducts}</p>`;
-  }
+        <p class="products_pagination__description">Показано с 1 по 20 из ${totalProducts.length}</p>`;
+    return markup;
+  } else return '';
 };
 
-// export function productsTotalCount(data) {
-
-// }
-
-export function getPaginationPage(e) {
+export function getPaginationPage(e, category) {
   // console.log('Hello Pagination', e.target.dataset.pagenumber);
-  userData.pagination.currentPage = 1;
-  if (
-    e.target.dataset.pagenumber &&
-    e.target.closest('[data-pagenumber]').dataset.pagenumber !== 'next' &&
-    e.target.closest('[data-pagenumber]').dataset.pagenumber !== 'end'
-  ) {
-    console.log('Hoooray');
-    userData.pagination.currentPage = e.target.closest(
-      '[data-pagenumber]',
-    ).dataset.pagenumber;
-  }
 
-  if (e.target.closest('[data-pagenumber]').dataset.pagenumber === 'next') {
-    userData.pagination.currentPage =
-      Number(userData.pagination.currentPage) + 1;
-    // console.log('userData.currentPage', userData.currentPage);
-    // console.log('nextPage', userData.currentPage);
-  }
   if (deviceWidth.isMobile) {
     userData.pagination.perPage = 6;
   } else if (deviceWidth.isTablet) {
@@ -92,6 +68,24 @@ export function getPaginationPage(e) {
     userData.pagination.perPage = 10;
   }
 
+  if (
+    e.target.dataset.pagenumber &&
+    e.target.closest('[data-pagenumber]').dataset.pagenumber !== 'next' &&
+    e.target.closest('[data-pagenumber]').dataset.pagenumber !== 'end'
+  ) {
+    console.log('Hoooray');
+    userData.pagination.currentPage = Number(
+      e.target.closest('[data-pagenumber]').dataset.pagenumber,
+    );
+  } else return;
+
+  if (e.target.closest('[data-pagenumber]').dataset.pagenumber === 'next') {
+    userData.pagination.currentPage =
+      Number(userData.pagination.currentPage) + 1;
+    console.log('userData.currentPage', userData.currentPage);
+    console.log('nextPage', userData.currentPage);
+  } else return;
+
   //   console.log(userData.perPage);
   //   console.log(userData.currentPage);
 
@@ -99,9 +93,9 @@ export function getPaginationPage(e) {
     .getProductsWithPagination(
       userData.pagination.perPage,
       userData.pagination.currentPage,
-      'new',
+      'refrigerators',
     )
-    // .then(res => console.log(res.config))
+    // .then(res => console.log(res.config));
     .then(data => console.log('getProductsWithPagination', data.data));
 }
 

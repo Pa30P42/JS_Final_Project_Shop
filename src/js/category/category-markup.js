@@ -107,10 +107,6 @@ function listeners(action) {
       .then(data => createList(data.data, sublinkName));
     // console.log(link);
 
-    // apiProducts
-    //   .getCategoryTotalCount(`${link}`)
-    //   .then(data => createPaginationMarkup(data));
-
     // вместо console.log(data.data) вставляем функцию Ани //
     if (link) {
       action();
