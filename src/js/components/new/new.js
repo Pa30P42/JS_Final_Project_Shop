@@ -1,5 +1,7 @@
 import apiProducts from '../../api/products/apiProducts';
 import { refs } from '../refs';
+import { createSingleCardMarkup } from '../../sale/cardModule';
+import productCard from '../../adv/productCard';
 import SliderMultiItems from './SliderMultiItems';
 // import axios from 'axios';
 
@@ -44,7 +46,7 @@ const addNewProducts = () => {
   const createListCardsMarkup = products => {
     return `<ul class="slider__list-cards">
     ${products.reduce((acc, product) => {
-      acc += createCardMarkup(product);
+      acc += createSingleCardMarkup(product, false);
       return acc;
     }, '')}
     </ul>`;
@@ -63,11 +65,17 @@ const addNewProducts = () => {
   };
 
   const onSelectCard = e => {
-    console.log(e.target.nodeName);
+    // console.log(e.target.nodeName);
     if (e.target.nodeName === 'UL') return;
     const parent = e.target.closest('[data-id]');
     const id = parent.dataset.id;
     const product = newProducts.find(item => item._id === id);
+    // console.log(product);
+    productCard(product);
+    /*--------- temporary: ---------*/
+    const imgMain = document.querySelector('.product__image img');
+    imgMain.src = product.images[0];
+    /*------------------------------*/
   };
 
   getNewProducts().then(data => {

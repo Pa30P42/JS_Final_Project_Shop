@@ -54,6 +54,7 @@ export default {
     } else {
       try {
         const response = await axios.get('https://goit-store.herokuapp.com/products');
+        // console.log('response :>> ', response);
         return response;
       } catch (err) {
         throw new Error(err);
