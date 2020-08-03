@@ -54,4 +54,12 @@
                 </button>
                 </div>
               </div>
+
+
+
+
+
+              <label id="name-label" for="name"><em> * </em>Почтовый индекс</label>
+                    <input type="text" name="postIndex"   value="${userData.user.address.zip = '12345'}"  class="form-control  form-control__address" placeholder="00000"
+                      required />
           `;
