@@ -16,6 +16,7 @@ import {
   categoriesListMarkupAddListeners,
 } from '../category/category-markup';
 import { modalModule } from '../components/modalModule/modalModule.js';
+import information from '../information/information';
 
 import { pseudoProfile } from '../profile/profileTabs';
 
@@ -48,6 +49,7 @@ const headerButton = event => {
     closeHeaderMenu();
   } else if (dataname === 'name_info') {
     console.log('info');
+    information();
     closeHeaderMenu();
   } else if (dataname === 'name_contacts') {
     contactMarkUp();
