@@ -1,5 +1,5 @@
 import { contactMarkUp } from '../contacts/contacts.js';
-import { showCart } from '../components/cart';
+import { showCart } from '../components/cart/cart';
 import trigger from '../components/trigger';
 // import trigger from './js/components/trigger';
 import { refs } from '../components/refs.js';

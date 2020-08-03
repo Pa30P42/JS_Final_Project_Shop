@@ -1,7 +1,8 @@
-import { refs } from './refs';
-import userData from '../userData';
-import setting from '../setting';
-import { modalModule } from './modalModule/modalModule';
+import { refs } from '../refs';
+import userData from '../../userData';
+import setting from '../../setting';
+import { modalModule } from '../modalModule/modalModule';
+import apiOrders from '../../api/orders/apiOrders';
 
 // const markup = cartItems(cart.order);
 // const divRef = document.createElement('div');
@@ -102,7 +103,6 @@ const setHeightList = () => {
 const changeListHeight = () => {
   const cartList = document.querySelector('.cart__list');
   cartList.setAttribute('style', `max-height: ${setHeightList()}px`);
-  window.removeEventListener('resize', changeListHeight);
 };
 
 const createCartItemMarkup = item => {
@@ -146,7 +146,6 @@ const createCartMarkup = () => {
   const headerCart = createHeaderCartMarkup();
   const footerCart = createFooterCartMarkup();
   const bodyCart = createBodyCartMarkup();
-  window.addEventListener('resize', changeListHeight);
   return headerCart + bodyCart + footerCart;
 };
 
@@ -253,16 +252,56 @@ const closeCart = closeModal => {
   window.removeEventListener('resize', changeListHeight);
 };
 
+const addListener = callbackClose => {
+  const buttonRef = document.createElement('button');
+  buttonRef.addEventListener('click', callbackClose);
+};
+
+const createMsgMarkup = () => {
+  return `
+    <div style="padding: 40px; text-align: center; font-size: 26px; font-weight: bold;">
+      Зарегитрируйтесь, пожалуйста, для оформления заказа
+    </div>`;
+};
+
 const createOrder = closeModal => {
   closeModal();
   window.removeEventListener('resize', changeListHeight);
   if (localStorage.getItem('info')) {
     // send order
-    userData.user.cart.cartItems = [];
-    userData.user.cart.totalAmount = 0;
-    setCartCounter();
+    const productIds = userData.user.cart.cartItems.map(({ id }) => id);
+    userData.user.adress = {
+      country: 'UA',
+      city: 'Kyiv',
+      place: 'Center',
+      street: 'Победы',
+      block: '4',
+      building: '18',
+      flat: '777',
+    };
+    const order = {
+      address: userData.user.adress,
+      productList: productIds,
+    };
+    const sendOrder = async newOrder => {
+      try {
+        const response = await apiOrders.createNewOrder(newOrder);
+        console.log(response);
+        return response.data;
+      } catch (error) {
+        console.log('Лог ошибки в sendOrder ' + error);
+      }
+    };
+    console.log(JSON.stringify(order));
+    sendOrder(JSON.stringify(order)).then(data => {
+      console.log(data);
+      userData.user.cart.cartItems = [];
+      userData.user.cart.totalAmount = 0;
+      setCartCounter();
+    });
   } else {
     // go to authorization
+    modalModule(createMsgMarkup, addListener);
   }
 };
 
