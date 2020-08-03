@@ -52,6 +52,22 @@ export default {
     }
   },
 
+  async getCategoryTotalCount(inputSearch) {
+    try {
+      const response = await axios.get(
+        `https://goit-store.herokuapp.com/products/getCategories?category=${inputSearch}`,
+      );
+
+      // userData.categoriesItems = [...response.data.categories];
+
+      console.log('user', userData);
+      // chooseCategory(userData.categoriesItems)
+      return response;
+    } catch (err) {
+      throw new Error(err);
+    }
+  },
+
   async getAllProducts() {
     if (userData.categoriesItems.length > 0) {
       return userData.categoriesItems;

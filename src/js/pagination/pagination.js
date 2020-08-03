@@ -12,10 +12,11 @@ const userData = {
     totalProducts: 0,
     perPage: 0,
     pagesCount: 0,
+    category: '',
   },
 };
 
-function getPaginationPage(e) {
+function getPaginationPage(e, category) {
   if (
     (e.target.nodeName === 'LI' || e.target.nodeName === 'SPAN') &&
     e.target.closest('[data-pagenumber]').dataset.pagenumber !== 'next' &&
@@ -46,13 +47,25 @@ function getPaginationPage(e) {
     .getProductsWithPagination(
       userData.pagination.perPage,
       userData.pagination.currentPage,
-      'tools',
+      'new',
     )
     // .then(res => console.log(res.config))
-    .then(data => console.log('products with pagination', data.data));
+    .then(data => console.log(data.data));
+  // .then(data => totalPaginationProducts(data.data));
+
+  // apiProducts
+  //   .searchProductsbyCategoryAndName()
+  //   .then(data => createPagination(data.data.length));
+
+  // function totalPaginationProducts(data) {
+  //   console.log('data.length', data.length);
+  // }
 }
 
 // apiProducts.getAllProducts().then(data => createPagination(data.data.length));
+
+// Запрос на кол-вот товара в категории
+// https://goit-store.herokuapp.com/products/getCategories?category=accessories_for_kitchen_appliances
 
 refs.pagination.addEventListener('click', getPaginationPage);
 
