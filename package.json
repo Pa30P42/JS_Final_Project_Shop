@@ -53,8 +53,10 @@
     "basiclightbox": "^5.0.3",
     "core-js": "^3.6.4",
     "debounce": "^1.2.0",
+    "fs": "0.0.1-security",
     "fuse.js": "^6.4.1",
     "handlebars": "^4.7.6",
+    "inputmask": "^5.0.3",
     "moment": "^2.27.0",
     "siema": "^1.5.1",
     "svg-sprite-loader": "^5.0.0"

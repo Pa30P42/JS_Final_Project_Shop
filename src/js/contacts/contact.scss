@@ -47,7 +47,6 @@
   line-height: 22px;
   color: #53535c;
   margin-top: 25px;
-  margin-bottom: 15px;
 }
 
 .team__item__text {
@@ -60,6 +59,7 @@
   line-height: 12px;
   color: #000000;
   margin-bottom: 35px;
+  margin-top: 15px;
 }
 
 .contactsBack {
@@ -80,7 +80,13 @@
   margin: 20px 20px 20px 20px;
 }
 
-@media (min-width: 320px) and (max-width: 799px) {
+.contacts_name {
+  font-weight: bold;
+  line-height: 22px;
+  color: #53535c;
+}
+
+@media (min-width: 320px) and (max-width: 767px) {
   .container_contact {
     width: 320px;
     margin: 0 auto;
@@ -93,14 +99,14 @@
   }
 }
 
-@media (min-width: 800px) and (max-width: 1250px) {
+@media (min-width: 768px) and (max-width: 1200px) {
   .container_contact {
-    width: 768px;
+    width: 648px;
     margin: 0 auto;
   }
 
   .team__item {
-    width: 314px;
+    width: 304px;
     height: 161px;
     margin: 10px 10px 10px 10px;
   }
@@ -122,9 +128,8 @@
   }
 
   .team__item__title {
-    font-size: 26px;
+    font-size: 24px;
     line-height: 32px;
-    margin-top: 90px;
     margin-top: 15px;
   }
 
@@ -133,18 +138,24 @@
     line-height: 14px;
     margin-bottom: 40px;
   }
+  .contacts_name {
+    font-size: 20px;
+    font-weight: bold;
+    line-height: 22px;
+    color: #53535c;
+  }
 }
 
-@media (min-width: 1250px) {
+@media (min-width: 1200px) {
   .container_contact {
-    width: 1200px;
+    width: 1100px;
     margin: 0 auto;
   }
 
   .team__item {
-    width: 525px;
+    width: 500px;
     height: 270px;
-    margin: 30px 30px 30px 30px;
+    margin: 20px 20px 20px 20px;
   }
 
   .team__item__info {
@@ -169,6 +180,13 @@
     line-height: 32px;
     margin-top: 60px;
     margin-bottom: 15px;
+  }
+
+  .contacts_name {
+    font-size: 26px;
+    font-weight: bold;
+    line-height: 22px;
+    color: #53535c;
   }
 
   .team__item__text {
