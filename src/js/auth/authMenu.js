@@ -2,6 +2,7 @@ import { modalModule } from '../components/modalModule/modalModule';
 import { authForm } from '../auth/authForm';
 import apiAuth from '../api/auth/apiAuth';
 import apiUsers from '../api/users/apiUsers';
+import { pseudoProfile } from '../profile/profileTabs';
 
 let authFormListeners = '';
 const userValue = {
@@ -9,19 +10,20 @@ const userValue = {
   password: '',
 };
 
-
 const modalContainer = document.querySelector('.modalModule');
 let loginAccount = '';
 
 const privateMenu = function (e) {
   const dataway = e.target.classList;
   if (dataway.contains('privateAccount')) {
+    // pseudoProfile();
   }
   if (dataway.contains('favoritesAccount')) {
   }
   if (dataway.contains('createAdAccount')) {
   }
   if (dataway.contains('exitAccount')) {
+    
   }
 
   console.dir(dataway);
