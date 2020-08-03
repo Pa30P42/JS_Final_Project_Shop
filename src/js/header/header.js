@@ -24,6 +24,8 @@ import {
   searshForm,
   listenersForSearch,
 } from '../search/searchdesktop/searchDesktop';
+
+import { authFn } from '../auth/authMenu';
 const headerButton = event => {
   const dataname = event.target.dataset.name;
   if (dataname === 'name_logo') {
@@ -53,7 +55,7 @@ const headerButton = event => {
     contactMarkUp();
     closeHeaderMenu();
   } else if (dataname === 'name_user') {
-    console.log('user');
+    authFn();
     closeHeaderMenu();
   } else if (dataname === 'name_like') {
     console.log('like');
