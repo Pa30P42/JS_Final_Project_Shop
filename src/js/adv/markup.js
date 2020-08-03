@@ -62,7 +62,7 @@ const productItem = item => {
           </div>
           <div class="product__to-add-wrapper">
             <button id="btnBuy" class="buy-btn">купить</button>
-            <img id="btnFavourite" src="${favourite}" alt="like" width="20" />
+            <img class="adv__favorite" id="btnFavourite" src="${favourite}" alt="like" width="20" />
             <span class="in-favorite">В избранное</span>
           </div>
 

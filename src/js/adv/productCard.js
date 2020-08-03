@@ -1,8 +1,9 @@
-import {modalModule} from '../components/modalModule/modalModule';
+import { modalModule } from '../components/modalModule/modalModule';
 import markup from './markup';
 import updateLastSeen from './lastSeen';
 import addToFavourite from './favorite';
 import buy from './buy';
+import favoriteFill from '../../images/adv/icons/favorite_fill.svg';
 
 const productCard = item => {
   const component = () => markup(item);
@@ -13,8 +14,10 @@ const productCard = item => {
   const btnBuy = document.getElementById('btnBuy');
 
   btnFavourite.addEventListener('click', async () => {
-    if (currentItem) {
-      await addToFavourite(currentItem._id);
+    if (item) {
+      await addToFavourite(item._id);
+      // const changeIconFavorite = document.querySelector('.adv__favorite');
+      // changeIconFavorite.setAttribute('src', favoriteFill);
     }
   });
 

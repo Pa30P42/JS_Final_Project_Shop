@@ -17,19 +17,19 @@ import { Sim } from './js/slider/slider';
 import { containerHandler } from './js/container/container';
 
 // apiProducts.searchProductsbyCategory('new').then(data => createList(data.data));
-// =========== adv ==============
+
+// ======================= adv ============================
 
 const btnShowModal = document.getElementById('btnShowModal');
-
-let currentItem = null;
 
 btnShowModal.addEventListener('click', async () => {
   const response = await axios.get('https://goit-store.herokuapp.com/products');
   const item = response.data[8];
-  currentItem = item;
   console.log(response);
   productCard(item);
 });
+
+//=========================================================
 
 const initialAction = async () => {
   await apiProducts.getCategories();
@@ -47,3 +47,8 @@ initialAction();
 
 // };
 // initialActProfile();
+
+// apiAuth.login({
+//   email: 'pillow@gmail.com',
+//   password: 'qwerty12345',
+// });
