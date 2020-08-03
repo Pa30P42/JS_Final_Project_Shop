@@ -17,6 +17,7 @@ import information from '../information/information';
 import { pseudoProfile } from '../profile/profileTabs';
 
 import { searshForm, listenersForSearch } from '../search/searchdesktop/searchDesktop';
+import { authFn } from '../auth/authMenu';
 const headerButton = event => {
   let dataname;
   if (event.target.closest('[data-name]')) {
