@@ -5,20 +5,20 @@ import kitchenTech from '../images/category/kitchen-tech.jpg';
 
 export default {
   user: {
-    favorites: [],
-    name: '',
-    phone: '',
-    email: '',
-    adress: {
-      country: '',
-      city: '',
-      place: '',
-      street: ' ',
-      block: '',
-      building: '',
-      flat: '',
-      zip: '',
-    },
+    // favorites: [],
+    // name: '',
+    // phone: '',
+    // email: '',
+    // address: {
+    //   country: '',
+    //   city: '',
+    //   place: '',
+    //   street: ' ',
+    //   block: '',
+    //   building: '',
+    //   flat: '',
+    //   zip: '',
+    // },
     cartItem: {
       id: '',
       name: '',

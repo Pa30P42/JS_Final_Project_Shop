@@ -2,6 +2,7 @@ import axios from 'axios';
 
 // axios.defaults.headers['Authorization'] = JSON.parse(
 //   localStorage.getItem('info'),
+// ).token;
 // ).token;  //error
 
 // * >>>> Orders >>>
