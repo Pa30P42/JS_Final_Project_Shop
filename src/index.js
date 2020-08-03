@@ -9,14 +9,18 @@ import './js/components/modalModule/modalModule';
 import apiProducts from './js/api/products/apiProducts';
 import apiOrders from './js/api/orders/apiOrders';
 import setting from './js/setting';
+
 import './js/category/category-markup';
 import axios from 'axios';
 import apiAuth from './js/api/auth/apiAuth';
-apiProducts.searchProductsbyCategory('new').then(data => createList(data.data));
-// =========== adv ==============
+import apiUsers from './js/api/users/apiUsers';
 import productCard from './js/adv/productCard';
 import { pseudoProfile } from './js/profile/profileTabs';
-import apiUsers from './js/api/users/apiUsers';
+
+// =========== adv ==============
+
+// apiProducts.searchProductsbyCategory('new').then(data => createList(data.data));
+// =========== adv ==============
 
 const btnShowModal = document.getElementById('btnShowModal');
 
@@ -39,4 +43,3 @@ const initialAction = async () => {
   // trigger.triggerFn();
 };
 initialAction();
-// apiAuth.login({ email: 'unotest2@gmail.com', password: 'testuno111' });
