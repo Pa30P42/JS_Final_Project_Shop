@@ -15,6 +15,11 @@ export default {
   deleteFavoriteUrl:
     'https://goit-store.herokuapp.com/users/removeFavoriteProduct/',
   // should get a prod id
+
+//   {
+//     "email": "olysik@gmail.com",
+//     "password": "olysik34"
+// }
   async addFavorite(id) {
     try {
       // console.log(JSON.parse(localStorage.getItem('info')).token);

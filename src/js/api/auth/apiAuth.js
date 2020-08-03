@@ -1,6 +1,6 @@
 import axios from 'axios';
 import apiUsers from '../users/apiUsers';
-
+import userData from '../../userData'
 // Get All Users
 //Информация для пользования Апи
 // В файле где будете использовать функции из данной Апи, с импортируйте обьект по примеру.import apiAuth from './js/api/auth/apiAuth';
@@ -36,7 +36,11 @@ export default {
       // };
       // Должен приходить обьеки в info
       const response = await axios.post(this.loginUrl, user);
-      console.log(response);
+      userData.user = {
+        ...userData.user,
+        ...response.data.user
+      }
+
       axios.defaults.headers['Authorization'] = response.data.accces_token;
       const currentUser = await axios.get(apiUsers.getUserInfoUrl);
 
