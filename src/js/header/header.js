@@ -1,15 +1,11 @@
 import { contactMarkUp } from '../contacts/contacts.js';
-
+import { showCart } from '../components/cart/cart';
 import trigger from '../components/trigger';
 // import trigger from './js/components/trigger';
 import { refs } from '../components/refs.js';
 import { headerMenu, closeHeaderMenu } from '../sideBar/headerSideBar.js';
 // import { contactMarkUp } from '../contacts/contacts.js';
-import {
-  catalogListMarkup,
-  listeners,
-  catalogListMarkupAddListeners,
-} from '../catalog/catalog';
+import { catalogListMarkup, listeners, catalogListMarkupAddListeners } from '../catalog/catalog';
 
 import {
   categoriesListMarkup,
@@ -20,14 +16,12 @@ import information from '../information/information';
 
 import { pseudoProfile } from '../profile/profileTabs';
 
-import {
-  searshForm,
-  listenersForSearch,
-} from '../search/searchdesktop/searchDesktop';
-
-import { authFn } from '../auth/authMenu';
+import { searshForm, listenersForSearch } from '../search/searchdesktop/searchDesktop';
 const headerButton = event => {
-  const dataname = event.target.dataset.name;
+  let dataname;
+  if (event.target.closest('[data-name]')) {
+    dataname = event.target.closest('[data-name]').dataset.name;
+  } else return;
   if (dataname === 'name_logo') {
     refs.container.innerHTML = categoriesListMarkup();
     categoriesListMarkupAddListeners();
@@ -61,8 +55,9 @@ const headerButton = event => {
     console.log('like');
     closeHeaderMenu();
   } else if (dataname === 'name_cart') {
-    console.log('cart');
+    // console.log('cart');
     closeHeaderMenu();
+    showCart();
   } else if (dataname === 'name_menu') {
     headerMenu();
   } else if (dataname === 'name_catalog') {
