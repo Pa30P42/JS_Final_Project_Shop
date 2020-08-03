@@ -10,7 +10,7 @@ import './js/category/category-markup';
 import axios from 'axios';
 import apiAuth from './js/api/auth/apiAuth';
 import productCard from './js/adv/productCard';
-
+import { setCartCounter, setupEvents } from './js/components/cart';
 import { pseudoProfile } from './js/profile/profileTabs';
 
 import { Sim } from './js/slider/slider';
@@ -36,6 +36,8 @@ const initialAction = async () => {
   await apiProducts.getCategories();
   setting.getDevice(document.documentElement.clientWidth);
   containerHandler();
+  setCartCounter();
+  setupEvents();
   addNewProducts();
   pseudoProfile();
   new Sim();
