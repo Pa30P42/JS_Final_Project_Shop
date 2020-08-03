@@ -24,8 +24,8 @@ const btnShowModal = document.getElementById('btnShowModal');
 
 btnShowModal.addEventListener('click', async () => {
   const response = await axios.get('https://goit-store.herokuapp.com/products');
-  const item = response.data[8];
-  console.log(response);
+  const item = response.data[10];
+  console.log(item);
   productCard(item);
 });
 

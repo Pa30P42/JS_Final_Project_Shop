@@ -4,8 +4,12 @@ import updateLastSeen from './lastSeen';
 import addToFavourite from './favorite';
 import buy from './buy';
 import favoriteFill from '../../images/adv/icons/favorite_fill.svg';
+import allProducts from '../api/products/apiProducts';
 
-const productCard = item => {
+const productCard = async id => {
+  const items = await allProducts.getAllProducts();
+  const item = items.find(i => i._id === id);
+
   const component = () => markup(item);
   updateLastSeen(item._id);
   modalModule(component, addListener);
@@ -16,9 +20,10 @@ const productCard = item => {
   btnFavourite.addEventListener('click', async () => {
     if (item) {
       await addToFavourite(item._id);
-      // const changeIconFavorite = document.querySelector('.adv__favorite');
-      // changeIconFavorite.setAttribute('src', favoriteFill);
+      const changeIconFavorite = document.querySelector('.adv__favorite');
+      changeIconFavorite.setAttribute('src', favoriteFill);
     }
+    и;
   });
 
   function addListener(closeModal) {

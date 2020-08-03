@@ -8,7 +8,7 @@ import img5 from '../../images/adv/preview/roborock5_preview.jpg';
 import img6 from '../../images/adv/preview/roborock6_preview.jpg';
 
 const productItem = item => {
-  const images = [img1, img2, img3, img4, img5, img6];
+  // const images = [img1, img2, img3, img4, img5, img6];
   console.log(item);
   return `
     <section class="product__card container">
@@ -27,12 +27,12 @@ const productItem = item => {
           <div class="product__image">
             <img
               id="productImage"
-              src="${images[0]}"
+              src="${item.images[0]}"
               alt="Xiaomi RoboRock" height="525" width="525"
             />
           </div>
           <ul class="product__image--preview-list">
-            ${images.map(
+            ${item.images.map(
               image => `
               <li class="product__image--preview-item">
                 <img
