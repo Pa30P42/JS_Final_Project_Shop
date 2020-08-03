@@ -5,9 +5,11 @@ import apiUsers from '../api/users/apiUsers';
 import { createPaginationMarkup } from '../pagination/pagination';
 // import { refsPagination } from '../pagination/pagination';
 // import { getPaginationPage } from '../pagination/pagination';
+import { getPaginationPage } from '../pagination/pagination';
 
 // /* <section class="card container"></section> *
 const createListMarkup = (array, link) => {
+  // console.log(array.length);
   return `
    <section class="card">
   <h2 class="card_description">${link}</h2>
@@ -16,13 +18,17 @@ const createListMarkup = (array, link) => {
     return acc;
   }, '')}</ul>
   <div class="pagination_wrapper">
-  ${createPaginationMarkup()}
+  ${createPaginationMarkup(array.length)}
   </div>
   </section>`;
 };
 
 const favoritesArr = [];
 const getItem = event => {
+  // ====================================
+  getPaginationPage(event);
+  // ====================================
+  // console.log('GetItem', event.target);
   if (event.target.closest('[data-id]') && event.target.nodeName === 'IMG') {
     const id = event.target.closest('[data-id]').dataset.id;
     console.log('id', id);
@@ -64,9 +70,15 @@ const cardList = document.querySelector('.card_list');
 
 export const createList = (array, link) => {
   const container = document.querySelector('.container');
+  console.log('container', container);
   container.innerHTML = createListMarkup(array, link);
   container.addEventListener('click', getItem);
   cardList.addEventListener('click', getVector);
+
+  const list = document.querySelector('.products_pagination');
+  console.log('list', list);
+
+  list.addEventListener('click', getPaginationPage);
 
   // cardList.addEventListener('click', getVector);
 };

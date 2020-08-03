@@ -16,33 +16,63 @@ const userData = {
   },
 };
 
-export const createPaginationMarkup = () => {
-  return `
-    <ul class="products_pagination">
-      <li class="products_pagination__item" data-pagenumber="1"><span class="products_pagination__item_number">1</span>
-      </li>
-      <li class="products_pagination__item" data-pagenumber="2"><span class="products_pagination__item_number">2</span>
-      </li>
-      <li class="products_pagination__item" data-pagenumber="3"><span class="products_pagination__item_number">3</span>
-      </li>
-      <li class="products_pagination__item" data-pagenumber="next"><span
-        class="products_pagination__item_next">next</span>
-      </li>
-      <li class="products_pagination__item" data-pagenumber="end"><span class="products_pagination__item_end">end</span>
-      </li>
-    </ul>
+// function deviceWidthPagination(deviceWidth) {
+//   if (deviceWidth.isMobile) {
+//     userData.pagination.perPage = 6;
+//   } else if (deviceWidth.isTablet) {
+//     userData.pagination.perPage = 9;
+//   } else if (deviceWidth.isDesktop) {
+//     userData.pagination.perPage = 10;
+//     // console.log('deviceWidth', userData);
+//   }
+// }
 
-      <p class="products_pagination__description">Показано с 1 по 20 из 68</p>`;
+// deviceWidthPagination(deviceWidth);
+
+export const createPaginationMarkup = totalProducts => {
+  // console.log('DATA', totalProducts);
+  userData.pagination.totalProducts = totalProducts;
+
+  if (
+    (deviceWidth.isMobile || deviceWidth.isTablet || deviceWidth.isDesktop) &&
+    userData.pagination.totalProducts > userData.pagination.perPage
+  ) {
+    // console.log(
+    //   'userData.pagination.totalProducts',
+    //   userData.pagination.totalProducts,
+    // );
+    return `
+      <ul class="products_pagination">
+        <li class="products_pagination__item" data-pagenumber="1"><span class="products_pagination__item_number">1</span>
+        </li>
+        <li class="products_pagination__item" data-pagenumber="2"><span class="products_pagination__item_number">2</span>
+        </li>
+        <li class="products_pagination__item" data-pagenumber="3"><span class="products_pagination__item_number">3</span>
+        </li>
+        <li class="products_pagination__item" data-pagenumber="next"><span
+          class="products_pagination__item_next">next</span>
+        </li>
+        <li class="products_pagination__item" data-pagenumber="end"><span class="products_pagination__item_end">end</span>
+        </li>
+      </ul>
+  
+        <p class="products_pagination__description">Показано с 1 по 20 из ${totalProducts}</p>`;
+  }
 };
 
-export function getPaginationPage(e, category) {
-  // console.log('Hello Pagination', e.target);
+// export function productsTotalCount(data) {
+
+// }
+
+export function getPaginationPage(e) {
+  // console.log('Hello Pagination', e.target.dataset.pagenumber);
   userData.pagination.currentPage = 1;
   if (
-    (e.target.nodeName === 'LI' || e.target.nodeName === 'SPAN') &&
+    e.target.dataset.pagenumber &&
     e.target.closest('[data-pagenumber]').dataset.pagenumber !== 'next' &&
     e.target.closest('[data-pagenumber]').dataset.pagenumber !== 'end'
   ) {
+    console.log('Hoooray');
     userData.pagination.currentPage = e.target.closest(
       '[data-pagenumber]',
     ).dataset.pagenumber;
@@ -64,10 +94,6 @@ export function getPaginationPage(e, category) {
 
   //   console.log(userData.perPage);
   //   console.log(userData.currentPage);
-  console.log(category);
-  apiProducts
-    .getCategoryTotalCount(category)
-    .then(data => console.log('count', data));
 
   apiProducts
     .getProductsWithPagination(
@@ -78,10 +104,6 @@ export function getPaginationPage(e, category) {
     // .then(res => console.log(res.config))
     .then(data => console.log('getProductsWithPagination', data.data));
 }
-
-apiProducts
-  .getCategoryTotalCount('refrigerator')
-  .then(data => console.log('count', data));
 
 // =============Запрос на кол-вот товара в категории=======================
 // https://goit-store.herokuapp.com/products/getCategories?category=accessories_for_kitchen_appliances

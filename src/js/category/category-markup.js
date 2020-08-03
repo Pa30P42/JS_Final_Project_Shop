@@ -3,6 +3,7 @@ import categoriesList from '../userData';
 import { modalModule } from '../components/modalModule/modalModule';
 import apiProducts from '../api/products/apiProducts';
 import { createList } from '../sale/saleSection';
+import { createPaginationMarkup } from '../pagination/pagination';
 // import { refsPagination } from '../pagination/pagination';
 
 const refs = {
@@ -105,6 +106,10 @@ function listeners(action) {
       // .then(data => console.log(data.data));
       .then(data => createList(data.data, sublinkName));
     // console.log(link);
+
+    // apiProducts
+    //   .getCategoryTotalCount(`${link}`)
+    //   .then(data => createPaginationMarkup(data));
 
     // вместо console.log(data.data) вставляем функцию Ани //
     if (link) {
