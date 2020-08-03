@@ -23,6 +23,9 @@ import {
   searshForm,
   listenersForSearch,
 } from '../search/searchdesktop/searchDesktop';
+
+import { containerHandler } from '../container/container';
+
 const headerButton = event => {
   const dataname = event.target.dataset.name;
   if (dataname === 'name_logo') {
