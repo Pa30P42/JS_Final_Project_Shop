@@ -15,6 +15,7 @@ import { pseudoProfile } from './js/profile/profileTabs';
 
 import { Sim } from './js/slider/slider';
 import { containerHandler } from './js/container/container';
+import apiUsers from './js/api/users/apiUsers';
 
 // apiProducts.searchProductsbyCategory('new').then(data => createList(data.data));
 // =========== adv ==============
@@ -40,7 +41,7 @@ const initialAction = async () => {
   // trigger.triggerFn();
 };
 initialAction();
-
+apiUsers.getCurrentUser();
 // const initialActProfile = async () => {
 //   const arr = await apiProducts.getAllProducts();
 //   return arr
