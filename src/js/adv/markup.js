@@ -1,11 +1,11 @@
 import favourite from '../../images/adv/icons/favorite.svg';
 
-import img1 from '../../images/adv/preview/roborock1_preview.jpg';
-import img2 from '../../images/adv/preview/roborock2_preview.jpg';
-import img3 from '../../images/adv/preview/roborock3_preview.jpg';
-import img4 from '../../images/adv/preview/roborock4_preview.jpg';
-import img5 from '../../images/adv/preview/roborock5_preview.jpg';
-import img6 from '../../images/adv/preview/roborock6_preview.jpg';
+// import img1 from '../../images/adv/preview/roborock1_preview.jpg';
+// import img2 from '../../images/adv/preview/roborock2_preview.jpg';
+// import img3 from '../../images/adv/preview/roborock3_preview.jpg';
+// import img4 from '../../images/adv/preview/roborock4_preview.jpg';
+// import img5 from '../../images/adv/preview/roborock5_preview.jpg';
+// import img6 from '../../images/adv/preview/roborock6_preview.jpg';
 
 const productItem = item => {
   // const images = [img1, img2, img3, img4, img5, img6];
@@ -25,19 +25,19 @@ const productItem = item => {
       <div class="product__images-wrapper">
         <div class="product__card-images">
           <div class="product__image">
-            <img
+            <img class="product__image_item"
               id="productImage"
               src="${item.images[0]}"
-              alt="Xiaomi RoboRock" height="525" width="525"
+              alt=" sorry, the picture was not loaded :(" height="525" width="525"
             />
           </div>
           <ul class="product__image--preview-list">
             ${item.images.map(
               image => `
               <li class="product__image--preview-item">
-                <img
+                <img class="product__img-preview"
                   src="${image}"
-                  alt="Xiaomi RoboRock"
+                  alt=":("
                   width="74" height="74"
                   onclick="document.getElementById('productImage').setAttribute('src', '${image}')"
                 />
