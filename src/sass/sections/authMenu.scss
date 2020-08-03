@@ -2,17 +2,34 @@
   position: absolute;
   width: 204px;
   height: 194px;
-  left: 0px;
-  top: 0px;
-  background: #ffffff;
+  background: $auth-menu__background-color;
   border-radius: 10px;
 }
 
+.user-name {
+  margin: 20px 0 0 20px;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 22px;
+  color: $main--text-color;
+}
+
+.auth-menu__list_item {
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 17px;
+  color: $main--text-color;
+  cursor: pointer;
+
+  &:focus,
+  &:hover {
+    background-color: $auth-menu__background-color_hover;
+  }
+}
+
 .exit {
-  width: 204px;
   height: 46px;
-  left: 0px;
-  top: 148px;
-  background: #f4f4f4;
-  border-radius: 0px 0px 10px 10px;
+  cursor: pointer;
 }

@@ -26,13 +26,13 @@ const btnShowModal = document.getElementById('btnShowModal');
 
 let currentItem = null;
 
-btnShowModal.addEventListener('click', async () => {
-  const response = await axios.get('https://goit-store.herokuapp.com/products');
-  const item = response.data[8];
-  currentItem = item;
-  console.log(response);
-  productCard(item);
-});
+// btnShowModal.addEventListener('click', async () => {
+//   const response = await axios.get('https://goit-store.herokuapp.com/products');
+//   const item = response.data[8];
+//   currentItem = item;
+//   console.log(response);
+//   productCard(item);
+// });
 
 const initialAction = async () => {
   await apiProducts.getCategories();

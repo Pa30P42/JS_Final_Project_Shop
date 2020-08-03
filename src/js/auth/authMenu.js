@@ -44,11 +44,11 @@ let listenPrivateAccount = '';
 const authMenuMarkUp = function () {
   return `
     <div class="auth-menu">
-    <h4 class="user-name"></h4>
+    <h4 class="user-name">Username</h4>
     <ul class="auth-menu__list">
-      <li class="auth-menu__list_item" class="privateAccount">Личный кабинет</li>
-      <li class="auth-menu__list_item" class="favorites">Избранное</li>
-      <li class="auth-menu__list_item" class="createAd">Создать объявление</li>
+      <li class="auth-menu__list_item privateAccount">Личный кабинет</li>
+      <li class="auth-menu__list_item favorites">Избранное</li>
+      <li class="auth-menu__list_item createAd">Создать объявление</li>
     </ul>
     <p class="auth-menu__exit" class="exit">Выход</p>
   </div>
