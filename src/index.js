@@ -44,10 +44,3 @@ const initialAction = async () => {
   // trigger.triggerFn();
 };
 initialAction();
-apiUsers.getCurrentUser();
-// const initialActProfile = async () => {
-//   const arr = await apiProducts.getAllProducts();
-//   return arr
-
-// };
-// initialActProfile();
