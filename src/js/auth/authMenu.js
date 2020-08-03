@@ -7,11 +7,10 @@ const userValue = {
   password: '',
 };
 
-const userRegisterValue = {
-  name: '',
-  email: '',
-  password: '',
-};
+// const userRegisterValue = {
+//   email: '',
+//   password: '',
+// };
 
 export const authFn = function () {
   if (localStorage.getItem('info')) {
@@ -19,24 +18,27 @@ export const authFn = function () {
   } else {
     modalModule(authForm, authMenuMarkUpListener);
     authFormListeners = document.querySelector('.authForm');
-    authFormListeners.addEventListener('submit', e => {
+    authFormListeners.addEventListener('click', e => {
       e.preventDefault();
-      console.log(e.currentTarget[3]);
-      if (e.currentTarget[3]) {
-        userValue.email = e.currentTarget[1].value;
-        userValue.password = e.currentTarget[2].value;
-        console.log(userValue);
+      if (e.target === e.currentTarget[2]) {
+        console.log('logging');
+        userValue.email = e.currentTarget[0].value;
+        userValue.password = e.currentTarget[1].value;
         apiAuth.login(userValue);
         e.currentTarget.reset();
-      } else {
-        userRegisterValue.name = e.currentTarget[0].value;
-        userRegisterValue.email = e.currentTarget[1].value;
-        userRegisterValue.password = e.currentTarget[2].value;
-        apiAuth.register(userRegisterValue);
+      }
+      if (e.target === e.currentTarget[3]) {
+        console.log('register');
+        userValue.email = e.currentTarget[0].value;
+        userValue.password = e.currentTarget[1].value;
+        apiAuth.register(userValue);
+        e.currentTarget.reset();
       }
     });
   }
 };
+
+// if (e.target === e.currentTarget[3])
 
 let listenPrivateAccount = '';
 const authMenuMarkUp = function () {

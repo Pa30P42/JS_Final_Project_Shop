@@ -54,7 +54,6 @@ const headerButton = event => {
     closeHeaderMenu();
   } else if (dataname === 'name_user') {
     authFn();
-    console.log('user');
     closeHeaderMenu();
   } else if (dataname === 'name_like') {
     console.log('like');
