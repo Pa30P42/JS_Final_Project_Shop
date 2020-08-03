@@ -58,11 +58,11 @@ export default {
         `https://goit-store.herokuapp.com/products/getCategories?category=${inputSearch}`,
       );
 
-      // userData.categoriesItems = [...response.data.categories];
+      userData.countOfProducts = [...response.data.countOfProducts];
 
-      console.log('user', userData);
+      console.log('response', userData.countOfProducts);
       // chooseCategory(userData.categoriesItems)
-      return response;
+      return response.data.countOfProducts;
     } catch (err) {
       throw new Error(err);
     }

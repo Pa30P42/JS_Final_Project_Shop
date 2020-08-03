@@ -2,6 +2,7 @@ import './category.scss';
 import categoriesList from '../userData';
 import { modalModule } from '../components/modalModule/modalModule';
 import apiProducts from '../api/products/apiProducts';
+import { createList } from '../sale/saleSection';
 
 const refs = {
   modalCategory: document.querySelector('.modalModule'),
@@ -11,7 +12,7 @@ const refs = {
 
 const globalCategoriesObjects = Object.values(categoriesList.appliances);
 
-function getLink(e) {
+export function getLink(e) {
   //link можно добавить в хлебные крошки//
   if (
     e.target.nodeName === 'LI' ||
@@ -94,7 +95,8 @@ function listeners(action) {
     const link = getLink(e);
     apiProducts
       .searchProductsbyCategory(`${link}`)
-      .then(data => console.log(data.data));
+      // .then(data => console.log(data.data));
+      .then(data => createList(data.data));
     // console.log(link);
 
     // вместо console.log(data.data) вставляем функцию Ани //

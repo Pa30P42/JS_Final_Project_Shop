@@ -1,6 +1,7 @@
 import './pagination.scss';
 import apiProducts from '../api/products/apiProducts';
 import deviceWidth from '../setting';
+import { getLink } from '../category/category-markup';
 
 const refs = {
   pagination: document.querySelector('.products_pagination'),
@@ -17,6 +18,7 @@ const userData = {
 };
 
 function getPaginationPage(e, category) {
+  userData.pagination.currentPage = 1;
   if (
     (e.target.nodeName === 'LI' || e.target.nodeName === 'SPAN') &&
     e.target.closest('[data-pagenumber]').dataset.pagenumber !== 'next' &&
@@ -43,6 +45,11 @@ function getPaginationPage(e, category) {
 
   //   console.log(userData.perPage);
   //   console.log(userData.currentPage);
+
+  apiProducts
+    .getCategoryTotalCount(category)
+    .then(data => console.log('count', data));
+
   apiProducts
     .getProductsWithPagination(
       userData.pagination.perPage,
@@ -50,21 +57,29 @@ function getPaginationPage(e, category) {
       'new',
     )
     // .then(res => console.log(res.config))
-    .then(data => console.log(data.data));
-  // .then(data => totalPaginationProducts(data.data));
+    .then(data => console.log('getProductsWithPagination', data.data));
 
-  // apiProducts
-  //   .searchProductsbyCategoryAndName()
-  //   .then(data => createPagination(data.data.length));
+  // const createPaginationMarkup = () => {
+  //   return;
+  //   `    <ul class="products_pagination">
+  //     <li class="products_pagination__item" data-pagenumber="1"><span class="products_pagination__item_number">1</span>
+  //     </li>
+  //     <li class="products_pagination__item" data-pagenumber="2"><span class="products_pagination__item_number">2</span>
+  //     </li>
+  //     <li class="products_pagination__item" data-pagenumber="3"><span class="products_pagination__item_number">3</span>
+  //     </li>
+  //     <li class="products_pagination__item" data-pagenumber="next"><span
+  //       class="products_pagination__item_next">next</span>
+  //     </li>
+  //     <li class="products_pagination__item" data-pagenumber="end"><span class="products_pagination__item_end">end</span>
+  //     </li>
+  //   </ul>
 
-  // function totalPaginationProducts(data) {
-  //   console.log('data.length', data.length);
-  // }
+  //     <p class="products_pagination__description">Показано с 1 по 20 из 68</p>`;
+  // };
 }
 
-// apiProducts.getAllProducts().then(data => createPagination(data.data.length));
-
-// Запрос на кол-вот товара в категории
+// =============Запрос на кол-вот товара в категории=======================
 // https://goit-store.herokuapp.com/products/getCategories?category=accessories_for_kitchen_appliances
 
 refs.pagination.addEventListener('click', getPaginationPage);

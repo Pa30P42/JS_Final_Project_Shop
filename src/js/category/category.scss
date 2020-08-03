@@ -50,6 +50,12 @@
 }
 
 .category {
+  &-wrapper {
+    @media (min-width: 1200px) {
+      max-width: 1080px;
+      margin: 0 auto;
+    }
+  }
   &__img {
     border-radius: 10px;
     height: 144px;
