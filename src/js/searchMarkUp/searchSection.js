@@ -3,6 +3,7 @@ import vector from '../../images/sale/Vector.svg';
 import { createSingleCardMarkup } from '../sale/cardModule';
 import apiUsers from '../api/users/apiUsers';
 import userData from '../userData';
+import productCard from '../adv/productCard';
 
 // /* <section class="card container"></section> *
 const createListMarkup = array => {
@@ -20,7 +21,7 @@ const createListMarkup = array => {
   }, '')}</ul></section>`;
   }
 };
-const getItem = event => {
+const getItem = (event, products) => {
   if (event.target.closest('[data-id]') && event.target.nodeName === 'IMG') {
     const id = event.target.closest('[data-id]').dataset.id;
     if (event.target.src === vector) {
@@ -48,7 +49,7 @@ const getItem = event => {
       });
     }
 
-    // productCard(id);
+    productCard(id);
     return id; // функция Ани(id)
   } else return;
 };
