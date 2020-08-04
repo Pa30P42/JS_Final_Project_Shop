@@ -18,6 +18,9 @@ import { pseudoProfile } from '../profile/profileTabs';
 
 import { searshForm, listenersForSearch } from '../search/searchdesktop/searchDesktop';
 import { authFn } from '../auth/authMenu';
+import apiProducts from '../api/products/apiProducts';
+import { createList } from '../sale/saleSection';
+
 const headerButton = event => {
   let dataname;
   if (event.target.closest('[data-name]')) {
@@ -40,6 +43,7 @@ const headerButton = event => {
   } else if (dataname === 'name_buttonClose') {
     closeHeaderMenu();
   } else if (dataname === 'name_sale') {
+    apiProducts.searchProductsbyCategory('new').then(data => createList(data.data));
     console.log('sale');
     closeHeaderMenu();
   } else if (dataname === 'name_info') {
