@@ -15,15 +15,9 @@ import axios from 'axios';
 import apiAuth from './js/api/auth/apiAuth';
 import apiUsers from './js/api/users/apiUsers';
 import productCard from './js/adv/productCard';
-import { setCartCounter, setupEvents } from './js/components/cart/cart';
 
-import { addNewAndLastSeen } from './js/components/new';
-import { pseudoProfile } from './js/profile/profileTabs';
-
-// =========== adv ==============
-
-// apiProducts.searchProductsbyCategory('new').then(data => createList(data.data));
-// =========== adv ==============
+import userData from './js/userData';
+import { getPofileTest, favouritesFormMarkup } from './js/profile/profileMarkups';
 
 const btnShowModal = document.getElementById('btnShowModal');
 
@@ -39,20 +33,11 @@ btnShowModal.addEventListener('click', async () => {
 export const initialAction = async () => {
   await apiProducts.getCategories();
   setting.getDevice(document.documentElement.clientWidth);
+
   containerHandler();
-  addNewAndLastSeen();
-  setCartCounter();
-  setupEvents();
-  pseudoProfile();
+
   new Sim();
   // trigger.triggerFn();
+  console.log('userData :>> ', userData);
 };
 initialAction();
-
-// apiAuth.login({ email: 'unotest2@gmail.com', password: 'testuno111' });
-// const initialActProfile = async () => {
-//   const arr = await apiProducts.getAllProducts();
-//   return arr
-
-// };
-// initialActProfile();

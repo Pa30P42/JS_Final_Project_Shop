@@ -4,21 +4,8 @@ import homeCareTech from '../images/category/home-care-tech.jpg';
 import kitchenTech from '../images/category/kitchen-tech.jpg';
 
 export default {
+  allProducts: [],
   user: {
-    // favorites: [],
-    // name: '',
-    // phone: '',
-    // email: '',
-    // address: {
-    //   country: '',
-    //   city: '',
-    //   place: '',
-    //   street: ' ',
-    //   block: '',
-    //   building: '',
-    //   flat: '',
-    //   zip: '',
-    // },
     cartItem: {
       id: '',
       name: '',
@@ -92,5 +79,4 @@ export default {
       ],
     },
   },
-
 };

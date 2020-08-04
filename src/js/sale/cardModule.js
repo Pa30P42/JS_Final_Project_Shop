@@ -35,7 +35,7 @@ export const createSingleCardMarkup = (element, sale) => {
     return Math.floor(Math.random() * (max - min)) + min;
   };
   const cardItemMarkup = element => {
-    return `<li class="card_item" data-id=${element._id}>
+    return `<li class="card_item-sale" data-id=${element._id}>
   <div class="card-image">
   ${
     userData.isMobile
@@ -56,9 +56,7 @@ export const createSingleCardMarkup = (element, sale) => {
   <div class="card_prise-block">
      ${
        sale
-         ? `<p class="card_price">${Math.round(
-             element.price * 1.3,
-           )}<span> &#8372;</span></p>
+         ? `<p class="card_price">${Math.round(element.price * 1.3)}<span> &#8372;</span></p>
         <p class="card_price-sale">${element.price}<span> &#8372;</span></p>`
          : `<p class="card_price-sale">${element.price}<span> &#8372;</span></p>`
      }
