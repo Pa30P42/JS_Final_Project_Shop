@@ -60,7 +60,7 @@ export default {
 
   maintabsMarkup() {
     console.log(this);
-    this.sectionRef = document.querySelector('.container');
+    this.sectionRef = document.querySelector('.sections');
     console.log('sectionRef :>> ', this.sectionRef);
 
     this.sectionRef.innerHTML = '';
@@ -564,17 +564,13 @@ function getInfo(event) {
   //const onlyLettersRegEx = /^[а-яё\s]+|(?=.*[A-Z])[a-z\s]+$/iu;
 
   if (nameOfInput === 'name') {
-    inputLength > 1 &&
-    inputLength < 35 &&
-    inputValue.match(onlyLetAndSymbolRegEx)
+    inputLength > 1 && inputLength < 35 && inputValue.match(onlyLetAndSymbolRegEx)
       ? ((field.nextElementSibling.innerHTML = `<span class="helper-text-valid"></span>`),
         (field.style.outlineColor = '#109b17'))
       : ((field.nextElementSibling.innerHTML = `<span class="helper-text-invalid">Введите имя, отчество </span>`),
         (field.style.outlineColor = '#FF8A9D'));
   } else if (nameOfInput === 'surname') {
-    inputLength < 35 &&
-    inputLength > 1 &&
-    inputValue.match(onlyLetAndSymbolRegEx)
+    inputLength < 35 && inputLength > 1 && inputValue.match(onlyLetAndSymbolRegEx)
       ? ((field.nextElementSibling.innerHTML = `<span class="helper-text-valid"></span>`),
         (field.style.outlineColor = '#109b17'))
       : ((field.nextElementSibling.innerHTML = `<span class="helper-text-invalid">Введите фамилию</span>`),
@@ -605,8 +601,7 @@ function getInfo(event) {
         (field.style.outlineColor = '#FF8A9D'));
   } else if (nameOfInput === 'confirmPassword') {
     let password = document.querySelector('[name="password"]').value;
-    let confirmPassword = document.querySelector('[name="confirmPassword"]')
-      .value;
+    let confirmPassword = document.querySelector('[name="confirmPassword"]').value;
     const errorDiv = document.querySelector('#helper-text-div');
     console.log('errorDiv :>> ', errorDiv);
 
@@ -621,18 +616,12 @@ function getInfo(event) {
     nameOfInput === 'place' ||
     nameOfInput === 'street'
   ) {
-    inputLength > 2 &&
-    inputLength < 35 &&
-    inputValue.match(onlyLetAndSymbolRegEx)
+    inputLength > 2 && inputLength < 35 && inputValue.match(onlyLetAndSymbolRegEx)
       ? ((field.nextElementSibling.innerHTML = `<span class="helper-text-valid"></span>`),
         (field.style.outlineColor = '#109b17'))
       : ((field.nextElementSibling.innerHTML = `<span class="helper-text-invalid">Введите данные</span>`),
         (field.style.outlineColor = '#FF8A9D'));
-  } else if (
-    nameOfInput === 'building' ||
-    nameOfInput === 'block' ||
-    nameOfInput === 'flat'
-  ) {
+  } else if (nameOfInput === 'building' || nameOfInput === 'block' || nameOfInput === 'flat') {
     inputLength > 0 && inputLength < 9 && inputValue.match(numbersRegEx)
       ? ((field.nextElementSibling.innerHTML = `<span class="helper-text-valid"></span>`),
         (field.style.outlineColor = '#109b17'))

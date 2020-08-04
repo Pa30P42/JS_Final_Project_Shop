@@ -20,6 +20,7 @@ import { searshForm, listenersForSearch } from '../search/searchdesktop/searchDe
 import { authFn } from '../auth/authMenu';
 import apiProducts from '../api/products/apiProducts';
 import { createList } from '../sale/saleSection';
+import { initialAction } from '../../index';
 
 const headerButton = event => {
   let dataname;
@@ -27,8 +28,9 @@ const headerButton = event => {
     dataname = event.target.closest('[data-name]').dataset.name;
   } else return;
   if (dataname === 'name_logo') {
-    refs.container.innerHTML = categoriesListMarkup();
-    categoriesListMarkupAddListeners();
+    initialAction();
+    // refs.container.innerHTML = categoriesListMarkup();
+    // categoriesListMarkupAddListeners();
 
     //вставить слушателей для профайл табс
     pseudoProfile();

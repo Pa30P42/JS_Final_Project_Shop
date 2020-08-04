@@ -36,7 +36,7 @@ btnShowModal.addEventListener('click', async () => {
   productCard(item);
 });
 
-const initialAction = async () => {
+export const initialAction = async () => {
   await apiProducts.getCategories();
   setting.getDevice(document.documentElement.clientWidth);
   containerHandler();
