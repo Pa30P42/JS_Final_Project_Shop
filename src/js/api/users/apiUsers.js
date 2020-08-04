@@ -103,7 +103,7 @@ export default {
     try {
       axios.defaults.headers['Authorization'] = JSON.parse(localStorage.getItem('info')).token;
       const response = await axios.get(this.getUserInfoUrl);
-      console.log(response);
+  
       return response;
     } catch (error) {
       console.log(error);
