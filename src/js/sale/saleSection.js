@@ -63,27 +63,9 @@ const getItem = event => {
 
 
 
-
 export const createList = array => {
-  // const cardList = document.querySelector('.card_list');
-  const container = document.querySelector('.container');
+  const container = document.querySelector('.sections');
   container.innerHTML = createListMarkup(array);
   container.addEventListener('click', getItem);
-  // cardList.addEventListener('click', getVector);
 
-  // cardList.addEventListener('click', getVector);
 };
-
-// export const getVector = event => {
-//   console.log(event.target)
-//   if (
-//     event.target.closest('[data-clickVector]') &&
-//     event.target.nodeName === 'IMG'
-//   ) {
-//     const clickVector = event.target.closest('[data-clickVector]').dataset
-//       .clickVector;
-
-//     console.log('clickVector', clickVector);
-//     return clickVector;
-//   } else return;
-// };

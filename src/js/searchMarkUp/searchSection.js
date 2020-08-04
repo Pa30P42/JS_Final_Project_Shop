@@ -1,4 +1,4 @@
-import { createSingleCardMarkup } from './cardModule';
+import { createSingleCardMarkup } from './cardModuleSearsh';
 import productCard from '../adv/productCard';
 import { refs } from '../components/refs';
 
@@ -28,9 +28,9 @@ const getItem = event => {
 };
 export const createList = array => {
   // console.log(createListMarkup(array));
-  refs.container.innerHTML = createListMarkup(array);
+  refs.sections.innerHTML = createListMarkup(array);
 
-  refs.container.addEventListener('click', getItem);
+  refs.sections.addEventListener('click', getItem);
 
   // cardList.addEventListener('click', getVector);
 };

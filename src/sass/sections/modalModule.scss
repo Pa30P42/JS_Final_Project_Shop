@@ -1,16 +1,18 @@
 .modalModule {
-  position: relative;
+  // position: relative;
   pointer-events: initial;
   z-index: 999;
+  // height: 100vh;
 }
 
 .modalOverlay {
   position: fixed;
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: $modal-module__background-color;
   top: 0;
   left: 0;
   width: 100vw;
   height: 100vh;
+  z-index: 999;
 }
 
 .modalComponent {
@@ -18,5 +20,5 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  background-color: white;
+  background-color: $auth-menu__background-color;
 }

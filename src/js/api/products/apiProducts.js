@@ -4,7 +4,6 @@ import axios from 'axios';
 import userData from '../../userData';
 
 
-
 // ========= services product ==== Все катигории и продукты и залиті в ЮЗЕРДАТУ
 // 1.apiProducts.getCategories().then(data => console.log(userData));
 
@@ -37,9 +36,8 @@ export default {
       return userData.categoriesItems;
     } else {
       try {
-        const response = await axios.get(
-          'https://goit-store.herokuapp.com/products/getCategories',
-        );
+        const response = await axios.get('https://goit-store.herokuapp.com/products/getCategories');
+
         userData.categoriesItems = [...response.data.categories];
         getAppliances(userData.categoriesItems);
         return userData.categoriesItems;
@@ -76,10 +74,7 @@ export default {
       localStorage.getItem('info'),
     );
     try {
-      const response = await axios.post(
-        'https://goit-store.herokuapp.com/products',
-        product,
-      );
+      const response = await axios.post('https://goit-store.herokuapp.com/products', product);
       return response;
     } catch (err) {
       throw new Error(err);

@@ -21,10 +21,8 @@ export default {
   // }
   async addFavorite(id) {
     try {
-
-      axios.defaults.headers['Authorization'] = JSON.parse(
-        localStorage.getItem('info'),
-      ).token;
+      // console.log(JSON.parse(localStorage.getItem('info')).token);
+      axios.defaults.headers['Authorization'] = JSON.parse(localStorage.getItem('info')).token;
       const response = await axios.get(`${this.addFavoriteUrl}${id}`);
       return response
 
@@ -35,9 +33,7 @@ export default {
   },
   async deleteFavorite(id) {
     try {
-      axios.defaults.headers['Authorization'] = JSON.parse(
-        localStorage.getItem('info'),
-      ).token;
+      axios.defaults.headers['Authorization'] = JSON.parse(localStorage.getItem('info')).token;
       const response = await axios.delete(`${this.deleteFavoriteUrl}${id}`);
       console.log(response);
     } catch (error) {
@@ -57,9 +53,7 @@ export default {
   },
   async changeUserInfo(info) {
     try {
-      axios.defaults.headers['Authorization'] = JSON.parse(
-        localStorage.getItem('info'),
-      ).token;
+      axios.defaults.headers['Authorization'] = JSON.parse(localStorage.getItem('info')).token;
       const user = info;
       // const user = { email: 'cheeseburger555555@gmail.com' };
       const response = await axios.patch(this.usersUrl, user);
@@ -72,9 +66,7 @@ export default {
 
   async updateUserAddress(info) {
     try {
-      axios.defaults.headers['Authorization'] = JSON.parse(
-        localStorage.getItem('info'),
-      ).token;
+      axios.defaults.headers['Authorization'] = JSON.parse(localStorage.getItem('info')).token;
       const user = info;
       // const user = {
       //   country: 'USA',
@@ -87,7 +79,6 @@ export default {
       //   zip: '',
       // };
       const response = await axios.patch(this.updateAddressUrl, user);
-      console.log(response);
     } catch (error) {
       console.log(error);
       // throw error;
@@ -95,16 +86,14 @@ export default {
   },
   async changeUserPassword(info) {
     try {
-      axios.defaults.headers['Authorization'] = JSON.parse(
-        localStorage.getItem('info'),
-      ).token;
+      axios.defaults.headers['Authorization'] = JSON.parse(localStorage.getItem('info')).token;
       const newPassword = info;
       // const newPassword = {
       //   password: 'qwerty123',
       //   confirmPassword: 'qwerty123',
       // };
       const response = await axios.patch(this.changePasswordUrl, newPassword);
-      console.log(response);
+      // console.log(response);
     } catch (error) {
       console.log(error);
       // throw error;
@@ -112,9 +101,7 @@ export default {
   },
   async getCurrentUser() {
     try {
-      axios.defaults.headers['Authorization'] = JSON.parse(
-        localStorage.getItem('info'),
-      ).token;
+      axios.defaults.headers['Authorization'] = JSON.parse(localStorage.getItem('info')).token;
       const response = await axios.get(this.getUserInfoUrl);
       console.log(response);
       return response;
@@ -125,9 +112,7 @@ export default {
   },
   async getUserById(id) {
     try {
-      axios.defaults.headers['Authorization'] = JSON.parse(
-        localStorage.getItem('info'),
-      ).token;
+      axios.defaults.headers['Authorization'] = JSON.parse(localStorage.getItem('info')).token;
       const response = await axios.get(`${this.getUserByIdUrl}${id}`);
       console.log(response);
     } catch (error) {
@@ -137,9 +122,7 @@ export default {
   },
   async getUserInfo() {
     try {
-      axios.defaults.headers['Authorization'] = JSON.parse(
-        localStorage.getItem('info'),
-      ).token;
+      axios.defaults.headers['Authorization'] = JSON.parse(localStorage.getItem('info')).token;
       const response = await axios.get(this.getUserInfoUrl);
       const currentId = response.data._id;
       console.log(currentId);

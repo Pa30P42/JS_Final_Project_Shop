@@ -1,9 +1,10 @@
-// import { addToCart, showCart } from '../../js/components/cart';
+import { addToCart, showCart, setCartCounter } from '../components/cart/cart';
 
 const buy = (item, closeModal) => {
-  // addToCart(item);
+  addToCart(item);
+  setCartCounter();
   closeModal();
-  // showCart();
+  showCart();
 };
 
 export default buy;

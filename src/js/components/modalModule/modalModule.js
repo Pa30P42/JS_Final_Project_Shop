@@ -39,9 +39,9 @@ export const modalModule = (component, listeners) => {
     <div class="modalOverlay">
   
     <div class="modalComponent"></div>
-  
+  </div>
 
-    </div>
+    
     `;
 
   container.innerHTML = markup;
