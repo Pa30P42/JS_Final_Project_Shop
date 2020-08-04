@@ -31,6 +31,7 @@ export default {
     try {
       const user = info;
       const response = await axios.post(this.loginUrl, user);
+      console.log(response)
       userData.user = {
         ...userData.user,
         ...response.data.user

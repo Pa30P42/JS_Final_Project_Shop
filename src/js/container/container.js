@@ -1,19 +1,16 @@
 import { refs } from '../components/refs';
 
-
 import { sliderItemMarkup } from '../slider/sliderMarkup';
 
-import { catalogListMarkup} from '../catalog/catalog'
+import { catalogListMarkup } from '../catalog/catalog';
 import { header } from '../header/header';
 import {
   categoriesListMarkup,
   categoriesListMarkupAddListeners,
 } from '../category/category-markup';
-import {
-  searchSideBar
-} from '../search/searchsidebar/searchSideBar.js';
-
-
+import { searchSideBar } from '../search/searchsidebar/searchSideBar.js';
+import { setCartCounter, setupEvents } from '../components/cart/cart';
+import { addNewAndLastSeen } from '../components/new';
 
 //В каждом диве запустить функцию определенного модуля который булет отрисовывать блок.
 
@@ -28,7 +25,6 @@ const containerFooterMarkup = function () {
     `;
 };
 const containerSectionsMarkup = function () {
-
   return `
     <div class="slider-wrapper">${sliderItemMarkup()}</div>
     <div class="category-wrapper">${categoriesListMarkup()}</div>
@@ -42,6 +38,9 @@ export const containerHandler = () => {
   refs.container.insertAdjacentHTML('beforeend', containerFooterMarkup());
   refs.sections.innerHTML = containerSectionsMarkup();
   categoriesListMarkupAddListeners();
+  addNewAndLastSeen();
+  setCartCounter();
+  setupEvents();
 };
 
 // categoriesListMarkup(categories);
