@@ -25,7 +25,9 @@ const lastSeenHeadMarkup = () => {
 const createCardsListMarkup = products => {
   return `<ul class="slider__list-cards">
     ${products.reduce((acc, product) => {
-      acc += createSingleCardMarkup(product, false);
+      if (product) {
+        acc += createSingleCardMarkup(product, false);
+      }
       return acc;
     }, '')}
     </ul>`;

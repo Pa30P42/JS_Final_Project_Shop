@@ -2,8 +2,13 @@ import { contactMarkUp } from '../contacts/contacts.js';
 import { showCart } from '../components/cart/cart';
 import trigger from '../components/trigger';
 // import trigger from './js/components/trigger';
-import { refs } from '../components/refs.js';
-import { headerMenu, closeHeaderMenu } from '../sideBar/headerSideBar.js';
+import {
+  refs
+} from '../components/refs.js';
+import {
+  headerMenu,
+  closeHeaderMenu
+} from '../sideBar/headerSideBar.js';
 // import { contactMarkUp } from '../contacts/contacts.js';
 import { catalogListMarkup, listeners, catalogListMarkupAddListeners } from '../catalog/catalog';
 
@@ -11,12 +16,20 @@ import {
   categoriesListMarkup,
   categoriesListMarkupAddListeners,
 } from '../category/category-markup';
-import { modalModule } from '../components/modalModule/modalModule.js';
+import {
+  modalModule
+} from '../components/modalModule/modalModule.js';
 import information from '../information/information';
 
-import { pseudoProfile } from '../profile/profileTabs';
+import {
+  pseudoProfile
+} from '../profile/profileTabs';
 
-import { searshForm, listenersForSearch } from '../search/searchdesktop/searchDesktop';
+import {
+  searshForm,
+  listenersForSearch,
+} from '../search/searchdesktop/searchDesktop';
+
 import { authFn } from '../auth/authMenu';
 import apiProducts from '../api/products/apiProducts';
 import { createList } from '../sale/saleSection';
@@ -32,8 +45,6 @@ const headerButton = event => {
     // refs.container.innerHTML = categoriesListMarkup();
     // categoriesListMarkupAddListeners();
 
-    //вставить слушателей для профайл табс
-    pseudoProfile();
     //======надо будет удалить=====
   } else if (dataname === 'name_phone') {
     trigger.triggerFn();
@@ -70,8 +81,6 @@ const headerButton = event => {
   } else if (dataname === 'name_catalog') {
     modalModule(catalogListMarkup, listeners);
     catalogListMarkupAddListeners();
-
-    // console.log('catalog');
   }
 };
 

@@ -31,29 +31,17 @@ export const createSingleCardMarkup = (element, sale) => {
   };
   const cardItemMarkup = element => {
     return `<li class="card_item" data-id=${element._id}>
-  <div class="card-image">
-  ${
-    userData.isMobile
-      ? ` <img class="card_img" src="${element.images[0]}" alt="${element.name}" width="86"/>`
-      : `<img class="card_img-tablet" src="${element.images[0]}" alt="${element.name}" width="149"/>`
-  }
- 
-  </div>
-  <img class="card_vector" src="${vector}" />
-  <p class="card_name">${element.name}</p>
-  <ul class="card_rating-list">${rating()}</ul>
-  <div class="card_prise-block">
-     ${
-       sale
-         ? `<p class="card_price">${
-             element.price * 1.3
-           }<span> &#8372;</span></p>
-        <p class="card_price-sale">${element.price}<span> &#8372;</span></p>`
-         : `<p class="card_price-sale">${element.price}<span> &#8372;</span></p>`
-     }
-
-  </div>
-</li>`;
+    <div class="card-image">
+    ${
+      userData.isMobile
+        ? ` <img class="card_img" src="${element.images[0]}" alt="${element.name}" width="86"/>`
+        : `<img class="card_img-tablet" src="${element.images[0]}" alt="${element.name}" width="149"/>`
+    }
+    </div>
+    <div class="card-vector">
+        <img class="card_vector-notActiv" src="${vector}" data-clickVector="notActiv"/>
+    </div>
+    <p class="card_name">${element.name}</p>`;
   };
   return cardItemMarkup(element);
 };
