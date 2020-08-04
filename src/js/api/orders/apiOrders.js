@@ -1,8 +1,5 @@
 import axios from 'axios';
 
-axios.defaults.headers['Authorization'] = JSON.parse(
-  localStorage.getItem('info'),
-).token;
 // * >>>> Orders >>>
 // 1*Выводит все заказы
 // apiOrders.GetAllOrders().then(data => console.log(data.data));
@@ -24,11 +21,14 @@ axios.defaults.headers['Authorization'] = JSON.parse(
 
 export default {
   async GetAllOrders() {
+    axios.defaults.headers['Authorization'] = JSON.parse(
+      localStorage.getItem('info'),
+    ).token;
     try {
       const response = await axios.get(
         'https://goit-store.herokuapp.com/orders',
       );
-      console.log(response);
+
       return response;
     } catch (err) {
       throw new Error(err);
@@ -36,12 +36,15 @@ export default {
   },
 
   async createNewOrder(newOrder) {
+    axios.defaults.headers['Authorization'] = JSON.parse(
+      localStorage.getItem('info'),
+    ).token;
     try {
       const response = await axios.post(
         'https://goit-store.herokuapp.com/orders',
         newOrder,
       );
-      console.log(response);
+
       return response;
     } catch (err) {
       throw new Error(err);

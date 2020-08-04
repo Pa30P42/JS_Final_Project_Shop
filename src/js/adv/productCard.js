@@ -12,8 +12,9 @@ import apiUsers from '../../js/api/users/apiUsers';
 const productCard = async id => {
   const items = await allProducts.getAllProducts();
   const item = items.find(i => i._id === id);
-  // console.log(items);
-  console.log(id);
+  // // console.log(items);
+  // console.log('item', item);
+  console.log('id', id);
 
   const component = () => markup(id);
   // console.log(item);

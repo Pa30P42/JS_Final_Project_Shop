@@ -7,6 +7,7 @@
 @import './base.scss';
 
 @import './sections/header.scss';
+@import './sections/information.scss';
 @import './sections/cardModule.scss';
 @import './sections/footer.scss';
 @import './sections/modalModule.scss';
@@ -16,7 +17,12 @@
 @import './sections/adv.scss';
 
 @import './components/trigger.scss';
-
+@import './components/cart.scss';
+@import './sections/new.scss';
+@import './sections/lastSeen.scss';
 @import './sections/profile.scss';
 
 @import './sections/search.scss';
+
+@import './sections/authForm.scss';
+@import './sections/authMenu.scss';

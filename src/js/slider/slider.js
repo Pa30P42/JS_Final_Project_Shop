@@ -2,7 +2,7 @@ import { sliderItemMarkup } from './sliderMarkup';
 import { refs } from '../components/refs';
 // ./images/slider/slider_mb/new/img2.jpg
 // const sliderRef = document.querySelector('.slider-wrapper');
-console.log(refs.sections);
+// console.log(refs.sections);
 // refs.sections.innerHTML = sliderItemMarkup();
 
 export function Sim(sldrId) {
@@ -83,8 +83,7 @@ Sim.prototype.elemNext = function (num) {
 };
 
 Sim.prototype.dotOn = function (num) {
-  this.indicatorDotsAll[num].style.cssText =
-    'background-color:#B3B3B3; cursor:pointer;';
+  this.indicatorDotsAll[num].style.cssText = 'background-color:#B3B3B3; cursor:pointer;';
 };
 
 Sim.prototype.dotOff = function (num) {

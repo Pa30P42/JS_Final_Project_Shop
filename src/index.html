@@ -36,11 +36,7 @@
                     />
                   </div>
                 </button>
-                <input
-                  class="sidebar_input_form"
-                  type="text"
-                  placeholder="Поиск"
-                />
+                <input class="sidebar_input_form" type="text" placeholder="Поиск" />
               </form>
               <img
                 data-name="name_buttonClose"
@@ -52,7 +48,7 @@
               />
             </div>
           </li>
-          <li class="catalog__wrapper__markap"></li>
+          <li class="catalog__wrapper__markap sidebar__hover"></li>
           <li data-name="name_sale" class="sidebar_item sidebar_close">
             <p class="sidebar_text">Sale%</p>
             <img
@@ -135,10 +131,10 @@
         </ul>
       </div>
 
-      <div class="phone">
+      <div class="header_phone">
         <ul class="header__nav">
           <div class="logo_container">
-            <li class="header__nav__input_phone">
+            <li class="header__nav__input">
               <a data-name="name_logo" class="header__logo"></a>
             </li>
           </div>
@@ -178,7 +174,7 @@
               </div>
             </li>
           </div>
-          <li class="header__nav__three_dots">
+          <li class="header__nav__three_dots header__nav__input">
             <div class="header_wrap_three_dots">
               <img
                 alt="svg_icon_header"
@@ -209,18 +205,18 @@
         </ul>
       </div>
 
-      <div class="tablet">
+      <div class="header_tablet">
         <ul class="header__nav">
           <div class="logo_container">
             <li class="header__nav__input">
               <a data-name="name_logo" class="header__logo"></a>
             </li>
-            <p data-name="name_logo" class="logo_name">
+            <p data-name="name_logo" class="header_logo_name header__nav__input">
               Lo<span class="header_txt">GO</span>
             </p>
           </div>
           <div class="center_conatiner">
-            <li class="header__nav__input_phone">
+            <li class="header__nav__input">
               <div data-name="name_phone" class="header_wrap">
                 <img
                   data-name="name_phone"
@@ -255,7 +251,7 @@
               </div>
             </li>
           </div>
-          <li class="header__nav__three_dots">
+          <li class="header__nav__three_dots header__nav__input">
             <div class="header_wrap_three_dots">
               <img
                 alt="svg_icon_header"
@@ -286,19 +282,19 @@
         </ul>
       </div>
 
-      <div class="desktop">
+      <div class="header_desktop">
         <ul class="header__nav">
-          <div data-name="name_logo" class="logo_container">
+          <div data-name="name_logo" class="logo_container header__nav__input">
             <li class="header__nav__input">
               <a data-name="name_logo" class="header__logo"></a>
             </li>
-            <p data-name="name_logo" class="logo_name">
+            <p data-name="name_logo" class="header_logo_name header__nav__input">
               Lo<span class="header_txt">GO</span>
             </p>
           </div>
           <div class="navigatiom_container">
             <div data-name="name_phone" class="phone_container nav_item">
-              <li class="header__nav__input_phone">
+              <li class="header__nav__input">
                 <div class="header_wrap">
                   <img
                     data-name="name_phone"
@@ -309,22 +305,44 @@
                   />
                 </div>
               </li>
-              <p data-name="name_phone" class="phone_text">+38(050)333-37-96</p>
+              <p
+                data-name="name_phone"
+                class="header__phone_text header__nav__input header__txt__hover"
+              >
+                +38(050)333-37-96
+              </p>
             </div>
-            <div
-              data-name="name_catalog"
-              class="catalog_container navigatiom_container nav_item"
-            >
-              <p data-name="name_catalog" class="desktop_text">Каталог</p>
+            <div data-name="name_catalog" class="catalog_container navigatiom_container nav_item">
+              <p
+                data-name="name_catalog"
+                class="header__desktop_text header__nav__input header__txt__hover"
+              >
+                Каталог
+              </p>
             </div>
-            <div data-name="name_sale" class="sale_container nav_item">
-              <p data-name="name_sale" class="desktop_text">Sale%</p>
+            <div data-name="name_sale" class="sale_container nav_item header__nav__input">
+              <p
+                data-name="name_sale"
+                class="header__txt__hover header__desktop_text header__nav__input"
+              >
+                Sale%
+              </p>
             </div>
             <div data-name="name_info" class="info_container nav_item">
-              <p data-name="name_info" class="desktop_text">Информация</p>
+              <p
+                data-name="name_info"
+                class="header__txt__hover header__desktop_text header__nav__input"
+              >
+                Информация
+              </p>
             </div>
             <div data-name="name_contacts" class="contact_container nav_item">
-              <p data-name="name_contacts" class="desktop_text">Контакты</p>
+              <p
+                data-name="name_contacts"
+                class="header__txt__hover header__desktop_text header__nav__input"
+              >
+                Контакты
+              </p>
             </div>
           </div>
           <div class="icon_container">
@@ -350,6 +368,7 @@
                 />
               </div>
             </li>
+
             <li class="header__nav__input nav_icon">
               <div class="header_wrap">
                 <p class="amount_cart">0</p>
@@ -383,11 +402,11 @@
 
     <button id="btnShowModal">show prodCard</button>
     <div class="profileTabs">
-      <button class="check">Check profile</button>
+      <!-- <button class="check">Check profile</button> -->
+      <!--работает через меню теперь можно удалить если не нудно. -->
     </div>
     <div class="modalModule"></div>
     <div class="container" id="root">
-      <div class="modalModule">&nbsp;</div>
       <div class="sections"></div>
     </div>
 
@@ -398,9 +417,7 @@
           <div class="footer-container_contacts">
             <p class="footer-container_num">
               Телефон<br />
-              <a class="footer-container_num-link" href="tel:+380503333796"
-                >+38 (050) 333-37-96</a
-              >
+              <a class="footer-container_num-link" href="tel:+380503333796">+38 (050) 333-37-96</a>
             </p>
           </div>
           <div class="footer-container_schedule">
@@ -415,9 +432,7 @@
       <div class="footer-container_info">
         <hr class="footer-container_hr" />
         <p class="footer-container_info-data">
-          <a class="link" target="_blank" href="https://goit.ua/"
-            >&copy; 2020 | GoIT</a
-          >
+          <a class="link" target="_blank" href="https://goit.ua/">&copy; 2020 | GoIT</a>
         </p>
       </div>
     </footer>
