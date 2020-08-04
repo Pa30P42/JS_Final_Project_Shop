@@ -378,7 +378,7 @@ export function advertisementFormMarkup() {
                 required />
                
 
-              <p>Фото</p>
+              <p class="newadv__description">Фото</p>
             <div class="addnewproduct__wrapper">
               ${addNewProductCard()}
               </div>
@@ -428,12 +428,6 @@ export function advertisementFormMarkup() {
               <label class="adv-label"  id="name-label" for="name">Цена</label>
               <input type="text" name="productPrice" class="form-control form-control__address productPrice" placeholder="0.000 &#x20b4;"
                 required />
-
-                <label class="adv-label" id="phone-number">Телефон</label>
-              <input type="tel" name="productPhone" class="form-control form-control__address productPhone"
-                placeholder="+38 (093) 333 99 99" required />
-
-              
     
     
             </div>

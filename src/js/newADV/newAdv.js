@@ -6,9 +6,9 @@ const cards = {
   activeCard: "",
   };
 
-  const inputs = {
-activeInput: "",
-  }
+//   const inputs = {
+// activeInput: "",
+//   }
   
 
 export function addNewProductCard() {
@@ -17,6 +17,8 @@ export function addNewProductCard() {
     <li class="addcard__list addADV__hidden addADV__active  ADVelement" dataset-newadvlistfirst="newadvlistfirst">
     <input type="file" datast-addproductimagename="addproductimagename"  data-id="1" name="productImageFirst" class="current__input input-photo form-control productImage take-photo" accept="image/*"
     class="form-control" required />
+    <img src="./aquadoctor_17509_images_17750308831.jpg" class="cover__image" width="75"
+    height="74" alt="">
     <label class="adv-label"  for="name"><img src="" class="addcard__img iaddcard__img--1" width="75"
     height="74" alt=""></label>
     </li>
@@ -75,19 +77,18 @@ export function getNewADV(e) {
 
 cards.cardItems = [...cards.cardItems, 1];
 
+const input = cards.activeCard.querySelector('.current__input')
+
+
+input.classList.add("ADV__input--hidden");
+
 cards.activeCard.classList.remove("ADVelement")
+
 const currentActiveCard = document.querySelector(".ADVelement")
 
 if (currentActiveCard) {
   cards.activeCard = currentActiveCard
   cards.activeCard.classList.add("addADV__active")
-}
-
-// inputs.activeInput.classList.remove("current__input")
-const currentActiveInput = document.querySelector('.current__input')
-if (currentActiveInput) {
-  inputs.activeInput = currentActiveInput
-  inputs.activeInput.classList.add("ADV__input--hidden")
 
 }
 
