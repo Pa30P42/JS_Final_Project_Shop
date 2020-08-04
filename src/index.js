@@ -48,7 +48,6 @@ const initialAction = async () => {
   // trigger.triggerFn();
 };
 initialAction();
-<<<<<<< HEAD
 
 // apiAuth.login({ email: 'unotest2@gmail.com', password: 'testuno111' });
 // const initialActProfile = async () => {
@@ -57,5 +56,3 @@ initialAction();
 
 // };
 // initialActProfile();
-=======
->>>>>>> 6b40bcb84c7ce21ff7975ff5ac19bd2dc1abd0d6
