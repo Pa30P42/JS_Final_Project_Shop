@@ -15,14 +15,14 @@ import axios from 'axios';
 import apiAuth from './js/api/auth/apiAuth';
 import apiUsers from './js/api/users/apiUsers';
 import productCard from './js/adv/productCard';
+import { pseudoProfile } from './js/profile/profileTabs';
+import userData from './js/userData';
+import { getPofileTest, favouritesFormMarkup } from './js/profile/profileMarkups';
+
 import { setCartCounter, setupEvents } from './js/components/cart/cart';
 
 import { addNewAndLastSeen } from './js/components/new';
-
-// =========== adv ==============
-
-// apiProducts.searchProductsbyCategory('new').then(data => createList(data.data));
-// =========== adv ==============
+import { test } from './js/profile/profileMarkups';
 
 const btnShowModal = document.getElementById('btnShowModal');
 
@@ -36,15 +36,20 @@ btnShowModal.addEventListener('click', async () => {
 });
 
 export const initialAction = async () => {
-  apiAuth.login({ email: 'unotest2@gmail.com', password: 'testuno111' });
   await apiProducts.getCategories();
+  await apiAuth.login({
+    email: 'olysiHH@gmail.com',
+    password: 'qwerty321',
+  });
   setting.getDevice(document.documentElement.clientWidth);
+
   containerHandler();
   addNewAndLastSeen();
   setCartCounter();
   setupEvents();
   new Sim();
   // trigger.triggerFn();
+  console.log('userData :>> ', userData);
 };
 initialAction();
 

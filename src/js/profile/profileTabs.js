@@ -2,11 +2,6 @@ import { refs } from '../components/refs';
 
 import profile from './profileMarkups';
 
-// export const pseudoProfile = () => {
-//   const pseudoRef = document.querySelector('.check'); // был класс .check -  если не нужно нигде большье, удаляем. Т.к. было привязано к тестовой кнопке.
-//   pseudoRef.addEventListener('click', profile.maintabsMarkup.bind(profile));
-// };
-
 // import apiAuth from './api/users/apiUsers';
 //===================
 
