@@ -66,17 +66,15 @@
 
 
 
-
-
                       const profileCreateSingleCardMarkup = element => {
                           const profileRating = () => {
                             let markup = '';
                             let number = profileGetRandomInt(1, 6);
                             for (let i = 1; i <= number; i += 1) {
-                              markup += ` < li class = "card_rating" > < /li>`;
- }
- return markup;
- };
+                              markup +=  < li class = "card_rating" > < /li>  `;
+
+ return markup `;
+ 
  const profileGetRandomInt = (min, max) => {
    min = Math.ceil(min);
    max = Math.floor(max);
@@ -85,7 +83,7 @@
 
  const profileCardItemMarkup = (element, sale) => {
      return `
-      ` < li class = "favourites-list__items"
+ ` < li class = "favourites-list__items"
      data - id = $ {
          element._id
        } >
@@ -93,8 +91,14 @@
        div class = "card-image" >
        $ {
          userData.isMobile ?
-           ` <img class="card_img" src="${element.images[0]}" alt="${element.name}" width="86"/>` :
-           `<img class="card_img-tablet" src="${element.images[0]}" alt="${element.name}" width="149"/>`
+           ` < img class = "card_img"
+ src = "${element.images[0]}"
+ alt = "${element.name}"
+ width = "86" / > ` :
+           ` < img class = "card_img-tablet"
+ src = "${element.images[0]}"
+ alt = "${element.name}"
+ width = "149" / > `
        }
 
        <
@@ -126,10 +130,6 @@
      $ {
        sale
          ?
-         `<p class="item-price__new">${element.price * 1.3}<span> &#x20b4;</span></p>
-        <p class="item-price__old">${element.price}<span> &#8372;</span></p>` :
-         `<p class="item-price__old">${element.price}<span> &#8372;</span></p>`
-     } <
-     /div> < /
-     li > `;
-     `;
+         <p class="item-price__new">${element.price * 1.3}<span> &#x20b4;</span></p>`
+ // <p class="item-price__old">${element.price}<span> &#8372;</span></p>` :
+ //  `<p class="item-price__old">${element.price}<span> &#8372;</span></p>`

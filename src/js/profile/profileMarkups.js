@@ -86,7 +86,7 @@ export default {
     // console.log('sectionRef :>> ', this.sectionRef);
 
     //     this.sectionRef = document.querySelector('.sections');
-    //     console.log('sectionRef :>> ', this.sectionRef);
+    console.log('sectionRef :>> ', this.sectionRef);
 
     this.sectionRef.innerHTML = '';
     const accountTabsMarkup = () => {
@@ -139,7 +139,7 @@ export default {
       categoriesListMarkupAddListeners();
 
       //вставить слушателей для профайл табс
-      pseudoProfile();
+
     }
   },
 
@@ -519,28 +519,7 @@ const product = {
   description: '',
 };
 
-// export async function wayToCategory() {
-//   const response = await axios.get(
-//     'https://goit-store.herokuapp.com/products/getCategories',
-//   )
-//   chooseCategory(response.data)
-// };
-// wayToCategory()
 
-// function chooseCategory(categories) {
-//   const values = Object.values(categories)
-//   console.log(values);
-// // console.log(valueCategories);
-//   // console.log(values);
-//   const arrValues = values[0]
-//   return arrValues.reduce((acc, value) => {
-//     acc += `
-//     <option value="${value.name}">${value.name}</option>
-//     `
-//     return acc;
-//   }, '');
-
-//   };
 
 function addProduct(e) {
   // console.log('e.target', e.target);
@@ -564,32 +543,24 @@ function getInfo(event) {
   if (event.target.name === 'productCatygory') {
     product.category = event.target.value;
   }
-
   //! =======================================
-
   let key = event.target.closest('[data-form]').dataset.form;
   forms[key][event.target.name] = event.target.value;
-  // console.log("KEY", key);
-  // console.log("!!!!!!", event.target.name);
-  // console.log("&&&&&&&", event.target.value);
-
   forms[key][event.target] = event.target;
   // console.log('forms[key]', forms[key]);
   // console.log('event.target : ', event.target);
   // console.log('forms[key][event.target.name] :>> ', forms[key][event.target.name]);
-
   // const field = forms[key][event.target];
   // field.nextElementSibling.innerHTML = '';
 
   const inputNew = event.target.value.length;
-
   const field = event.target;
   const inputValue = event.target.value;
   const inputLength = event.target.value.length;
   const nameOfInput = field.getAttribute('name');
   const textInput = field.getAttribute('type');
 
-  // console.log('nameOfInput', nameOfInput);
+
   ['[object HTMLInputElement]'].value;
 
   //^[a-zA-Zа-яА-Я0-9_]*$
@@ -599,6 +570,7 @@ function getInfo(event) {
   const onlyLetAndSymbolRegEx = /^(?=.*[A-ZА-Я])[a-zA-Zа-яА-Я_ -]*$/;
   const numbersRegEx = /^[a-zA-Zа-яА-Я0-9_/-]*$/;
   const zipRegEx = /^[0-9_/-]*$/;
+  const passwordRedEx = /(?=.*[a-zA-Zа-яёА-Я])/;
   //const onlyLettersRegEx = /^[а-яё\s]+|(?=.*[A-Z])[a-z\s]+$/iu;
 
   if (nameOfInput === 'name') {
@@ -637,7 +609,7 @@ function getInfo(event) {
       document.querySelector('.save-button').classList.add('save-button__valid') :
       document.querySelector('.save-button').classList.remove('save-button__valid');
   } else if (nameOfInput === 'password') {
-    nameOfInput === 'password' && inputLength > 5 ?
+    nameOfInput === 'password' && inputLength > 7 && inputValue.match(passwordRedEx) ?
       ((field.nextElementSibling.innerHTML = `<span class="helper-text-valid"></span>`),
         (field.style.outlineColor = '#109b17')) :
       ((field.nextElementSibling.innerHTML = `<span class="helper-text-invalid"><small>Пароль должен содержать не менее 6 символов</small></span>`),
