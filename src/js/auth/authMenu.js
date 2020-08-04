@@ -34,12 +34,11 @@ const privateMenu = function (e) {
     modalContainer.innerHTML = '';
     document.body.style.overflow = 'auto';
   }
-
-  console.dir(dataway);
 };
 
 export const authFn = function () {
   document.body.style.overflow = 'hidden';
+
   if (localStorage.getItem('info')) {
     modalModule(authMenuMarkUp, authMenuMarkUpListener);
 
@@ -69,6 +68,9 @@ export const authFn = function () {
       }
     });
   }
+  // change position when activated
+  // authMenuLocation = document.querySelector('.modalComponent');
+  // authMenuLocation.style.top = 0;
 };
 
 function getName() {

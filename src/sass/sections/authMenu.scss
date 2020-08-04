@@ -2,14 +2,24 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  position: absolute;
+  // position: absolute;
   min-width: 204px;
   min-height: auto;
   background: $auth-menu__background-color;
-  border-radius: 10px;
   word-wrap: break-word;
+  // transform: translate(-50%, -50%);
+  // border-radius: 10px;
+  // top: 11%;
+  // right: 25%;
+}
 
-  transform: translate(165%, -151%);
+.authMenu_component {
+  position: absolute;
+  top: 25%;
+  right: 15%;
+  transform: translate(-50%, -50%);
+  border-radius: 10px;
+  background-color: $auth-menu__background-color;
 }
 
 .user-name {

@@ -49,7 +49,7 @@ export const initialAction = async () => {
 };
 initialAction();
 
-console.log(userData.user);
+console.log('hi', userData.user);
 // const initialActProfile = async () => {
 //   const arr = await apiProducts.getAllProducts();
 //   return arr

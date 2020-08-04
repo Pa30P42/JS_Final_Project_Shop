@@ -38,11 +38,9 @@ export const modalModule = (component, listeners) => {
 
   const markup = `
     <div class="modalOverlay">
-  
+    ${(document.body.style.overflow = 'hidden')}
     <div class="modalComponent"></div>
   </div>
-
-    
     `;
 
   container.innerHTML = markup;
@@ -57,8 +55,6 @@ export const modalModule = (component, listeners) => {
   // const modalScrollLock = document.querySelector('.body');
   // modalScrollLock.style.overflow = 'hidden';
   // document.querySelector('.body').style.overflow = 'hidden';
-
-  // overflow: hidden;
 };
 // === test button need to be made in index.html to use it ===
 // btnTest.addEventListener('click', () => modalModule(component, listeners));
