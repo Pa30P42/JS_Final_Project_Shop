@@ -141,6 +141,7 @@ export default class SliderMultiItems {
   }
 
   updatePagination() {
+    if (this.items.length <= this.countItems) return;
     const paginationWrapper = this.wrapper.querySelector('.slider__controls-dots');
     const dotsRefsCount = paginationWrapper.children.length;
     const dotsLength = Math.ceil(this.items.length / this.countItems);
