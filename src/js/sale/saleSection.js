@@ -18,12 +18,15 @@ const createListMarkup = array => {
   <ul class="card_list">${array.reduce((acc, element) => {
     acc += createSingleCardMarkup(element, 'sale');
     return acc;
-  }, '')}</ul></section>`;
+  }, '')}</ul></section>`
 };
+
+
 
 const getItem = event => {
   if (event.target.closest('[data-id]') && event.target.nodeName === 'IMG') {
     const id = event.target.closest('[data-id]').dataset.id;
+
     if (event.target.src === vector) {
       event.target.src = vector_love;
 
@@ -31,14 +34,16 @@ const getItem = event => {
       if (localStorage.getItem('info')) {
         const token = localStorage.getItem('info');
         const tokenParse = JSON.parse(token).token
+
         if (tokenParse) {
           apiUsers.addFavorite(id).then((data) => {
             apiUsers.getCurrentUser().then(response => {
               userData.user.favorites = response.data.favorites
+              console.log('userData.user.favorites', userData.user.favorites)
             })
           });
         } else {
-          localStorage.setItem('favorites', JSON.stringify(favoritesArr));
+          // localStorage.setItem('favorites', JSON.stringify(favoritesArr));
         }
       }
 

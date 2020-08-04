@@ -5,6 +5,7 @@ import kitchenTech from '../images/category/kitchen-tech.jpg';
 
 export default {
 
+  
   user: {
     cartItem: {
       id: '',
@@ -19,6 +20,7 @@ export default {
       totalQuantity: 0,
     },
   },
+
 
   categoriesItems: [],
   appliances: {
