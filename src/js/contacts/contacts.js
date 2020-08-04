@@ -12,7 +12,7 @@ import Oleg from './image/Oleg.jpeg';
 import Olga from './image/Olga.jpg';
 
 export const contactMarkUp = () => {
-  refs.container.innerHTML = developersProject;
+  refs.sections.innerHTML = developersProject;
 };
 
 const developersProject = `<p data-name="name_logo" class="contactsBack" >Главная / Koнтакты</p>

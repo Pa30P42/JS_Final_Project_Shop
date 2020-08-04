@@ -4,6 +4,7 @@ import { createSingleCardMarkup } from './cardModule';
 import apiUsers from '../api/users/apiUsers';
 
 // /* <section class="card container"></section> *
+
 const createListMarkup = array => {
   return `
    <section class="card">

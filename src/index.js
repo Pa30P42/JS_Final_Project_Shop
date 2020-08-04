@@ -17,7 +17,9 @@ import './js/components/modalModule/modalModule';
 import apiProducts from './js/api/products/apiProducts';
 import apiOrders from './js/api/orders/apiOrders';
 import setting from './js/setting';
-
+import {
+  refs
+} from './js/components/refs';
 import './js/category/category-markup';
 import axios from 'axios';
 import apiAuth from './js/api/auth/apiAuth';
@@ -26,23 +28,25 @@ import productCard from './js/adv/productCard';
 import {
   pseudoProfile
 } from './js/profile/profileTabs';
-import userData from './js/userData'
+import userData from './js/userData';
 import {
   getPofileTest,
-  favouritesFormMarkup,
-
-
+  favouritesFormMarkup
 } from './js/profile/profileMarkups';
 
+import {
+  setCartCounter,
+  setupEvents
+} from './js/components/cart/cart';
 
-
-
-
+import {
+  addNewAndLastSeen
+} from './js/components/new';
+import {
+  test
+} from './js/profile/profileMarkups';
 
 // =========== adv ==============
-
-
-
 
 // apiProducts.searchProductsbyCategory('new').then(data => createList(data.data));
 // =========== adv ==============
@@ -55,28 +59,32 @@ btnShowModal.addEventListener('click', async () => {
   const response = await axios.get('https://goit-store.herokuapp.com/products');
   const item = response.data[8];
   currentItem = item;
-  console.log(response);
   productCard(item);
 });
 
-const initialAction = async () => {
-  // await apiProducts.getAllProducts().then(data => getPofileTest(data.data))
+export const initialAction = async () => {
+  // test();
+  // await apiProducts.getAllProducts().then(data => getPofileTest(data.data));
   //   .then(response => console.log('response :>> ', response))
   await apiProducts.getCategories();
   await apiAuth.login({
-    "email": "olysiHH@gmail.com",
-    "password": "qwerty321"
+    email: 'olysiHH@gmail.com',
+    password: 'qwerty321',
   });
   setting.getDevice(document.documentElement.clientWidth);
 
   containerHandler();
+  addNewAndLastSeen();
+  setCartCounter();
+  setupEvents();
   pseudoProfile();
   new Sim();
   // trigger.triggerFn();
   console.log('userData :>> ', userData);
 };
 initialAction();
-apiUsers.getCurrentUser();
+
+// apiAuth.login({ email: 'unotest2@gmail.com', password: 'testuno111' });
 // const initialActProfile = async () => {
 //   const arr = await apiProducts.getAllProducts();
 //   return arr
