@@ -2,6 +2,7 @@ import vector_love from '../../images/sale/Vector_love.svg';
 import vector from '../../images/sale/Vector.svg';
 import { createSingleCardMarkup } from './cardModule';
 import apiUsers from '../api/users/apiUsers';
+import productCard from '../../js/adv/productCard';
 
 // /* <section class="card container"></section> *
 
@@ -43,7 +44,7 @@ const getItem = event => {
       console.log('itemFavoriteID', itemFavoriteID);
     }
 
-    // productCard(id);
+    productCard(id);
     return id; // функция Ани(id)
   } else return;
 };

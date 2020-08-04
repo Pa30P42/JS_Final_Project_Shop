@@ -26,6 +26,8 @@ import {
 } from '../search/searchdesktop/searchDesktop';
 
 import { authFn } from '../auth/authMenu';
+import apiProducts from '../api/products/apiProducts';
+import { createList } from '../sale/saleSection';
 const headerButton = event => {
   const dataname = event.target.dataset.name;
   if (dataname === 'name_logo') {
@@ -45,6 +47,9 @@ const headerButton = event => {
   } else if (dataname === 'name_buttonClose') {
     closeHeaderMenu();
   } else if (dataname === 'name_sale') {
+    apiProducts
+      .searchProductsbyCategory('new')
+      .then(data => createList(data.data));
     console.log('sale');
     closeHeaderMenu();
   } else if (dataname === 'name_info') {
