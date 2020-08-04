@@ -12,22 +12,22 @@ export default {
   changePasswordUrl: 'https://goit-store.herokuapp.com/users/changePassword',
   updateAddressUrl: 'https://goit-store.herokuapp.com/users/updateAddress',
   addFavoriteUrl: 'https://goit-store.herokuapp.com/users/addFavoriteProduct/',
-  deleteFavoriteUrl:
-    'https://goit-store.herokuapp.com/users/removeFavoriteProduct/',
+  deleteFavoriteUrl: 'https://goit-store.herokuapp.com/users/removeFavoriteProduct/',
   // should get a prod id
 
-//   {
-//     "email": "olysik@gmail.com",
-//     "password": "olysik34"
-// }
+  //   {
+  //     "email": "olysik@gmail.com",
+  //     "password": "olysik34"
+  // }
   async addFavorite(id) {
     try {
-      // console.log(JSON.parse(localStorage.getItem('info')).token);
+
       axios.defaults.headers['Authorization'] = JSON.parse(
         localStorage.getItem('info'),
       ).token;
       const response = await axios.get(`${this.addFavoriteUrl}${id}`);
-      console.log(response);
+      return response
+
     } catch (error) {
       console.log(error);
       // throw error;

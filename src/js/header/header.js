@@ -1,9 +1,16 @@
-import { contactMarkUp } from '../contacts/contacts.js';
+import {
+  contactMarkUp
+} from '../contacts/contacts.js';
 
 import trigger from '../components/trigger';
 // import trigger from './js/components/trigger';
-import { refs } from '../components/refs.js';
-import { headerMenu, closeHeaderMenu } from '../sideBar/headerSideBar.js';
+import {
+  refs
+} from '../components/refs.js';
+import {
+  headerMenu,
+  closeHeaderMenu
+} from '../sideBar/headerSideBar.js';
 // import { contactMarkUp } from '../contacts/contacts.js';
 import {
   catalogListMarkup,
@@ -15,17 +22,29 @@ import {
   categoriesListMarkup,
   categoriesListMarkupAddListeners,
 } from '../category/category-markup';
-import { modalModule } from '../components/modalModule/modalModule.js';
+import {
+  modalModule
+} from '../components/modalModule/modalModule.js';
 import information from '../information/information';
+import apiProducts from '../api/products/apiProducts';
 
-import { pseudoProfile } from '../profile/profileTabs';
+import {
+  pseudoProfile
+} from '../profile/profileTabs';
 
 import {
   searshForm,
   listenersForSearch,
 } from '../search/searchdesktop/searchDesktop';
 
-import { authFn } from '../auth/authMenu';
+import {
+  authFn
+} from '../auth/authMenu';
+
+import {
+  createList
+} from '../sale/saleSection'
+
 const headerButton = event => {
   const dataname = event.target.dataset.name;
   if (dataname === 'name_logo') {
@@ -45,6 +64,7 @@ const headerButton = event => {
   } else if (dataname === 'name_buttonClose') {
     closeHeaderMenu();
   } else if (dataname === 'name_sale') {
+    apiProducts.searchProductsbyCategory('new').then(data => createList(data.data));
     console.log('sale');
     closeHeaderMenu();
   } else if (dataname === 'name_info') {
@@ -68,8 +88,6 @@ const headerButton = event => {
   } else if (dataname === 'name_catalog') {
     modalModule(catalogListMarkup, listeners);
     catalogListMarkupAddListeners();
-
-    // console.log('catalog');
   }
 };
 
