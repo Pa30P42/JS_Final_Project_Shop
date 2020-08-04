@@ -9,7 +9,7 @@ import favourite from '../../images/adv/icons/favorite.svg';
 
 const productItem = item => {
   // const images = [img1, img2, img3, img4, img5, img6];
-  console.log(item);
+  // console.log(item);
   return `
     <section class="product__card container">
       <div class="product__title-mobile">
@@ -63,7 +63,7 @@ const productItem = item => {
           <div class="product__to-add-wrapper">
             <button id="btnBuy" class="buy-btn">купить</button>
             <img class="adv__favorite" id="btnFavourite" src="${favourite}" alt="like" width="20" />
-            <span class="in-favorite">В избранное</span>
+            <span class="adv__in-favorite" data-action="adv__action_favorite">В избранное</span>
           </div>
 
           <div class="product__describtion-desktop">

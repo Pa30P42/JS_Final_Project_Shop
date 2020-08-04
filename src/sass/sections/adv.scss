@@ -82,7 +82,7 @@
   margin-right: 30px;
 }
 
-.in-favorite,
+.adv__in-favorite,
 .product__describtion-desktop {
   display: none;
 }
@@ -219,7 +219,7 @@
   .buy-btn {
     margin-right: 44px;
   }
-  .in-favorite {
+  .adv__in-favorite {
     display: block;
     @include font(600, 18px, 22px, $main--text-color);
     margin-left: 16px;

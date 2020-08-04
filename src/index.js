@@ -15,7 +15,7 @@ import { pseudoProfile } from './js/profile/profileTabs';
 
 import { Sim } from './js/slider/slider';
 import { containerHandler } from './js/container/container';
-
+import apiUsers from './js/api/users/apiUsers';
 // apiProducts.searchProductsbyCategory('new').then(data => createList(data.data));
 
 // ======================= adv ============================
@@ -24,9 +24,8 @@ const btnShowModal = document.getElementById('btnShowModal');
 
 btnShowModal.addEventListener('click', async () => {
   const response = await axios.get('https://goit-store.herokuapp.com/products');
-  const item = response.data[13];
-
-  console.log(item);
+  const item = response.data[11];
+  // console.log(item);
   productCard(item);
 });
 
@@ -36,6 +35,7 @@ const initialAction = async () => {
   await apiProducts.getCategories();
   setting.getDevice(document.documentElement.clientWidth);
   containerHandler();
+
   pseudoProfile();
   new Sim();
   // trigger.triggerFn();
@@ -49,7 +49,13 @@ initialAction();
 // };
 // initialActProfile();
 
+// apiAuth.register({
+//   name: 'Vygov',
+//   email: 'pillowfor@gmail.com',
+//   password: 'qwerty1234',
+// });
+
 // apiAuth.login({
-//   email: 'pillow@gmail.com',
-//   password: 'qwerty12345',
+//   email: 'pillowfor@gmail.com',
+//   password: 'qwerty1234',
 // });

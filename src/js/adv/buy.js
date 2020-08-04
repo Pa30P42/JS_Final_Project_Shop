@@ -8,9 +8,10 @@ const buy = (id, closeModal) => {
     images: id.images[0],
   };
   console.log(item);
-  addToCart(item);
+
+  // addToCart(item);
   closeModal();
-  showCart();
+  // showCart();
 };
 
 export default buy;
