@@ -6,12 +6,8 @@ import userData from '.././userData';
 
 import Inputmask from 'inputmask';
 import image6 from '../../images/profile/image6.png';
-import {
-  refs
-} from '../components/refs';
-import {
-  createSingleCardMarkup
-} from '../sale/cardModule';
+import { refs } from '../components/refs';
+import { createSingleCardMarkup } from '../sale/cardModule';
 import vector from '../../images/sale/Vector.svg';
 //
 // apiAuth.getCurrentUser()   role: "ADMIN"
@@ -81,10 +77,9 @@ export default {
   },
 
   maintabsMarkup() {
-    console.log(this);
-
-    this.sectionRef = document.querySelector('.container');
-    console.log('sectionRef :>> ', this.sectionRef);
+    // console.log(this);
+    this.sectionRef = document.querySelector('.sections');
+    // console.log('sectionRef :>> ', this.sectionRef);
 
     //     this.sectionRef = document.querySelector('.sections');
     //     console.log('sectionRef :>> ', this.sectionRef);
@@ -121,14 +116,15 @@ export default {
             </section>
           `;
     };
-
+    // console.log('refs.sections :>> ', refs.sections);
     this.sectionRef.innerHTML = accountTabsMarkup();
     const mainTabsNav = document.querySelector('#parent_profile');
 
+    // console.log(mainTabsNav);
     mainTabsNav.addEventListener('click', this.getMarkup);
     const favouritesBtn = document.querySelector('.favourites');
     favouritesBtn.addEventListener('click', event => {
-      console.log('event.target :>> ', event.target);
+      // console.log('event.target :>> ', event.target);
     });
 
     const profileExitLink = document.querySelector('.page-control__exit');
@@ -145,7 +141,7 @@ export default {
 
   getMarkup(event) {
     if (event.target.nodeName !== 'BUTTON') {
-      console.log('Not a button');
+      // console.log('Not a button');
       return;
     }
     const currentActiveBtn = document.querySelector('.active');
@@ -534,7 +530,6 @@ function addInfoListener(key) {
   const inputForm = form.querySelector(`[data-form="${key}"]`);
 
   inputForm.addEventListener('input', getInfo);
-  //console.log("inputForm", inputForm.dataset.form);
 }
 //apiUsers.getInfo();
 //getCurrentUser
@@ -584,10 +579,10 @@ const product = {
 //   };
 
 function addProduct(e) {
-  console.log('e.target', e.target);
+  // console.log('e.target', e.target);
   if (e.target.nodeName === 'BUTTON' && e.target.closest('[data-create]')) {
     const createBtn = e.target.closest('[data-create]').dataset.create;
-    console.log('createBtn', createBtn);
+    // console.log('createBtn', createBtn);
     apiProducts.CreateNewProduct(product);
   } else return;
 }
@@ -605,9 +600,6 @@ function getInfo(event) {
   if (event.target.name === 'productCatygory') {
     product.category = event.target.value;
   }
-  // console.log("PRODUCT", product);
-  // console.log("&&&&&&&", event.target);
-  // apiProducts.CreateNewProduct(product)
 
   //! =======================================
 
@@ -633,7 +625,7 @@ function getInfo(event) {
   const nameOfInput = field.getAttribute('name');
   const textInput = field.getAttribute('type');
 
-  console.log('nameOfInput', nameOfInput);
+  // console.log('nameOfInput', nameOfInput);
   ['[object HTMLInputElement]'].value;
 
   //^[a-zA-Zа-яА-Я0-9_]*$
@@ -646,148 +638,91 @@ function getInfo(event) {
   //const onlyLettersRegEx = /^[а-яё\s]+|(?=.*[A-Z])[a-z\s]+$/iu;
 
   if (nameOfInput === 'name') {
-    inputLength > 1 && inputLength < 35 && inputValue.match(onlyLetAndSymbolRegEx) ?
-      ((field.nextElementSibling.innerHTML = `<span class="helper-text-valid"></span>`),
-        (field.style.outlineColor = '#109b17')) :
-      ((field.nextElementSibling.innerHTML = `<span class="helper-text-invalid">Введите имя, отчество </span>`),
+    inputLength > 1 && inputLength < 35 && inputValue.match(onlyLetAndSymbolRegEx)
+      ? ((field.nextElementSibling.innerHTML = `<span class="helper-text-valid"></span>`),
+        (field.style.outlineColor = '#109b17'))
+      : ((field.nextElementSibling.innerHTML = `<span class="helper-text-invalid">Введите имя, отчество </span>`),
         (field.style.outlineColor = '#FF8A9D'));
   } else if (nameOfInput === 'surname') {
-    inputLength < 35 && inputLength > 1 && inputValue.match(onlyLetAndSymbolRegEx) ?
-      ((field.nextElementSibling.innerHTML = `<span class="helper-text-valid"></span>`),
-        (field.style.outlineColor = '#109b17')) :
-      ((field.nextElementSibling.innerHTML = `<span class="helper-text-invalid">Введите фамилию</span>`),
+    inputLength < 35 && inputLength > 1 && inputValue.match(onlyLetAndSymbolRegEx)
+      ? ((field.nextElementSibling.innerHTML = `<span class="helper-text-valid"></span>`),
+        (field.style.outlineColor = '#109b17'))
+      : ((field.nextElementSibling.innerHTML = `<span class="helper-text-invalid">Введите фамилию</span>`),
         (field.style.outlineColor = '#FF8A9D'));
   } else if (nameOfInput === 'email') {
     const regExEmail = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{3,}))$/;
-    nameOfInput === 'email' && inputValue.match(regExEmail) ?
-      ((field.nextElementSibling.innerHTML = `<span class="helper-text-valid"></span>`),
-        (field.style.outlineColor = '#109b17')) :
-      ((field.nextElementSibling.innerHTML = `<span class="helper-text-invalid">Неверный адрес почты</span>`),
+    nameOfInput === 'email' && inputValue.match(regExEmail)
+      ? ((field.nextElementSibling.innerHTML = `<span class="helper-text-valid"></span>`),
+        (field.style.outlineColor = '#109b17'))
+      : ((field.nextElementSibling.innerHTML = `<span class="helper-text-invalid">Неверный адрес почты</span>`),
         (field.style.outlineColor = '#FF8A9D'));
   } else if (nameOfInput === 'tel') {
     let selector = document.querySelector('input[type="tel"]');
 
     let im = new Inputmask('+38 (999) 999-99-99');
     im.mask(selector);
-    inputLength > 18 ?
-      ((field.nextElementSibling.innerHTML = `<span class="helper-text-valid"></span>`),
-        (field.style.outlineColor = '#109b17')) :
-      ((field.nextElementSibling.innerHTML = `<span class="helper-text-invalid">Введите номер телефона</span>`),
+    inputLength > 18
+      ? ((field.nextElementSibling.innerHTML = `<span class="helper-text-valid"></span>`),
+        (field.style.outlineColor = '#109b17'))
+      : ((field.nextElementSibling.innerHTML = `<span class="helper-text-invalid">Введите номер телефона</span>`),
         (field.style.outlineColor = '#FF8A9D'));
 
     // console.log('inputValueProfile.Length :>> ', inputValueProfile.length);
     const inputValueProfile = document.querySelectorAll('.helper-text-valid');
-    inputValueProfile.length === 4 ?
-      document.querySelector('.save-button').classList.add('save-button__valid') :
-      document.querySelector('.save-button').classList.remove('save-button__valid');
+    inputValueProfile.length === 4
+      ? document.querySelector('.save-button').classList.add('save-button__valid')
+      : document.querySelector('.save-button').classList.remove('save-button__valid');
   } else if (nameOfInput === 'password') {
-    nameOfInput === 'password' && inputLength > 5 ?
-      ((field.nextElementSibling.innerHTML = `<span class="helper-text-valid"></span>`),
-        (field.style.outlineColor = '#109b17')) :
-      ((field.nextElementSibling.innerHTML = `<span class="helper-text-invalid"><small>Пароль должен содержать не менее 6 символов</small></span>`),
+    nameOfInput === 'password' && inputLength > 5
+      ? ((field.nextElementSibling.innerHTML = `<span class="helper-text-valid"></span>`),
+        (field.style.outlineColor = '#109b17'))
+      : ((field.nextElementSibling.innerHTML = `<span class="helper-text-invalid"><small>Пароль должен содержать не менее 6 символов</small></span>`),
         (field.style.outlineColor = '#FF8A9D'));
   } else if (nameOfInput === 'confirmPassword') {
     let password = document.querySelector('[name="password"]').value;
     let confirmPassword = document.querySelector('[name="confirmPassword"]').value;
     const errorDiv = document.querySelector('#helper-text-div');
-    console.log('errorDiv :>> ', errorDiv);
+    // console.log('errorDiv :>> ', errorDiv);
 
-    password === confirmPassword ?
-      ((errorDiv.innerHTML = `<span class="helper-text-valid"></span>`),
-        (field.style.outlineColor = '#109b17')) :
-      ((errorDiv.innerHTML = `<span class="helper-text-invalid"><small>Подтвердите пароль</small></span>`),
+    password === confirmPassword
+      ? ((errorDiv.innerHTML = `<span class="helper-text-valid"></span>`),
+        (field.style.outlineColor = '#109b17'))
+      : ((errorDiv.innerHTML = `<span class="helper-text-invalid"><small>Подтвердите пароль</small></span>`),
         (field.style.outlineColor = '#FF8A9D'));
     const inputValueProfile = document.querySelectorAll('.helper-text-valid');
-    inputValueProfile.length === 2 ?
-      document.querySelector('.save-button').classList.add('save-button__valid') :
-      document.querySelector('.save-button').classList.remove('save-button__valid');
+    inputValueProfile.length === 2
+      ? document.querySelector('.save-button').classList.add('save-button__valid')
+      : document.querySelector('.save-button').classList.remove('save-button__valid');
   } else if (
     nameOfInput === 'country' ||
     nameOfInput === 'city' ||
     nameOfInput === 'place' ||
     nameOfInput === 'street'
   ) {
-    inputLength > 2 && inputLength < 35 && inputValue.match(onlyLetAndSymbolRegEx) ?
-      ((field.nextElementSibling.innerHTML = `<span class="helper-text-valid"></span>`),
-        (field.style.outlineColor = '#109b17')) :
-      ((field.nextElementSibling.innerHTML = `<span class="helper-text-invalid">Введите данные</span>`),
+    inputLength > 2 && inputLength < 35 && inputValue.match(onlyLetAndSymbolRegEx)
+      ? ((field.nextElementSibling.innerHTML = `<span class="helper-text-valid"></span>`),
+        (field.style.outlineColor = '#109b17'))
+      : ((field.nextElementSibling.innerHTML = `<span class="helper-text-invalid">Введите данные</span>`),
         (field.style.outlineColor = '#FF8A9D'));
   } else if (nameOfInput === 'building' || nameOfInput === 'block' || nameOfInput === 'flat') {
-    inputLength > 0 && inputLength < 9 && inputValue.match(numbersRegEx) ?
-      ((field.nextElementSibling.innerHTML = `<span class="helper-text-valid"></span>`),
-        (field.style.outlineColor = '#109b17')) :
-      ((field.nextElementSibling.innerHTML = `<span class="helper-text-invalid">Введите данные</span>`),
+    inputLength > 0 && inputLength < 9 && inputValue.match(numbersRegEx)
+      ? ((field.nextElementSibling.innerHTML = `<span class="helper-text-valid"></span>`),
+        (field.style.outlineColor = '#109b17'))
+      : ((field.nextElementSibling.innerHTML = `<span class="helper-text-invalid">Введите данные</span>`),
         (field.style.outlineColor = '#FF8A9D'));
     const inputValueProfile = document.querySelectorAll('.helper-text-valid');
-    inputValueProfile.length >= 5 ?
-      document.querySelector('.save-button').classList.add('save-button__valid') :
-      document.querySelector('.save-button').classList.remove('save-button__valid');
+    inputValueProfile.length >= 5
+      ? document.querySelector('.save-button').classList.add('save-button__valid')
+      : document.querySelector('.save-button').classList.remove('save-button__valid');
     //======= address==========
   } else if (nameOfInput === 'postIndex') {
-    inputLength === 5 && inputValue.match(zipRegEx) ?
-      ((field.nextElementSibling.innerHTML = `<span class="helper-text-valid"></span>`),
-        (field.style.outlineColor = '#109b17')) :
-      ((field.nextElementSibling.innerHTML = `<span class="helper-text-invalid">Введите 5 цифр индекса</span>`),
+    inputLength === 5 && inputValue.match(zipRegEx)
+      ? ((field.nextElementSibling.innerHTML = `<span class="helper-text-valid"></span>`),
+        (field.style.outlineColor = '#109b17'))
+      : ((field.nextElementSibling.innerHTML = `<span class="helper-text-invalid">Введите 5 цифр индекса</span>`),
         (field.style.outlineColor = '#FF8A9D'));
     // } else if (inputForm.dataset.form === 'favourites') {
     //console.log('key :>> ', event.target.dataset.form);
   }
   console.log('forms :>> ', forms);
 }
-
-//============ Favourites==========
-
-//=======
-
-// apiProducts.getAllProducts();
-
-// apiUsers.addFavorite('5f253901dd556c0017610f5c');
-
-// function profileGetFavourites() {
-
-//   apiUsers.getCurrentUser().then(data => profileGetProducts(data));
-
-// }
-// profileGetFavourites();
-
-// function profileGetProducts(favourites) {
-//   // console.log('array :>> ', array.data);
-//   // initialActProfile().then(data => console.log(data))
-//   const response = axios.get(
-//     'https://goit-store.herokuapp.com/products',
-
-//   );
-
-//   // console.log(favourites);
-//   console.log(response);
-//   // profileFindProduct(response)
-
-// }
-
-// function profileFindProduct(favourites, products) {
-//   console.log(favourites)
-//   console.log(products)
-
-// }
-//======================
-
-// export function getPofileTest(arr) {
-//   const favMassive = [];
-//   const profileFavIdList = arr;
-
-//   apiUsers.getCurrentUser().then(data => profileMyFavourites(data.data.favorites));
-
-//   function profileMyFavourites(data) {
-//     console.log('data :>> ', data);
-//     let favouritesId = data;
-//     for (const profileFav of favouritesId) {
-//       console.log('profileFav:>> ', profileFav);
-//       const profileOneFav = profileFavIdList.find(elem => {
-//         elem._id === profileFav ? favMassive.push(elem) : null;
-//       });
-//     }
-//     favouritesFormMarkup(favMassive);
-//     // console.log('favMassive ', favMassive);
-//     // return favMassive;
-//   }
-// }

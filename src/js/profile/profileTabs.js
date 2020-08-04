@@ -1,45 +1,6 @@
-import {
-  refs
-} from "../components/refs";
+import { refs } from '../components/refs';
 
 import profile from './profileMarkups';
-
-
-export const pseudoProfile = () => {
-  const pseudoRef = document.querySelector('.check');
-  pseudoRef.addEventListener('click', profile.maintabsMarkup.bind(profile));
-
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 // import apiAuth from './api/users/apiUsers';
 //===================
@@ -63,7 +24,6 @@ export const pseudoProfile = () => {
 //   console.log(mainTabsNav);
 // }
 // renderProfile().then(chooseNavBtn())
-
 
 //==========================
 

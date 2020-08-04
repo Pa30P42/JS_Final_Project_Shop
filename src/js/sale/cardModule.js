@@ -56,9 +56,7 @@ export const createSingleCardMarkup = (element, sale) => {
   <div class="card_prise-block">
      ${
        sale
-         ? `<p class="card_price">${Math.round(
-             element.price * 1.3,
-           )}<span> &#8372;</span></p>
+         ? `<p class="card_price">${Math.round(element.price * 1.3)}<span> &#8372;</span></p>
         <p class="card_price-sale">${element.price}<span> &#8372;</span></p>`
          : `<p class="card_price-sale">${element.price}<span> &#8372;</span></p>`
      }
