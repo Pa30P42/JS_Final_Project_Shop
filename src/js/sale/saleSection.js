@@ -4,6 +4,7 @@ import { createSingleCardMarkup } from './cardModule';
 import apiUsers from '../api/users/apiUsers';
 
 // /* <section class="card container"></section> *
+
 const createListMarkup = array => {
   return `
    <section class="card">
@@ -52,24 +53,20 @@ const getItem = event => {
 apiUsers.getCurrentUser();
 // apiUsers.getCurrentUser().then(data => console.log(data));
 
-const cardList = document.querySelector('.card_list');
+// const cardList = document.querySelector('.card_list');
 export const createList = array => {
-  const container = document.querySelector('.container');
+  const container = document.querySelector('.sections');
   container.innerHTML = createListMarkup(array);
   container.addEventListener('click', getItem);
-  cardList.addEventListener('click', getVector);
+  // cardList.addEventListener('click', getVector);
 
   // cardList.addEventListener('click', getVector);
 };
 
-export const getVector = event => {
-  if (
-    event.target.closest('[data-clickVector]') &&
-    event.target.nodeName === 'IMG'
-  ) {
-    const clickVector = event.target.closest('[data-clickVector]').dataset
-      .clickVector;
-    console.log('clickVector', clickVector);
-    return clickVector;
-  } else return;
-};
+// export const getVector = event => {
+//   if (event.target.closest('[data-clickVector]') && event.target.nodeName === 'IMG') {
+//     const clickVector = event.target.closest('[data-clickVector]').dataset.clickVector;
+//     console.log('clickVector', clickVector);
+//     return clickVector;
+//   } else return;
+// };

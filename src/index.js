@@ -1,39 +1,26 @@
 import './sass/main.scss';
 import './js/category/category-markup';
-import {
-  containerHandler
-} from './js/container/container';
-import {
-  createSingleCardMarkup
-} from './js/sale/cardModule';
-import {
-  createList
-} from './js/sale/saleSection';
-import {
-  Sim
-} from './js/slider/slider';
+import { containerHandler } from './js/container/container';
+import { createSingleCardMarkup } from './js/sale/cardModule';
+import { createList } from './js/sale/saleSection';
+import { Sim } from './js/slider/slider';
 import './js/catalog/catalog';
 import './js/components/modalModule/modalModule';
 import apiProducts from './js/api/products/apiProducts';
 import apiOrders from './js/api/orders/apiOrders';
 import setting from './js/setting';
-
+import { refs } from './js/components/refs';
 import './js/category/category-markup';
 import axios from 'axios';
 import apiAuth from './js/api/auth/apiAuth';
 import apiUsers from './js/api/users/apiUsers';
 import productCard from './js/adv/productCard';
-import {
-  pseudoProfile
-} from './js/profile/profileTabs';
+import { setCartCounter, setupEvents } from './js/components/cart/cart';
 
-
-
+import { addNewAndLastSeen } from './js/components/new';
+import { pseudoProfile } from './js/profile/profileTabs';
 
 // =========== adv ==============
-
-
-
 
 // apiProducts.searchProductsbyCategory('new').then(data => createList(data.data));
 // =========== adv ==============
@@ -46,20 +33,23 @@ btnShowModal.addEventListener('click', async () => {
   const response = await axios.get('https://goit-store.herokuapp.com/products');
   const item = response.data[8];
   currentItem = item;
-  console.log(response);
   productCard(item);
 });
 
-const initialAction = async () => {
+export const initialAction = async () => {
+  apiAuth.login({ email: 'unotest2@gmail.com', password: 'testuno111' });
   await apiProducts.getCategories();
   setting.getDevice(document.documentElement.clientWidth);
   containerHandler();
+  addNewAndLastSeen();
+  setCartCounter();
+  setupEvents();
   pseudoProfile();
   new Sim();
   // trigger.triggerFn();
 };
 initialAction();
-apiUsers.getCurrentUser();
+
 // const initialActProfile = async () => {
 //   const arr = await apiProducts.getAllProducts();
 //   return arr
