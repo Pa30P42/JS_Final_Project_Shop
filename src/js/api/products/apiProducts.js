@@ -5,9 +5,9 @@ import {
 import axios from 'axios';
 import userData from '../../userData';
 
-axios.defaults.headers['Authorization'] = JSON.parse(
-  localStorage.getItem('info'),
-);
+// axios.defaults.headers['Authorization'] = JSON.parse(
+//   localStorage.getItem('info'),
+// );
 
 
 // ========= services product ==== Все катигории и продукты и залиті в ЮЗЕРДАТУ

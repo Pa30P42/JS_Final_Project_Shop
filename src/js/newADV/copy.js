@@ -1,7 +1,7 @@
 import apiProducts from '../api/products/apiProducts'
 import globeUserData from '../userData'
 import axios from 'axios';
-import {addNewProductCard, addAdvListeners, getNewADV, previewImg} from '../newADV/newAdv'
+import {addNewProductCard} from '../newADV/newAdv'
 
 // import {
 //   apiAuth
@@ -117,7 +117,7 @@ export default {
   getMarkup(event) {
 
     if (event.target.nodeName !== "BUTTON") {
-      // console.log("Not a button");
+      console.log("Not a button");
       return;
     }
     const currentActiveBtn = document.querySelector(".active");
@@ -153,14 +153,7 @@ export default {
         break;
       case "advertisement":
         advertisementFormMarkup();
-        addInfoListener(event, 'advertisementForm')
-        const refs =  {
-          newAdvInput: document.querySelector('.add__product'),
-        };
-        refs.newAdvInput.addEventListener('input', getNewADV)
-        refs.newAdvInput.addEventListener('input', previewImg);
-
-        addAdvListeners(".addnewproduct__wrapper")
+        addInfoListener('advertisementForm')
         break;
 
       default:
@@ -376,51 +369,32 @@ export function advertisementFormMarkup() {
               <label  class="adv-label" for="name">Название товара</label>
               <input type="text" name="productName" id="productName" class="advertisement-inputs form-control-advertisement productName" placeholder="Название"
                 required />
+            
+               <p>Фото</p>
+               <input type="file" id="productImage" name="productImageFirst" class="input-photo form-control productImage" accept="image/*"
+               class="form-control" required />
+               <label class="adv-label"  for="name"><img src="" class="addcard__img iaddcard__img-first" width="75"
+               height="74" alt=""></label>
+                <ul class="addcard__list">
+          
+                </ul>
+
                
-
-              <p>Фото</p>
-            <div class="addnewproduct__wrapper">
-              ${addNewProductCard()}
-              </div>
-
-               
-
     
               <label  class="adv-label" for="name">Описание товара</label>
               <textarea style="resize:none"  name="productDescription" id="comments" class="advertisement-inputs form-control-advertisement  input-textarea productDescription"
                 placeholder="Описание"></textarea>
              
-
+    
     
               <label  class="adv-label" for="name">Категория товара</label>
               <select id="productCatygory" name="productCatygory" class="advertisement-inputs form-control-advertisement productCatygory" required>
               <option disabled selected value class="input-select">Выберите категорию</option>
-              <option value="refrigerators">Холодильники</option>
-              <option value="washing_machines">Стиральные машины</option>
-              <option value="dishwashers">Посудомоечные машины</option>
-              <option value="сookers">Кухонные плиты</option>
-              <option value="freezers">Морозильные камеры</option>
-              <option value="drying_machines">Сушильные машины</option>
-              <option value="built_in_ovens">Встраиваемые духовые шкафы</option>
-              <option value="built_in_hobs">Встраиваемые варочные поверхности</option>
-              <option value="cooker_hoods">Кухонные вытяжки</option>
-              <option value="food_waste_disposers">Измельчители пищевых отходов</option>
-              <option value="Accessories_for_vbt">Аксессуары к вбт</option>
-              <option value="coffee_machines">Кофемашины</option>
-              <option value="multicooker">Мультиварки</option>
-              <option value="microwave_ovens">Печи СВЧ</option>
-              <option value="blenders">Блендеры</option>
-              <option value="grills">Грили</option>
-              <option value="accessories_for_kitchen_appliances">Аксессуары для кухонной техники</option>
-              <option value="other_small_equipment">Прочая мелкая техника</option>
-              <option value="vacuum_cleaners">Пылесосы</option>
-              <option value="robot_vacuum_cleaners">Роботы-пылесосы</option>
-              <option value="irons">Утюги</option>
-              <option value="sewing_equipment_and_accessories">Швейная техника и аксессуары</option>
-              <option value="steam_cleaners">Пароочистители</option>
-              <option value="accessories_for_home_care_and_clothing_products">Аксессуары к товарам по уходу за домом и одеждой</option>
-              <option value="sale">Распродажа</option>
-              <option value="new">Новые поступления</option>
+              <option value="student">2</option>
+              <option value="job">3</option>
+              <option value="learner">4</option>
+              <option value="preferNo">5</option>
+              <option value="other">6</option>
                </select>
                
 
@@ -437,7 +411,7 @@ export function advertisementFormMarkup() {
     
     
             </div>
-            <button type="button" data-create="addProdact" id="submit" class="save-button">
+            <button type="submit" data-create="addProdact" id="submit" class="save-button">
               Создать
             </button>
           </form>
@@ -445,81 +419,22 @@ export function advertisementFormMarkup() {
   };
   const advertisementBtn = document.querySelector(".advertisement");
   advertisementBtn.insertAdjacentHTML("afterend", advertisementMarkup());
-
   setActive();
   
   //! ============================= Kostya ==================
   const btnAddProduct = document.querySelector('.js-active-tab-advertisement')
   const addImage = document.querySelector('.js-active-tab-advertisement')
   btnAddProduct.addEventListener('click', addProduct)
-  // addImage.productImage.addEventListener('input', createbase);
-  addImage.productImageFirst.addEventListener('input', createbaseFirst);
-  addImage.productImageSecond.addEventListener('input', createbaseSecond);
-  addImage.productImageThird.addEventListener('input', createbaseThird);
-  addImage.productImageFourth.addEventListener('input', createbaseFourth);
-  addImage.productImageFifth.addEventListener('input', createbaseFifth);
-  addImage.productImageSixth.addEventListener('input', createbaseSixth);
+  addImage.productImageFirst.addEventListener('input', createbase);
 
-
- 
   
-  function createbaseFirst() {
-
+  function createbase() {
     const element = addImage.productImageFirst;
     toDataUrl(element).then(data => {
-      product.images = [...product.images, ...data]
+      product.images = [...data]
 
     });
   }
-
-  function createbaseSecond() {
-
-    const element = addImage.productImageSecond;
-    toDataUrl(element).then(data => {
-      product.images = [...product.images, ...data]
-
-    });
-  }
-
-  function createbaseThird() {
-
-    const element = addImage.productImageThird;
-    toDataUrl(element).then(data => {
-      product.images = [...product.images, ...data]
-
-    });
-  }
-
-
-  function createbaseFourth() {
-
-    const element = addImage.productImageFourth;
-    toDataUrl(element).then(data => {
-      product.images = [...product.images, ...data]
-
-    });
-  }
-
-
-  function createbaseFifth() {
-
-    const element = addImage.productImageFifth;
-    toDataUrl(element).then(data => {
-      product.images = [...product.images, ...data]
-
-    });
-  }
-
-
-  function createbaseSixth() {
-
-    const element = addImage.productImageSixth;
-    toDataUrl(element).then(data => {
-      product.images = [...product.images, ...data]
-
-    });
-  }
-
 
 
   //! ===============================================
@@ -554,18 +469,12 @@ function deleteActive() {
 
 // };
 
-function addInfoListener(e, key) {
-  e.preventDefault()
-
-if (e.target.dataset.create !== "addProdact") {
-  return
-}
-
+function addInfoListener(key) {
   const form = document.querySelector('#profile');
   // console.log(forms[key]);
   const inputForm = form.querySelector(`[data-form="${key}"]`);
   inputForm.addEventListener('input', getInfo);
-  // console.log('inputForm', inputForm.dataset.form);
+  console.log('inputForm', inputForm.dataset.form);
 };
 //=====================VALIDATION=====CONTACTS========
 // function showValidMarkup() {
@@ -631,7 +540,6 @@ const product = {
 
 
   function addProduct (e) {
-  // console.log("e.target", e.target);
   if ((e.target.nodeName === "BUTTON")  && e.target.closest('[data-create]')) {
     const createBtn = e.target.closest('[data-create]').dataset.create
     console.log("createBtn", createBtn);
@@ -653,8 +561,6 @@ function getInfo(event) {
  if (event.target.name === "productCatygory") {
   product.category = event.target.value
 }
-
-
 
 //! =======================================
 

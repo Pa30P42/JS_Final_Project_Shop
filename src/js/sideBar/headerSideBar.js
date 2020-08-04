@@ -10,4 +10,5 @@ export const headerMenu = () => {
 
 export const closeHeaderMenu = () => {
   refs.sidebar.classList.add('ishidden');
+
 };

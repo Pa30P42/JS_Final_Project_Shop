@@ -1,56 +1,136 @@
-import {advertisementFormMarkup} from '../profile/profileMarkups'
-import CreateNewProduct from '../api/products/apiProducts'
+import advertisementFormMarkup from '../profile/profileMarkups';
+import apiProducts from '../api/products/apiProducts';
 
+const cards = {
+  cardItems: [],
+  activeCard: "",
+  };
 
-const productItem = []
+  const inputs = {
+activeInput: "",
+  }
+  
 
-const product = {
-"images": [],
-"totalQuantity": 0,
-"name": "",
-"category": "",
-"price": 0,
-"description": ""
-}
+export function addNewProductCard() {
+    return `
+    <ul class="add__product">
+    <li class="addcard__list addADV__hidden addADV__active  ADVelement" dataset-newadvlistfirst="newadvlistfirst">
+    <input type="file" datast-addproductimagename="addproductimagename"  data-id="1" name="productImageFirst" class="current__input input-photo form-control productImage take-photo" accept="image/*"
+    class="form-control" required />
+    <label class="adv-label"  for="name"><img src="" class="addcard__img iaddcard__img--1" width="75"
+    height="74" alt=""></label>
+    </li>
 
-// apiProducts.CreateNewProduct({"images": [],
-// "totalQuantity": 2,
-// "name": "Wrenoholoy",
-// "category": "tools",
-// "price": 15,
-// "description": "Good tool"}
-// ).then(data => console.log(data.data));
+    <li class="addcard__list addADV__hidden ADVelement" dataset-newadvlistsecond="newadvlistsecond">
+    <input type="file" datast-addproductimagename="addproductimagename" data-id="2" name="productImageSecond" class="current__input input-photo form-control productImage take-photo" accept="image/*"
+    class="form-control" required />
+    <label class="adv-label"  for="name"><img src="" class="addcard__img iaddcard__img--2" width="75"
+    height="74" alt=""></label>
+    </li>
 
+    <li class="addcard__list addADV__hidden ADVelement" dataset-newadvlistthird="newadvlistthird">
+    <input type="file" datast-addproductimagename="addproductimagename" data-id="3" name="productImageThird" class="current__input input-photo form-control productImage take-photo" accept="image/*"
+    class="form-control" required />
+    <label class="adv-label"  for="name"><img src="" class="addcard__img iaddcard__img--3" width="75"
+    height="74" alt=""></label>
+    </li>
 
-const getInformation = (e) => {
-    product[e.target.name] = e.target.value
+    <li class="addcard__list addADV__hidden ADVelement" dataset-newadvlistfourth="newadvlistfourth">
+    <input type="file" datast-addproductimagename="addproductimagename" data-id="4" name="productImageFourth" class="current__input input-photo form-control productImage take-photo" accept="image/*"
+    class="form-control" required />
+    <label class="adv-label"  for="name"><img src="" class="addcard__img iaddcard__img--4" width="75"
+    height="74" alt=""></label>
+    </li>
 
-    console.log("form.productName", form[key].productName);
+    <li class="addcard__list addADV__hidden ADVelement" dataset-newadvlistfifth="newadvlistfifth">
+    <input type="file" datast-addproductimagename="addproductimagename" data-id="5" name="productImageFifth" class="current__input input-photo form-control productImage take-photo" accept="image/*"
+    class="form-control" required />
+    <label class="adv-label"  for="name"><img src="" class="addcard__img iaddcard__img--5" width="75"
+    height="74" alt=""></label>
+    </li>
 
-    console.log("product[e.target.name]", product[e.target.name]);
-    console.log("e.target.value", e.target.value);
-    console.log("ETARGET", e.target.value);
-
-}
-
-
-const addNewProduct = (e) => {
-    e.preventDefault()
-
-    productItems = [...productItems, product]
-   
-    console.log("productItems",productItems);
+    <li class="addcard__list addADV__hidden ADVelement" dataset-newadvlistsixth="newadvlistsixth">
+    <input type="file" datast-addproductimagename="addproductimagename" data-id="6" name="productImageSixth" class="current__input input-photo form-control productImage take-photo" accept="image/*"
+    class="form-control" required />
+    <label class="adv-label"  for="name"><img src="" class="addcard__img iaddcard__img--6" width="75"
+    height="74" alt=""><img src="" class="addcard__img iaddcard__img-sixth" width="75"
+    height="74" alt=""></label>
+    </li>
+    </ul>`;
     
-   
+};
+
+
+export function addAdvListeners(container) {
+const block = document.querySelector(container)
+cards.activeCard = block.querySelector('.ADVelement');
+inputs.activeInput = block.querySelector('.current__input')
 }
 
 
-// const refs = {
-//     advertisementForm: document.querySelector('.js-active-tab-advertisement')
+export function getNewADV(e) {
+  e.preventDefault()
+  
+  if (e.target.nodeName === "INPUT") {
 
-// }
-// refs.advertisementForm.addEventListener('input', getInformation)
-// refs.advertisementForm.addEventListener('submit', addNewProduct)
+cards.cardItems = [...cards.cardItems, 1];
+
+cards.activeCard.classList.remove("ADVelement")
+const currentActiveCard = document.querySelector(".ADVelement")
+
+if (currentActiveCard) {
+  cards.activeCard = currentActiveCard
+  cards.activeCard.classList.add("addADV__active")
+}
+
+// inputs.activeInput.classList.remove("current__input")
+const currentActiveInput = document.querySelector('.current__input')
+if (currentActiveInput) {
+  inputs.activeInput = currentActiveInput
+  inputs.activeInput.classList.add("ADV__input--hidden")
+
+}
+
+
+    }
+
+    
+  }
+  
+  let productImage;
+
+  export function previewImg(event) {
+    if (event.target === event.currentTarget) {
+      return;
+    }
+    changeImgBlock(event);
+    if (event.target.dataset.id) {
+      const file = event.target.files[0];
+      const inputID = event.target.dataset.id;
+      const img = document.querySelector(`.iaddcard__img--${inputID}`);
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        img.src = reader.result;
+        productImage = reader.result;
+        img.setAttribute('data-img', productImage);
+      };
+      if (file) {
+        reader.readAsDataURL(file);
+      } else {
+        img.src = '';
+      }
+    }
+  }
+
+  function changeImgBlock(event) {
+    let imgId = Number(event.target.dataset.id);
+    imgId += 1;
+    if (imgId > 6) {
+      return;
+    }
+  }
+  
+
 
 
 

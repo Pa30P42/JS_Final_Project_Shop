@@ -51,4 +51,9 @@ const initialAction = async () => {
 };
 initialAction();
 
+// apiAuth.login({
+//   email: "unotest2@gmail.com",
+//   password: "testuno111",
+// })
+
 

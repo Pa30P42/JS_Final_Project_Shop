@@ -378,8 +378,6 @@ em {
   right: 10px;
   top: 10px;
 
-  &:hover {}
-
 
 }
 
@@ -453,6 +451,13 @@ label {
 
 
 //====advertisement=====
+
+.addnewproduct__wrapper {
+  font-size: 15px;
+}
+
+
+
 .input-photo {
   width: 75px;
   height: 74px;
@@ -514,7 +519,10 @@ label {
 
   }
 
-  @media (min-width: 1200px) {}
+  @media (min-width: 1200px) {
+
+  }
+
 
   &__address::placeholder {
     color: #B3B3B3;

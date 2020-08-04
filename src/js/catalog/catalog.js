@@ -3,6 +3,7 @@ import catalogList from '../userData'
 import subItem from '../api/products/services';
 import apiProducts from '../api/products/apiProducts';
 import {modalModule} from '../components/modalModule/modalModule'
+import {closeHeaderMenu} from '../sideBar/headerSideBar'
 
 
 
@@ -24,14 +25,10 @@ const isDesktop = false;
     
     function getLink(e) {
 
-      // console.log("nodeName", e.target.nodeName);
-// console.log(e.target);
-      // if (e.target.dataset.sublink) {
-      //   console.log(e.target.dataset.sublink);
-      // }
-// console.log(e.target);
+
       if ((e.target.nodeName === "LI" || e.target.nodeName === "P")  && e.target.closest('[data-sublink]')) {
         const subLink = e.target.closest('[data-sublink]').dataset.sublink
+        closeHeaderMenu()
         return subLink
       } 
 
@@ -39,34 +36,37 @@ const isDesktop = false;
 
         if (isMobile || isTablet) {
         const activeSubCatalog = refs.catalogList.querySelector('.catalog__active') 
-        
 
-        
+        const catalog = e.target.closest('[data-link]')       
+        const subCatalog = catalog.querySelector('.sub__catalog__list')
+
+        subCatalog.classList.toggle('catalog__active')
+
 
         if (activeSubCatalog) {
           activeSubCatalog.classList.remove('catalog__active')
           activeSubCatalog.classList.add('catalog__hidden')
         } 
-
-
-        // console.log(activeSubCatalog);
-        // console.log(e.target);
-
-        // if (activeSubCatalog.closest('[data-title]') === e.target) {
-        //   e.target.classList.remove('active')
-        //   e.target.classList.add('hidden')
-        // }
-
-        const catalog = e.target.closest('[data-link]')       
-        const subCatalog = catalog.querySelector('.sub__catalog__list')
-
-        subCatalog.classList.add('catalog__active')
       
         const catalogLink = e.target.closest('[data-sublink]')
-        console.log(catalogLink);
       }
       }
 
+    }
+
+
+    function incomingData (e) {
+      if ((e.target.nodeName === "LI" || e.target.nodeName === "P")  && e.target.closest('[data-categoryName]')) {
+        const categoryNameLink = e.target.dataset.categoryname
+        console.log("categoryNameLink", categoryNameLink);
+
+
+        //! ==============================================================================
+        //? вместо console.log вставляем функцию Ани которая принимает массив продуктов для открисовки категории по клику
+
+        // apiProducts.searchProductsbyCategory(`${categoryNameLink}`).then(data => createList(data.data));
+        
+      } 
     }
 
     function getVisibilitySubCatalog() {
@@ -90,7 +90,7 @@ const isDesktop = false;
       const markup = category.categories.reduce((acc, category) => {
         acc+= `
         <li class="sub__catalog__item" data-sublink="${category.value}">
-        <p class="sub__catalog__text">${category.name}</p>
+        <p class="sub__catalog__text" data-categoryName="${category.value}">${category.name}</p>
         </li>
         `
         return acc
@@ -119,6 +119,7 @@ const isDesktop = false;
     
       refs.catalogList = document.querySelector('.catalog__list');
       refs.catalogList.addEventListener('click', getLink);
+      refs.catalogList.addEventListener('click', incomingData)
       // refs.subCatalogList = document.querySelector('.sub__catalog__list')
     }
     
