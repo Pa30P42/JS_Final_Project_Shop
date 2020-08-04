@@ -27,7 +27,7 @@ const createListMarkup = (array, link) => {
 const favoritesArr = [];
 const getItem = event => {
   // ====================================
-  // getPaginationPage(event);
+  getPaginationPage(event);
   // ====================================
   // console.log('GetItem', event.target);
   if (event.target.closest('[data-id]') && event.target.nodeName === 'IMG') {

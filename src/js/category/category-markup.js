@@ -4,6 +4,7 @@ import { modalModule } from '../components/modalModule/modalModule';
 import apiProducts from '../api/products/apiProducts';
 import { createList } from '../sale/saleSection';
 import { createPaginationMarkup } from '../pagination/pagination';
+import { userData } from '../pagination/pagination';
 // import { refsPagination } from '../pagination/pagination';
 
 const refs = {
@@ -23,11 +24,11 @@ export function getLink(e) {
   ) {
     if (e.target.closest('[data-sublink]')) {
       const subLink = e.target.closest('[data-sublink]').dataset.sublink;
-      const subLinkName = e.target.closest('[data-sublink]').dataset
-        .categoryname;
-      console.log(e.target.closest('[data-sublink]').dataset);
-      console.log(subLinkName);
-      console.log('subLink', subLink);
+      // const subLinkName = e.target.closest('[data-sublink]').dataset
+      //   .categoryname;
+      // console.log(e.target.closest('[data-sublink]').dataset);
+      // console.log(subLinkName);
+      // console.log('subLink', subLink);
       // createList(subLinkName);
       return subLink;
     } else return;
@@ -103,6 +104,17 @@ function listeners(action) {
     const link = getLink(e);
     // console.log(e.target.textContent);
     const sublinkName = e.target.textContent;
+    // ============================================
+    // apiProducts
+    //   .getProductsWithPagination(
+    //     (userData.pagination.perPage = 7),
+    //     userData.pagination.currentPage,
+    //     link,
+    //   )
+    //   // .then(res => console.log('RESPONSE', res.config.url));
+    //   .then(data => createList(data.data, sublinkName));
+    // // .then(data => console.log(data.data));
+    // =========================================
     apiProducts
       .searchProductsbyCategory(`${link}`)
       // .then(data => console.log(data.data));
@@ -110,6 +122,8 @@ function listeners(action) {
     // console.log(link);
 
     // вместо console.log(data.data) вставляем функцию Ани //
+    // ============================================
+
     if (link) {
       action();
     }

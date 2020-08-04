@@ -6,7 +6,7 @@ import deviceWidth from '../setting';
 //   pagination: document.querySelector('.products_pagination'),
 // };
 
-const userData = {
+export const userData = {
   pagination: {
     currentPage: 1,
     maxPages: 0,
@@ -17,6 +17,22 @@ const userData = {
   },
 };
 
+const paginationPerPage = () => {
+  // console.log('outside if', deviceWidth.isMobile, userData.pagination.perPage);
+  if (deviceWidth.isMobile) {
+    userData.pagination.perPage = 6;
+    // console.log('in if', deviceWidth.isMobile, userData.pagination.perPage);
+  } else if (deviceWidth.isTablet) {
+    userData.pagination.perPage = 9;
+    // console.log('in if', deviceWidth.isTablet, userData.pagination.perPage);
+  } else if (deviceWidth.isDesktop) {
+    userData.pagination.perPage = 10;
+    // console.log('in if', deviceWidth.isDesktop, userData.pagination.perPage);
+  }
+  // console.log('after if', deviceWidth, userData.pagination.perPage);
+};
+
+console.log(paginationPerPage);
 //
 //
 //
