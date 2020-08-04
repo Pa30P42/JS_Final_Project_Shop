@@ -60,6 +60,9 @@ export default class SliderMultiItems {
         <path d="M9 1L1 8L9 15" stroke="black" stroke-linecap="round" stroke-linejoin="bevel"/>
       </svg>`;
     nextNav.classList.add('slider__controls-arrow', 'slider__controls-arrow_right');
+    if (this.items.length <= this.countItems) {
+      nextNav.classList.add('slider__controls-arrow_hidden');
+    }
     nextNav.innerHTML = `<svg width="10" height="16" viewBox="0 0 10 16" fill="none" xmlns="http://www.w3.org/2000/svg">
         <path d="M1 1L9 8L1 15" stroke="black" stroke-linecap="round" stroke-linejoin="bevel"/>
       </svg>`;
@@ -71,6 +74,7 @@ export default class SliderMultiItems {
   }
 
   createPagination() {
+    if (this.items.length <= this.countItems) return;
     const paginationWrapper = document.createElement('div');
     paginationWrapper.classList.add('slider__controls-dots');
     const dotsLength = Math.ceil(this.items.length / this.countItems);
@@ -137,7 +141,7 @@ export default class SliderMultiItems {
   }
 
   updatePagination() {
-    const paginationWrapper = document.querySelector('.slider__controls-dots');
+    const paginationWrapper = this.wrapper.querySelector('.slider__controls-dots');
     const dotsRefsCount = paginationWrapper.children.length;
     const dotsLength = Math.ceil(this.items.length / this.countItems);
     if (dotsRefsCount < dotsLength) {

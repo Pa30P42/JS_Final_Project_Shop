@@ -58,34 +58,9 @@ const addNewAndLastSeen = () => {
   };
 
   getAllProducts().then(data => {
-    const newRef = refs.sections.querySelector('.new-products-wrapper');
-    const lastSeenRef = refs.sections.querySelector('.last-seen-wrapper');
-    newRef.insertAdjacentHTML('afterbegin', newHeadMarkup());
-    lastSeenRef.insertAdjacentHTML('afterbegin', lastSeenHeadMarkup());
     const products = [...data];
     const newProducts = products.filter(item => item.category === 'new');
     const lastSeenProducts = showLastSeen(products);
-    newRef.insertAdjacentHTML('afterbegin', createCardsListMarkup(newProducts));
-    lastSeenRef.insertAdjacentHTML('afterbegin', createCardsListMarkup(lastSeenProducts));
-    new SliderMI('.new-products-wrapper', {
-      step: 1,
-      isNavs: true,
-      isPagination: true,
-    });
-
-    const newListCards = newRef.querySelector('.slider__list-cards');
-    newListCards.addEventListener('click', e => {
-      onSelectCard(e, newProducts);
-    });
-    new SliderMI('.last-seen-wrapper', {
-      step: 1,
-      isNavs: true,
-      isPagination: true,
-    });
-    const lastSeenList = lastSeenRef.querySelector('.slider__list-cards');
-    lastSeenList.addEventListener('click', e => {
-      onSelectCard(e, lastSeenProducts);
-    });
 
     const onSelectCard = (e, products) => {
       if (e.target.nodeName === 'UL') return;
@@ -95,6 +70,41 @@ const addNewAndLastSeen = () => {
       const imgMain = document.querySelector('.product__image img');
       imgMain.src = product.images[0];
     };
+
+    // console.log(newProducts);
+    const newRef = refs.sections.querySelector('.new-products-wrapper');
+    if (newProducts) {
+      newRef.insertAdjacentHTML('afterbegin', createCardsListMarkup(newProducts));
+      newRef.insertAdjacentHTML('afterbegin', newHeadMarkup());
+
+      new SliderMI('.new-products-wrapper', {
+        step: 1,
+        isNavs: true,
+        isPagination: true,
+      });
+
+      const newListCards = newRef.querySelector('.slider__list-cards');
+      newListCards.addEventListener('click', e => {
+        onSelectCard(e, newProducts);
+      });
+    }
+    // console.log(lastSeenProducts);
+    if (lastSeenProducts) {
+      const lastSeenRef = refs.sections.querySelector('.last-seen-wrapper');
+      lastSeenRef.insertAdjacentHTML('afterbegin', lastSeenHeadMarkup());
+      lastSeenRef.insertAdjacentHTML('afterbegin', createCardsListMarkup(lastSeenProducts));
+
+      new SliderMI('.last-seen-wrapper', {
+        step: 1,
+        isNavs: true,
+        isPagination: true,
+      });
+
+      const lastSeenList = lastSeenRef.querySelector('.slider__list-cards');
+      lastSeenList.addEventListener('click', e => {
+        onSelectCard(e, lastSeenProducts);
+      });
+    }
   });
   // const onSelectCard = e => {
   //   // console.log(e.target.nodeName);
