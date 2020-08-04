@@ -78,7 +78,6 @@ export default {
       //   zip: '',
       // };
       const response = await axios.patch(this.updateAddressUrl, user);
-      console.log(response);
     } catch (error) {
       console.log(error);
       // throw error;

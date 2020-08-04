@@ -37,6 +37,7 @@ btnShowModal.addEventListener('click', async () => {
 });
 
 export const initialAction = async () => {
+  apiAuth.login({ email: 'unotest2@gmail.com', password: 'testuno111' });
   await apiProducts.getCategories();
   setting.getDevice(document.documentElement.clientWidth);
   containerHandler();
@@ -49,7 +50,6 @@ export const initialAction = async () => {
 };
 initialAction();
 
-// apiAuth.login({ email: 'unotest2@gmail.com', password: 'testuno111' });
 // const initialActProfile = async () => {
 //   const arr = await apiProducts.getAllProducts();
 //   return arr

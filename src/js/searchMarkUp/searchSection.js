@@ -1,4 +1,4 @@
-import { createSingleCardMarkup } from './cardModule';
+import { createSingleCardMarkup } from './cardModuleSearsh';
 import productCard from '../adv/productCard';
 import { refs } from '../components/refs';
 
