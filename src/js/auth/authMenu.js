@@ -19,31 +19,41 @@ const privateMenu = function (e) {
   const dataway = e.target.classList;
   if (dataway.contains('privateAccount')) {
     modalContainer.innerHTML = '';
+    document.body.style.overflow = 'auto';
   }
   if (dataway.contains('favoritesAccount')) {
+    modalContainer.innerHTML = '';
+    document.body.style.overflow = 'auto';
   }
   if (dataway.contains('createAdAccount')) {
+    modalContainer.innerHTML = '';
+    document.body.style.overflow = 'auto';
   }
   if (dataway.contains('exitAccount')) {
     localStorage.removeItem('info');
     modalContainer.innerHTML = '';
+    document.body.style.overflow = 'auto';
   }
 
   console.dir(dataway);
 };
 
 export const authFn = function () {
+  document.body.style.overflow = 'hidden';
   if (localStorage.getItem('info')) {
     modalModule(authMenuMarkUp, authMenuMarkUpListener);
+
     loginAccount = document.querySelector('.auth-menu');
     loginAccount.addEventListener('click', privateMenu);
-    const pseudoRef = document.querySelector('.privateAccount'); // был класс .check -  если не нужно нигде большье, удаляем. Т.к. было привязано к тестовой кнопке.
+
+    const pseudoRef = document.querySelector('.privateAccount');
     pseudoRef.addEventListener('click', profile.maintabsMarkup.bind(profile));
   } else {
     modalModule(authForm, authMenuMarkUpListener);
     authFormListeners = document.querySelector('.authForm');
     authFormListeners.addEventListener('click', e => {
       e.preventDefault();
+      document.body.style.backgroundColor = 'red';
       if (e.target === e.currentTarget[2]) {
         userValue.email = e.currentTarget[0].value;
         userValue.password = e.currentTarget[1].value;

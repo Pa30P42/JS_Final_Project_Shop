@@ -1,8 +1,6 @@
 .modalModule {
-  // position: relative;
   pointer-events: initial;
   z-index: 999;
-  // height: 100vh;
 }
 
 .modalOverlay {
@@ -13,6 +11,7 @@
   width: 100vw;
   height: 100vh;
   z-index: 999;
+  overflow-y: auto;
 }
 
 .modalComponent {

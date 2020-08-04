@@ -18,6 +18,7 @@ import productCard from './js/adv/productCard';
 import { setCartCounter, setupEvents } from './js/components/cart/cart';
 
 import { addNewAndLastSeen } from './js/components/new';
+import userData from './js/userData';
 
 // =========== adv ==============
 
@@ -48,6 +49,7 @@ export const initialAction = async () => {
 };
 initialAction();
 
+console.log(userData.user);
 // const initialActProfile = async () => {
 //   const arr = await apiProducts.getAllProducts();
 //   return arr
