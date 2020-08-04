@@ -22,6 +22,12 @@ import {
 //   role: "ADMIN",
 // };
 
+import {
+  categoriesListMarkup,
+  categoriesListMarkupAddListeners,
+} from '../category/category-markup';
+
+
 
 
 const forms = {
@@ -119,6 +125,18 @@ export default {
     favouritesBtn.addEventListener("click", (event) => {
       console.log("event.target :>> ", event.target);
     });
+
+
+    const profileExitLink = document.querySelector('.page-control__exit');
+    profileExitLink.addEventListener('click', mainMarkupFromProfile);
+
+    function mainMarkupFromProfile() {
+      refs.container.innerHTML = categoriesListMarkup();
+      categoriesListMarkupAddListeners();
+
+      //вставить слушателей для профайл табс
+      pseudoProfile();
+    }
   },
 
   getMarkup(event) {
@@ -196,7 +214,7 @@ function userInfoMarkup() {
                      <div class="helper-text-div"></div>
 
                       </div>
-                      <button type="button" id="submit" class="save-button save-button__valid ">
+                      <button type="button" id="submit" class="save-button ">
                         Сохранить
                       </button>
                 </form>
@@ -209,6 +227,10 @@ function userInfoMarkup() {
 
   const contactsBtn = document.querySelector(".contacts");
   contactsBtn.insertAdjacentHTML("afterend", infoMarkup());
+  // const inputValueProfile = document.querySelectorAll('.form-control')
+
+  // console.log('inputValueProfile :>> ', inputValueProfile.length);
+
   document.querySelector('.save-button').addEventListener('click', event => {
     apiUsers.changeUserInfo({
       email: forms.infoForm.email,
@@ -307,14 +329,15 @@ function addressFormMarkup() {
 
   const myAddressBtn = document.querySelector(".address");
   myAddressBtn.insertAdjacentHTML("afterend", formMarkup());
+
   document.querySelector('.save-button').addEventListener('click', event => {
 
     apiUsers.changeUserInfo({
       country: forms.addressForm.country,
       city: forms.addressForm.city,
       street: forms.addressForm.street,
-      block: forms.addressForm.block,
       building: forms.addressForm.building,
+      block: forms.addressForm.block,
       flat: forms.addressForm.flat,
 
     })
@@ -488,6 +511,8 @@ function addInfoListener(key) {
   const form = document.querySelector("#profile");
   // console.log(forms[key]);
   const inputForm = form.querySelector(`[data-form="${key}"]`);
+
+
   inputForm.addEventListener("input", getInfo);
   //console.log("inputForm", inputForm.dataset.form);
 
@@ -596,7 +621,6 @@ function getInfo(event) {
 
   //^[a-zA-Zа-яА-Я0-9_]*$
   ///[^a-zа-яё ]/iu;
-  //inputValue.match(onlyLetAndSymbolRegEx) ||
   // const onlyLettersRegEx = /^(?=.*[А-Я][а-яё\s]+|(?=.*[A-Z][a-z\s]+))$/iu;
   //=====text validation ====
   const onlyLetAndSymbolRegEx = /^(?=.*[A-ZА-Я])[a-zA-Zа-яА-Я_ -]*$/;
@@ -637,6 +661,15 @@ function getInfo(event) {
         (field.style.outlineColor = "#109b17")) :
       ((field.nextElementSibling.innerHTML = `<span class="helper-text-invalid">Введите номер телефона</span>`),
         (field.style.outlineColor = "#FF8A9D"));
+
+    // console.log('inputValueProfile.Length :>> ', inputValueProfile.length);
+    const inputValueProfile = document.querySelectorAll('.helper-text-valid');
+    inputValueProfile.length === 4 ?
+      document.querySelector('.save-button').classList.add('save-button__valid') :
+      document.querySelector('.save-button').classList.remove('save-button__valid')
+
+
+
   } else if (nameOfInput === "password") {
     nameOfInput === "password" && inputLength > 5 ?
       ((field.nextElementSibling.innerHTML = `<span class="helper-text-valid"></span>`),
@@ -655,6 +688,10 @@ function getInfo(event) {
         (field.style.outlineColor = "#109b17")) :
       ((errorDiv.innerHTML = `<span class="helper-text-invalid"><small>Подтвердите пароль</small></span>`),
         (field.style.outlineColor = "#FF8A9D"));
+    const inputValueProfile = document.querySelectorAll('.helper-text-valid');
+    inputValueProfile.length === 2 ?
+      document.querySelector('.save-button').classList.add('save-button__valid') :
+      document.querySelector('.save-button').classList.remove('save-button__valid')
   } else if (
     nameOfInput === "country" ||
     nameOfInput === "city" ||
@@ -678,6 +715,10 @@ function getInfo(event) {
         (field.style.outlineColor = "#109b17")) :
       ((field.nextElementSibling.innerHTML = `<span class="helper-text-invalid">Введите данные</span>`),
         (field.style.outlineColor = "#FF8A9D"));
+    const inputValueProfile = document.querySelectorAll('.helper-text-valid');
+    inputValueProfile.length >= 5 ?
+      document.querySelector('.save-button').classList.add('save-button__valid') :
+      document.querySelector('.save-button').classList.remove('save-button__valid')
     //======= address==========
   } else if (nameOfInput === "postIndex") {
     inputLength === 5 && inputValue.match(zipRegEx) ?
@@ -687,14 +728,16 @@ function getInfo(event) {
         (field.style.outlineColor = "#FF8A9D"));
     // } else if (inputForm.dataset.form === 'favourites') {
     //console.log('key :>> ', event.target.dataset.form);
+
+
+
   }
   console.log('forms :>> ', forms);
 }
 
 //============ Favourites==========
 
-
-
+//=======
 
 
 // apiProducts.getAllProducts();

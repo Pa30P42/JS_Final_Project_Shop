@@ -4,13 +4,12 @@ import {
 
 import profile from './profileMarkups';
 
+
 export const pseudoProfile = () => {
   const pseudoRef = document.querySelector('.check');
   pseudoRef.addEventListener('click', profile.maintabsMarkup.bind(profile));
 
 }
-
-
 
 
 
