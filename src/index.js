@@ -1,17 +1,9 @@
 import './sass/main.scss';
 import './js/category/category-markup';
-import {
-  containerHandler
-} from './js/container/container';
-import {
-  createSingleCardMarkup
-} from './js/sale/cardModule';
-import {
-  createList
-} from './js/sale/saleSection';
-import {
-  Sim
-} from './js/slider/slider';
+import { containerHandler } from './js/container/container';
+import { createSingleCardMarkup } from './js/sale/cardModule';
+import { createList } from './js/sale/saleSection';
+import { Sim } from './js/slider/slider';
 import './js/catalog/catalog';
 import './js/components/modalModule/modalModule';
 import apiProducts from './js/api/products/apiProducts';
@@ -30,7 +22,6 @@ import { getPofileTest, favouritesFormMarkup } from './js/profile/profileMarkups
 import { setCartCounter, setupEvents } from './js/components/cart/cart';
 
 import { addNewAndLastSeen } from './js/components/new';
-
 
 const btnShowModal = document.getElementById('btnShowModal');
 
