@@ -15,7 +15,7 @@ import axios from 'axios';
 import apiAuth from './js/api/auth/apiAuth';
 import apiUsers from './js/api/users/apiUsers';
 import productCard from './js/adv/productCard';
-import { pseudoProfile } from './js/profile/profileTabs';
+// import { pseudoProfile } from './js/profile/profileTabs';
 
 // =========== adv ==============
 
@@ -38,7 +38,7 @@ const initialAction = async () => {
   await apiProducts.getCategories();
   setting.getDevice(document.documentElement.clientWidth);
   containerHandler();
-  pseudoProfile();
+  // pseudoProfile();
   new Sim();
   // trigger.triggerFn();
 };

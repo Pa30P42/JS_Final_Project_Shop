@@ -1,4 +1,7 @@
 .auth-menu {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   position: absolute;
   width: 204px;
   min-height: 194px;
@@ -7,7 +10,7 @@
 }
 
 .user-name {
-  margin: 20px 0 0 20px;
+  padding: 10px 0 0 20px;
   font-style: normal;
   font-weight: 600;
   font-size: 18px;
@@ -16,7 +19,7 @@
 }
 
 .auth-menu__list_item {
-  margin: 10px 0 0 20px;
+  padding: 10px 0 0 20px;
   font-style: normal;
   font-weight: 500;
   font-size: 14px;
@@ -24,7 +27,11 @@
   color: $main--text-color;
   cursor: pointer;
   &:first-child {
-    margin: 20px 0 0 20px;
+    padding: 20px 0 0 20px;
+  }
+
+  &:last-child {
+    padding-bottom: 20px;
   }
 
   &:focus,
@@ -34,8 +41,14 @@
 }
 
 .auth-menu__exit {
-  margin: 20px 0 0 20px;
-  height: 46px;
-  cursor: pointer;
+  padding: 10px 20px;
+  min-height: 46px;
   background-color: $modal-module__background-color_exit;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 17px;
+  color: $main--text-color;
+  border-radius: 10px;
+  cursor: pointer;
 }

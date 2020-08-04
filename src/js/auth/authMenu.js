@@ -2,9 +2,7 @@ import { modalModule } from '../components/modalModule/modalModule';
 import { authForm } from '../auth/authForm';
 import apiAuth from '../api/auth/apiAuth';
 import apiUsers from '../api/users/apiUsers';
-import { pseudoProfile } from '../profile/profileTabs';
-import PNotify from 'pnotify/dist/es/PNotify.js';
-import 'pnotify/dist/PNotifyBrightTheme.css';
+import profile from '../profile/profileMarkups';
 
 let authFormListeners = '';
 let listenPrivateAccount = '';
@@ -20,7 +18,7 @@ const modalContainer = document.querySelector('.modalModule');
 const privateMenu = function (e) {
   const dataway = e.target.classList;
   if (dataway.contains('privateAccount')) {
-    // pseudoProfile();
+    modalContainer.innerHTML = '';
   }
   if (dataway.contains('favoritesAccount')) {
   }
@@ -39,6 +37,8 @@ export const authFn = function () {
     modalModule(authMenuMarkUp, authMenuMarkUpListener);
     loginAccount = document.querySelector('.auth-menu');
     loginAccount.addEventListener('click', privateMenu);
+    const pseudoRef = document.querySelector('.privateAccount'); // был класс .check -  если не нужно нигде большье, удаляем. Т.к. было привязано к тестовой кнопке.
+    pseudoRef.addEventListener('click', profile.maintabsMarkup.bind(profile));
   } else {
     modalModule(authForm, authMenuMarkUpListener);
     authFormListeners = document.querySelector('.authForm');
@@ -50,20 +50,12 @@ export const authFn = function () {
         apiAuth.login(userValue);
         e.currentTarget.reset();
         modalContainer.innerHTML = '';
-        PNotify.success({
-          title: 'Logining',
-          text: 'You have been authorized',
-        });
       }
       if (e.target === e.currentTarget[3]) {
         userValue.email = e.currentTarget[0].value;
         userValue.password = e.currentTarget[1].value;
         apiAuth.register(userValue);
         e.currentTarget.reset();
-        PNotify.success({
-          title: 'Registered',
-          text: 'You have been registered',
-        });
       }
     });
   }
