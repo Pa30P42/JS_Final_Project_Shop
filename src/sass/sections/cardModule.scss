@@ -54,7 +54,8 @@ body {
 
 .card-image {
   // position: relative;
-  // height: 80px;
+  width: 86px;
+  height: 80px;
   display: flex;
   justify-content: center;
   // max-width: 100%;
@@ -230,7 +231,7 @@ body {
 }
 
 @media (min-width: 1200px) {
-  // .container {
+  // .card__container {
   //   align-items: center;
   //   justify-content: center;
   //   width: 1200px;

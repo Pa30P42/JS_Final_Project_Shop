@@ -1,0 +1,301 @@
+.modal__heading {
+  margin-bottom: 17px;
+  padding: 0 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  h3 {
+    color: $main--text-color;
+    font-size: 18px;
+    font-weight: 600;
+    line-height: 22px;
+  }
+}
+
+.btn-close {
+  @extend %btn;
+  background-color: transparent;
+  svg {
+    stroke: $main--text-color;
+  }
+}
+.cart {
+  // position: absolute;
+  padding: 20px 0 30px;
+  width: 320px;
+  // top: 25px;
+  // left: 50%;
+  // transform: translateX(-50%);
+  @media (min-width: 768px) {
+    width: 648px;
+  }
+  @media (min-width: 1200px) {
+    width: 1120px;
+  }
+
+  &__body {
+    margin-bottom: 30px;
+  }
+
+  &__list {
+    &-wrap {
+      margin-bottom: 43px;
+      padding: 22px 0;
+      background: #f4f4f4;
+    }
+    padding: 0 20px;
+    overflow-y: auto;
+    @media (min-width: 768px) {
+      padding-left: 40px;
+      padding-right: 30px;
+    }
+    @media (min-width: 1200px) {
+      padding-right: 35px;
+    }
+  }
+
+  &__item {
+    display: flex;
+    min-height: 140px;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    align-content: space-between;
+    @media (min-width: 768px) {
+      min-height: 135px;
+    }
+    @media (min-width: 1200px) {
+      flex-wrap: nowrap;
+      min-height: auto;
+    }
+
+    &-image {
+    }
+
+    &-props {
+      display: flex;
+      flex-direction: column;
+      font-weight: 500;
+      @media (min-width: 1200px) {
+        // width: 410px;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+      }
+    }
+
+    &-summary {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      @media (min-width: 768px) {
+        margin-left: auto;
+        width: auto;
+      }
+      @media (min-width: 1200px) {
+        margin: 0;
+      }
+    }
+
+    &-name {
+      margin-bottom: 10px;
+      width: 115px;
+      font-size: 10px;
+      font-weight: 500;
+      @media (min-width: 768px) {
+        width: 370px;
+        font-size: 14px;
+      }
+      @media (min-width: 1200px) {
+        width: 180px;
+        margin-right: 50px;
+      }
+    }
+
+    &-price {
+      font-size: 11px;
+      @media (min-width: 768px) {
+        font-size: 14px;
+      }
+      @media (min-width: 1200px) {
+        width: 100px;
+        text-align: left;
+      }
+    }
+
+    &-amount {
+      text-align: right;
+      color: $main--text-color;
+      font-size: 18px;
+      font-weight: 600;
+      @media (min-width: 768px) {
+        width: 180px;
+      }
+      @media (min-width: 1200px) {
+        // text-align: center;
+      }
+    }
+
+    &-counter {
+      display: flex;
+      align-items: center;
+
+      button {
+        margin-right: 5px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 40px;
+        height: 40px;
+        border-width: 0;
+        border-radius: 50%;
+        font-weight: bold;
+        background: linear-gradient(47.73deg, #6368e5 15.48%, #b884f3 81.25%);
+        cursor: pointer;
+        @media (min-width: 768px) {
+          margin-right: 10px;
+        }
+        &:hover,
+        &:active {
+          background: $secondary-gradient;
+        }
+      }
+
+      button:last-child {
+        @media (min-width: 1200px) {
+          margin-right: 0;
+        }
+      }
+
+      input {
+        width: 50px;
+        height: 40px;
+        margin-right: 5px;
+        padding: 11px 0;
+        border: 1px solid #b3b3b3;
+        border-radius: 10px;
+        text-align: center;
+        font-size: 18px;
+        font-weight: 600;
+        background: #ffffff;
+        /* Chrome, Safari, Edge, Opera */
+        &::-webkit-outer-spin-button,
+        &::-webkit-inner-spin-button {
+          -webkit-appearance: none;
+          margin: 0;
+        }
+        /* Firefox */
+        &[type='number'] {
+          -moz-appearance: textfield;
+        }
+        @media (min-width: 768px) {
+          margin-right: 10px;
+        }
+      }
+    }
+  }
+
+  &__item:not(:last-child) {
+    margin-bottom: 60px;
+    @media (min-width: 1200px) {
+      margin-bottom: 40px;
+    }
+  }
+
+  &__btn-delete {
+    width: 30px;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-width: 0;
+    border-radius: 50%;
+    background: #b3b3b3;
+    cursor: pointer;
+    @media (min-width: 1200px) {
+      order: 3;
+    }
+
+    svg {
+      fill: #ffffff;
+    }
+  }
+
+  &__total {
+    display: flex;
+    justify-content: space-between;
+    width: 275px;
+    margin: 0 auto;
+    color: $main--text-color;
+    font-size: 26px;
+    font-weight: bold;
+    @media (min-width: 768px) {
+      margin-right: 45px;
+      width: 340px;
+    }
+    @media (min-width: 1200px) {
+      margin-right: 155px;
+      width: 325px;
+    }
+  }
+
+  &__buttons-wrap {
+    @media (min-width: 768px) {
+      max-width: 560px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+    }
+    @media (min-width: 1200px) {
+      margin-right: 20px;
+    }
+  }
+
+  &__button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 15px;
+    width: 272px;
+    height: 44px;
+    border: 2px solid transparent;
+    border-radius: 10px;
+    color: #ffffff;
+    text-transform: uppercase;
+    font-weight: 500;
+    font-size: 18px;
+    letter-spacing: 0.2em;
+    background: $main-gradient;
+    cursor: pointer;
+    @media (min-width: 768px) {
+      margin: 0;
+    }
+    &:hover,
+    &:focus {
+      background: #6368e5;
+    }
+
+    &_back {
+      border-color: $main-color;
+      color: $main-color;
+      background: #ffffff;
+      svg {
+        margin-right: 20px;
+        fill: $main-color;
+      }
+      &:hover,
+      &:focus {
+        color: #ffffff;
+      }
+    }
+
+    &_confirm {
+      border-width: 0;
+      @media (min-width: 748px) {
+        order: 1;
+      }
+    }
+  }
+}
