@@ -196,7 +196,7 @@ function userInfoMarkup() {
                      <div class="helper-text-div"></div>
 
                       </div>
-                      <button type="button" id="submit" class="save-button">
+                      <button type="button" id="submit" class="save-button save-button__valid ">
                         Сохранить
                       </button>
                 </form>
