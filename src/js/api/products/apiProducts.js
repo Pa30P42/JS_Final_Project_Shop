@@ -134,7 +134,7 @@ export default {
 
   async getProductsWithPagination(PerPage, page = 1, category) {
     console.log('PerPage', PerPage);
-    console.log('page', page);
+    console.log('current page', page);
     console.log('category', category);
     try {
       const response = await axios.get(

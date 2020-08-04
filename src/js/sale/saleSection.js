@@ -9,7 +9,8 @@ import { getPaginationPage } from '../pagination/pagination';
 
 // /* <section class="card container"></section> *
 const createListMarkup = (array, link) => {
-  // console.log(array.length);
+  // console.log('array', array);
+  // console.log('link', link);
   return `
    <section class="card">
   <h2 class="card_description">${link}</h2>
@@ -26,12 +27,12 @@ const createListMarkup = (array, link) => {
 const favoritesArr = [];
 const getItem = event => {
   // ====================================
-  getPaginationPage(event);
+  // getPaginationPage(event);
   // ====================================
   // console.log('GetItem', event.target);
   if (event.target.closest('[data-id]') && event.target.nodeName === 'IMG') {
     const id = event.target.closest('[data-id]').dataset.id;
-    console.log('id', id);
+    // console.log('id', id);
     if (event.target.src === vector) {
       event.target.src = vector_love;
       favoritesArr.push(id);
@@ -41,11 +42,11 @@ const getItem = event => {
     } else if (event.target.src === vector_love) {
       event.target.src = vector;
       apiUsers.deleteFavorite(id);
-      console.log(favoritesArr);
+      // console.log(favoritesArr);
       const itemFavoriteID = favoritesArr.find(element => {
         element === id;
 
-        console.log(id);
+        // console.log(id);
       });
       //   for (let arr of favoritesArr) {
       //     if (arr !== id) {
@@ -70,7 +71,7 @@ const cardList = document.querySelector('.card_list');
 
 export const createList = (array, link) => {
   const container = document.querySelector('.container');
-  console.log('container', container);
+  // console.log('container', container);
   container.innerHTML = createListMarkup(array, link);
   container.addEventListener('click', getItem);
   cardList.addEventListener('click', getVector);
@@ -90,7 +91,7 @@ export const getVector = event => {
   ) {
     const clickVector = event.target.closest('[data-clickVector]').dataset
       .clickVector;
-    console.log('clickVector', clickVector);
+    // console.log('clickVector', clickVector);
     return clickVector;
   } else return;
 };

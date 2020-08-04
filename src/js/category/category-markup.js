@@ -23,9 +23,11 @@ export function getLink(e) {
   ) {
     if (e.target.closest('[data-sublink]')) {
       const subLink = e.target.closest('[data-sublink]').dataset.sublink;
-      // const subLinkName = e.target.closest('[data-sublink]').dataset
-      //   .categoryname;
-      // console.log(subLinkName);
+      const subLinkName = e.target.closest('[data-sublink]').dataset
+        .categoryname;
+      console.log(e.target.closest('[data-sublink]').dataset);
+      console.log(subLinkName);
+      console.log('subLink', subLink);
       // createList(subLinkName);
       return subLink;
     } else return;
@@ -38,12 +40,12 @@ export function getLink(e) {
   }
 }
 
-function getSubCategoryItemName() {
-  refs.subcategoriesListInsert = document.querySelector('.subcategories__list');
-  refs.subcategoriesListInsert.addEventListener('click', e => {
-    console.log(e.target);
-  });
-}
+// function getSubCategoryItemName() {
+//   refs.subcategoriesListInsert = document.querySelector('.subcategories__list');
+//   refs.subcategoriesListInsert.addEventListener('click', e => {
+//     console.log(e.target);
+//   });
+// }
 
 export function categoriesListMarkup() {
   return `

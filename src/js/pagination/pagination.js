@@ -9,6 +9,7 @@ import deviceWidth from '../setting';
 const userData = {
   pagination: {
     currentPage: 1,
+    maxPages: 0,
     totalProducts: 0,
     perPage: 0,
     pagesCount: 0,
@@ -16,35 +17,73 @@ const userData = {
   },
 };
 
+//
+//
+//
+//
+//
+// =============== MARKUP ================= //
+
+const createPaginationItemMarkup = number => {
+  // console.log('number', number);
+  let markup = '';
+  for (let i = 1; i <= number; i += 1) {
+    markup += `<li class="products_pagination__item" data-pagenumber="${i}"><span class="products_pagination__item_number">${i}</span>
+  </li>`;
+  }
+  return markup;
+};
+
+//
+//
+//
+//
+//
+
 export const createPaginationMarkup = totalProducts => {
-  console.log('DATA', totalProducts);
+  // console.log('DATA', totalProducts);
   userData.pagination.totalProducts = totalProducts.length;
 
+  // console.log('outside if', deviceWidth.isMobile, userData.pagination.perPage);
   if (deviceWidth.isMobile) {
     userData.pagination.perPage = 6;
+    // console.log('in if', deviceWidth.isMobile, userData.pagination.perPage);
   } else if (deviceWidth.isTablet) {
     userData.pagination.perPage = 9;
+    // console.log('in if', deviceWidth.isTablet, userData.pagination.perPage);
   } else if (deviceWidth.isDesktop) {
     userData.pagination.perPage = 10;
+    // console.log('in if', deviceWidth.isDesktop, userData.pagination.perPage);
   }
+  // console.log('after if', deviceWidth, userData.pagination.perPage);
+
+  userData.pagination.maxPages = Math.ceil(
+    userData.pagination.totalProducts / userData.pagination.perPage,
+  );
+
+  let numberOfPages = userData.pagination.maxPages;
+
+  // console.log('userData.pagination.maxPages', userData.pagination.maxPages);
+  // console.log('userData', userData);
+
+  let maxProd = userData.pagination.perPage * userData.pagination.currentPage;
+  let minProd = maxProd - userData.pagination.perPage + 1;
+  // console.log('maxProd', maxProd);
+  // console.log('minProd', minProd);
 
   if (
     (deviceWidth.isMobile || deviceWidth.isTablet || deviceWidth.isDesktop) &&
     userData.pagination.totalProducts > userData.pagination.perPage
   ) {
-    console.log(
-      'userData.pagination.totalProducts',
-      userData.pagination.totalProducts,
-    );
+    // console.log('numberOfPagesIF', numberOfPages);
+    // console.log(
+    //   'userData.pagination.totalProducts',
+    //   userData.pagination.totalProducts,
+    // );
 
-    const markup = `
+    let markup = `
       <ul class="products_pagination">
-        <li class="products_pagination__item" data-pagenumber="1"><span class="products_pagination__item_number">1</span>
-        </li>
-        <li class="products_pagination__item" data-pagenumber="2"><span class="products_pagination__item_number">2</span>
-        </li>
-        <li class="products_pagination__item" data-pagenumber="3"><span class="products_pagination__item_number">3</span>
-        </li>
+        ${createPaginationItemMarkup(numberOfPages)}
         <li class="products_pagination__item" data-pagenumber="next"><span
           class="products_pagination__item_next">next</span>
         </li>
@@ -52,38 +91,52 @@ export const createPaginationMarkup = totalProducts => {
         </li>
       </ul>
   
-        <p class="products_pagination__description">Показано с 1 по 20 из ${totalProducts.length}</p>`;
+        <p class="products_pagination__description">Показано с ${minProd} по ${maxProd} из ${
+      totalProducts.length
+    }</p>`;
+
     return markup;
   } else return '';
 };
 
+//
+//
+//
+//
+//
+// =============== LOGIC ================= //
+
 export function getPaginationPage(e, category) {
   // console.log('Hello Pagination', e.target.dataset.pagenumber);
-
-  if (deviceWidth.isMobile) {
-    userData.pagination.perPage = 6;
-  } else if (deviceWidth.isTablet) {
-    userData.pagination.perPage = 9;
-  } else if (deviceWidth.isDesktop) {
-    userData.pagination.perPage = 10;
-  }
+  userData.pagination.currentPage = 1;
 
   if (
-    e.target.dataset.pagenumber &&
+    (e.target.nodeName === 'SPAN' || e.target.dataset.pagenumber) &&
     e.target.closest('[data-pagenumber]').dataset.pagenumber !== 'next' &&
     e.target.closest('[data-pagenumber]').dataset.pagenumber !== 'end'
   ) {
-    console.log('Hoooray');
+    // console.log('Hoooray', e.target);
     userData.pagination.currentPage = Number(
       e.target.closest('[data-pagenumber]').dataset.pagenumber,
     );
-  } else return;
-
-  if (e.target.closest('[data-pagenumber]').dataset.pagenumber === 'next') {
-    userData.pagination.currentPage =
-      Number(userData.pagination.currentPage) + 1;
-    console.log('userData.currentPage', userData.currentPage);
-    console.log('nextPage', userData.currentPage);
+  } else if (
+    e.target.closest('[data-pagenumber]').dataset.pagenumber === 'next'
+  ) {
+    if (userData.pagination.currentPage < userData.pagination.maxPages) {
+      // console.log('userDataALL', userData);
+      userData.pagination.currentPage =
+        Number(userData.pagination.currentPage) + 1;
+      console.log('userData.currentPage', userData.pagination.currentPage);
+      console.log('nextPage', userData.pagination.currentPage);
+    } else if (
+      userData.pagination.currentPage >= userData.pagination.maxPages
+    ) {
+      userData.pagination.currentPage = Number(userData.pagination.currentPage);
+    }
+  } else if (
+    e.target.closest('[data-pagenumber]').dataset.pagenumber === 'end'
+  ) {
+    userData.pagination.currentPage = userData.pagination.maxPages;
   } else return;
 
   //   console.log(userData.perPage);
@@ -93,40 +146,22 @@ export function getPaginationPage(e, category) {
     .getProductsWithPagination(
       userData.pagination.perPage,
       userData.pagination.currentPage,
-      'refrigerators',
+      'new',
     )
-    // .then(res => console.log(res.config));
-    .then(data => console.log('getProductsWithPagination', data.data));
+    .then(res => console.log('RESPONSE', res.config.url));
+  // .then(data => console.log('getProductsWithPagination', data.data));
+  // .then(data => createList(data.data));
 }
 
+//
+//
+//
+//
+//
+//
+//
 // =============Запрос на кол-вот товара в категории=======================
 // https://goit-store.herokuapp.com/products/getCategories?category=accessories_for_kitchen_appliances
 // ========================================================================
 
 // refsPagination.pagination.addEventListener('click', getPaginationPage);
-
-// ==================== old method ============================
-
-// const createPaginationPage = pageNumber => {
-//   return `
-//     <li class="products_pagination__item" data-pagenumber="pagenumber"><span class="products_pagination__item_number">${pageNumber}</span></li>
-//     `;
-// };
-
-// const createPaginationMarkup = () => {
-//   let markup = '';
-//   for (let i = 1; i <= userData.pagination.pagesCount; i += 1) {
-//     markup += createPaginationPage();
-//   }
-//   return markup;
-// };
-
-// const createPagination = arr => {
-//   userData.pagination.totalProducts = arr;
-//   //   console.log(userData.pagination.totalProducts);
-
-//   userData.pagination.pagesCount = Math.ceil(
-//     userData.pagination.totalProducts / userData.pagination.productsPerPage,
-//   );
-//   refs.pagination.innerHTML = createPaginationMarkup();
-// };

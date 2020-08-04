@@ -111,9 +111,19 @@
 
 .modal_wrapper {
   background: #fff;
-  // width: 300px;
-  // height: 300px;
+  width: 350px;
+
   padding: 30px;
+  position: absolute;
+  border-radius: 10px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  @media (max-width: 320px) {
+    width: 300px;
+    word-wrap: break-word;
+  }
 }
 
 .subcategories {
