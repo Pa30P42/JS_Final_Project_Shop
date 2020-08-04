@@ -162,3 +162,4 @@ initialAction();
 //   "email": "olysik@gmail.com",
 //   "password": "olysik34"
 // })
+console.log('userdData :>> ', userData.user);
