@@ -59,9 +59,9 @@ export default {
   },
 
   maintabsMarkup() {
-    console.log(this);
+    // console.log(this);
     this.sectionRef = document.querySelector('.sections');
-    console.log('sectionRef :>> ', this.sectionRef);
+    // console.log('sectionRef :>> ', this.sectionRef);
 
     this.sectionRef.innerHTML = '';
     const accountTabsMarkup = () => {
@@ -99,23 +99,23 @@ export default {
             </section>
           `;
     };
-    console.log('refs.sections :>> ', refs.sections);
+    // console.log('refs.sections :>> ', refs.sections);
     this.sectionRef.innerHTML = accountTabsMarkup();
     const mainTabsNav = document.querySelector('#parent_profile');
 
-    console.log(mainTabsNav);
+    // console.log(mainTabsNav);
     mainTabsNav.addEventListener('click', this.getMarkup);
 
     const favouritesBtn = document.querySelector('.favourites');
     // console.log('favouritesBtn :>> ', favouritesBtn);
     favouritesBtn.addEventListener('click', event => {
-      console.log('event.target :>> ', event.target);
+      // console.log('event.target :>> ', event.target);
     });
   },
 
   getMarkup(event) {
     if (event.target.nodeName !== 'BUTTON') {
-      console.log('Not a button');
+      // console.log('Not a button');
       return;
     }
     const currentActiveBtn = document.querySelector('.active');
@@ -464,7 +464,7 @@ function addInfoListener(key) {
   // console.log(forms[key]);
   const inputForm = form.querySelector(`[data-form="${key}"]`);
   inputForm.addEventListener('input', getInfo);
-  console.log('inputForm', inputForm.dataset.form);
+  // console.log('inputForm', inputForm.dataset.form);
 }
 //! ==================== Kostya ==================
 const product = {
@@ -500,10 +500,10 @@ const product = {
 //   };
 
 function addProduct(e) {
-  console.log('e.target', e.target);
+  // console.log('e.target', e.target);
   if (e.target.nodeName === 'BUTTON' && e.target.closest('[data-create]')) {
     const createBtn = e.target.closest('[data-create]').dataset.create;
-    console.log('createBtn', createBtn);
+    // console.log('createBtn', createBtn);
     apiProducts.CreateNewProduct(product);
   } else return;
 }
@@ -521,8 +521,8 @@ function getInfo(event) {
   if (event.target.name === 'productCatygory') {
     product.category = event.target.value;
   }
-  console.log('PRODUCT', product);
-  console.log('&&&&&&&', event.target);
+  // console.log('PRODUCT', product);
+  // console.log('&&&&&&&', event.target);
   // apiProducts.CreateNewProduct(product)
 
   //! =======================================
@@ -549,7 +549,7 @@ function getInfo(event) {
   const nameOfInput = field.getAttribute('name');
   const textInput = field.getAttribute('type');
 
-  console.log('nameOfInput', nameOfInput);
+  // console.log('nameOfInput', nameOfInput);
   ['[object HTMLInputElement]'].value;
 
   //console.log('field.getAttribute("name") :>> ', field.getAttribute('name'));
@@ -603,7 +603,7 @@ function getInfo(event) {
     let password = document.querySelector('[name="password"]').value;
     let confirmPassword = document.querySelector('[name="confirmPassword"]').value;
     const errorDiv = document.querySelector('#helper-text-div');
-    console.log('errorDiv :>> ', errorDiv);
+    // console.log('errorDiv :>> ', errorDiv);
 
     password === confirmPassword
       ? ((errorDiv.innerHTML = `<span class="helper-text-valid"></span>`),

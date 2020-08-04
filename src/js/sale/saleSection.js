@@ -55,7 +55,7 @@ apiUsers.getCurrentUser();
 
 const cardList = document.querySelector('.card_list');
 export const createList = array => {
-  const container = document.querySelector('.container');
+  const container = document.querySelector('.sections');
   container.innerHTML = createListMarkup(array);
   container.addEventListener('click', getItem);
   cardList.addEventListener('click', getVector);
@@ -64,12 +64,8 @@ export const createList = array => {
 };
 
 export const getVector = event => {
-  if (
-    event.target.closest('[data-clickVector]') &&
-    event.target.nodeName === 'IMG'
-  ) {
-    const clickVector = event.target.closest('[data-clickVector]').dataset
-      .clickVector;
+  if (event.target.closest('[data-clickVector]') && event.target.nodeName === 'IMG') {
+    const clickVector = event.target.closest('[data-clickVector]').dataset.clickVector;
     console.log('clickVector', clickVector);
     return clickVector;
   } else return;
