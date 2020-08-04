@@ -37,10 +37,6 @@ btnShowModal.addEventListener('click', async () => {
 
 export const initialAction = async () => {
   await apiProducts.getCategories();
-  await apiAuth.login({
-    email: 'olysiHH@gmail.com',
-    password: 'qwerty321',
-  });
   setting.getDevice(document.documentElement.clientWidth);
 
   containerHandler();
