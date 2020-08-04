@@ -24,7 +24,8 @@ export default {
       // console.log(JSON.parse(localStorage.getItem('info')).token);
       axios.defaults.headers['Authorization'] = JSON.parse(localStorage.getItem('info')).token;
       const response = await axios.get(`${this.addFavoriteUrl}${id}`);
-      console.log(response);
+      return response
+
     } catch (error) {
       console.log(error);
       // throw error;
