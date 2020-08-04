@@ -150,7 +150,7 @@ const createCartMarkup = () => {
 };
 
 const addToCart = product => {
-  const existProduct = userData.user.cart.cartItems.find(item => item._id === product._id);
+  const existProduct = userData.user.cart.cartItems.find(item => item.id === product._id);
   if (existProduct) {
     existProduct.quantity += 1;
   } else {
