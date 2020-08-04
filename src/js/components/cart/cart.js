@@ -32,12 +32,11 @@ const getTotalQuantity = cartItems => {
 const setCartCounter = () => {
   // console.log(userData);
   let container; // headerNav
-  // if (setting.isMobile) container = headerRef.querySelector('.header_phone');
-  // if (setting.isTablet) container = headerRef.querySelector('.header_tablet');
-  // if (setting.isDesktop) container = headerRef.querySelector('.header_desktop');
-  if (setting.isMobile) container = headerRef.querySelector('.phone');
-  if (setting.isTablet) container = headerRef.querySelector('.tablet');
-  if (setting.isDesktop) container = headerRef.querySelector('.desktop');
+  
+  if (setting.isMobile) container = headerRef.querySelector('.header_phone');
+  if (setting.isTablet) container = headerRef.querySelector('.header_tablet');
+  if (setting.isDesktop) container = headerRef.querySelector('.header_desktop');
+
   const headerNav = container.querySelector('.header__nav');
   const cartCounter = headerNav.querySelector('.amount_cart');
   const totalCount = getTotalQuantity(userData.user.cart.cartItems);
