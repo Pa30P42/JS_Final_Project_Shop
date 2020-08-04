@@ -15,9 +15,6 @@ import axios from 'axios';
 import apiAuth from './js/api/auth/apiAuth';
 import apiUsers from './js/api/users/apiUsers';
 import productCard from './js/adv/productCard';
-import { setCartCounter, setupEvents } from './js/components/cart/cart';
-
-import { addNewAndLastSeen } from './js/components/new';
 import { pseudoProfile } from './js/profile/profileTabs';
 
 // =========== adv ==============
@@ -40,9 +37,6 @@ export const initialAction = async () => {
   await apiProducts.getCategories();
   setting.getDevice(document.documentElement.clientWidth);
   containerHandler();
-  addNewAndLastSeen();
-  setCartCounter();
-  setupEvents();
   pseudoProfile();
   new Sim();
   // trigger.triggerFn();

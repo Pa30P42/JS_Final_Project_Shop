@@ -58,19 +58,19 @@ export const createList = array => {
   const container = document.querySelector('.container');
   container.innerHTML = createListMarkup(array);
   container.addEventListener('click', getItem);
-  cardList.addEventListener('click', getVector);
+  // cardList.addEventListener('click', getVector);
 
   // cardList.addEventListener('click', getVector);
 };
 
-export const getVector = event => {
-  if (
-    event.target.closest('[data-clickVector]') &&
-    event.target.nodeName === 'IMG'
-  ) {
-    const clickVector = event.target.closest('[data-clickVector]').dataset
-      .clickVector;
-    console.log('clickVector', clickVector);
-    return clickVector;
-  } else return;
-};
+// export const getVector = event => {
+//   if (
+//     event.target.closest('[data-clickVector]') &&
+//     event.target.nodeName === 'IMG'
+//   ) {
+//     const clickVector = event.target.closest('[data-clickVector]').dataset
+//       .clickVector;
+//     console.log('clickVector', clickVector);
+//     return clickVector;
+//   } else return;
+// };
