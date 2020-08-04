@@ -14,9 +14,11 @@ import {
 import { modalModule } from '../components/modalModule/modalModule.js';
 import information from '../information/information';
 
-import { pseudoProfile } from '../profile/profileTabs';
+import {
+  searshForm,
+  listenersForSearch,
+} from '../search/searchdesktop/searchDesktop';
 
-import { searshForm, listenersForSearch } from '../search/searchdesktop/searchDesktop';
 import { authFn } from '../auth/authMenu';
 import apiProducts from '../api/products/apiProducts';
 import { createList } from '../sale/saleSection';
@@ -32,8 +34,6 @@ const headerButton = event => {
     // refs.container.innerHTML = categoriesListMarkup();
     // categoriesListMarkupAddListeners();
 
-    //вставить слушателей для профайл табс
-    pseudoProfile();
     //======надо будет удалить=====
   } else if (dataname === 'name_phone') {
     trigger.triggerFn();

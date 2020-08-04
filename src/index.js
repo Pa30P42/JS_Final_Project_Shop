@@ -18,7 +18,6 @@ import productCard from './js/adv/productCard';
 import { setCartCounter, setupEvents } from './js/components/cart/cart';
 
 import { addNewAndLastSeen } from './js/components/new';
-import { pseudoProfile } from './js/profile/profileTabs';
 
 // =========== adv ==============
 
@@ -44,7 +43,6 @@ export const initialAction = async () => {
   addNewAndLastSeen();
   setCartCounter();
   setupEvents();
-  pseudoProfile();
   new Sim();
   // trigger.triggerFn();
 };

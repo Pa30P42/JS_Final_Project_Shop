@@ -50,7 +50,7 @@ const getItem = event => {
 
 ///
 
-apiUsers.getCurrentUser();
+// apiUsers.getCurrentUser();
 // apiUsers.getCurrentUser().then(data => console.log(data));
 
 // const cardList = document.querySelector('.card_list');
