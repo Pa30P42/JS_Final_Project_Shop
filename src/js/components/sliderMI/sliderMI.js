@@ -36,7 +36,6 @@ export default class SliderMultiItems {
     const itemMarginRight = parseInt(style.marginRight);
     this.itemWidth = this.items[0].clientWidth + itemMarginRight;
     this.countItems = Math.round(this.wrapper.clientWidth / this.itemWidth);
-    // console.log(this.wrapper.clientWidth, this.itemWidth, this.countItems);
     this.trackWidth = this.itemWidth * this.items.length;
     this.track.style.width = this.trackWidth + 'px';
     const holderRef = document.createElement('div');
@@ -88,31 +87,42 @@ export default class SliderMultiItems {
     paginationWrapper.children[0].classList.add('slide-dot_active');
     this.dotIndex = 0;
     this.slider.appendChild(paginationWrapper);
-    const handlerClickDot = e => {
-      if (e.target.nodeName !== 'BUTTON') return;
-      if (this.dotIndex === 0) this.showPrevNav();
-      if (this.dotIndex === paginationWrapper.children.length - 1) this.showNextNav();
-      const currentDot = paginationWrapper.querySelector('.slide-dot_active');
-      currentDot.classList.remove('slide-dot_active');
-      e.target.classList.add('slide-dot_active');
-      const index = Number(e.target.dataset.index);
-      if (index === 0) {
-        this.isStart = true;
-        this.hidePrevNav();
-      } else this.isStart = false;
-      if (index === paginationWrapper.children.length - 1) {
-        this.isEnd = true;
-        this.hideNextNav();
-      } else this.isEnd = false;
-      this.dotIndex = index;
-      this.slideIndex = index;
-      this.goToSlideOfDot();
-    };
-    paginationWrapper.addEventListener('click', handlerClickDot);
+    paginationWrapper.addEventListener('click', this.handlerClickDot.bind(this));
+  }
+
+  handlerClickDot(e) {
+    const paginationWrapper = this.wrapper.querySelector('.slider__controls-dots');
+    if (e.target.nodeName !== 'BUTTON') return;
+    if (this.dotIndex === 0) this.showPrevNav();
+    if (this.dotIndex === paginationWrapper.children.length - 1) this.showNextNav();
+    const currentDot = paginationWrapper.querySelector('.slide-dot_active');
+    currentDot.classList.remove('slide-dot_active');
+    e.target.classList.add('slide-dot_active');
+    const index = Number(e.target.dataset.index);
+    if (index === 0) {
+      this.isStart = true;
+      this.hidePrevNav();
+    } else this.isStart = false;
+    if (index === paginationWrapper.children.length - 1) {
+      this.isEnd = true;
+      this.hideNextNav();
+    } else this.isEnd = false;
+    this.dotIndex = index;
+    this.slideIndex = index;
+    this.goToSlideOfDot();
   }
 
   setupEvents() {
-    window.addEventListener('resize', this.updateUI.bind(this));
+    let resizeTimer;
+    const self = this;
+    window.addEventListener('resize', () => {
+      if (resizeTimer) clearTimeout(resizeTimer);
+      resizeTimer = setTimeout(function () {
+        self.updateUI.call(self);
+        if (self.isNavs) self.updateNavs.call(self);
+        if (self.isPagination) self.updatePagination.call(self);
+      }, 100);
+    });
   }
 
   updateUI() {
@@ -120,30 +130,46 @@ export default class SliderMultiItems {
     const itemMarginRight = parseInt(style.marginRight);
     this.itemWidth = this.items[0].clientWidth + itemMarginRight;
     this.countItems = Math.round(this.wrapper.clientWidth / this.itemWidth);
-    // console.log(this.wrapper.clientWidth, this.itemWidth, this.countItems);
     this.trackWidth = this.itemWidth * this.items.length;
     this.track.style.width = this.trackWidth + 'px';
     const holderRef = this.wrapper.querySelector('.slider__holder');
     holderRef.style.width = this.itemWidth * this.countItems - itemMarginRight + 20 + 'px';
-    this.isEnd = this.itemIndex > this.items.length - 1 - this.countItems ? true : false;
-    if (this.isEnd) this.itemIndex = this.items.length - this.countItems;
+    this.isStart = this.items.length <= this.countItems ? true : false;
+    this.isEnd = this.itemIndex > this.items.length - this.countItems ? true : false;
+    if (this.isStart) this.itemIndex = 0;
+    if (this.isEnd) {
+      this.itemIndex =
+        this.items.length > this.countItems ? this.items.length - this.countItems : 0;
+    }
     this.slideIndex = this.isEnd
       ? Math.ceil(this.items.length / this.countItems) - 1
       : parseInt(this.itemIndex / this.countItems);
     this.trackPosition = -(this.itemIndex * this.itemWidth);
     this.track.style.transform = `translate3d(${this.trackPosition}px,0,0)`;
-    if (this.isNavs) this.updateNavs();
-    if (this.isPagination) this.updatePagination();
   }
 
   updateNavs() {
-    this.isEnd ? this.hideNextNav() : this.showNextNav();
+    this.isStart ? this.hidePrevNav() : this.showPrevNav;
+    this.isEnd || this.items.length <= this.countItems ? this.hideNextNav() : this.showNextNav();
   }
 
   updatePagination() {
-    if (this.items.length <= this.countItems) return;
-    const paginationWrapper = this.wrapper.querySelector('.slider__controls-dots');
-    const dotsRefsCount = paginationWrapper.children.length;
+    let paginationWrapper = this.wrapper.querySelector('.slider__controls-dots');
+    if (this.items.length <= this.countItems) {
+      if (paginationWrapper) {
+        this.wrapper.removeChild(paginationWrapper);
+      }
+      return;
+    }
+    let dotsRefsCount = 0;
+    if (!paginationWrapper) {
+      paginationWrapper = document.createElement('div');
+      paginationWrapper.classList.add('slider__controls-dots');
+      this.wrapper.appendChild(paginationWrapper);
+      paginationWrapper.addEventListener('click', this.handlerClickDot.bind(this));
+    } else {
+      dotsRefsCount = paginationWrapper.children.length;
+    }
     const dotsLength = Math.ceil(this.items.length / this.countItems);
     if (dotsRefsCount < dotsLength) {
       for (let i = 0; i < dotsLength - dotsRefsCount; i++) {
@@ -165,6 +191,7 @@ export default class SliderMultiItems {
     this.dotIndex = this.isEnd
       ? paginationWrapper.children.length - 1
       : parseInt(this.itemIndex / this.countItems);
+    console.log(this.dotIndex);
     paginationWrapper.children[this.dotIndex].classList.add('slide-dot_active');
   }
 

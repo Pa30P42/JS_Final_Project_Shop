@@ -19,10 +19,6 @@ import productCard from './js/adv/productCard';
 import userData from './js/userData';
 import { getPofileTest, favouritesFormMarkup } from './js/profile/profileMarkups';
 
-import { setCartCounter, setupEvents } from './js/components/cart/cart';
-
-import { addNewAndLastSeen } from './js/components/new';
-
 const btnShowModal = document.getElementById('btnShowModal');
 
 let currentItem = null;
@@ -39,9 +35,7 @@ export const initialAction = async () => {
   setting.getDevice(document.documentElement.clientWidth);
 
   containerHandler();
-  addNewAndLastSeen();
-  setCartCounter();
-  setupEvents();
+
   new Sim();
   // trigger.triggerFn();
   console.log('userData :>> ', userData);
