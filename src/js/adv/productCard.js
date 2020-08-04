@@ -1,4 +1,4 @@
-import {modalModule} from '../components/modalModule/modalModule';
+import { modalModule } from '../components/modalModule/modalModule';
 import markup from './markup';
 import updateLastSeen from './lastSeen';
 import addToFavourite from './favorite';

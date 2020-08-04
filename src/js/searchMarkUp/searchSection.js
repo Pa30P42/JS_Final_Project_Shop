@@ -48,8 +48,11 @@ const getItem = (event, products) => {
         favoritesArr.push(element);
       });
     }
-
-    productCard(id);
+    console.log(products);
+    console.log(id);
+    const filteredproduct = products.find(item => item._id === id);
+    console.log(filteredproduct);
+    productCard(filteredproduct);
     return id; // функция Ани(id)
   } else return;
 };
@@ -57,5 +60,7 @@ const getItem = (event, products) => {
 export const createList = array => {
   const container = document.querySelector('.sections');
   container.innerHTML = createListMarkup(array);
-  container.addEventListener('click', getItem);
+  container.addEventListener('click', e => {
+    getItem(e, array);
+  });
 };
