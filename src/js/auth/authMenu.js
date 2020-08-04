@@ -3,15 +3,19 @@ import { authForm } from '../auth/authForm';
 import apiAuth from '../api/auth/apiAuth';
 import apiUsers from '../api/users/apiUsers';
 import { pseudoProfile } from '../profile/profileTabs';
+import PNotify from 'pnotify/dist/es/PNotify.js';
+import 'pnotify/dist/PNotifyBrightTheme.css';
 
 let authFormListeners = '';
+let listenPrivateAccount = '';
+let loginAccount = '';
+let userName = '';
 const userValue = {
   email: '',
   password: '',
 };
 
 const modalContainer = document.querySelector('.modalModule');
-let loginAccount = '';
 
 const privateMenu = function (e) {
   const dataway = e.target.classList;
@@ -23,7 +27,8 @@ const privateMenu = function (e) {
   if (dataway.contains('createAdAccount')) {
   }
   if (dataway.contains('exitAccount')) {
-    
+    localStorage.removeItem('info');
+    modalContainer.innerHTML = '';
   }
 
   console.dir(dataway);
@@ -45,30 +50,44 @@ export const authFn = function () {
         apiAuth.login(userValue);
         e.currentTarget.reset();
         modalContainer.innerHTML = '';
+        PNotify.success({
+          title: 'Logining',
+          text: 'You have been authorized',
+        });
       }
       if (e.target === e.currentTarget[3]) {
         userValue.email = e.currentTarget[0].value;
         userValue.password = e.currentTarget[1].value;
         apiAuth.register(userValue);
         e.currentTarget.reset();
+        PNotify.success({
+          title: 'Registered',
+          text: 'You have been registered',
+        });
       }
     });
   }
 };
 
-// const userName = apiUsers.getCurrentUser().then(response => {
-//   return response.data.name;
-// });
+function getName() {
+  if (localStorage.getItem('info')) {
+    apiUsers.getCurrentUser().then(response => {
+      getUserName(response.data);
+    });
+  }
+}
 
-let listenPrivateAccount = '';
+function getUserName(data) {
+  userName = data.name;
+  console.log('userName', data.name);
+}
+
+getName();
+
 const authMenuMarkUp = function () {
   return `
     <div class="auth-menu">
-    <h4 class="user-name">Username: ${apiUsers
-      .getCurrentUser()
-      .then(response => {
-        return response.data.name;
-      })}
+    <h4 class="user-name"> ${userName}
 </h4 >
     <ul class="auth-menu__list">
       <li class="auth-menu__list_item privateAccount" date-way="privateaccount"> Личный кабинет</li>

@@ -1,7 +1,7 @@
 .auth-menu {
   position: absolute;
   width: 204px;
-  height: 194px;
+  min-height: 194px;
   background: $auth-menu__background-color;
   border-radius: 10px;
 }
@@ -16,12 +16,16 @@
 }
 
 .auth-menu__list_item {
+  margin: 10px 0 0 20px;
   font-style: normal;
   font-weight: 500;
   font-size: 14px;
   line-height: 17px;
   color: $main--text-color;
   cursor: pointer;
+  &:first-child {
+    margin: 20px 0 0 20px;
+  }
 
   &:focus,
   &:hover {
@@ -29,7 +33,9 @@
   }
 }
 
-.exit {
+.auth-menu__exit {
+  margin: 20px 0 0 20px;
   height: 46px;
   cursor: pointer;
+  background-color: $modal-module__background-color_exit;
 }
