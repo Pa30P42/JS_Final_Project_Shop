@@ -49,6 +49,7 @@ const forms = {
     block: "",
     building: "",
     flat: "",
+    // zip: ""
   },
   advertisementForm: {
     name: "",
@@ -169,9 +170,9 @@ export default {
         addInfoListener("addressForm");
         break;
       case "favourites":
-
-        apiProducts.getAllProducts().then(data => getPofileTest(data.data))
-          .then(response => console.log('response :>> ', response))
+        console.log('userdData :>> ', userData.user);
+        // apiProducts.getAllProducts().then(data => getPofileTest(data.data))
+        //   .then(response => console.log('response :>> ', response))
 
 
 
@@ -220,10 +221,13 @@ function userInfoMarkup() {
                 </form>
           `;
   };
-  forms.infoForm.email = userData.user.email
-  forms.infoForm.name = userData.user.name
-  forms.infoForm.surname = userData.user.surname
-  forms.infoForm.tel = userData.user.phone
+  forms.infoForm = {
+    ...userData.user
+  }
+  // forms.infoForm.email = userData.user.email
+  // forms.infoForm.name = userData.user.name
+  // forms.infoForm.surname = userData.user.surname
+  // forms.infoForm.tel = userData.user.phone
 
   const contactsBtn = document.querySelector(".contacts");
   contactsBtn.insertAdjacentHTML("afterend", infoMarkup());
@@ -237,6 +241,11 @@ function userInfoMarkup() {
       name: forms.infoForm.name,
       surname: forms.infoForm.surname,
       phone: getTel(forms.infoForm.tel),
+    }).then(() => {
+      userData.user = {
+        ...userData.user,
+        ...forms.infoForm
+      }
     })
   })
 
@@ -259,7 +268,7 @@ function passwordMarkup() {
                       <div class="helper-text-div" id="helper-text-div"></div>
 
                       </div>
-                      <button type="submit" id="submit" class="save-button">
+                      <button type="button" id="submit" class="save-button">
                         Сохранить
                       </button>
                 </form>
@@ -267,7 +276,17 @@ function passwordMarkup() {
   };
   const changePasswordBtn = document.querySelector(".password");
   changePasswordBtn.insertAdjacentHTML("afterend", passwordFormMarkup());
+
+  document.querySelector('.save-button').addEventListener('click', event => {
+    apiUsers.changeUserPassword({
+      password: forms.passwordForm.password,
+      confirmPassword: forms.passwordForm.confirmPassword,
+
+    })
+
+  })
   setActive();
+
 }
 
 function addressFormMarkup() {
@@ -281,33 +300,32 @@ function addressFormMarkup() {
                   <div class="section-one">
     
                     <label id="name-label" for="name"><em> * </em>Страна</label>
-                    <input type="text" name="country"  value="${userData.user.address.country}" class="form-control" placeholder="Страна" required />
+                    <input type="text" name="country"  value="${forms.addressForm.country}" class="form-control" placeholder="Страна" required />
     <div class="helper-text-div"></div>
                     <label id="name-label" for="name"><em> * </em>Регион/Область</label>
-                    <input type="text" name="city"  value="${userData.user.address.city}" class="form-control" placeholder="Киевская" required />
+                    <input type="text" name="city"  value="${forms.addressForm.city}" class="form-control" placeholder="Киевская" required />
 <div class="helper-text-div"></div>
                     <label id="name-label" for="name"><em> * </em>Город</label>
-                    <input type="text" name="place" value="${userData.user.address.place}" class="form-control" placeholder="Киев" autocomplete="section-blue shipping street-address" required />
+                    <input type="text" name="place" value="${forms.addressForm.place}" class="form-control" placeholder="Киев" autocomplete="section-blue shipping street-address" required />
     <div class="helper-text-div"></div>
                     <label id="name-label" for="name"><em> * </em>Улица</label>
-                    <input type="text" name="street"  value="${userData.user.address.street}" class="form-control" placeholder="Пушкинская" autocomplete="section-blue shipping street-address" required />
+                    <input type="text" name="street"  value="${forms.addressForm.street}" class="form-control" placeholder="Пушкинская" autocomplete="section-blue shipping street-address" required />
     <div class="helper-text-div"></div>
                     </div>
     <div class="section-two" >
                     <label id="name-label" for="name"><em> * </em>Дом</label>
-                    <input type="text" name="building" value="${userData.user.address.building}" class="form-control form-control__address" placeholder="Дом"
+                    <input type="text" name="building" value="${forms.addressForm.building}" class="form-control form-control__address" placeholder="Дом"
                      autocomplete="section-blue shipping street-address"  required />
     <div class="helper-text-div"></div>
                     <label id="name-label" for="name">Блок</label>
-                    <input type="text" name="block"  value="${userData.user.address.block}"  class="form-control  form-control__address"
+                    <input type="text" name="block"  value="${forms.addressForm.block}"  class="form-control  form-control__address"
                       placeholder="Блок" required />
 <div class="helper-text-div"></div>
                     <label id="name-label" for="name">Квартира</label>
-                    <input type="text" name="flat"  value="${userData.user.address.flat}"  class="form-control  form-control__address"
+                    <input type="text" name="flat"  value="${ forms.addressForm.flat}"  class="form-control  form-control__address"
                       placeholder="Квартира" required />
                   <div class="helper-text-div"></div>
-
-                      <div class="helper-text-div"></div>
+                   
                       </div>
 
                   </div>
@@ -317,28 +335,32 @@ function addressFormMarkup() {
                 </form>
             `;
   };
+  forms.addressForm = {
+    ...userData.user.address
+  }
 
-  forms.addressForm.country = userData.user.address.country
-  forms.addressForm.city = userData.user.address.city
-  forms.addressForm.place = userData.user.address.place
-  forms.addressForm.street = userData.user.address.street
-  forms.addressForm.block = userData.user.address.block
-  forms.addressForm.building = userData.user.address.building
-  forms.addressForm.flat = userData.user.address.flat
 
+  console.log('userData :>> ', userData);
 
   const myAddressBtn = document.querySelector(".address");
   myAddressBtn.insertAdjacentHTML("afterend", formMarkup());
 
   document.querySelector('.save-button').addEventListener('click', event => {
-
-    apiUsers.changeUserInfo({
+    console.log('forms.addressForm :>> ', forms.addressForm);
+    apiUsers.updateUserAddress({
       country: forms.addressForm.country,
       city: forms.addressForm.city,
+      place: forms.addressForm.place,
       street: forms.addressForm.street,
       building: forms.addressForm.building,
       block: forms.addressForm.block,
       flat: forms.addressForm.flat,
+      zip: "",
+
+    }).then(() => {
+      userData.user.address = {
+        ...forms.addressForm
+      }
 
     })
   })

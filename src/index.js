@@ -65,7 +65,7 @@ const initialAction = async () => {
   await apiProducts.getCategories();
   await apiAuth.login({
     "email": "olysiHH@gmail.com",
-    "password": "olysik34"
+    "password": "qwerty321"
   });
   setting.getDevice(document.documentElement.clientWidth);
 
