@@ -64,22 +64,23 @@ const getItem = event => {
       if (event.target.src === vector) {
         console.log("Если токен пустой", localStorage.getItem('info'))
         event.target.src = vector_love;
-        console.log(!favoritesArr.includes(id))
         if (!favoritesArr.includes(id)) {
           favoritesArr.push(id)
           localStorage.setItem('FAVOURITES', JSON.stringify(favoritesArr));
-        } else return "не добавляй, такий є"
-        console.log(favoritesArr)
+        } else return
+        console.log("не добавляй, такий є", favoritesArr)
 
 
       } else if (event.target.src === vector_love) {
         event.target.src = vector;
         console.log('Если токен пустой, УДАЛИТЬ сердечко')
+        favoritesArr = favoritesArr.filter(elem => elem !== id);
+        localStorage.setItem('FAVOURITES', JSON.stringify(favoritesArr));
+        // let localFavorites = JSON.parse(localStorage.getItem('FAVOURITES'));
+        // localFavorites.filter(elem => elem !== id)
+        
         console.log(favoritesArr)
-        favoritesArr = favoritesArr.filter(elem => elem !== id)
 
-        let localFavorites = JSON.parse(localStorage.getItem('FAVOURITES'));
-        letlocalFavorites.filter(elem => elem !== id)
 
 
 
