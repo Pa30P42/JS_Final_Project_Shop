@@ -39,7 +39,7 @@ export const userDataFn = async () => {
     delete userData.user.password;
   } else {
     localStorage.setItem(
-      'info',
+      'favorites',
       JSON.stringify({
         favorites: [],
       }),
