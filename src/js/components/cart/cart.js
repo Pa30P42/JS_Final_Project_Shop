@@ -35,6 +35,13 @@ const setCartCounter = () => {
   cartCounter.textContent = totalCount ? totalCount : 0;
 };
 
+const setupEvents = () => {
+  window.addEventListener('resize', () => {
+    setting.getDevice(document.documentElement.clientWidth);
+    setCartCounter();
+  });
+};
+
 const createHeaderCartMarkup = () => {
   return `
     <div class="cart">
@@ -278,7 +285,7 @@ const createOrder = closeModal => {
     const sendOrder = async newOrder => {
       try {
         const response = await apiOrders.createNewOrder(newOrder);
-        console.log(response);
+        // console.log(response);
         return response.data;
       } catch (error) {
         console.log('Лог ошибки в sendOrder ' + error);
@@ -313,4 +320,4 @@ const showCart = () => {
   cartList.addEventListener('click', removeCartItem);
 };
 
-export { addToCart, showCart, setCartCounter };
+export { addToCart, showCart, setCartCounter, setupEvents };

@@ -9,7 +9,7 @@ import {
   categoriesListMarkupAddListeners,
 } from '../category/category-markup';
 import { searchSideBar } from '../search/searchsidebar/searchSideBar.js';
-import { setCartCounter } from '../components/cart/cart';
+import { setCartCounter, setupEvents } from '../components/cart/cart';
 import { addNewAndLastSeen } from '../components/new';
 import setting from '../setting';
 
@@ -37,15 +37,6 @@ const containerSectionsMarkup = function () {
 setting.handlers = {};
 setting.handlers.resize = [];
 
-const onChangeWindth = () => {
-  setting.getDevice(document.documentElement.clientWidth);
-  setCartCounter();
-};
-
-const addListeners = () => {
-  window.addEventListener('resize', () => onChangeWindth());
-};
-
 export const containerHandler = () => {
   refs.container.insertAdjacentHTML('afterbegin', containerHeaderMarkup());
   refs.container.insertAdjacentHTML('beforeend', containerFooterMarkup());
@@ -60,7 +51,7 @@ export const containerHandler = () => {
   }
   addNewAndLastSeen();
   setCartCounter();
-  addListeners();
+  setupEvents();
 };
 
 // categoriesListMarkup(categories);

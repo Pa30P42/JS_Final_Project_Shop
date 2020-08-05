@@ -8,10 +8,6 @@ import axios from 'axios';
 import userData from '../userData';
 import products from './products';
 
-const delay = ms => {
-  return new Promise(resolve => setTimeout(() => resolve(''), ms));
-};
-
 const newHeadMarkup = () => {
   return `
   <h2 class="new-products__title">Новые поступления</h2>`;
@@ -42,8 +38,8 @@ const addNewAndLastSeen = () => {
     const id = e.target.closest('[data-id]').dataset.id;
     const product = products.find(item => item._id === id);
     productCard(product);
-    const imgMain = document.querySelector('.product__image img');
-    imgMain.src = product.images[0];
+    // const imgMain = document.querySelector('.product__image img');
+    // imgMain.src = product.images[0];
   };
 
   const newRef = refs.sections.querySelector('.new-products-wrapper');
