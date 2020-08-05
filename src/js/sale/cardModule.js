@@ -31,7 +31,7 @@ export const createSingleCardMarkup = (element, sale) => {
     return Math.floor(Math.random() * (max - min)) + min;
   };
   const cardItemMarkup = element => {
-    console.log(element);
+    // console.log(element);
     return `<li class="card_item-sale" data-id=${element._id}>
   <div class="card-image">
   ${
