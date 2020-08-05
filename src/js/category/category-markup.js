@@ -20,8 +20,7 @@ export function getLink(e) {
   if (e.target.nodeName === 'LI' || e.target.nodeName === 'P' || e.target.nodeName === 'IMG') {
     if (e.target.closest('[data-sublink]')) {
       const subLink = e.target.closest('[data-sublink]').dataset.sublink;
-      // const subLinkName = e.target.closest('[data-sublink]').dataset
-      //   .categoryname;
+      const subLinkName = e.target.closest('[data-sublink]').dataset.categoryname;
       // console.log(e.target.closest('[data-sublink]').dataset);
       // console.log(subLinkName);
       // console.log('subLink', subLink);
@@ -98,29 +97,10 @@ export function categoriesListMarkupAddListeners() {
 function listeners(action) {
   const getSubCategoryLink = e => {
     const link = getLink(e);
+    console.log('link', link);
     // console.log(e.target.textContent);
-    const sublinkName = e.target.textContent;
-    //
-    //
-    // ==================== WithPagination ========================
-    apiProducts
-      .getProductsWithPagination(
-        (link, userData.pagination.currentPage, userData.pagination.perPage),
-      )
-      // .then(res => console.log('RESPONSE', res.config.url));
-      .then(data => createList(data.data, sublinkName));
-    // .then(data => console.log(data.data));
-    //
-    //
-    // =================== byCategory ======================
-    // apiProducts
-    //   .searchProductsbyCategory(`${link}`)
-    //   // .then(data => console.log(data.data));
-    //   .then(data => createList(data.data, sublinkName));
-    // // console.log(link);
-
-    // вместо console.log(data.data) вставляем функцию Ани //
-    // ============================================
+    // const sublinkName = e.target.textContent;
+    createPagination(link);
 
     if (link) {
       action();

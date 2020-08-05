@@ -15,7 +15,6 @@ import axios from 'axios';
 import apiAuth from './js/api/auth/apiAuth';
 import apiUsers from './js/api/users/apiUsers';
 import productCard from './js/adv/productCard';
-import { paginationPerPage } from './js/pagination/pagination';
 
 // =========== adv ==============
 
@@ -32,7 +31,6 @@ import { addNewAndLastSeen } from './js/components/new';
 export const initialAction = async () => {
   userData.getSettings();
   await apiProducts.getCategories();
-  paginationPerPage();
   setting.getDevice(document.documentElement.clientWidth);
   containerHandler();
 
@@ -42,7 +40,7 @@ export const initialAction = async () => {
 };
 initialAction();
 
-console.log('userData', userData);
+// console.log('userData', userData);
 
 // const userDataFn = async () => {
 //   if (localStorage.getItem('info')) {

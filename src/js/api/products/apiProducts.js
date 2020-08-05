@@ -111,6 +111,18 @@ export default {
     }
   },
 
+  async getCountOfProducts(link) {
+    axios.defaults.headers['Authorization'] = JSON.parse(localStorage.getItem('info'));
+    try {
+      const countOfProducts = await axios.get(
+        `https://goit-store.herokuapp.com/products/getCategories?category=${link}`,
+      );
+      return countOfProducts.data.countOfProducts;
+    } catch (err) {
+      throw new Error(err);
+    }
+  },
+
   async searchProductsbyCategoryAndName(name, category) {
     axios.defaults.headers['Authorization'] = JSON.parse(localStorage.getItem('info'));
     try {
@@ -123,7 +135,11 @@ export default {
     }
   },
 
-  async getProductsWithPagination(category, page = 1, PerPage = userData.pagination.perPage) {
+  async getProductsWithPagination(
+    category,
+    page = userData.pagination.currentPage,
+    PerPage = userData.pagination.perPage,
+  ) {
     console.log('category', category);
     console.log('current page', page);
     console.log('PerPage', PerPage);

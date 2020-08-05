@@ -98,12 +98,29 @@ export default {
     userDataFn();
     if (width < 768) {
       this.settings.isMobile = true;
+      this.pagination.perPage = 3;
     }
     if (width >= 768 && width < 1200) {
       this.settings.isTablet = true;
+      this.pagination.perPage = 3;
     }
     if (width >= 1200) {
       this.settings.isDesktop = true;
+      this.pagination.perPage = 3;
     }
   },
+
+  getName(link) {
+    return this.categoriesItems.find(category =>
+      category.value.toLowerCase().includes(link.toLowerCase()),
+    ).name;
+  },
+
+  getValue(link) {
+    return this.categoriesItems.find(category =>
+      category.name.toLowerCase().includes(link.toLowerCase()),
+    ).value;
+  },
 };
+
+// ============================================================

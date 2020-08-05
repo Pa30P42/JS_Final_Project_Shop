@@ -2,36 +2,11 @@ import './pagination.scss';
 import apiProducts from '../api/products/apiProducts';
 import deviceWidth from '../setting';
 import userData from '../userData';
+import { createList } from '../sale/saleSection';
 
 // export const refsPagination = {
 //   pagination: document.querySelector('.products_pagination'),
 // };
-
-// export const userData = {
-//   pagination: {
-//     currentPage: 1,
-//     maxPages: 0,
-//     totalProducts: 0,
-//     perPage: 0,
-//     pagesCount: 0,
-//     category: '',
-//   },
-// };
-
-export const paginationPerPage = () => {
-  // console.log('outside if', deviceWidth.isMobile, userData.pagination.perPage);
-  if (deviceWidth.isMobile) {
-    userData.pagination.perPage = 6;
-    // console.log('in if', deviceWidth.isMobile, userData.pagination.perPage);
-  } else if (deviceWidth.isTablet) {
-    userData.pagination.perPage = 9;
-    // console.log('in if', deviceWidth.isTablet, userData.pagination.perPage);
-  } else if (deviceWidth.isDesktop) {
-    userData.pagination.perPage = 10;
-    // console.log('in if', deviceWidth.isDesktop, userData.pagination.perPage);
-  }
-  // console.log('after if', deviceWidth, userData.pagination.perPage);
-};
 
 //
 //
@@ -50,28 +25,9 @@ const createPaginationItemMarkup = number => {
   return markup;
 };
 
-//
-//
-//
-//
-//
-
 export const createPaginationMarkup = totalProducts => {
   // console.log('DATA', totalProducts);
-  userData.pagination.totalProducts = totalProducts.length;
-
-  // // console.log('outside if', deviceWidth.isMobile, userData.pagination.perPage);
-  // if (deviceWidth.isMobile) {
-  //   userData.pagination.perPage = 6;
-  //   // console.log('in if', deviceWidth.isMobile, userData.pagination.perPage);
-  // } else if (deviceWidth.isTablet) {
-  //   userData.pagination.perPage = 9;
-  //   // console.log('in if', deviceWidth.isTablet, userData.pagination.perPage);
-  // } else if (deviceWidth.isDesktop) {
-  //   userData.pagination.perPage = 10;
-  //   // console.log('in if', deviceWidth.isDesktop, userData.pagination.perPage);
-  // }
-  // // console.log('after if', deviceWidth, userData.pagination.perPage);
+  userData.pagination.totalProducts = totalProducts;
 
   userData.pagination.maxPages = Math.ceil(
     userData.pagination.totalProducts / userData.pagination.perPage,
@@ -107,14 +63,32 @@ export const createPaginationMarkup = totalProducts => {
         </li>
       </ul>
   
-        <p class="products_pagination__description">Показано с ${minProd} по ${maxProd} из ${
-      totalProducts.length
-    }</p>`;
+        <p class="products_pagination__description">Показано с ${minProd} по ${maxProd} из ${totalProducts}</p>`;
 
     return markup;
   } else return '';
 };
 
+// ===================
+
+export async function createPagination(link, pagenumber = 1) {
+  console.log('CRepagLINK', link);
+  userData.pagination.category = link;
+  const response = await apiProducts
+    .getProductsWithPagination(link, pagenumber)
+    .then(res => res.data);
+  const arrayLength = await apiProducts.getCountOfProducts(link);
+  // .then(res => console.log('res.data', res.data));
+  // console.log('arrayLength', arrayLength);
+
+  // console.log(createPaginationMarkup(arrayLength));
+
+  return {
+    array: response,
+    paginationMarkup: createPaginationMarkup(arrayLength),
+    getPaginationPage,
+  };
+}
 //
 //
 //
@@ -122,51 +96,67 @@ export const createPaginationMarkup = totalProducts => {
 //
 // =============== LOGIC ================= //
 
-export function getPaginationPage(e, category) {
+export async function getPaginationPage(e, category) {
   // console.log('Hello Pagination', e.target.dataset.pagenumber);
-  userData.pagination.currentPage = 1;
+  // userData.pagination.currentPage = 1;
+  console.log('Hoooray', e.target);
+  // userData.pagination.maxPages = Math.ceil(
+  //   userData.pagination.totalProducts / userData.pagination.perPage,
+  // );
 
   if (
     (e.target.nodeName === 'SPAN' || e.target.dataset.pagenumber) &&
     e.target.closest('[data-pagenumber]').dataset.pagenumber !== 'next' &&
     e.target.closest('[data-pagenumber]').dataset.pagenumber !== 'end'
   ) {
-    // console.log('Hoooray', e.target);
     userData.pagination.currentPage = Number(
       e.target.closest('[data-pagenumber]').dataset.pagenumber,
     );
-  } else if (
-    e.target.closest('[data-pagenumber]').dataset.pagenumber === 'next'
-  ) {
+  } else if (e.target.closest('[data-pagenumber]').dataset.pagenumber === 'next') {
     if (userData.pagination.currentPage < userData.pagination.maxPages) {
       // console.log('userDataALL', userData);
-      userData.pagination.currentPage =
-        Number(userData.pagination.currentPage) + 1;
+      userData.pagination.currentPage = Number(userData.pagination.currentPage) + 1;
       console.log('userData.currentPage', userData.pagination.currentPage);
       console.log('nextPage', userData.pagination.currentPage);
-    } else if (
-      userData.pagination.currentPage >= userData.pagination.maxPages
-    ) {
+    } else if (userData.pagination.currentPage >= userData.pagination.maxPages) {
       userData.pagination.currentPage = Number(userData.pagination.currentPage);
     }
-  } else if (
-    e.target.closest('[data-pagenumber]').dataset.pagenumber === 'end'
-  ) {
+  } else if (e.target.closest('[data-pagenumber]').dataset.pagenumber === 'end') {
     userData.pagination.currentPage = userData.pagination.maxPages;
-  } else return;
+  }
+  // else return;
 
   //   console.log(userData.perPage);
   //   console.log(userData.currentPage);
 
-  apiProducts
-    .getProductsWithPagination(
-      userData.pagination.perPage,
-      userData.pagination.currentPage,
-      'new',
-    )
-    .then(res => console.log('RESPONSE', res.config.url));
-  // .then(data => console.log('getProductsWithPagination', data.data));
-  // .then(data => createList(data.data));
+  const pagination = await createPagination(
+    userData.getValue(category),
+    userData.pagination.currentPage,
+  );
+  console.log('category', category);
+  console.log('pagination', pagination);
+
+  console.log('UserData!!!', userData);
+
+  // const response = await apiProducts
+  //   .getProductsWithPagination(userData.getValue(category), userData.pagination.currentPage)
+  //   .then(res => console.log('RESPONSE', res));
+
+  // let subCategoryList = document.querySelector('.subcategories__list');
+  // subCategoryList.removeEventListener('click', getSubCategoryLink);
+
+  createList(pagination.array, pagination.paginationMarkup, category);
+  // subCategoryList = document.querySelector('.subcategories__list');
+  // subCategoryList.addEventListener('click', getSubCategoryLink);
+
+  // createList(response)
+
+  // =====================================
+  // apiProducts
+  //   .getProductsWithPagination('ref', userData.pagination.currentPage, userData.pagination.perPage)
+  //   .then(res => console.log('RESPONSE', res.config.url));
+  // // .then(data => console.log('getProductsWithPagination', data.data));
+  // // .then(data => createList(data.data));
 }
 
 //

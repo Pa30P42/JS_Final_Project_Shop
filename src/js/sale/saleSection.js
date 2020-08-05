@@ -10,9 +10,9 @@ import { createPaginationMarkup } from '../pagination/pagination';
 import { getPaginationPage } from '../pagination/pagination';
 
 // /* <section class="card container"></section> *
-const createListMarkup = (array, link) => {
+const createListMarkup = (array, paginationMarkup, link) => {
   // console.log('array', array);
-  // console.log('link', link);
+  console.log('link', link);
 
   // /* <section class="card container"></section> *
 
@@ -24,24 +24,24 @@ const createListMarkup = (array, link) => {
     return acc;
   }, '')}</ul>
   <div class="pagination_wrapper">
-  ${createPaginationMarkup(array)}
+  ${paginationMarkup}
   </div>
   </section>`;
 };
 
-export const createList = (array, link) => {
-  // const container = document.querySelector('.container');
-  const container = document.querySelector('.sections');
+export const createList = (array, paginationMarkup, link) => {
+  const container = document.querySelector('.container');
+  // const container = document.querySelector('.sections');
   //
-  container.innerHTML = createListMarkup(array, link);
+  container.innerHTML = createListMarkup(array, paginationMarkup, link);
   container.addEventListener('click', getItem);
 
-  container.addEventListener('click', getPaginationPage);
+  container.addEventListener('click', e => getPaginationPage(e, link));
 };
 
 const getItem = event => {
   // ====================================
-  getPaginationPage(event);
+  // getPaginationPage(event);
   // ====================================
   // console.log('GetItem', event.target);
   if (event.target.closest('[data-id]') && event.target.nodeName === 'IMG') {
