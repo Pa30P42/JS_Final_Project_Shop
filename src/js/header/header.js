@@ -48,9 +48,8 @@ const headerButton = async event => {
   } else if (dataname === 'name_buttonClose') {
     closeHeaderMenu();
   } else if (dataname === 'name_sale') {
-    const pagination = await createPagination('sale');
-    console.log('sale pagination', pagination);
-    createList(pagination.array, pagination.paginationMarkup, userData.getName('sale'));
+    const pagination = await createPagination('refrigerators');
+    createList(pagination.array, pagination.paginationMarkup, userData.getName('refrigerators'));
     // pagination.getPaginationPage();
     // apiProducts.searchProductsbyCategory('new').then(data => createList(data.data));
     // console.log('sale');

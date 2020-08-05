@@ -22,7 +22,7 @@ export function getLink(e) {
       const subLink = e.target.closest('[data-sublink]').dataset.sublink;
       const subLinkName = e.target.closest('[data-sublink]').dataset.categoryname;
       // console.log(e.target.closest('[data-sublink]').dataset);
-      console.log(subLinkName);
+      // console.log(subLinkName);
       // console.log('subLink', subLink);
       // createList(subLinkName);
 
@@ -91,11 +91,11 @@ export function categoriesListMarkupAddListeners() {
 function listeners(action) {
   const getSubCategoryLink = async e => {
     const link = getLink(e);
-    console.log('link getSubCategoryLink', link);
+    // console.log('link getSubCategoryLink', link);
 
     // createPagination(link);
     const pagination = await createPagination(link);
-    console.log(pagination);
+    // console.log(pagination);
     createList(pagination.array, pagination.paginationMarkup, userData.getName(link));
 
     if (link) {

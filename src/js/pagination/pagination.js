@@ -3,6 +3,7 @@ import apiProducts from '../api/products/apiProducts';
 import deviceWidth from '../setting';
 import userData from '../userData';
 import { createList } from '../sale/saleSection';
+import { createSingleCardMarkup } from '../sale/cardModule';
 
 // export const refsPagination = {
 //   pagination: document.querySelector('.products_pagination'),
@@ -105,9 +106,6 @@ export async function getPaginationPage(e, category) {
   //   userData.pagination.totalProducts / userData.pagination.perPage,
   // );
 
-  const container = document.querySelector('.container');
-  container.removeEventListener('click', e => getPaginationPage(e, link));
-
   if (
     (e.target.nodeName === 'SPAN' || e.target.dataset.pagenumber) &&
     e.target.closest('[data-pagenumber]').dataset.pagenumber !== 'next' &&
@@ -120,8 +118,8 @@ export async function getPaginationPage(e, category) {
     if (userData.pagination.currentPage < userData.pagination.maxPages) {
       // console.log('userDataALL', userData);
       userData.pagination.currentPage = Number(userData.pagination.currentPage) + 1;
-      console.log('userData.currentPage', userData.pagination.currentPage);
-      console.log('nextPage', userData.pagination.currentPage);
+      // console.log('userData.currentPage', userData.pagination.currentPage);
+      // console.log('nextPage', userData.pagination.currentPage);
     } else if (userData.pagination.currentPage >= userData.pagination.maxPages) {
       userData.pagination.currentPage = Number(userData.pagination.currentPage);
     }
@@ -137,8 +135,8 @@ export async function getPaginationPage(e, category) {
     userData.getValue(category),
     userData.pagination.currentPage,
   );
-  console.log('category', category);
-  console.log('pagination', pagination);
+  // console.log('category', category);
+  // console.log('pagination', pagination);
 
   // console.log('UserData!!!', userData);
 
@@ -146,7 +144,14 @@ export async function getPaginationPage(e, category) {
   //   .getProductsWithPagination(userData.getValue(category), userData.pagination.currentPage)
   //   .then(res => console.log('RESPONSE', res));
 
-  createList(pagination.array, pagination.paginationMarkup, category);
+  // createList(pagination.array, pagination.paginationMarkup, category);
+
+  const cardList = document.querySelector('.card_list');
+  const markup = pagination.array.reduce((acc, element) => {
+    acc += createSingleCardMarkup(element, 'sale');
+    return acc;
+  }, '');
+  cardList.innerHTML = markup;
 
   // createList(response)
 

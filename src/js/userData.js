@@ -102,11 +102,11 @@ export default {
     }
     if (width >= 768 && width < 1200) {
       this.settings.isTablet = true;
-      this.pagination.perPage = 2;
+      this.pagination.perPage = 4;
     }
     if (width >= 1200) {
       this.settings.isDesktop = true;
-      this.pagination.perPage = 2;
+      this.pagination.perPage = 4;
     }
   },
 
