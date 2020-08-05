@@ -13,6 +13,9 @@ import {
   createSingleCardMarkup
 } from '../sale/cardModule';
 import vector from '../../images/sale/Vector.svg';
+import {
+  initialAction
+} from '../../index'
 //
 // apiAuth.getCurrentUser()   role: "ADMIN"
 //
@@ -27,6 +30,7 @@ import {
   categoriesListMarkup,
   categoriesListMarkupAddListeners,
 } from '../category/category-markup';
+
 
 const forms = {
   infoForm: {
@@ -132,15 +136,15 @@ export default {
     });
 
     const profileExitLink = document.querySelector('.page-control__exit');
-    profileExitLink.addEventListener('click', mainMarkupFromProfile);
+    profileExitLink.addEventListener('click', initialAction);
 
-    function mainMarkupFromProfile() {
-      refs.container.innerHTML = categoriesListMarkup();
-      categoriesListMarkupAddListeners();
+    // function mainMarkupFromProfile() {
+    //   refs.container.innerHTML = categoriesListMarkup();
+    //   categoriesListMarkupAddListeners();
 
-      //вставить слушателей для профайл табс
+    //   //вставить слушателей для профайл табс
 
-    }
+    // }
   },
 
   getMarkup(event) {
@@ -198,7 +202,7 @@ function profileFavErrorMarkup(array) {
     
           <div class="profile-favourites-empty">
            <div class="profile-favourites-empty_top">
-          <span class="profile-favourites-empty__text"">Добавьте продукты в избранное</span>
+          <span class="profile-favourites-empty__text">Вы еще не добавили ни одного  продукта в <big>"Избранное</big>"</span>
            </div>
           </div>
           </div>

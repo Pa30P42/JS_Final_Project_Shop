@@ -781,20 +781,24 @@ div.helper-text-div {
   align-items: center;
   justify-content: center;
   width: 272px;
-  padding: 16px;
+  padding: 2px;
   text-align: center;
   height: 130px;
+  font-size: 14px;
+  opacity: 0.7;
+
   // background: #ffff;
   //border: 1px solid white;
   border-radius: 10px;
   background-size: 300% 300%;
 
   @media (min-width: 768px) {
+    padding: 3px;
     position: absolute;
     transform: translate(150px, -327px);
     width: 392px;
     // height: 300px;
-    font-size: 18px;
+    font-size: 15px;
 
   }
 
@@ -802,7 +806,7 @@ div.helper-text-div {
     width: 440px;
     // height: 300px;
     transform: translate(200px, -330px);
-    font-size: 21px;
+    font-size: 18px;
   }
 
 }
@@ -817,25 +821,26 @@ div.helper-text-div {
   width: 272px;
   padding: 16px;
   text-align: center;
-  height: 100px;
+  height: 128px;
   // background: #ffff;
   border: 1px solid white;
   border-radius: 10px;
   background-size: 300% 300%;
+  opacity: 1;
 
   @media (min-width: 768px) {
     position: absolute;
 
-    width: 370px;
+    width: 388px;
     // height: 280px;
-    font-size: 18px;
+    font-size: 15px;
 
   }
 
   @media (min-width: 1200px) {
-    width: 420px;
+    width: 438px;
     // height: 280px;
 
-    font-size: 21px;
+    font-size: 16px;
   }
 }
