@@ -1,8 +1,8 @@
 import catalogList from '../userData';
 import subItem from '../api/products/services';
 import apiProducts from '../api/products/apiProducts';
-import {modalModule} from '../components/modalModule/modalModule'
-import {closeHeaderMenu} from '../sideBar/headerSideBar'
+import {modalModule} from '../components/modalModule/modalModule';
+import {closeHeaderMenu} from '../sideBar/headerSideBar';
 import caretblack from '../../images/svgHeader/caret-black.svg';
 
 const isMobile = true;
@@ -52,7 +52,7 @@ function getLink(e) {
     function incomingData (e) {
       if ((e.target.nodeName === "LI" || e.target.nodeName === "P")  && e.target.closest('[data-categoryName]')) {
         const categoryNameLink = e.target.dataset.categoryname
-        // console.log("categoryNameLink", categoryNameLink);
+        console.log("categoryNameLink", categoryNameLink);
 
 
         //! ==============================================================================
