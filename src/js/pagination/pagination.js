@@ -1,23 +1,24 @@
 import './pagination.scss';
 import apiProducts from '../api/products/apiProducts';
 import deviceWidth from '../setting';
+import userData from '../userData';
 
 // export const refsPagination = {
 //   pagination: document.querySelector('.products_pagination'),
 // };
 
-export const userData = {
-  pagination: {
-    currentPage: 1,
-    maxPages: 0,
-    totalProducts: 0,
-    perPage: 0,
-    pagesCount: 0,
-    category: '',
-  },
-};
+// export const userData = {
+//   pagination: {
+//     currentPage: 1,
+//     maxPages: 0,
+//     totalProducts: 0,
+//     perPage: 0,
+//     pagesCount: 0,
+//     category: '',
+//   },
+// };
 
-const paginationPerPage = () => {
+export const paginationPerPage = () => {
   // console.log('outside if', deviceWidth.isMobile, userData.pagination.perPage);
   if (deviceWidth.isMobile) {
     userData.pagination.perPage = 6;
@@ -32,7 +33,6 @@ const paginationPerPage = () => {
   // console.log('after if', deviceWidth, userData.pagination.perPage);
 };
 
-console.log(paginationPerPage);
 //
 //
 //
@@ -60,18 +60,18 @@ export const createPaginationMarkup = totalProducts => {
   // console.log('DATA', totalProducts);
   userData.pagination.totalProducts = totalProducts.length;
 
-  // console.log('outside if', deviceWidth.isMobile, userData.pagination.perPage);
-  if (deviceWidth.isMobile) {
-    userData.pagination.perPage = 6;
-    // console.log('in if', deviceWidth.isMobile, userData.pagination.perPage);
-  } else if (deviceWidth.isTablet) {
-    userData.pagination.perPage = 9;
-    // console.log('in if', deviceWidth.isTablet, userData.pagination.perPage);
-  } else if (deviceWidth.isDesktop) {
-    userData.pagination.perPage = 10;
-    // console.log('in if', deviceWidth.isDesktop, userData.pagination.perPage);
-  }
-  // console.log('after if', deviceWidth, userData.pagination.perPage);
+  // // console.log('outside if', deviceWidth.isMobile, userData.pagination.perPage);
+  // if (deviceWidth.isMobile) {
+  //   userData.pagination.perPage = 6;
+  //   // console.log('in if', deviceWidth.isMobile, userData.pagination.perPage);
+  // } else if (deviceWidth.isTablet) {
+  //   userData.pagination.perPage = 9;
+  //   // console.log('in if', deviceWidth.isTablet, userData.pagination.perPage);
+  // } else if (deviceWidth.isDesktop) {
+  //   userData.pagination.perPage = 10;
+  //   // console.log('in if', deviceWidth.isDesktop, userData.pagination.perPage);
+  // }
+  // // console.log('after if', deviceWidth, userData.pagination.perPage);
 
   userData.pagination.maxPages = Math.ceil(
     userData.pagination.totalProducts / userData.pagination.perPage,

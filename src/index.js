@@ -16,7 +16,7 @@ import apiAuth from './js/api/auth/apiAuth';
 import apiUsers from './js/api/users/apiUsers';
 import productCard from './js/adv/productCard';
 import { pseudoProfile } from './js/profile/profileTabs';
-import './js/pagination/pagination';
+import { paginationPerPage } from './js/pagination/pagination';
 
 // =========== adv ==============
 
@@ -37,6 +37,7 @@ btnShowModal.addEventListener('click', async () => {
 
 const initialAction = async () => {
   await apiProducts.getCategories();
+  paginationPerPage();
   setting.getDevice(document.documentElement.clientWidth);
   containerHandler();
   pseudoProfile();

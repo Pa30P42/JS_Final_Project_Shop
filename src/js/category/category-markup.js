@@ -4,7 +4,7 @@ import { modalModule } from '../components/modalModule/modalModule';
 import apiProducts from '../api/products/apiProducts';
 import { createList } from '../sale/saleSection';
 import { createPaginationMarkup } from '../pagination/pagination';
-import { userData } from '../pagination/pagination';
+import userData from '../userData';
 // import { refsPagination } from '../pagination/pagination';
 
 const refs = {
@@ -104,22 +104,24 @@ function listeners(action) {
     const link = getLink(e);
     // console.log(e.target.textContent);
     const sublinkName = e.target.textContent;
-    // ============================================
-    // apiProducts
-    //   .getProductsWithPagination(
-    //     (userData.pagination.perPage = 7),
-    //     userData.pagination.currentPage,
-    //     link,
-    //   )
-    //   // .then(res => console.log('RESPONSE', res.config.url));
-    //   .then(data => createList(data.data, sublinkName));
-    // // .then(data => console.log(data.data));
-    // =========================================
+    //
+    //
+    // ==================== WithPagination ========================
     apiProducts
-      .searchProductsbyCategory(`${link}`)
-      // .then(data => console.log(data.data));
+      .getProductsWithPagination(
+        (link, userData.pagination.currentPage, userData.pagination.perPage),
+      )
+      // .then(res => console.log('RESPONSE', res.config.url));
       .then(data => createList(data.data, sublinkName));
-    // console.log(link);
+    // .then(data => console.log(data.data));
+    //
+    //
+    // =================== byCategory ======================
+    // apiProducts
+    //   .searchProductsbyCategory(`${link}`)
+    //   // .then(data => console.log(data.data));
+    //   .then(data => createList(data.data, sublinkName));
+    // // console.log(link);
 
     // вместо console.log(data.data) вставляем функцию Ани //
     // ============================================

@@ -132,10 +132,14 @@ export default {
     }
   },
 
-  async getProductsWithPagination(PerPage, page = 1, category) {
-    console.log('PerPage', PerPage);
-    console.log('current page', page);
+  async getProductsWithPagination(
+    category,
+    page = 1,
+    PerPage = userData.pagination.perPage,
+  ) {
     console.log('category', category);
+    console.log('current page', page);
+    console.log('PerPage', PerPage);
     try {
       const response = await axios.get(
         `https://goit-store.herokuapp.com/products?itemsPerPage=${PerPage}&page=${page}&category=${category}`,

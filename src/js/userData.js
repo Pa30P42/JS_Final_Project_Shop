@@ -33,6 +33,15 @@ export default {
     },
   },
 
+  pagination: {
+    currentPage: 1,
+    maxPages: 0,
+    totalProducts: 0,
+    perPage: 0,
+    pagesCount: 0,
+    category: '',
+  },
+
   categoriesItems: [],
   appliances: {
     large_home_appliances: {
@@ -92,5 +101,4 @@ export default {
       ],
     },
   },
-
 };
