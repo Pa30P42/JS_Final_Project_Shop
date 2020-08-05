@@ -58,7 +58,6 @@ export default {
       try {
         const response = await axios.get(
           'https://goit-store.herokuapp.com/products',
-
         );
         userData.allProducts = [...response]
         return response;
