@@ -35,30 +35,32 @@ export const createSingleCardMarkup = (element, sale) => {
     return Math.floor(Math.random() * (max - min)) + min;
   };
   const cardItemMarkup = element => {
-    return `<li class="card_item" data-id=${element._id}>
-  <div class="card-image">
+    return `<li class="search__card_item" data-id=${element._id}>
+  <div class="search__card-image">
   ${
     userData.isMobile
-      ? ` <img class="card_img" src="${element.images[0]}" alt="${element.name}" width="86"/>`
-      : `<img class="card_img-tablet" src="${element.images[0]}" alt="${element.name}" width="149"/>`
+      ? ` <img class="search__card_img" src="${element.images[0]}" alt="${element.name}" width="86"/>`
+      : `<img class="search__card_img-tablet" src="${element.images[0]}" alt="${element.name}" width="149"/>`
   }
  
   </div>
-  <div class="card-vector">
+  <div class="search__card-vector">
  
-      <img class="card_vector-notActiv" src="${vector}" data-clickVector="notActiv"/>
+      <img class="search__card_vector-notActiv" src="${vector}" data-clickVector="notActiv"/>
   
   </div>
 
 
-  <p class="card_name">${element.name}</p>
-  <ul class="card_rating-list">${rating()}</ul>
-  <div class="card_prise-block">
+  <p class="search__card_name">${element.name}</p>
+  <ul class="search__card_rating-list">${rating()}</ul>
+  <div class="search__card_prise-block">
      ${
        sale
-         ? `<p class="card_price">${Math.round(element.price * 1.3)}<span> &#8372;</span></p>
-        <p class="card_price-sale">${element.price}<span> &#8372;</span></p>`
-         : `<p class="card_price-sale">${element.price}<span> &#8372;</span></p>`
+         ? `<p class="search__card_price">${Math.round(
+             element.price * 1.3,
+           )}<span> &#8372;</span></p>
+        <p class="search__card_price-sale">${element.price}<span> &#8372;</span></p>`
+         : `<p class="search__card_price-sale">${element.price}<span> &#8372;</span></p>`
      }
 
   </div>
