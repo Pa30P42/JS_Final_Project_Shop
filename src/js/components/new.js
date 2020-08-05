@@ -49,7 +49,7 @@ const addNewAndLastSeen = () => {
 
     new SliderMI('.new-products-wrapper', {
       step: 1,
-      isNavs: true,
+      isNavs: false,
       isPagination: true,
     });
 

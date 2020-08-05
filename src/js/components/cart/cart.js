@@ -2,8 +2,8 @@ import { refs } from '../refs';
 import userData from '../../userData';
 import setting from '../../setting';
 import { modalModule } from '../modalModule/modalModule';
-import apiUsers from '../../api/orders/apiOrders';
-import apiOrders from '../../api/users/apiUsers';
+import apiOrders from '../../api/orders/apiOrders';
+import apiUsers from '../../api/users/apiUsers';
 
 const headerRef = document.querySelector('.header');
 
@@ -262,7 +262,17 @@ const createOrder = closeModal => {
   closeModal();
   if (localStorage.getItem('info')) {
     const productIds = userData.user.cart.cartItems.map(({ id }) => id);
-    apiUsers.getCurrentUser().then(console.log);
+    const getUserData = async () => {
+      try {
+        const response = await apiUsers.getCurrentUser();
+        console.log(response);
+        return response.data.address;
+      } catch (error) {
+        console.log('Лог ошибки из apiUsers.getCurrentUser ' + error);
+      }
+    };
+    userData.user.adress = getUserData().then(console.log);
+
     // userData.user.adress = {
     //   country: 'UA',
     //   city: 'Kyiv',
@@ -272,6 +282,7 @@ const createOrder = closeModal => {
     //   building: '18',
     //   flat: '777',
     // };
+    console.log(userData.user.adress);
     const order = {
       address: userData.user.adress,
       productList: productIds,
@@ -286,12 +297,12 @@ const createOrder = closeModal => {
       }
     };
     console.log(order);
-    sendOrder(order).then(data => {
-      console.log(data);
-      userData.user.cart.cartItems = [];
-      userData.user.cart.totalAmount = 0;
-      setCartCounter();
-    });
+    // sendOrder(order).then(data => {
+    //   console.log(data);
+    //   userData.user.cart.cartItems = [];
+    //   userData.user.cart.totalAmount = 0;
+    //   setCartCounter();
+    // });
   } else {
     modalModule(createMsgMarkup, addListener);
   }
