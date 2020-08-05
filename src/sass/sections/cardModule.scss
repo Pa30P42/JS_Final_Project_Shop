@@ -19,6 +19,11 @@ body {
 .card_list {
   display: flex;
   flex-wrap: wrap;
+  margin-bottom: 30px;
+
+  @media (min-width: 768px) {
+    margin-bottom: 45px;
+  }
 }
 .card_item-sale {
   list-style: none;

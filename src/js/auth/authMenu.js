@@ -71,7 +71,7 @@ function getName() {
 
 function getUserName(data) {
   userName = data.name;
-  console.log('userName', data.name);
+  // console.log('userName', data.name);
 }
 
 getName();
