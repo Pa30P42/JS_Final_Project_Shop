@@ -52,7 +52,7 @@ function getLink(e) {
     function incomingData (e) {
       if ((e.target.nodeName === "LI" || e.target.nodeName === "P")  && e.target.closest('[data-categoryName]')) {
         const categoryNameLink = e.target.dataset.categoryname
-        console.log("categoryNameLink", categoryNameLink);
+        // console.log("categoryNameLink", categoryNameLink);
 
 
         //! ==============================================================================

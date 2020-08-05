@@ -596,7 +596,7 @@ function addInfoListener(key) {
   const inputForm = form.querySelector(`[data-form="${key}"]`);
 
   inputForm.addEventListener('input', getInfo);
-  console.log("inputForm", inputForm);
+  // console.log("inputForm", inputForm);
 }
 //apiUsers.getInfo();
 //getCurrentUser
@@ -643,7 +643,7 @@ const product = {
   }
   
   function getInfo(event) {
-    console.log("product", product);
+    // console.log("product", product);
   
  if (event.target.name === "productPrice") {
     product.price = event.target.value
@@ -779,5 +779,5 @@ const product = {
     // } else if (inputForm.dataset.form === 'favourites') {
     //console.log('key :>> ', event.target.dataset.form);
   }
-  console.log('forms :>> ', forms);
+  // console.log('forms :>> ', forms);
 }
