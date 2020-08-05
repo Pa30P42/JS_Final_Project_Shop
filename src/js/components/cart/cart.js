@@ -24,16 +24,19 @@ const getTotalQuantity = cartItems => {
 };
 
 const setCartCounter = () => {
-  let container;
+  // let container;
 
-  if (setting.isMobile) container = headerRef.querySelector('.header_phone');
-  if (setting.isTablet) container = headerRef.querySelector('.header_tablet');
-  if (setting.isDesktop) container = headerRef.querySelector('.header_desktop');
+  // if (setting.isMobile) container = headerRef.querySelector('.header_phone');
+  // if (setting.isTablet) container = headerRef.querySelector('.header_tablet');
+  // if (setting.isDesktop) container = headerRef.querySelector('.header_desktop');
 
-  const headerNav = container.querySelector('.header__nav');
-  const cartCounter = headerNav.querySelector('.amount_cart');
+  // const headerNav = container.querySelector('.header__nav');
+  const headerNavCarts = document.querySelectorAll('header .amount_cart');
+  const cartCounters = Array.from(headerNavCarts);
   const totalCount = getTotalQuantity(userData.user.cart.cartItems);
-  cartCounter.textContent = totalCount ? totalCount : 0;
+  cartCounters.forEach(counter => {
+    counter.textContent = totalCount;
+  });
 };
 
 const setupEvents = () => {
@@ -251,42 +254,28 @@ const addListener = callbackClose => {
   buttonRef.addEventListener('click', callbackClose);
 };
 
-const createMsgMarkup = () => {
+const createMsgMarkup = msg => {
   return `
     <div style="padding: 40px; text-align: center; font-size: 26px; font-weight: bold;">
-      Зарегитрируйтесь, пожалуйста, для оформления заказа
+      ${msg}
     </div>`;
 };
 
 const createOrder = closeModal => {
   closeModal();
   if (localStorage.getItem('info')) {
+    userData.user.address = {};
     const productIds = userData.user.cart.cartItems.map(({ id }) => id);
     const getUserData = async () => {
       try {
         const response = await apiUsers.getCurrentUser();
-        console.log(response);
+        console.log(response.data.address);
         return response.data.address;
       } catch (error) {
         console.log('Лог ошибки из apiUsers.getCurrentUser ' + error);
       }
     };
-    userData.user.adress = getUserData().then(console.log);
 
-    // userData.user.adress = {
-    //   country: 'UA',
-    //   city: 'Kyiv',
-    //   place: 'Center',
-    //   street: 'Победы',
-    //   block: '4',
-    //   building: '18',
-    //   flat: '777',
-    // };
-    console.log(userData.user.adress);
-    const order = {
-      address: userData.user.adress,
-      productList: productIds,
-    };
     const sendOrder = async newOrder => {
       try {
         const response = await apiOrders.createNewOrder(newOrder);
@@ -296,15 +285,50 @@ const createOrder = closeModal => {
         console.log('Лог ошибки из apiOrders.createNewOrder ' + error);
       }
     };
-    console.log(order);
-    // sendOrder(order).then(data => {
-    //   console.log(data);
-    //   userData.user.cart.cartItems = [];
-    //   userData.user.cart.totalAmount = 0;
-    //   setCartCounter();
-    // });
+
+    getUserData()
+      .then(address => {
+        userData.user.address = address;
+
+        delete userData.user.address._id;
+        // console.log(userData.user.address);
+        /*
+         * Временно для тестирования заполняем все поля
+         * иначе сервер не примет запрос
+         * должна быть валидация в форме авторизации при заполнении адреса
+         * чтобы не было пустых полей
+         * (успели до того наши создать учетные записи с кое-где пустыми полями)
+         */
+        const keys = Object.keys(userData.user.address);
+        for (const key of keys) {
+          if (userData.user.address[key]) {
+            continue;
+          }
+          userData.user.address[key] = 'x';
+        }
+        console.log(userData.user.address);
+        const order = {
+          address: userData.user.address,
+          productList: productIds,
+        };
+        console.log(JSON.stringify(order));
+        return order;
+      })
+      .then(order => sendOrder(order))
+      .then(data => {
+        const msg = `Ваш заказ был успешно отправлен!
+      Номер вашего заказа: ${data.id}.
+      Благодарим за выбор нашего магазина,
+      надеемся, что Вы к нам заглянете ещё не раз!`;
+        modalModule(() => createMsgMarkup(msg), addListener);
+      })
+      .catch(console.log);
+
+    const createOrderFromCart = async listIdProducts => {};
+    const promise = createOrderFromCart(productIds);
   } else {
-    modalModule(createMsgMarkup, addListener);
+    const msg = 'Зарегистрируйтесь, пожалуйста, для оформления заказа';
+    modalModule(() => createMsgMarkup(msg), addListener);
   }
 };
 
@@ -318,6 +342,7 @@ const listeners = closeModal => {
 };
 
 const showCart = () => {
+  setCartCounter();
   modalModule(createCartMarkup, listeners);
   const cartList = document.querySelector('.cart__list');
   cartList.addEventListener('click', counterHandler);
