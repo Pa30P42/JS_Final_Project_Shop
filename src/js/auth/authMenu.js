@@ -52,7 +52,6 @@ export const authFn = function () {
     authFormListeners = document.querySelector('.authForm');
     authFormListeners.addEventListener('click', e => {
       e.preventDefault();
-      document.body.style.backgroundColor = 'red';
       if (e.target === e.currentTarget[2]) {
         userValue.email = e.currentTarget[0].value;
         userValue.password = e.currentTarget[1].value;

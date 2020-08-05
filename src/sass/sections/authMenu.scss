@@ -2,15 +2,15 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  // position: absolute;
+  position: absolute;
   min-width: 204px;
   min-height: auto;
   background: $auth-menu__background-color;
   word-wrap: break-word;
-  // transform: translate(-50%, -50%);
+  transform: translate(275%, -151%);
   // border-radius: 10px;
-  // top: 11%;
-  // right: 25%;
+  top: 11%;
+  right: 25%;
 }
 
 .authMenu_component {
@@ -63,4 +63,10 @@
   color: $main--text-color;
   border-radius: 10px;
   cursor: pointer;
+}
+
+@media (min-width: 768px) and (max-width: 1199px) {
+  .auth-menu {
+    display: none;
+  }
 }
