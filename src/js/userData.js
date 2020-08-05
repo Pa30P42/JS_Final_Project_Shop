@@ -10,6 +10,7 @@ export default {
     isTablet: false,
     isDesktop: false,
   },
+  allProducts: [],
   user: {
     cartItem: {
       id: '',

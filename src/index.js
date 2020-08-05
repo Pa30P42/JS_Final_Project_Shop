@@ -39,9 +39,7 @@ export const initialAction = async () => {
   await apiProducts.getCategories();
   setting.getDevice(document.documentElement.clientWidth);
   containerHandler();
-  addNewAndLastSeen();
-  setCartCounter();
-  setupEvents();
+
   new Sim();
   // trigger.triggerFn();
   console.log('userData :>> ', userData);
