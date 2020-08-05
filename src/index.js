@@ -15,25 +15,17 @@ import axios from 'axios';
 import apiAuth from './js/api/auth/apiAuth';
 import apiUsers from './js/api/users/apiUsers';
 import productCard from './js/adv/productCard';
-
 import userData from './js/userData';
 import { getPofileTest, favouritesFormMarkup } from './js/profile/profileMarkups';
+import { setCartCounter, setupEvents } from './js/components/cart/cart';
+import { addNewAndLastSeen } from './js/components/new';
 
-const btnShowModal = document.getElementById('btnShowModal');
-
-let currentItem = null;
-
-btnShowModal.addEventListener('click', async () => {
-  const response = await axios.get('https://goit-store.herokuapp.com/products');
-  const item = response.data[8];
-  currentItem = item;
-  productCard(item);
-});
+//=========================================================
 
 export const initialAction = async () => {
+  userData.getSettings();
   await apiProducts.getCategories();
   setting.getDevice(document.documentElement.clientWidth);
-
   containerHandler();
 
   new Sim();
@@ -41,3 +33,26 @@ export const initialAction = async () => {
   console.log('userData :>> ', userData);
 };
 initialAction();
+
+// const userDataFn = async () => {
+//   if (localStorage.getItem('info')) {
+//     const userToken = JSON.parse(localStorage.getItem('info')).token;
+//     if (userToken) {
+//       const response = await apiUsers.getCurrentUser();
+
+//       userData.user = {
+//         ...userData.user,
+//         ...response.data,
+//       };
+//     }
+//     delete userData.user.password;
+//   } else {
+//     localStorage.setItem(
+//       'info',
+//       JSON.stringify({
+//         favorites: [],
+//       }),
+//     );
+//   }
+
+// };

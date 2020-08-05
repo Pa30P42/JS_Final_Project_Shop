@@ -24,8 +24,7 @@ export default {
       // console.log(JSON.parse(localStorage.getItem('info')).token);
       axios.defaults.headers['Authorization'] = JSON.parse(localStorage.getItem('info')).token;
       const response = await axios.get(`${this.addFavoriteUrl}${id}`);
-      return response
-
+      return response;
     } catch (error) {
       console.log(error);
       // throw error;
@@ -100,15 +99,17 @@ export default {
     }
   },
   async getCurrentUser() {
-    try {
-      axios.defaults.headers['Authorization'] = JSON.parse(localStorage.getItem('info')).token;
-      const response = await axios.get(this.getUserInfoUrl);
-      console.log(response);
-      return response;
-    } catch (error) {
-      console.log(error);
-      // throw error;
-    }
+    if (localStorage.getItem('info')) {
+      try {
+        axios.defaults.headers['Authorization'] = JSON.parse(localStorage.getItem('info')).token;
+        const response = await axios.get(this.getUserInfoUrl);
+        console.log(response);
+        return response;
+      } catch (error) {
+        console.log(error);
+        // throw error;
+      }
+    } else return;
   },
   async getUserById(id) {
     try {
