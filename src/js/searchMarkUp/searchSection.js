@@ -9,13 +9,13 @@ import productCard from '../adv/productCard';
 const createListMarkup = array => {
   if (array.length < 1) {
     return `
-<section class="card">
-<h2 class="card_description">Ничего не найдено</h2>`;
+<section class="search__card">
+<h2 class="search__card_description">Ничего не найдено</h2>`;
   } else {
     return `
-   <section class="card">
-  <h2 class="card_description">Результат поиска </h2>
-  <ul class="card_list">${array.reduce((acc, element) => {
+   <section class="search__card">
+  <h2 class="search__card_description">Результат поиска </h2>
+  <ul class="search__card_list">${array.reduce((acc, element) => {
     acc += createSingleCardMarkup(element, 'sale');
     return acc;
   }, '')}</ul></section>`;

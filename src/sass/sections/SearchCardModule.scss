@@ -209,6 +209,12 @@
   }
 }
 @media (min-width: 1200px) {
+  .search__card_list {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    justify-content: start;
+  }
   // .card__container {
   //   align-items: center;
   //   justify-content: center;
@@ -246,11 +252,16 @@
     // margin-left: 15px;
   }
   .search__card_item {
+    justify-content: start;
     //width: 204px;
     // height: 300px;
     margin-bottom: 15px;
     text-align: right;
     padding: 17px 19px 17px 20px;
     // margin: 1%;
+  }
+
+  .search__card_item:not(:nth-child(5n)) {
+    margin-right: 15px;
   }
 }
