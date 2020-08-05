@@ -16,7 +16,7 @@ const createListMarkup = array => {
    <section class="search__card">
   <h2 class="search__card_description">Результат поиска </h2>
   <ul class="search__card_list">${array.reduce((acc, element) => {
-    acc += createSingleCardMarkup(element, 'sale');
+    acc += createSingleCardMarkup(element);
     return acc;
   }, '')}</ul></section>`;
   }
