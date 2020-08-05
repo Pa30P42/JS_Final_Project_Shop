@@ -33,6 +33,19 @@ export const initialAction = async () => {
   console.log('userData :>> ', userData);
 };
 initialAction();
+const order = {
+  address: {
+    country: 'UA',
+    city: 'Kyiv',
+    place: 'Печерский',
+    street: 'бул. Леси Украинки',
+    block: '7',
+    building: '26',
+    flat: '777',
+  },
+  productList: ['5f23d313c6263100179ab99c', '5f23c8ebc6263100179ab99a'],
+};
+// apiOrders.createNewOrder(order);
 
 // const userDataFn = async () => {
 //   if (localStorage.getItem('info')) {

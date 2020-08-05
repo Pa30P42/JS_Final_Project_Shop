@@ -137,9 +137,7 @@ const createCartItemMarkup = item => {
           </svg>
         </button>
       </div>
-      <p class="cart__item-amount">${new Intl.NumberFormat('ua-UA').format(
-        item.price * item.quantity,
-      )} ₴</p>
+      <p class="cart__item-amount">${new Intl.NumberFormat('ua-UA').format(item.price * item.quantity)} ₴</p>
     </div>
   </li>`;
 };
@@ -186,8 +184,7 @@ const inputQuantityHandler = ({ target }) => {
   const element = userData.user.cart.cartItems.find(item => item.id === id);
   element.quantity = newCount;
   setCartCounter();
-  cartItemAmount.textContent =
-    new Intl.NumberFormat('ua-UA').format(element.quantity * element.price) + ' ₴';
+  cartItemAmount.textContent = new Intl.NumberFormat('ua-UA').format(element.quantity * element.price) + ' ₴';
   const totalAmount = getTotalAmount(userData.user.cart.cartItems);
   cartTotalAmount.textContent = new Intl.NumberFormat('ua-UA').format(totalAmount) + ' ₴';
   userData.user.cart.totalAmount = totalAmount;
@@ -196,11 +193,7 @@ const inputQuantityHandler = ({ target }) => {
 
 const counterHandler = e => {
   const counterBtn = e.target.closest('[data-button]');
-  if (
-    !counterBtn ||
-    (counterBtn.dataset.button !== 'decrement' && counterBtn.dataset.button !== 'increment')
-  )
-    return;
+  if (!counterBtn || (counterBtn.dataset.button !== 'decrement' && counterBtn.dataset.button !== 'increment')) return;
   const listItem = counterBtn.closest('[data-id]');
   const buttonDecrement = listItem.querySelector('[data-button="decrement"]');
   const inputNumber = listItem.querySelector('[data-input="inputNumber"]');
@@ -224,8 +217,7 @@ const counterHandler = e => {
   }
   inputNumber.value = element.quantity;
   setCartCounter();
-  cartItemAmount.textContent =
-    new Intl.NumberFormat('ua-UA').format(element.quantity * element.price) + ' ₴';
+  cartItemAmount.textContent = new Intl.NumberFormat('ua-UA').format(element.quantity * element.price) + ' ₴';
   const totalAmount = getTotalAmount(userData.user.cart.cartItems);
   cartTotalAmount.textContent = new Intl.NumberFormat('ua-UA').format(totalAmount) + ' ₴';
   userData.user.cart.totalAmount = totalAmount;
@@ -285,14 +277,14 @@ const createOrder = closeModal => {
     const sendOrder = async newOrder => {
       try {
         const response = await apiOrders.createNewOrder(newOrder);
-        // console.log(response);
+        console.log(response);
         return response.data;
       } catch (error) {
-        console.log('Лог ошибки в sendOrder ' + error);
+        console.log('Лог ошибки из apiOrders.createNewOrder ' + error);
       }
     };
-    console.log(JSON.stringify(order));
-    sendOrder(JSON.stringify(order)).then(data => {
+    console.log(order);
+    sendOrder(order).then(data => {
       console.log(data);
       userData.user.cart.cartItems = [];
       userData.user.cart.totalAmount = 0;
