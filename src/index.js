@@ -25,6 +25,12 @@ import axios from 'axios';
 import apiAuth from './js/api/auth/apiAuth';
 import apiUsers from './js/api/users/apiUsers';
 import productCard from './js/adv/productCard';
+
+// =========== adv ==============
+
+// apiProducts.searchProductsbyCategory('new').then(data => createList(data.data));
+// =========== adv ==============
+
 import userData from './js/userData';
 const btnShowModal = document.getElementById('btnShowModal');
 import {

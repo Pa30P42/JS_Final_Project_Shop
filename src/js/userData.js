@@ -31,6 +31,15 @@ export default {
     },
   },
 
+  pagination: {
+    currentPage: 1,
+    maxPages: 0,
+    totalProducts: 0,
+    perPage: 0,
+    pagesCount: 0,
+    category: '',
+  },
+
   categoriesItems: [],
   appliances: {
     large_home_appliances: {
@@ -91,17 +100,32 @@ export default {
     },
   },
   getSettings(width = document.documentElement.clientWidth) {
-    userDataFn();
+    // userData();
     if (width < 768) {
       this.settings.isMobile = true;
+      this.pagination.perPage = 2;
     }
     if (width >= 768 && width < 1200) {
       this.settings.isTablet = true;
+      this.pagination.perPage = 4;
     }
     if (width >= 1200) {
       this.settings.isDesktop = true;
+      this.pagination.perPage = 4;
     }
   },
 
+  getName(link) {
+    return this.categoriesItems.find(category =>
+      category.value.toLowerCase().includes(link.toLowerCase()),
+    ).name;
+  },
 
+  getValue(link) {
+    return this.categoriesItems.find(category =>
+      category.name.toLowerCase().includes(link.toLowerCase()),
+    ).value;
+  },
 };
+
+// ============================================================
