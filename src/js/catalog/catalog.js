@@ -1,30 +1,24 @@
-import './catalog.scss';
-import catalogList from '../userData'
+import catalogList from '../userData';
 import subItem from '../api/products/services';
 import apiProducts from '../api/products/apiProducts';
 import {modalModule} from '../components/modalModule/modalModule'
 import {closeHeaderMenu} from '../sideBar/headerSideBar'
-
-
+import caretblack from '../../images/svgHeader/caret-black.svg';
 
 const isMobile = true;
 const isTablet = false;
 const isDesktop = false;
 
+const refs = {
+  catalogList: '',
+  subCatalogList: '',
+};
+
+const categories = Object.values(catalogList.appliances);
+
+function getLink(e) {
 
   
-
-   const refs =  {
-      catalogList: '',
-      subCatalogList: '',
-    };
-
-
-
-    const categories = Object.values(catalogList.appliances);
-    
-    function getLink(e) {
-
 
       if ((e.target.nodeName === "LI" || e.target.nodeName === "P")  && e.target.closest('[data-sublink]')) {
         const subLink = e.target.closest('[data-sublink]').dataset.sublink
@@ -69,46 +63,49 @@ const isDesktop = false;
       } 
     }
 
-    function getVisibilitySubCatalog() {
-      if (isMobile || isTablet) {
-        return 'catalog__hidden'
-      } else return 'catalog__active'
-    }
+function getVisibilitySubCatalog() {
+  if (isMobile || isTablet) {
+    return 'catalog__hidden';
+  } else return 'catalog__active';
+}
 
-   export function catalogListMarkup() {
-      return `
+export function catalogListMarkup() {
+  return `
                 <ul class="catalog__list">
                 ${catalogItemMarkup(categories)}
                 </ul>
                 `;
+}
 
-    }
-
-    
-
-    function getCategories (category) {
-      const markup = category.categories.reduce((acc, category) => {
-        acc+= `
+function getCategories(category) {
+  const markup = category.categories.reduce((acc, category) => {
+    acc += `
         <li class="sub__catalog__item" data-sublink="${category.value}">
         <p class="sub__catalog__text" data-categoryName="${category.value}">${category.name}</p>
         </li>
-        `
-        return acc
-      }, '')
-      // console.log(markup);
-      return markup
-    }
+        `;
+    return acc;
+  }, '');
+  // console.log(markup);
+  return markup;
+}
 
-    function catalogItemMarkup(categories) {
-      return categories.reduce((acc, category) => {
-        // console.log(category);
-        acc += `
+function catalogItemMarkup(categories) {
+  return categories.reduce((acc, category) => {
+    // console.log(category);
+    acc += `
         <li class="catalog__item" data-link="${category.value}">
-        <img src="${category.image}" alt="${category.value}" class="catalog__img" width="247" height="127">
-        <h2 class="catalog__title" data-title="${category.value}">${category.name}</h2>
+         <img alt="svg_icon_header" class="caret_down_category" 
+        src=${caretblack}  width="15" height="15"/> <img src="${
+      category.image
+    }" alt="${category.value}" class="catalog__img" width="247" height="127">
+        <h2 class="catalog__title" data-title="${category.value}">${
+      category.name
+    }</h2>
         <ul class="sub__catalog__list ${getVisibilitySubCatalog()}">
         ${getCategories(category)}
         </ul>
+      
       </li>`;
         return acc;
       }, '');
@@ -141,10 +138,3 @@ const isDesktop = false;
       catalogList.addEventListener('click', getSubCatalogLink);
 
     }
-
-
-
-
-
-
-
