@@ -3,7 +3,15 @@
   padding: 10px;
   border-radius: 10px;
 }
-
+.product__card-close {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  line-height: 40px;
+  border: none;
+  background-color: rgba(0, 0, 0, 0);
+  cursor: pointer;
+}
 .product__card-title,
 .product__image {
   margin-bottom: 10px;

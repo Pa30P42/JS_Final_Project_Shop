@@ -60,11 +60,13 @@ const productCard = async item => {
 
   function addListener(closeModal) {
     const btnBuy = document.getElementById('btnBuy');
+    const btnClose = document.querySelector('.product__card-close');
     btnBuy.addEventListener('click', () => {
       if (item) {
         buy(item, closeModal);
       }
     });
+    btnClose.addEventListener('click', closeModal);
   }
 };
 export default productCard;

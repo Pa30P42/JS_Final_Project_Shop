@@ -1,8 +1,18 @@
 import favourite from '../../images/adv/icons/favorite.svg';
+import close from '../../images/adv/icons/close-icon.svg';
 
 const productItem = item => {
   return `
     <section class="product__card container">
+
+    <button class="product__card-close">
+      <img 
+      src="${close}"
+      alt="x"
+      width="14"
+      />
+    </button>
+
       <div class="product__title-mobile">
         <h2 class="product__card-title">
           ${item.name}
