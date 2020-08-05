@@ -8,10 +8,6 @@ import axios from 'axios';
 import userData from '../userData';
 import products from './products';
 
-const delay = ms => {
-  return new Promise(resolve => setTimeout(() => resolve(''), ms));
-};
-
 const newHeadMarkup = () => {
   return `
   <h2 class="new-products__title">Новые поступления</h2>`;
@@ -34,7 +30,6 @@ const createCardsListMarkup = products => {
 };
 
 const addNewAndLastSeen = () => {
-  // const products = userData.allProducts;
   const newProducts = products.filter(item => item.category === 'new');
   const lastSeenProducts = showLastSeen(products);
 
@@ -43,8 +38,8 @@ const addNewAndLastSeen = () => {
     const id = e.target.closest('[data-id]').dataset.id;
     const product = products.find(item => item._id === id);
     productCard(product);
-    const imgMain = document.querySelector('.product__image img');
-    imgMain.src = product.images[0];
+    // const imgMain = document.querySelector('.product__image img');
+    // imgMain.src = product.images[0];
   };
 
   const newRef = refs.sections.querySelector('.new-products-wrapper');
@@ -74,11 +69,11 @@ const addNewAndLastSeen = () => {
       isNavs: true,
       isPagination: true,
     });
-
     const lastSeenList = lastSeenRef.querySelector('.slider__list-cards');
     lastSeenList.addEventListener('click', e => {
       onSelectCard(e, lastSeenProducts);
     });
   }
 };
+
 export { addNewAndLastSeen };

@@ -53,7 +53,7 @@ const productCard = async item => {
     // --------- проверка ---/
     // console.log('id ', id._id);
     // apiUsers.addFavorite(id._id).then(data => console.log('favorites ', data));
-    apiUsers.getCurrentUser().then(data => console.log('current ', data));
+    // apiUsers.getCurrentUser().then(data => console.log('current ', data));
     // ----------------------/
     // }
   });
