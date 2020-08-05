@@ -4,6 +4,9 @@ import apiProducts from '../api/products/apiProducts';
 import {modalModule} from '../components/modalModule/modalModule';
 import {closeHeaderMenu} from '../sideBar/headerSideBar';
 import caretblack from '../../images/svgHeader/caret-black.svg';
+import {createPagination} from '../pagination/pagination';
+import {createList} from '../sale/saleSection';
+import userData from '../userData';
 
 const isMobile = true;
 const isTablet = false;
@@ -127,9 +130,12 @@ function catalogItemMarkup(categories) {
 
     export function listeners  (action) {
 
-      const getSubCatalogLink = (e) => {
+      const getSubCatalogLink = async e => {
         const link = getLink(e)
-        // console.log(link);
+        console.log(link);
+        const pagination = await createPagination(link);
+    // console.log(pagination);
+    createList(pagination.array, pagination.paginationMarkup, userData.getName(link));
         if (link) {         
           action()
         }
