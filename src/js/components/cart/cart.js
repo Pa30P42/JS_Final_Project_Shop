@@ -2,7 +2,8 @@ import { refs } from '../refs';
 import userData from '../../userData';
 import setting from '../../setting';
 import { modalModule } from '../modalModule/modalModule';
-import apiOrders from '../../api/orders/apiOrders';
+import apiUsers from '../../api/orders/apiOrders';
+import apiOrders from '../../api/users/apiUsers';
 
 const headerRef = document.querySelector('.header');
 
@@ -261,15 +262,16 @@ const createOrder = closeModal => {
   closeModal();
   if (localStorage.getItem('info')) {
     const productIds = userData.user.cart.cartItems.map(({ id }) => id);
-    userData.user.adress = {
-      country: 'UA',
-      city: 'Kyiv',
-      place: 'Center',
-      street: 'Победы',
-      block: '4',
-      building: '18',
-      flat: '777',
-    };
+    apiUsers.getCurrentUser().then(console.log);
+    // userData.user.adress = {
+    //   country: 'UA',
+    //   city: 'Kyiv',
+    //   place: 'Center',
+    //   street: 'Победы',
+    //   block: '4',
+    //   building: '18',
+    //   flat: '777',
+    // };
     const order = {
       address: userData.user.adress,
       productList: productIds,
