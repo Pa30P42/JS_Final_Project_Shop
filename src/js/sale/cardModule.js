@@ -1,22 +1,19 @@
 import vector_love from '../../images/sale/Vector_love.svg';
 import vector from '../../images/sale/Vector.svg';
-import apiProducts from '../api/products/apiProducts';
-import getVector from './saleSection';
-// import vector from '';
-import userData from '../../js/userData';
-const love = {
-  isActiv: true,
-  notActiv: false,
-};
-// apiProducts.searchProductsbyCategory('new').then(data => parsData(data.data));
+import {
+  refFavourites
+} from './saleSection';
 
-// function parsData(products) {
-//   const body = document.querySelector('body');
-//   body.innerHTML = cardItemMarkup(products[0]);
-//   console.log(products);
-//   // cardItemMarkup(products[0]);
-// }
+const userData = {
+  isMobile: false,
+  isTablet: false,
+  isDesktop: true,
+};
+
+
+
 export const createSingleCardMarkup = (element, sale) => {
+
   const rating = () => {
     let markup = '';
     let number = getRandomInt(1, 6);
@@ -39,12 +36,17 @@ export const createSingleCardMarkup = (element, sale) => {
       ? ` <img class="card_img" src="${element.images[0]}" alt="${element.name}" width="86"/>`
       : `<img class="card_img-tablet" src="${element.images[0]}" alt="${element.name}" width="149" />`
   }
- 
+
   </div>
   <div class="card-vector">
- 
-      <img class="card_vector-notActiv" src="${vector}" data-clickVector="notActiv"/>
-  
+
+${(refFavourites)
+  ?((!refFavourites.favoritesLocal.includes(element._id) || refFavourites.favoritesLocal === null )
+  ?`<img class="card_vector-notActiv" src="${vector}" data-favorite="false" data-clickVector="notActiv"/>`
+  :`<img class="card_vector-notActiv" src="${vector_love}" data-favorite="false" data-clickVector="notActiv"/>`)
+  : `<img class="card_vector-notActiv" src="${vector_love}" data-favorite="false" data-clickVector="notActiv"/>`
+
+  }
   </div>
 
 
@@ -64,28 +66,4 @@ export const createSingleCardMarkup = (element, sale) => {
   return cardItemMarkup(element);
 };
 
-// {/* <div class="card-vector">
-//   ${
-//     love.isActive
-//       ? `<img class="card_vector-isActiv" src="${vector_love}" data-clickVector="isActiv"/>`
-//       : `<img class="card_vector-notActiv" src="${vector}" data-clickVector="notActiv"/>`
-//   }
-//   </div> */}
-// const createListMarkup = array => {
-// return `<ul class="card_list">${array.reduce((acc, element) => {
-//     acc += cardCartItem(element);
-//     return acc;
-//   }, '')}</ul>`;
-// };
 
-// const getItem = event => {
-//   if (event.target !== current.target) {
-//     const id = event.target.closest('[data-id]').dataset.id;
-//     // функция Ани(id)
-//   } else return id;
-// };
-// const createList = array => {
-//   const container = document.querySelector('.container');
-//   container.innerHTML = createListMarkup(array);
-//   container.addEventListener('click', getItem);
-// };

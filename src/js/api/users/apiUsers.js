@@ -56,7 +56,6 @@ export default {
       const user = info;
       // const user = { email: 'cheeseburger555555@gmail.com' };
       const response = await axios.patch(this.usersUrl, user);
-      console.log(response);
     } catch (error) {
       console.log(error);
       // throw error;
@@ -103,22 +102,23 @@ export default {
       try {
         axios.defaults.headers['Authorization'] = JSON.parse(localStorage.getItem('info')).token;
         const response = await axios.get(this.getUserInfoUrl);
-        console.log(response);
         return response;
       } catch (error) {
         console.log(error);
-        // throw error;
       }
-    } else return;
+
+    } else {
+      return
+
+    }
+
   },
   async getUserById(id) {
     try {
       axios.defaults.headers['Authorization'] = JSON.parse(localStorage.getItem('info')).token;
       const response = await axios.get(`${this.getUserByIdUrl}${id}`);
-      console.log(response);
     } catch (error) {
       console.log(error);
-      // throw error;
     }
   },
   async getUserInfo() {
@@ -126,11 +126,10 @@ export default {
       axios.defaults.headers['Authorization'] = JSON.parse(localStorage.getItem('info')).token;
       const response = await axios.get(this.getUserInfoUrl);
       const currentId = response.data._id;
-      console.log(currentId);
       return currentId;
     } catch (error) {
       console.log(error);
-      // throw error;
+
     }
   },
 };

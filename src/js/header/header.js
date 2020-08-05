@@ -1,5 +1,9 @@
-import { contactMarkUp } from '../contacts/contacts.js';
-import { showCart } from '../components/cart/cart';
+import {
+  contactMarkUp
+} from '../contacts/contacts.js';
+import {
+  showCart
+} from '../components/cart/cart';
 import trigger from '../components/trigger';
 // import trigger from './js/components/trigger';
 import {
@@ -10,7 +14,11 @@ import {
   closeHeaderMenu
 } from '../sideBar/headerSideBar.js';
 // import { contactMarkUp } from '../contacts/contacts.js';
-import { catalogListMarkup, listeners, catalogListMarkupAddListeners } from '../catalog/catalog';
+import {
+  catalogListMarkup,
+  listeners,
+  catalogListMarkupAddListeners
+} from '../catalog/catalog';
 
 import {
   categoriesListMarkup,
@@ -30,12 +38,24 @@ import {
   listenersForSearch,
 } from '../search/searchdesktop/searchDesktop';
 
-import { authFn } from '../auth/authMenu';
+import {
+  authFn
+} from '../auth/authMenu';
 import apiProducts from '../api/products/apiProducts';
-import { createList } from '../sale/saleSection';
-import { initialAction } from '../../index';
+import {
+  createList
+} from '../sale/saleSection';
+import {
+  initialAction
+} from '../../index';
+import {
+  getItem
+} from '../header/header';
+
+
 
 const headerButton = event => {
+  
   let dataname;
   if (event.target.closest('[data-name]')) {
     dataname = event.target.closest('[data-name]').dataset.name;
@@ -56,8 +76,9 @@ const headerButton = event => {
   } else if (dataname === 'name_buttonClose') {
     closeHeaderMenu();
   } else if (dataname === 'name_sale') {
-    apiProducts.searchProductsbyCategory('new').then(data => createList(data.data));
-    console.log('sale');
+    apiProducts.searchProductsbyCategory('new').then(data => {
+      createList(data.data)
+    });
     closeHeaderMenu();
   } else if (dataname === 'name_info') {
     console.log('info');

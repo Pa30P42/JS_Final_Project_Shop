@@ -2,9 +2,14 @@ import bigTech from '../images/category/big-tech.jpg';
 import buildInTech from '../images/category/build-in-tech.jpg';
 import homeCareTech from '../images/category/home-care-tech.jpg';
 import kitchenTech from '../images/category/kitchen-tech.jpg';
-import { userDataFn } from './setting';
+import {
+  userDataFn
+} from './setting';
+
+
 
 export default {
+
   settings: {
     isMobile: false,
     isTablet: false,
@@ -97,4 +102,6 @@ export default {
       this.settings.isDesktop = true;
     }
   },
+
+
 };
