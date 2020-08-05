@@ -9,13 +9,12 @@ import './js/components/modalModule/modalModule';
 import apiProducts from './js/api/products/apiProducts';
 import apiOrders from './js/api/orders/apiOrders';
 import setting from './js/setting';
-
+import { refs } from './js/components/refs';
 import './js/category/category-markup';
 import axios from 'axios';
 import apiAuth from './js/api/auth/apiAuth';
 import apiUsers from './js/api/users/apiUsers';
 import productCard from './js/adv/productCard';
-import { pseudoProfile } from './js/profile/profileTabs';
 import { paginationPerPage } from './js/pagination/pagination';
 
 // =========== adv ==============
@@ -23,25 +22,47 @@ import { paginationPerPage } from './js/pagination/pagination';
 // apiProducts.searchProductsbyCategory('new').then(data => createList(data.data));
 // =========== adv ==============
 
-const btnShowModal = document.getElementById('btnShowModal');
+import userData from './js/userData';
+import { getPofileTest, favouritesFormMarkup } from './js/profile/profileMarkups';
+import { setCartCounter, setupEvents } from './js/components/cart/cart';
+import { addNewAndLastSeen } from './js/components/new';
 
-let currentItem = null;
+//=========================================================
 
-btnShowModal.addEventListener('click', async () => {
-  const response = await axios.get('https://goit-store.herokuapp.com/products');
-  const item = response.data[8];
-  currentItem = item;
-  console.log(response);
-  productCard(item);
-});
-
-const initialAction = async () => {
+export const initialAction = async () => {
+  userData.getSettings();
   await apiProducts.getCategories();
   paginationPerPage();
   setting.getDevice(document.documentElement.clientWidth);
   containerHandler();
-  pseudoProfile();
+
   new Sim();
   // trigger.triggerFn();
+  console.log('userData :>> ', userData);
 };
 initialAction();
+
+console.log('userData', userData);
+
+// const userDataFn = async () => {
+//   if (localStorage.getItem('info')) {
+//     const userToken = JSON.parse(localStorage.getItem('info')).token;
+//     if (userToken) {
+//       const response = await apiUsers.getCurrentUser();
+
+//       userData.user = {
+//         ...userData.user,
+//         ...response.data,
+//       };
+//     }
+//     delete userData.user.password;
+//   } else {
+//     localStorage.setItem(
+//       'info',
+//       JSON.stringify({
+//         favorites: [],
+//       }),
+//     );
+//   }
+
+// };

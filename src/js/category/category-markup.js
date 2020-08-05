@@ -17,11 +17,7 @@ const globalCategoriesObjects = Object.values(categoriesList.appliances);
 
 export function getLink(e) {
   //link можно добавить в хлебные крошки//
-  if (
-    e.target.nodeName === 'LI' ||
-    e.target.nodeName === 'P' ||
-    e.target.nodeName === 'IMG'
-  ) {
+  if (e.target.nodeName === 'LI' || e.target.nodeName === 'P' || e.target.nodeName === 'IMG') {
     if (e.target.closest('[data-sublink]')) {
       const subLink = e.target.closest('[data-sublink]').dataset.sublink;
       // const subLinkName = e.target.closest('[data-sublink]').dataset

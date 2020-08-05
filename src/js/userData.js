@@ -2,23 +2,16 @@ import bigTech from '../images/category/big-tech.jpg';
 import buildInTech from '../images/category/build-in-tech.jpg';
 import homeCareTech from '../images/category/home-care-tech.jpg';
 import kitchenTech from '../images/category/kitchen-tech.jpg';
+import { userDataFn } from './setting';
 
 export default {
+  settings: {
+    isMobile: false,
+    isTablet: false,
+    isDesktop: false,
+  },
+  allProducts: [],
   user: {
-    // favorites: [],
-    // name: '',
-    // phone: '',
-    // email: '',
-    // address: {
-    //   country: '',
-    //   city: '',
-    //   place: '',
-    //   street: ' ',
-    //   block: '',
-    //   building: '',
-    //   flat: '',
-    //   zip: '',
-    // },
     cartItem: {
       id: '',
       name: '',
@@ -100,5 +93,17 @@ export default {
         'other_small_equipment',
       ],
     },
+  },
+  getSettings(width = document.documentElement.clientWidth) {
+    userDataFn();
+    if (width < 768) {
+      this.settings.isMobile = true;
+    }
+    if (width >= 768 && width < 1200) {
+      this.settings.isTablet = true;
+    }
+    if (width >= 1200) {
+      this.settings.isDesktop = true;
+    }
   },
 };
