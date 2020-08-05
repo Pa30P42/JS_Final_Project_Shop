@@ -174,15 +174,9 @@ export default {
         break;
       case 'favourites':
         console.log('userdData :>> ', userData.user);
-        //apiProducts.getAllProducts().then(data => console.log('switch', data.data));
-        // .then(response => console.log('response :>> ', response));
+        (userData.user.favorites) ?
+        favouritesFormMarkup(userData.user.favorites): profileFavErrorMarkup();
 
-        //  export function test() {
-        //     apiProducts.getAllProducts().then(data => console.log('switch', data.data));
-        // }
-
-        favouritesFormMarkup(userData.user.favorites);
-        // favouritesFormMarkup();
 
         break;
       case 'advertisement':
@@ -196,26 +190,48 @@ export default {
   },
 };
 
+function profileFavErrorMarkup(array) {
+
+  const profileFavEmpty = (array) => {
+    return `
+     <div class="favourites-wrapper tabs__panel" id="form" data-form="favourites">
+    
+          <div class="profile-favourites-empty">
+           <div class="profile-favourites-empty_top">
+          <span class="profile-favourites-empty__text"">Добавьте продукты в избранное</span>
+           </div>
+          </div>
+          </div>
+            `
+
+  };
+  const favouritesBtn = document.querySelector('.favourites');
+  favouritesBtn.insertAdjacentHTML('afterend', profileFavEmpty(userData.user.favorites));
+
+  setActive();
+}
+
+
 function userInfoMarkup() {
   const infoMarkup = () => {
     return `
         <form name="infoForm"  data-form="infoForm" id="form" class="active-form js-active-tab tabs__panel">
                   <div class="form-group">
                     <label id="name-label" for="name"><em> * </em>Имя, Отчество</label>
-                    <input type="text" name="name" value="${userData.user.name}" id="name" class="form-control" placeholder="Username"  required/>
+                    <input type="text" name="name" value="${userData.user.name? userData.user.name:''}" id="name" class="form-control" placeholder="Username"  required/>
                     <div class="helper-text-div"></div>
                     <div class="helper-text-div__info"></div>
                     
                     <label id="name-label" for="name"><em> * </em>Фамилия</label>
-                    <input type="text" name="surname"  value="${userData.user.surname}" id="surname" class="form-control" placeholder="Username2"   required />
+                    <input type="text" name="surname"  value="${userData.user.surname? userData.user.surname:''}" id="surname" class="form-control" placeholder="Username2"   required />
                     <div class="helper-text-div"></div>
 
                     <label id="email-label" for="email"><em> * </em>Email</label>
-                    <input type="email" name="email" value="${userData.user.email}" id="email" class="form-control" placeholder="user@mail.com"  required />
+                    <input type="email" name="email" value="${userData.user.email? userData.user.email: ''}" id="email" class="form-control" placeholder="user@mail.com"  required />
                     <div class="helper-text-div"></div>
 
                     <label id="phone-number" for="phone-number"><em> * </em>Телефон</label>
-                    <input type="tel" name="tel"  value="${userData.user.phone}" for="tel" id="tel" class="form-control"
+                    <input type="tel" name="tel"  value="${userData.user.phone? userData.user.phone: ''}" for="tel" id="tel" class="form-control"
                        required />
                      <div class="helper-text-div"></div>
 
@@ -304,29 +320,29 @@ function addressFormMarkup() {
                   <div class="section-one">
     
                     <label id="name-label" for="name"><em> * </em>Страна</label>
-                    <input type="text" name="country"  value="${forms.addressForm.country}" class="form-control" placeholder="Страна" required />
+                    <input type="text" name="country"  value="${forms.addressForm.country? forms.addressForm.country: ''}" class="form-control" placeholder="Страна" required />
     <div class="helper-text-div"></div>
                     <label id="name-label" for="name"><em> * </em>Регион/Область</label>
-                    <input type="text" name="city"  value="${forms.addressForm.city}" class="form-control" placeholder="Киевская" required />
+                    <input type="text" name="city"  value="${forms.addressForm.city? forms.addressForm.city: ''}" class="form-control" placeholder="Киевская" required />
 <div class="helper-text-div"></div>
                     <label id="name-label" for="name"><em> * </em>Город</label>
-                    <input type="text" name="place" value="${forms.addressForm.place}" class="form-control" placeholder="Киев" autocomplete="section-blue shipping street-address" required />
+                    <input type="text" name="place" value="${forms.addressForm.place ? forms.addressForm.place:''}" class="form-control" placeholder="Киев" autocomplete="section-blue shipping street-address" required />
     <div class="helper-text-div"></div>
                     <label id="name-label" for="name"><em> * </em>Улица</label>
-                    <input type="text" name="street"  value="${forms.addressForm.street}" class="form-control" placeholder="Пушкинская" autocomplete="section-blue shipping street-address" required />
+                    <input type="text" name="street"  value="${forms.addressForm.street? forms.addressForm.street: ''}" class="form-control" placeholder="Пушкинская" autocomplete="section-blue shipping street-address" required />
     <div class="helper-text-div"></div>
                     </div>
     <div class="section-two" >
                     <label id="name-label" for="name"><em> * </em>Дом</label>
-                    <input type="text" name="building" value="${forms.addressForm.building}" class="form-control form-control__address" placeholder="Дом"
+                    <input type="text" name="building" value="${forms.addressForm.building? forms.addressForm.building: ''}" class="form-control form-control__address" placeholder="Дом"
                      autocomplete="section-blue shipping street-address"  required />
     <div class="helper-text-div"></div>
                     <label id="name-label" for="name">Блок</label>
-                    <input type="text" name="block"  value="${forms.addressForm.block}"  class="form-control  form-control__address"
+                    <input type="text" name="block"  value="${forms.addressForm.block? forms.addressForm.block:''}"  class="form-control  form-control__address"
                       placeholder="Блок" required />
 <div class="helper-text-div"></div>
                     <label id="name-label" for="name">Квартира</label>
-                    <input type="text" name="flat"  value="${forms.addressForm.flat}"  class="form-control  form-control__address"
+                    <input type="text" name="flat"  value="${forms.addressForm.flat? forms.addressForm.flat: ''}"  class="form-control  form-control__address"
                       placeholder="Квартира" required />
                   <div class="helper-text-div"></div>
                    
@@ -363,6 +379,7 @@ function addressFormMarkup() {
       })
       .then(() => {
         userData.user.address = {
+          ...userData.user.address,
           ...forms.addressForm,
         };
       });
@@ -372,7 +389,6 @@ function addressFormMarkup() {
 //=======FAVOURITES=========================
 
 export function favouritesFormMarkup(array) {
-  console.log('array :>> ', array);
   const favouritesMarkup = array => {
     return `
           <div class="favourites-wrapper tabs__panel" id="form" data-form="favourites">
@@ -389,17 +405,7 @@ export function favouritesFormMarkup(array) {
                 </div>
               </div>`;
   };
-
-
-
-
-
-  // return profileCardItemMarkup(element);
-
-
   const favouritesBtn = document.querySelector('.favourites');
-  console.log('favouritesBtn :>> ', favouritesBtn);
-
   favouritesBtn.insertAdjacentHTML('afterend', favouritesMarkup(userData.user.favorites));
 
   setActive();
@@ -566,12 +572,12 @@ function getInfo(event) {
   //^[a-zA-Zа-яА-Я0-9_]*$
   ///[^a-zа-яё ]/iu;
   // const onlyLettersRegEx = /^(?=.*[А-Я][а-яё\s]+|(?=.*[A-Z][a-z\s]+))$/iu;
+  //const onlyLettersRegEx = /^[а-яё\s]+|(?=.*[A-Z])[a-z\s]+$/iu;
   //=====text validation ====
   const onlyLetAndSymbolRegEx = /^(?=.*[A-ZА-Я])[a-zA-Zа-яА-Я_ -]*$/;
   const numbersRegEx = /^[a-zA-Zа-яА-Я0-9_/-]*$/;
   const zipRegEx = /^[0-9_/-]*$/;
   const passwordRedEx = /(?=.*[a-zA-Zа-яёА-Я])/;
-  //const onlyLettersRegEx = /^[а-яё\s]+|(?=.*[A-Z])[a-z\s]+$/iu;
 
   if (nameOfInput === 'name') {
     inputLength > 1 && inputLength < 35 && inputValue.match(onlyLetAndSymbolRegEx) ?
@@ -603,7 +609,7 @@ function getInfo(event) {
       ((field.nextElementSibling.innerHTML = `<span class="helper-text-invalid">Введите номер телефона</span>`),
         (field.style.outlineColor = '#FF8A9D'));
 
-    // console.log('inputValueProfile.Length :>> ', inputValueProfile.length);
+
     const inputValueProfile = document.querySelectorAll('.helper-text-valid');
     inputValueProfile.length === 4 ?
       document.querySelector('.save-button').classList.add('save-button__valid') :
@@ -612,13 +618,13 @@ function getInfo(event) {
     nameOfInput === 'password' && inputLength > 7 && inputValue.match(passwordRedEx) ?
       ((field.nextElementSibling.innerHTML = `<span class="helper-text-valid"></span>`),
         (field.style.outlineColor = '#109b17')) :
-      ((field.nextElementSibling.innerHTML = `<span class="helper-text-invalid"><small>Пароль должен содержать не менее 6 символов</small></span>`),
+      ((field.nextElementSibling.innerHTML = `<span class="helper-text-invalid"><small>Пароль должен содержать не менее 8 символов</small></span>`),
         (field.style.outlineColor = '#FF8A9D'));
   } else if (nameOfInput === 'confirmPassword') {
     let password = document.querySelector('[name="password"]').value;
     let confirmPassword = document.querySelector('[name="confirmPassword"]').value;
     const errorDiv = document.querySelector('#helper-text-div');
-    // console.log('errorDiv :>> ', errorDiv);
+
 
     password === confirmPassword ?
       ((errorDiv.innerHTML = `<span class="helper-text-valid"></span>`),
