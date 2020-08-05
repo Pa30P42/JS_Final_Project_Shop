@@ -161,7 +161,7 @@ const developersProject = `<p data-name="name_logo" class="contactsBack" >Гла
       <div class="team__item__info">
         <p class="team__item__title">Анастасия Дмитриева</p>
         <p class="team__item__text">
-          Profile, Contacts, Password, Address, Favorites
+          Profile, Contacts, Address, Favorites
         </p>
       </div>
     </li>

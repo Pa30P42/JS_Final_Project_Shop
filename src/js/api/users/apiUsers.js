@@ -109,13 +109,7 @@ export default {
         console.log(error);
         // throw error;
       }
-    } else
-      localStorage.setItem(
-        'info',
-        JSON.stringify({
-          favorites: [],
-        }),
-      );
+    } else return;
   },
   async getUserById(id) {
     try {
