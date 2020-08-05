@@ -12,8 +12,6 @@ import {
 // /* <section class="card container"></section> *
 
 const createListMarkup = array => {
-  // console.log(array)
-
 
   return `
    <section class="card">
@@ -23,91 +21,94 @@ const createListMarkup = array => {
     return acc;
   }, '')}</ul></section>`;
 };
-let favoritesArr = [];
+
+export const refFavourites = {
+  favoritesLocal: JSON.parse(localStorage.getItem('favorites')),
+
+}
+let arrayFavoritesProduct = [];
+
+function favouritesIntoBackeEnd(array) {
+  for (let arr of array) {
+    // arr.map(element => {
+    //   if (element._id === arr) {
+    //     arrayFavoritesProduct.push(element)
+    //   }
+
+    // })
+  }
+  // console.log("масив продуктов", arrayFavoritesProduct)
+
+}
 
 
-const getItem = event => {
-
-
+let favoritesArr = [...refFavourites.favoritesLocal];
+console.log(favoritesArr)
+export const getItem = (event) => {
   if (event.target.closest('[data-id]') && event.target.nodeName === 'IMG') {
     let id = event.target.closest('[data-id]').dataset.id;
     if (localStorage.getItem('info')) {
+      console.log('Если токен есть')
       if (event.target.src === vector) {
         event.target.src = vector_love;
-        console.log("Если токен есть", localStorage.getItem('info'))
-        console.log("Если токен есть ИД", id)
-        console.log('userData.user Если токен есть', userData.user)
-        console.log('tokenParse Если токен есть ИД', tokenParse)
+      const data = userData.user
+      console.log('userData data1', data)
         apiUsers.addFavorite(id).then((data) => {
           apiUsers.getCurrentUser().then(response => {
-            userData.user.favorites = response.data.favorites
-            console.log('Если токен есть : добавить фейвт ИД userData.user', userData.user)
+            const userDataFavorites = userData.user.favorites
+            const responseData = response.data.favorites;
+            const responseUnic = Array.from(new Set(responseData.map(item => item.trim())));
+            console.log('responseUnic', responseUnic)
+            console.log('userData.user.favorite', userData.user.favorites)
+            console.log('userData', userData)
+            if (userDataFavorites.length === 0) {
+              userData.user.favorites = [...responsData]
+            } else {
+              userData.user.favorites = [...responseUnic]
+            userData.user.favorites = [...userData.user.favorite]
+            console.log('Если токен есть : добавить фейвт ИД userData.user', userData.user.favorites)
+            }
           })
         });
-
-
-      } else if (event.target.src === vector_love) {
-        console.log('Если токен есть ИД, УДАЛИТЬ сердечко')
-        apiUsers.deleteFavorite(id).then((data) => {
-          apiUsers.getCurrentUser().then(response => {
-            userData.user.favorites = response.data.favorites
-            console.log('Если токен НЕТ: УБРАТЬ фейвт ИД userData.user', userData.user)
-          })
-        });
-        console.log('userData.user(delleyt)', userData.user)
-      }
-
-
-
-    } else if (localStorage.getItem('info') === null) {
-
-      if (event.target.src === vector) {
-        console.log("Если токен пустой", localStorage.getItem('info'))
-        event.target.src = vector_love;
-        if (!favoritesArr.includes(id)) {
-          favoritesArr.push(id)
-          localStorage.setItem('FAVOURITES', JSON.stringify(favoritesArr));
-        } else return
-        console.log("не добавляй, такий є", favoritesArr)
-
 
       } else if (event.target.src === vector_love) {
         event.target.src = vector;
-        console.log('Если токен пустой, УДАЛИТЬ сердечко')
-        favoritesArr = favoritesArr.filter(elem => elem !== id);
-        localStorage.setItem('FAVOURITES', JSON.stringify(favoritesArr));
-        // let localFavorites = JSON.parse(localStorage.getItem('FAVOURITES'));
-        // localFavorites.filter(elem => elem !== id)
-        
-        console.log(favoritesArr)
+        apiUsers.deleteFavorite(id).then((data) => {
+          apiUsers.getCurrentUser().then(response => {
+            console.log(' response.data.favorites', response.data.favorites)
 
-
-
-
+            userData.user.favorites = userData.user.favorites.filter(elem => elem !== id);
+            userData.user.favorites = response.data.favorites
+            console.log('Если токен НЕТ: УБРАТЬ фейвт ИД userData.user', userData.user.favorites)
+          })
+        });
       }
+    } else if (localStorage.getItem('info') === null) {
+      if (event.target.src === vector) {
+        event.target.src = vector_love;
 
+        favoritesArr.push(id)
 
+        localStorage.setItem('favorites', JSON.stringify(favoritesArr));
 
+        console.log("Если токен пустой", favoritesArr)
+      } else if (event.target.src === vector_love) {
+        event.target.src = vector;
+        favoritesArr = favoritesArr.filter(elem => elem !== id);
+        localStorage.setItem('favorites', JSON.stringify(favoritesArr));
+        console.log("Если токен пустой", favoritesArr)
+      }
     }
 
-
-
-
-
-
-
-    // productCard(id);
+    // !===// productCard(id);не записывает масив продуктов
     return id; // функция Ани(id)
   } else return;
 };
 
 
-
-
 export const createList = array => {
-
   const container = document.querySelector('.container');
   container.innerHTML = createListMarkup(array);
   container.addEventListener('click', getItem);
-
+  favouritesIntoBackeEnd(array)
 };

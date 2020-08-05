@@ -26,11 +26,19 @@ import apiAuth from './js/api/auth/apiAuth';
 import apiUsers from './js/api/users/apiUsers';
 import productCard from './js/adv/productCard';
 import userData from './js/userData';
+const btnShowModal = document.getElementById('btnShowModal');
 import {
   getPofileTest,
   favouritesFormMarkup
 } from './js/profile/profileMarkups';
-const btnShowModal = document.getElementById('btnShowModal');
+import {
+  setCartCounter,
+  setupEvents
+} from './js/components/cart/cart';
+import {
+  addNewAndLastSeen
+} from './js/components/new';
+
 let currentItem = null;
 btnShowModal.addEventListener('click', async () => {
   const response = await axios.get('https://goit-store.herokuapp.com/products');
@@ -39,18 +47,15 @@ btnShowModal.addEventListener('click', async () => {
   productCard(item);
 });
 
+
 export const initialAction = async () => {
+  userData.getSettings();
+
+  
   await apiProducts.getCategories();
   setting.getDevice(document.documentElement.clientWidth);
   containerHandler();
+
   new Sim();
-  // trigger.triggerFn();
-  console.log('userData :>> ', userData);
 };
 initialAction();
-
-
-// apiAuth.login({
-//   "email": "olhaAdmin@gmail.com",
-//   "password": "olhaAdmin"
-// })

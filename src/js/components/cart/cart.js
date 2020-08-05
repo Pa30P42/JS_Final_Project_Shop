@@ -4,13 +4,6 @@ import setting from '../../setting';
 import { modalModule } from '../modalModule/modalModule';
 import apiOrders from '../../api/orders/apiOrders';
 
-// const markup = cartItems(cart.order);
-// const divRef = document.createElement('div');
-// console.log(divRef);
-// divRef.innerHTML = markup;
-// divRef.style.display = 'none';
-// refs.container.insertAdjacentElement('afterend', divRef);
-
 const headerRef = document.querySelector('.header');
 
 const getTotalAmount = cartItems => {
@@ -30,8 +23,7 @@ const getTotalQuantity = cartItems => {
 };
 
 const setCartCounter = () => {
-  // console.log(userData);
-  let container; // headerNav
+  let container;
 
   if (setting.isMobile) container = headerRef.querySelector('.header_phone');
   if (setting.isTablet) container = headerRef.querySelector('.header_tablet');
@@ -41,6 +33,13 @@ const setCartCounter = () => {
   const cartCounter = headerNav.querySelector('.amount_cart');
   const totalCount = getTotalQuantity(userData.user.cart.cartItems);
   cartCounter.textContent = totalCount ? totalCount : 0;
+};
+
+const setupEvents = () => {
+  window.addEventListener('resize', () => {
+    setting.getDevice(document.documentElement.clientWidth);
+    setCartCounter();
+  });
 };
 
 const createHeaderCartMarkup = () => {
@@ -104,6 +103,7 @@ const setHeightList = () => {
 
 const changeListHeight = () => {
   const cartList = document.querySelector('.cart__list');
+  console.log('onchangeCart');
   cartList.setAttribute('style', `max-height: ${setHeightList()}px`);
 };
 
@@ -251,7 +251,6 @@ const removeCartItem = e => {
 
 const closeCart = closeModal => {
   closeModal();
-  window.removeEventListener('resize', changeListHeight);
 };
 
 const addListener = callbackClose => {
@@ -268,9 +267,7 @@ const createMsgMarkup = () => {
 
 const createOrder = closeModal => {
   closeModal();
-  window.removeEventListener('resize', changeListHeight);
   if (localStorage.getItem('info')) {
-    // send order
     const productIds = userData.user.cart.cartItems.map(({ id }) => id);
     userData.user.adress = {
       country: 'UA',
@@ -288,7 +285,7 @@ const createOrder = closeModal => {
     const sendOrder = async newOrder => {
       try {
         const response = await apiOrders.createNewOrder(newOrder);
-        console.log(response);
+        // console.log(response);
         return response.data;
       } catch (error) {
         console.log('Лог ошибки в sendOrder ' + error);
@@ -302,7 +299,6 @@ const createOrder = closeModal => {
       setCartCounter();
     });
   } else {
-    // go to authorization
     modalModule(createMsgMarkup, addListener);
   }
 };
@@ -311,19 +307,9 @@ const listeners = closeModal => {
   const btnClose = document.querySelector('.btn-close');
   const btnBackToProducts = document.querySelector('.cart__button_back');
   const btnConfirm = document.querySelector('.cart__button_confirm');
-  // const overlayRef = document.querySelector('.modalOverlay');
-  // console.log(overlayRef);
   btnClose.addEventListener('click', () => closeCart(closeModal));
   btnBackToProducts.addEventListener('click', () => closeCart(closeModal));
-  // overlayRef.addEventListener('click', () => closeCart(closeModal));
   btnConfirm.addEventListener('click', () => createOrder(closeModal));
-};
-
-const setupEvents = () => {
-  window.addEventListener('resize', () => {
-    setting.getDevice(document.documentElement.clientWidth);
-    setCartCounter();
-  });
 };
 
 const showCart = () => {
@@ -332,7 +318,6 @@ const showCart = () => {
   cartList.addEventListener('click', counterHandler);
   cartList.addEventListener('change', inputQuantityHandler);
   cartList.addEventListener('click', removeCartItem);
-  // window.addEventListener('resize', changeListHeight);
 };
 
 export { addToCart, showCart, setCartCounter, setupEvents };

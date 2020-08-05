@@ -1,25 +1,17 @@
 import vector_love from '../../images/sale/Vector_love.svg';
 import vector from '../../images/sale/Vector.svg';
-import apiProducts from '../api/products/apiProducts';
-import getVector from './saleSection';
-// import vector from '';
+import {
+  refFavourites
+} from './saleSection';
+
 const userData = {
   isMobile: false,
   isTablet: false,
   isDesktop: true,
 };
-const love = {
-  isActiv: true,
-  notActiv: false,
-};
-// apiProducts.searchProductsbyCategory('new').then(data => parsData(data.data));
 
-// function parsData(products) {
-//   const body = document.querySelector('body');
-//   body.innerHTML = cardItemMarkup(products[0]);
-//   console.log(products);
-//   // cardItemMarkup(products[0]);
-// }
+
+
 export const createSingleCardMarkup = (element, sale) => {
   const rating = () => {
     let markup = '';
@@ -42,12 +34,13 @@ export const createSingleCardMarkup = (element, sale) => {
       ? ` <img class="card_img" src="${element.images[0]}" alt="${element.name}" width="86"/>`
       : `<img class="card_img-tablet" src="${element.images[0]}" alt="${element.name}" width="149"/>`
   }
- 
+
   </div>
   <div class="card-vector">
- 
-      <img class="card_vector-notActiv" src="${vector}" data-clickVector="notActiv"/>
-  
+${refFavourites.favoritesLocal.includes(element._id)
+      ? `<img class="card_vector-notActiv" src="${vector_love}" data-favorite="false" data-clickVector="notActiv"/>`
+      : `<img class="card_vector-notActiv" src="${vector}" data-favorite="false" data-clickVector="notActiv"/>`
+  }
   </div>
 
 
