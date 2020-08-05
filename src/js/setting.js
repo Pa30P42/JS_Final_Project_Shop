@@ -1,9 +1,10 @@
 import apiUsers from './api/users/apiUsers';
 import userData from './userData';
 import {
-  refFavourites
+  refFavourites,
+  favoritesArr
 } from './sale/saleSection'
-
+console.log(favoritesArr)
 export default {
   isMobile: false,
   isTablet: false,
@@ -40,13 +41,24 @@ export const userDataFn = async () => {
 
       };
 
-      userData.user.favorites = [...refFavourites.favoritesLocal];
-      console.log('userData.user', userData.user)
+      // userData.user.favorites = [...refFavourites.favoritesLocal];
+      // console.log('userData.user', userData.user)
 
     }
     delete userData.user.password;
-  } else {
-    userData.user.favorites = []
-    console.log('userData.user', userData.user)
+  }
+
+  if (localStorage.getItem('info')) {
+    const favorites = JSON.parse(localStorage.getItem('info')).favorites;
+    if (favorites) {
+      return
+    } else {
+
+      localStorage.setItem(
+        'favorites',
+        JSON.stringify([]),
+      )
+    }
+
   }
 };

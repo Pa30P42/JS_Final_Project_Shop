@@ -26,6 +26,17 @@ export const refFavourites = {
   favoritesLocal: JSON.parse(localStorage.getItem('favorites')),
 
 }
+
+// JSON.parse(localStorage.getItem('favorites'));
+// export const refFavourites = {
+//   favoritesLocal() {
+//     let favoritesLocal = JSON.parse(localStorage.getItem('favorites'));
+//     favoritesLocal = Array.from(new Set(favoritesLocal.map(item => item.trim())));
+//     return favoritesLocal
+//   }
+
+// }
+console.log("refFavourites.favoritesLocal", refFavourites.favoritesLocal)
 let arrayFavoritesProduct = [];
 
 function favouritesIntoBackeEnd(array) {
@@ -42,31 +53,34 @@ function favouritesIntoBackeEnd(array) {
 }
 
 
-let favoritesArr = [...refFavourites.favoritesLocal];
-console.log(favoritesArr)
+export let favoritesArr = [];
 export const getItem = (event) => {
   if (event.target.closest('[data-id]') && event.target.nodeName === 'IMG') {
     let id = event.target.closest('[data-id]').dataset.id;
     if (localStorage.getItem('info')) {
       console.log('Если токен есть')
+
       if (event.target.src === vector) {
         event.target.src = vector_love;
-      const data = userData.user
-      console.log('userData data1', data)
+        const data = userData.user
+
+
         apiUsers.addFavorite(id).then((data) => {
           apiUsers.getCurrentUser().then(response => {
             const userDataFavorites = userData.user.favorites
             const responseData = response.data.favorites;
             const responseUnic = Array.from(new Set(responseData.map(item => item.trim())));
+
             console.log('responseUnic', responseUnic)
             console.log('userData.user.favorite', userData.user.favorites)
             console.log('userData', userData)
+
             if (userDataFavorites.length === 0) {
-              userData.user.favorites = [...responsData]
+              userData.user.favorites = [...responseUnic]
             } else {
               userData.user.favorites = [...responseUnic]
-            userData.user.favorites = [...userData.user.favorite]
-            console.log('Если токен есть : добавить фейвт ИД userData.user', userData.user.favorites)
+              userData.user.favorites = [...userData.user.favorite]
+              console.log('Если токен есть : добавить фейвт ИД userData.user', userData.user.favorites)
             }
           })
         });
@@ -83,14 +97,14 @@ export const getItem = (event) => {
           })
         });
       }
+
+
+
     } else if (localStorage.getItem('info') === null) {
       if (event.target.src === vector) {
         event.target.src = vector_love;
-
         favoritesArr.push(id)
-
         localStorage.setItem('favorites', JSON.stringify(favoritesArr));
-
         console.log("Если токен пустой", favoritesArr)
       } else if (event.target.src === vector_love) {
         event.target.src = vector;

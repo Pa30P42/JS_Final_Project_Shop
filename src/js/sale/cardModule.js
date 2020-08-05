@@ -13,6 +13,7 @@ const userData = {
 
 
 export const createSingleCardMarkup = (element, sale) => {
+
   const rating = () => {
     let markup = '';
     let number = getRandomInt(1, 6);
@@ -37,9 +38,13 @@ export const createSingleCardMarkup = (element, sale) => {
 
   </div>
   <div class="card-vector">
-${refFavourites.favoritesLocal.includes(element._id)
-      ? `<img class="card_vector-notActiv" src="${vector_love}" data-favorite="false" data-clickVector="notActiv"/>`
-      : `<img class="card_vector-notActiv" src="${vector}" data-favorite="false" data-clickVector="notActiv"/>`
+
+${(refFavourites)
+  ?((!refFavourites.favoritesLocal.includes(element._id) || refFavourites.favoritesLocal === null )
+  ?`<img class="card_vector-notActiv" src="${vector}" data-favorite="false" data-clickVector="notActiv"/>`
+  :`<img class="card_vector-notActiv" src="${vector_love}" data-favorite="false" data-clickVector="notActiv"/>`)
+  : `<img class="card_vector-notActiv" src="${vector_love}" data-favorite="false" data-clickVector="notActiv"/>`
+
   }
   </div>
 
