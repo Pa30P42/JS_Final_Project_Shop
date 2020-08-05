@@ -1,23 +1,117 @@
 .authForm {
   display: flex;
   flex-direction: column;
-  width: 342px;
-  height: 414px;
-  left: 0px;
-  top: 0px;
-  background: #ffffff;
+  justify-content: space-between;
+  min-width: 342px;
+  min-height: 414px;
+  background: $auth-menu__background-color;
   border-radius: 10px;
-  z-index: 998;
-}
-
-.Authorization-title {
-  margin: 20px 0 0 20px;
-
-  font-family: Montserrat Alternates;
   font-style: normal;
   font-weight: 600;
   font-size: 18px;
   line-height: 22px;
-
   color: $main--text-color;
+  word-wrap: break-word;
+}
+
+.authorization-title {
+  font-style: normal;
+  font-weight: 600;
+  line-height: 22px;
+  color: $main--text-color;
+  margin: 20px 0 20px;
+  padding: 0 0 0 20px;
+  text-align: left;
+}
+
+.authFormEmail {
+  padding: 12px 20px;
+  margin: 0 20px 20px;
+  width: 302px;
+  min-height: 40px;
+  border: 1px solid #b3b3b3;
+  border-radius: 10px;
+
+  &::placeholder {
+    color: #b3b3b3;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 17px;
+  }
+}
+
+.authFormPassword {
+  padding: 12px 20px;
+  margin: 0 20px;
+  width: 302px;
+  min-height: 40px;
+  border: 1px solid #b3b3b3;
+  border-radius: 10px;
+
+  &::placeholder {
+    color: #b3b3b3;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 17px;
+  }
+}
+
+.btn__sign_in {
+  margin: 70px 50px 0;
+  padding: 12px;
+  text-align: center;
+  width: 240px;
+  height: auto;
+  color: $auth-menu__background-color;
+  background: $main-gradient;
+  border-radius: 10px;
+  border: none;
+  cursor: pointer;
+
+  &:focus,
+  &:hover {
+    background: $main-color;
+  }
+}
+
+.btn__sign_up {
+  margin: 16px 50px 30px;
+  padding: 12px;
+  text-align: center;
+  width: 240px;
+  height: auto;
+  color: $main-color;
+  background: $auth-menu__background-color;
+  border-radius: 10px;
+  border: 2px solid $main-color;
+  cursor: pointer;
+
+  &:focus,
+  &:hover {
+    background: $main-color;
+    color: $auth-menu__background-color;
+  }
+}
+
+.authorization-star {
+  margin-left: 20px;
+}
+
+.authorization-helper {
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 17px;
+}
+
+.information__close {
+  position: absolute;
+  right: 20px;
+  top: 20px;
+  line-height: 40px;
+  border: none;
+  background-color: rgba(0, 0, 0, 0);
+  cursor: pointer;
 }

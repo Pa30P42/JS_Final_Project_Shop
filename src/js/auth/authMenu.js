@@ -67,9 +67,6 @@ export const authFn = function () {
       }
     });
   }
-  // change position when activated
-  // authMenuLocation = document.querySelector('.modalComponent');
-  // authMenuLocation.style.top = 0;
 };
 
 function getName() {
