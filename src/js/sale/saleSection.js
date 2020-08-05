@@ -123,11 +123,6 @@ export const getItem = (event) => {
         favoritesArr = favoritesArr.filter(elem => elem !== id);
         localStorage.setItem('favorites', JSON.stringify(favoritesArr));
         console.log("Если токен пустой", favoritesArr)
-
-
-
-
-
       }
     }
 
