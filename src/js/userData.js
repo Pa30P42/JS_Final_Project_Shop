@@ -9,6 +9,7 @@ import {
 
 
 export default {
+  localFavourites:[],
 
   settings: {
     isMobile: false,
@@ -92,6 +93,7 @@ export default {
   },
   getSettings(width = document.documentElement.clientWidth) {
     userDataFn();
+
     if (width < 768) {
       this.settings.isMobile = true;
     }

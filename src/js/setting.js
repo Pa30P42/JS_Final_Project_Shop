@@ -2,9 +2,8 @@ import apiUsers from './api/users/apiUsers';
 import userData from './userData';
 import {
   refFavourites,
-  favoritesArr
 } from './sale/saleSection'
-console.log(favoritesArr)
+
 export default {
   isMobile: false,
   isTablet: false,
@@ -47,7 +46,10 @@ export const userDataFn = async () => {
     }
     delete userData.user.password;
   }
-
+  localStorage.setItem(
+    'favorites',
+    JSON.stringify([]),
+  )
   if (localStorage.getItem('info')) {
     const favorites = JSON.parse(localStorage.getItem('info')).favorites;
     if (favorites) {
