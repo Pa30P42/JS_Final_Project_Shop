@@ -15,6 +15,12 @@ import axios from 'axios';
 import apiAuth from './js/api/auth/apiAuth';
 import apiUsers from './js/api/users/apiUsers';
 import productCard from './js/adv/productCard';
+
+// =========== adv ==============
+
+// apiProducts.searchProductsbyCategory('new').then(data => createList(data.data));
+// =========== adv ==============
+
 import userData from './js/userData';
 import { getPofileTest, favouritesFormMarkup } from './js/profile/profileMarkups';
 import { setCartCounter, setupEvents } from './js/components/cart/cart';
@@ -30,6 +36,6 @@ export const initialAction = async () => {
 
   new Sim();
   // trigger.triggerFn();
-  console.log('userData :>> ', userData);
+  // console.log('userData :>> ', userData);
 };
 initialAction();

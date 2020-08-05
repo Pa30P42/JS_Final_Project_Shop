@@ -1,0 +1,50 @@
+@import '../../sass/helpers/variables.scss';
+
+.pagination_wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.products_pagination {
+  display: flex;
+  justify-content: flex-start;
+
+  &__item {
+    width: 40px;
+    height: 40px;
+    background: #ffffff;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    cursor: pointer;
+
+    &:hover,
+    &:focus {
+      box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.15);
+    }
+
+    &:not(:last-child) {
+      margin-right: 10px;
+    }
+
+    &_number {
+      font-style: normal;
+      font-weight: 600;
+      font-size: 18px;
+      line-height: 22px;
+      color: $main--text-color;
+    }
+  }
+
+  &__description {
+    font-style: normal;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 17px;
+    text-align: right;
+    color: $main--text-color;
+  }
+}
