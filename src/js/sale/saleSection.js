@@ -46,7 +46,7 @@ const getItem = event => {
       });
     }
 
-    // productCard(id);
+    productCard(id);
     return id; // функция Ани(id)
   } else return;
 };
