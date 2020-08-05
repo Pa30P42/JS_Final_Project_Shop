@@ -9,16 +9,16 @@ import allProducts from '../api/products/apiProducts';
 import userData from '../../js/userData';
 import apiUsers from '../../js/api/users/apiUsers';
 
-const productCard = async id => {
-  const items = await allProducts.getAllProducts();
-  const item = items.find(i => i._id === id);
-  // // console.log(items);
-  // console.log('item', item);
-  console.log('id', id);
+const productCard = async item => {
+  // const items = await allProducts.getAllProducts();
+  // const item = items.find(i => i._id === id);
+  // console.log('items ', items);
+  // console.log('item ', item);
+  // console.log('id ', id);
 
-  const component = () => markup(id);
+  const component = () => markup(item);
   // console.log(item);
-  updateLastSeen(id._id);
+  updateLastSeen(item._id);
   modalModule(component, addListener);
 
   const btnBuy = document.getElementById('btnBuy');
@@ -34,21 +34,21 @@ const productCard = async id => {
       event.target.src = favoriteFill;
       changeTextFavorite.textContent = 'Из избранного';
 
-      favorites.push(id);
+      favorites.push(item);
       localStorage.setItem(FAVORITES, JSON.stringify(favorites));
 
-      await apiUsers.addFavorite(id._id);
-      // userData.favorite = [...userData.favorite, id];
+      await apiUsers.addFavorite(item._id);
+      // userData.favorite = [...userData.favorite, item];
       // console.log(userData.favorite);
     } else if (event.target.src === favoriteFill) {
       event.target.src = favorite;
       changeTextFavorite.textContent = 'В избранное';
 
-      const indexFavorites = favorites.indexOf(id);
+      const indexFavorites = favorites.indexOf(item);
       favorites.splice(indexFavorites, 1);
       localStorage.setItem(FAVORITES, JSON.stringify(favorites));
 
-      await apiUsers.deleteFavorite(id._id);
+      await apiUsers.deleteFavorite(item._id);
     }
     // --------- проверка ---/
     // console.log('id ', id._id);
@@ -61,8 +61,8 @@ const productCard = async id => {
   function addListener(closeModal) {
     const btnBuy = document.getElementById('btnBuy');
     btnBuy.addEventListener('click', () => {
-      if (id) {
-        buy(id, closeModal);
+      if (item) {
+        buy(item, closeModal);
       }
     });
   }

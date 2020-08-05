@@ -1,15 +1,6 @@
 import favourite from '../../images/adv/icons/favorite.svg';
 
-// import img1 from '../../images/adv/preview/roborock1_preview.jpg';
-// import img2 from '../../images/adv/preview/roborock2_preview.jpg';
-// import img3 from '../../images/adv/preview/roborock3_preview.jpg';
-// import img4 from '../../images/adv/preview/roborock4_preview.jpg';
-// import img5 from '../../images/adv/preview/roborock5_preview.jpg';
-// import img6 from '../../images/adv/preview/roborock6_preview.jpg';
-
 const productItem = item => {
-  // const images = [img1, img2, img3, img4, img5, img6];
-  // console.log(item);
   return `
     <section class="product__card container">
       <div class="product__title-mobile">
