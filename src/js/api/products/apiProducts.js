@@ -78,7 +78,7 @@ export default {
   },
 
   async CreateNewProduct(product) {
-    axios.defaults.headers['Authorization'] = JSON.parse(localStorage.getItem('info'));
+    axios.defaults.headers['Authorization'] = JSON.parse(localStorage.getItem('info')).token;
     try {
       const response = await axios.post('https://goit-store.herokuapp.com/products', product);
       return response;
