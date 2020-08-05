@@ -37,7 +37,7 @@ const productCard = async item => {
       favorites.push(item);
       localStorage.setItem(FAVORITES, JSON.stringify(favorites));
 
-      await apiUsers.addFavorite(item._id);
+      await apiUsers.addFavorite(item);
       // userData.favorite = [...userData.favorite, item];
       // console.log(userData.favorite);
     } else if (event.target.src === favoriteFill) {
@@ -48,12 +48,12 @@ const productCard = async item => {
       favorites.splice(indexFavorites, 1);
       localStorage.setItem(FAVORITES, JSON.stringify(favorites));
 
-      await apiUsers.deleteFavorite(item._id);
+      await apiUsers.deleteFavorite(item);
     }
     // --------- проверка ---/
     // console.log('id ', id._id);
     // apiUsers.addFavorite(id._id).then(data => console.log('favorites ', data));
-    apiUsers.getCurrentUser().then(data => console.log('current ', data));
+    // apiUsers.getCurrentUser().then(data => console.log('current ', data));
     // ----------------------/
     // }
   });
