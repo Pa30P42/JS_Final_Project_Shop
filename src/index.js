@@ -15,24 +15,12 @@ import axios from 'axios';
 import apiAuth from './js/api/auth/apiAuth';
 import apiUsers from './js/api/users/apiUsers';
 import productCard from './js/adv/productCard';
-
 import userData from './js/userData';
 import { getPofileTest, favouritesFormMarkup } from './js/profile/profileMarkups';
-
 import { setCartCounter, setupEvents } from './js/components/cart/cart';
-
 import { addNewAndLastSeen } from './js/components/new';
 
-const btnShowModal = document.getElementById('btnShowModal');
-
-let currentItem = null;
-
-btnShowModal.addEventListener('click', async () => {
-  const response = await axios.get('https://goit-store.herokuapp.com/products');
-  const item = response.data[8];
-  currentItem = item;
-  productCard(item);
-});
+//=========================================================
 
 export const initialAction = async () => {
   userData.getSettings();
