@@ -9,7 +9,6 @@ export const headerMenu = () => {
   const insertCatalog = document.querySelector('.catalog__wrapper__markap');
   insertCatalog.innerHTML = catalogListMarkup();
   catalogListMarkupAddListeners();
-  
 };
 
 export const closeHeaderMenu = () => {

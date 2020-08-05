@@ -8,8 +8,7 @@ let authFormListeners = '';
 let listenPrivateAccount = '';
 let loginAccount = '';
 let userName = '';
-let btnComponent = '';
-
+// let btnComponent = '';
 
 const userValue = {
   email: '',
@@ -38,7 +37,6 @@ const privateMenu = function (e) {
     document.body.style.overflow = 'auto';
   }
 };
-
 export const authFn = function () {
   document.body.style.overflow = 'hidden';
 
@@ -57,6 +55,7 @@ export const authFn = function () {
     authFormListeners.addEventListener('click', e => {
       e.preventDefault();
       if (e.target === e.currentTarget[2]) {
+        console.log("hi");
         userValue.email = e.currentTarget[0].value;
         userValue.password = e.currentTarget[1].value;
         apiAuth.login(userValue);
@@ -68,6 +67,11 @@ export const authFn = function () {
         userValue.password = e.currentTarget[1].value;
         apiAuth.register(userValue);
         e.currentTarget.reset();
+      }
+      if (e.target === e.currentTarget[4]) {
+        console.log("closebtn");
+        modalContainer.innerHTML = "";
+        document.body.style.overflow = 'auto';
       }
     });
   }
@@ -87,7 +91,7 @@ function getUserName(data) {
 
 getName();
 
-const authMenuMarkUp = function () {
+export const authMenuMarkUp = function () {
   return `
     <div class="auth-menu">
     <h4 class="user-name"> ${userName}
@@ -103,10 +107,7 @@ const authMenuMarkUp = function () {
 };
 
 
-const authMenuMarkUpListener = function () {
+export const authMenuMarkUpListener = function () {
   listenPrivateAccount = document.querySelector('.auth-menu__list');
-  btnComponent = document.querySelector('.authForm');
-  
-  // const btnComponent = document.querySelector('.information__close');
-  // btnComponent.addEventListener('click', action);
+  // btnComponent = document.querySelector('.authForm');
 };

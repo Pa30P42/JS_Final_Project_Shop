@@ -43,7 +43,7 @@ export const authForm = () => {
     >Регистрация
     </button>
     
-    <button class="information__close">
+    <button type="submit"  data-wayclose="close" class="information__close">
     <img
     src="${close}"
     alt="x"
