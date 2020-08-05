@@ -34,7 +34,6 @@ const createCardsListMarkup = products => {
 };
 
 const addNewAndLastSeen = () => {
-  // const products = userData.allProducts;
   const newProducts = products.filter(item => item.category === 'new');
   const lastSeenProducts = showLastSeen(products);
 
@@ -74,11 +73,11 @@ const addNewAndLastSeen = () => {
       isNavs: true,
       isPagination: true,
     });
-
     const lastSeenList = lastSeenRef.querySelector('.slider__list-cards');
     lastSeenList.addEventListener('click', e => {
       onSelectCard(e, lastSeenProducts);
     });
   }
 };
+
 export { addNewAndLastSeen };
