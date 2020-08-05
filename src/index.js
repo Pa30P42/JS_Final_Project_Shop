@@ -33,26 +33,3 @@ export const initialAction = async () => {
   console.log('userData :>> ', userData);
 };
 initialAction();
-
-// const userDataFn = async () => {
-//   if (localStorage.getItem('info')) {
-//     const userToken = JSON.parse(localStorage.getItem('info')).token;
-//     if (userToken) {
-//       const response = await apiUsers.getCurrentUser();
-
-//       userData.user = {
-//         ...userData.user,
-//         ...response.data,
-//       };
-//     }
-//     delete userData.user.password;
-//   } else {
-//     localStorage.setItem(
-//       'info',
-//       JSON.stringify({
-//         favorites: [],
-//       }),
-//     );
-//   }
-
-// };
