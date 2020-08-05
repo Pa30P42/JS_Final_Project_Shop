@@ -3,7 +3,7 @@ import categoriesList from '../userData';
 import { modalModule } from '../components/modalModule/modalModule';
 import apiProducts from '../api/products/apiProducts';
 import { createList } from '../sale/saleSection';
-import { createPaginationMarkup } from '../pagination/pagination';
+import { createPaginationMarkup, createPagination } from '../pagination/pagination';
 import userData from '../userData';
 // import { refsPagination } from '../pagination/pagination';
 
@@ -22,9 +22,10 @@ export function getLink(e) {
       const subLink = e.target.closest('[data-sublink]').dataset.sublink;
       const subLinkName = e.target.closest('[data-sublink]').dataset.categoryname;
       // console.log(e.target.closest('[data-sublink]').dataset);
-      // console.log(subLinkName);
+      console.log(subLinkName);
       // console.log('subLink', subLink);
       // createList(subLinkName);
+
       return subLink;
     } else return;
   }
@@ -35,13 +36,6 @@ export function getLink(e) {
     return link;
   }
 }
-
-// function getSubCategoryItemName() {
-//   refs.subcategoriesListInsert = document.querySelector('.subcategories__list');
-//   refs.subcategoriesListInsert.addEventListener('click', e => {
-//     console.log(e.target);
-//   });
-// }
 
 export function categoriesListMarkup() {
   return `
@@ -95,12 +89,14 @@ export function categoriesListMarkupAddListeners() {
 }
 
 function listeners(action) {
-  const getSubCategoryLink = e => {
+  const getSubCategoryLink = async e => {
     const link = getLink(e);
-    console.log('link', link);
-    // console.log(e.target.textContent);
-    // const sublinkName = e.target.textContent;
-    createPagination(link);
+    console.log('link getSubCategoryLink', link);
+
+    // createPagination(link);
+    const pagination = await createPagination(link);
+    console.log(pagination);
+    createList(pagination.array, pagination.paginationMarkup, userData.getName(link));
 
     if (link) {
       action();
@@ -109,6 +105,15 @@ function listeners(action) {
 
   const subCategoryList = document.querySelector('.subcategories__list');
   subCategoryList.addEventListener('click', getSubCategoryLink);
+}
+
+function showModal(e) {
+  const newLink = getLink(e);
+  // console.log('newLink', newLink);
+  // const markup = getSubCategoryListMarkup(newLink);
+  if (newLink) {
+    modalModule(() => getSubCategoryListMarkup(newLink), listeners);
+  }
 }
 
 // function incomingData(e) {
@@ -123,11 +128,3 @@ function listeners(action) {
 //     // apiProducts.searchProductsbyCategory(`${categoryNameLink}`).then(data => console.log(data.data));
 //   }
 // }
-
-function showModal(e) {
-  const newLink = getLink(e);
-  // const markup = getSubCategoryListMarkup(newLink);
-  if (newLink) {
-    modalModule(() => getSubCategoryListMarkup(newLink), listeners);
-  }
-}

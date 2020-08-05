@@ -57,9 +57,11 @@ export const createPaginationMarkup = totalProducts => {
       <ul class="products_pagination">
         ${createPaginationItemMarkup(numberOfPages)}
         <li class="products_pagination__item" data-pagenumber="next"><span
-          class="products_pagination__item_next">next</span>
+          class="products_pagination__item_next">&#62
+</span>
         </li>
-        <li class="products_pagination__item" data-pagenumber="end"><span class="products_pagination__item_end">end</span>
+        <li class="products_pagination__item" data-pagenumber="end"><span class="products_pagination__item_end">	
+&#8811</span>
         </li>
       </ul>
   
@@ -72,7 +74,7 @@ export const createPaginationMarkup = totalProducts => {
 // ===================
 
 export async function createPagination(link, pagenumber = 1) {
-  console.log('CRepagLINK', link);
+  // console.log('CRpageLINK', link);
   userData.pagination.category = link;
   const response = await apiProducts
     .getProductsWithPagination(link, pagenumber)
@@ -97,12 +99,14 @@ export async function createPagination(link, pagenumber = 1) {
 // =============== LOGIC ================= //
 
 export async function getPaginationPage(e, category) {
-  // console.log('Hello Pagination', e.target.dataset.pagenumber);
   // userData.pagination.currentPage = 1;
-  console.log('Hoooray', e.target);
+  // console.log('Hoooray', e.target);
   // userData.pagination.maxPages = Math.ceil(
   //   userData.pagination.totalProducts / userData.pagination.perPage,
   // );
+
+  const container = document.querySelector('.container');
+  container.removeEventListener('click', e => getPaginationPage(e, link));
 
   if (
     (e.target.nodeName === 'SPAN' || e.target.dataset.pagenumber) &&
@@ -136,18 +140,13 @@ export async function getPaginationPage(e, category) {
   console.log('category', category);
   console.log('pagination', pagination);
 
-  console.log('UserData!!!', userData);
+  // console.log('UserData!!!', userData);
 
   // const response = await apiProducts
   //   .getProductsWithPagination(userData.getValue(category), userData.pagination.currentPage)
   //   .then(res => console.log('RESPONSE', res));
 
-  // let subCategoryList = document.querySelector('.subcategories__list');
-  // subCategoryList.removeEventListener('click', getSubCategoryLink);
-
   createList(pagination.array, pagination.paginationMarkup, category);
-  // subCategoryList = document.querySelector('.subcategories__list');
-  // subCategoryList.addEventListener('click', getSubCategoryLink);
 
   // createList(response)
 

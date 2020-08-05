@@ -95,18 +95,18 @@ export default {
     },
   },
   getSettings(width = document.documentElement.clientWidth) {
-    userDataFn();
+    // userData();
     if (width < 768) {
       this.settings.isMobile = true;
-      this.pagination.perPage = 3;
+      this.pagination.perPage = 2;
     }
     if (width >= 768 && width < 1200) {
       this.settings.isTablet = true;
-      this.pagination.perPage = 3;
+      this.pagination.perPage = 2;
     }
     if (width >= 1200) {
       this.settings.isDesktop = true;
-      this.pagination.perPage = 3;
+      this.pagination.perPage = 2;
     }
   },
 

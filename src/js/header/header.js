@@ -48,12 +48,12 @@ const headerButton = async event => {
   } else if (dataname === 'name_buttonClose') {
     closeHeaderMenu();
   } else if (dataname === 'name_sale') {
-    const pagination = await createPagination('refrigerators');
-    console.log(pagination);
-    createList(pagination.array, pagination.paginationMarkup, userData.getName('refrigerators'));
+    const pagination = await createPagination('sale');
+    console.log('sale pagination', pagination);
+    createList(pagination.array, pagination.paginationMarkup, userData.getName('sale'));
     // pagination.getPaginationPage();
     // apiProducts.searchProductsbyCategory('new').then(data => createList(data.data));
-    console.log('sale');
+    // console.log('sale');
     closeHeaderMenu();
   } else if (dataname === 'name_info') {
     console.log('info');

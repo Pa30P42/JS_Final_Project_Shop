@@ -36,7 +36,7 @@ export const initialAction = async () => {
 
   new Sim();
   // trigger.triggerFn();
-  console.log('userData :>> ', userData);
+  // console.log('userData :>> ', userData);
 };
 initialAction();
 

@@ -12,7 +12,7 @@ import { getPaginationPage } from '../pagination/pagination';
 // /* <section class="card container"></section> *
 const createListMarkup = (array, paginationMarkup, link) => {
   // console.log('array', array);
-  console.log('link', link);
+  // console.log('link', link);
 
   // /* <section class="card container"></section> *
 
