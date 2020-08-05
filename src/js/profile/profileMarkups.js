@@ -188,7 +188,7 @@ export default {
         break;
       case 'advertisement':
         advertisementFormMarkup();
-        addInfoListener(event, 'advertisementForm')
+        addInfoListener('advertisementForm')
         const refs =  {
           newAdvInput: document.querySelector('.add__product'),
         };
@@ -437,7 +437,7 @@ export function advertisementFormMarkup() {
              
               <label  class="adv-label" for="name">Категория товара</label>
               <select id="productCatygory" name="productCatygory" class="advertisement-inputs form-control-advertisement productCatygory" required>
-              <option disabled selected value class="input-select">Выберите категорию</option>
+              <option disabled selected value="choose__categorie" class="input-select">Выберите категорию</option>
               <option value="refrigerators">Холодильники</option>
               <option value="washing_machines">Стиральные машины</option>
               <option value="dishwashers">Посудомоечные машины</option>
@@ -487,7 +487,7 @@ export function advertisementFormMarkup() {
   const btnAddProduct = document.querySelector('.js-active-tab-advertisement')
   const addImage = document.querySelector('.js-active-tab-advertisement')
   btnAddProduct.addEventListener('click', addProduct)
-  // addImage.productImage.addEventListener('input', createbase);
+
   addImage.productImageFirst.addEventListener('input', createbaseFirst);
   addImage.productImageSecond.addEventListener('input', createbaseSecond);
   addImage.productImageThird.addEventListener('input', createbaseThird);
@@ -585,18 +585,18 @@ function deleteActive() {
 
 // };
 
-function addInfoListener(e, key) {
-  e.preventDefault()
+function addInfoListener(key) {
+  // e.preventDefault()
 
-if (e.target.dataset.create !== "addProdact") {
-  return
-}
+// if (e.target.dataset.create !== "addProdact") {
+//   return
+// }
 
   const form = document.querySelector('#profile');
-  // console.log(forms[key]);
   const inputForm = form.querySelector(`[data-form="${key}"]`);
 
   inputForm.addEventListener('input', getInfo);
+  console.log("inputForm", inputForm);
 }
 //apiUsers.getInfo();
 //getCurrentUser
@@ -615,7 +615,7 @@ if (e.target.dataset.create !== "addProdact") {
 //! ==================== Kostya ==================
 const product = {
   images: [],
-  totalQuantity: 1,
+  totalQuantity: 10,
   name: '',
   category: '',
   price: 0,
@@ -633,16 +633,18 @@ const product = {
   
 
   function addProduct (e) {
-  // console.log("e.target", e.target);
   if ((e.target.nodeName === "BUTTON")  && e.target.closest('[data-create]')) {
     const createBtn = e.target.closest('[data-create]').dataset.create
-    console.log("createBtn", createBtn);
+    // console.log("product", product);
     apiProducts.CreateNewProduct(product)
-  } else return
+      
   }
   
-
-function getInfo(event) {
+  }
+  
+  function getInfo(event) {
+    console.log("product", product);
+  
  if (event.target.name === "productPrice") {
     product.price = event.target.value
 }
@@ -660,9 +662,7 @@ function getInfo(event) {
 
   let key = event.target.closest('[data-form]').dataset.form;
   forms[key][event.target.name] = event.target.value;
-  // console.log("KEY", key);
-  // console.log("!!!!!!", event.target.name);
-  // console.log("&&&&&&&", event.target.value);
+
 
   forms[key][event.target] = event.target;
   // console.log('forms[key]', forms[key]);
