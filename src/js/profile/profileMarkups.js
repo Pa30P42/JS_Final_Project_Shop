@@ -138,6 +138,9 @@ export default {
     const profileExitLink = document.querySelector('.page-control__exit');
     profileExitLink.addEventListener('click', initialAction);
 
+    const profileHomeLink = document.querySelector('.page-control__home');
+    profileHomeLink.addEventListener('click', initialAction);
+
     // function mainMarkupFromProfile() {
     //   refs.container.innerHTML = categoriesListMarkup();
     //   categoriesListMarkupAddListeners();
@@ -194,7 +197,7 @@ export default {
   },
 };
 
-function profileFavErrorMarkup(array) {
+export function profileFavErrorMarkup(array) {
 
   const profileFavEmpty = (array) => {
     return `
@@ -541,6 +544,7 @@ function addProduct(e) {
 }
 
 function getInfo(event) {
+
   if (event.target.name === 'productPrice') {
     product.price = event.target.value;
   }
