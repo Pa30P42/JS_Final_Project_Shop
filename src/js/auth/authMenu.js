@@ -8,6 +8,9 @@ let authFormListeners = '';
 let listenPrivateAccount = '';
 let loginAccount = '';
 let userName = '';
+let btnComponent = '';
+
+
 const userValue = {
   email: '',
   password: '',
@@ -45,6 +48,7 @@ export const authFn = function () {
     loginAccount = document.querySelector('.auth-menu');
     loginAccount.addEventListener('click', privateMenu);
 
+
     const pseudoRef = document.querySelector('.privateAccount');
     pseudoRef.addEventListener('click', profile.maintabsMarkup.bind(profile));
   } else {
@@ -79,7 +83,6 @@ function getName() {
 
 function getUserName(data) {
   userName = data.name;
-  console.log('userName', data.name);
 }
 
 getName();
@@ -99,6 +102,11 @@ const authMenuMarkUp = function () {
   `;
 };
 
+
 const authMenuMarkUpListener = function () {
   listenPrivateAccount = document.querySelector('.auth-menu__list');
+  btnComponent = document.querySelector('.authForm');
+  
+  // const btnComponent = document.querySelector('.information__close');
+  // btnComponent.addEventListener('click', action);
 };
