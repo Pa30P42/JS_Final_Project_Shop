@@ -3,11 +3,7 @@ import vector from '../../images/sale/Vector.svg';
 import apiProducts from '../api/products/apiProducts';
 import getVector from './saleSection';
 // import vector from '';
-const userData = {
-  isMobile: false,
-  isTablet: false,
-  isDesktop: true,
-};
+import userData from '../../js/userData';
 const love = {
   isActiv: true,
   notActiv: false,
@@ -35,32 +31,31 @@ export const createSingleCardMarkup = (element, sale) => {
     return Math.floor(Math.random() * (max - min)) + min;
   };
   const cardItemMarkup = element => {
-    return `<li class="search__card_item" data-id=${element._id}>
-  <div class="search__card-image">
+    // console.log(element);
+    return `<li class="card_item-sale" data-id=${element._id}>
+  <div class="card-image">
   ${
-    userData.isMobile
-      ? ` <img class="search__card_img" src="${element.images[0]}" alt="${element.name}" width="86"/>`
-      : `<img class="search__card_img-tablet" src="${element.images[0]}" alt="${element.name}" width="149"/>`
+    userData.settings.isMobile
+      ? ` <img class="card_img" src="${element.images[0]}" alt="${element.name}" width="86"/>`
+      : `<img class="card_img-tablet" src="${element.images[0]}" alt="${element.name}" width="149" />`
   }
  
   </div>
-  <div class="search__card-vector">
+  <div class="card-vector">
  
-      <img class="search__card_vector-notActiv" src="${vector}" data-clickVector="notActiv"/>
+      <img class="card_vector-notActiv" src="${vector}" data-clickVector="notActiv"/>
   
   </div>
 
 
-  <p class="search__card_name">${element.name}</p>
-  <ul class="search__card_rating-list">${rating()}</ul>
-  <div class="search__card_prise-block">
+  <p class="card_name">${element.name}</p>
+  <ul class="card_rating-list">${rating()}</ul>
+  <div class="card_prise-block">
      ${
        sale
-         ? `<p class="search__card_price">${Math.round(
-             element.price * 1.3,
-           )}<span> &#8372;</span></p>
-        <p class="search__card_price-sale">${element.price}<span> &#8372;</span></p>`
-         : `<p class="search__card_price-sale">${element.price}<span> &#8372;</span></p>`
+         ? `<p class="card_price">${Math.round(element.price * 1.3)}<span> &#8372;</span></p>
+        <p class="card_price-sale">${element.price}<span> &#8372;</span></p>`
+         : `<p class="card_price-sale">${element.price}<span> &#8372;</span></p>`
      }
 
   </div>
