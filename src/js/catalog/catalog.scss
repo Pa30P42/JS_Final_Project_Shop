@@ -99,6 +99,8 @@ cursor: pointer;
 @media (min-width: 1200px) {
     .catalog__img {
         display: block;
+        margin-bottom: 14px;
+        object-fit: cover;
         border-radius: 10px;
         width: 247px;
         height: 127px;
@@ -146,9 +148,7 @@ cursor: pointer;
             
             }
 
-    .catalog__img {
-        margin-bottom: 14px;
-    }
+
 
     .sub__catalog__list {
         background: #E5E5E5;

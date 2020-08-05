@@ -1,7 +1,7 @@
 import apiProducts from '../api/products/apiProducts'
 import globeUserData from '../userData'
 import axios from 'axios';
-import {addNewProductCard, addAdvListeners, getNewADV, previewImg} from '../newADV/newAdv'
+import {addNewProductCard, addAdvListeners, getNewADV, previewImg, chengeImg} from '../newADV/newAdv'
 
 // import {
 //   apiAuth
@@ -594,35 +594,6 @@ const product = {
     })
   }
   
-
-
-// export async function wayToCategory() {
-//   const response = await axios.get(
-//     'https://goit-store.herokuapp.com/products/getCategories',
-//   )
-//   chooseCategory(response.data)
-// };
-// wayToCategory()
-
-
-
-// function chooseCategory(categories) {
-//   const values = Object.values(categories)
-//   console.log(values);
-// // console.log(valueCategories);
-//   // console.log(values);
-//   const arrValues = values[0]
-//   return arrValues.reduce((acc, value) => {
-//     acc += `
-//     <option value="${value.name}">${value.name}</option>
-//     `
-//     return acc;
-//   }, '');
-
-//   };
-
-
-
 
   function addProduct (e) {
   // console.log("e.target", e.target);

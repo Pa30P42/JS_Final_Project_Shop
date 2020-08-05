@@ -17,24 +17,22 @@ flex-wrap: wrap;
     margin-bottom: 20px;
 }
 
-.cover__image {
+  .chenge__poto:hover,
+  .chenge__poto:focus{   
+    cursor: pointer;
+  }
+
+
+
+.current__input::after {
+    content: "\002B";
+    color: #B3B3B3;
     position: absolute;
-        top: 50%;
+    font-size: 50px;
+    top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    z-index: 99999999;
-    display: block;
-    width: 75px;
-    height: 74px;
 }
-
-// .current__input::after {
-//     content: "\002B";
-//     position: absolute;
-//     top: 50%;
-//     left: 50%;
-//     transform: translate(-50%, -50%);
-// }
 
 .newadv__description{
 margin-bottom: 10px;

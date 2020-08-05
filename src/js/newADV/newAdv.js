@@ -1,25 +1,19 @@
 import advertisementFormMarkup from '../profile/profileMarkups';
 import apiProducts from '../api/products/apiProducts';
-
+import image from '../../images/newADW/qwerrty123321.png'
 const cards = {
   cardItems: [],
   activeCard: "",
   };
-
-//   const inputs = {
-// activeInput: "",
-//   }
-  
+  // style="background-image: url(${image})" 
 
 export function addNewProductCard() {
     return `
     <ul class="add__product">
     <li class="addcard__list addADV__hidden addADV__active  ADVelement" dataset-newadvlistfirst="newadvlistfirst">
-    <input type="file" datast-addproductimagename="addproductimagename"  data-id="1" name="productImageFirst" class="current__input input-photo form-control productImage take-photo" accept="image/*"
+    <input type="file" datast-addproductimagename="addproductimagename" data-active="true"  data-id="1" name="productImageFirst" class="current__input input-photo form-control productImage take-photo" accept="image/*"
     class="form-control" required />
-    <img src="./aquadoctor_17509_images_17750308831.jpg" class="cover__image" width="75"
-    height="74" alt="">
-    <label class="adv-label"  for="name"><img src="" class="addcard__img iaddcard__img--1" width="75"
+    <label class="adv-label change__poto addimg__lable" for="name"><img src="" class="addcard__img iaddcard__img--1" width="75"
     height="74" alt=""></label>
     </li>
 
@@ -66,7 +60,6 @@ export function addNewProductCard() {
 export function addAdvListeners(container) {
 const block = document.querySelector(container)
 cards.activeCard = block.querySelector('.ADVelement');
-inputs.activeInput = block.querySelector('.current__input')
 }
 
 
@@ -97,6 +90,7 @@ if (currentActiveCard) {
 
     
   }
+
   
   let productImage;
 
@@ -130,50 +124,3 @@ if (currentActiveCard) {
       return;
     }
   }
-  
-
-
-
-
-
-
-
-
-/* <form name="advertisementForm"  data-form="advertisementForm" id="form" class="active-form-advertisement js-active-tab-advertisement">
-<div class="form-group">
-
-  <label  class="adv-label" for="name">Название товара</label>
-  <input type="text" name="name" id="name" class="advertisement-inputs form-control-advertisement" placeholder="Название"
-    required />
-   
-  <label class="adv-label"  for="name">Фото</label>
-  <input type="file" id="img" name="img" class="input-photo form-control " accept="image/*"
-    class="form-control" required />
-
-  <label  class="adv-label" for="name">Описание товара</label>
-  <textarea style="resize:none"  name="description" id="comments" class="advertisement-inputs form-control-advertisement  input-textarea " name="comment"
-    placeholder="Описание"></textarea>
- 
-  <label  class="adv-label" for="name">Категория товара</label>
-  <select id="dropdown" name="category" class="advertisement-inputs form-control-advertisement" required>
-    <option disabled selected value class="input-select">Выберите категорию</option>
-    <option value="student">2</option>
-    <option value="job">3</option>
-    <option value="learner">4</option>
-    <option value="preferNo">5</option>
-    <option value="other">6</option>
-  </select>
-   
-  <label class="adv-label"  id="name-label" for="name">Цена</label>
-  <input type="text" name="price" class="form-control form-control__address" placeholder="0.000 &#x20b4;"
-    required />
-
-    <label class="adv-label" id="phone-number">Количество</label>
-  <input type="tel" name="totalQuantity" class="form-control form-control__address"
-    placeholder="+38 (093) 333 99 99" required />
-
-</div>
-<button type="submit" id="submit" class="save-button">
-  Создать
-</button>
-</form> */
