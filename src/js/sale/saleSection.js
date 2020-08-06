@@ -7,7 +7,7 @@ import userData from '../userData';
 import { createPaginationMarkup } from '../pagination/pagination';
 // import { refsPagination } from '../pagination/pagination';
 // import { getPaginationPage } from '../pagination/pagination';
-import { getPaginationPage } from '../pagination/pagination';
+// import { getPaginationPage } from '../pagination/pagination';
 import productCard from '../adv/productCard';
 
 // /* <section class="card container"></section> *
@@ -37,7 +37,7 @@ export const createList = (array, paginationMarkup, link) => {
 
   container.innerHTML = createListMarkup(array, paginationMarkup, link);
   container.addEventListener('click', getItem);
-  container.addEventListener('click', e => getPaginationPage(e, link));
+  // container.addEventListener('click', e => getPaginationPage(e, link));
 };
 
 // export const createList = array => {

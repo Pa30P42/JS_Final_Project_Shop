@@ -15,6 +15,7 @@ import axios from 'axios';
 import apiAuth from './js/api/auth/apiAuth';
 import apiUsers from './js/api/users/apiUsers';
 import productCard from './js/adv/productCard';
+import { createNewPagination } from './js/pagination/pagination';
 
 // =========== adv ==============
 
@@ -34,10 +35,9 @@ export const initialAction = async () => {
   setting.getDevice(document.documentElement.clientWidth);
   containerHandler();
 
-  new Sim();
+  // new Sim();
   // trigger.triggerFn();
   // console.log('userData :>> ', userData);
+  await createNewPagination('ref', document.querySelector('.sections'), createList);
 };
 initialAction();
-
-console.log(getEventListeners(document));

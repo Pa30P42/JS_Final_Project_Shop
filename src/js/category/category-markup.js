@@ -96,9 +96,9 @@ function listeners(action) {
     if (link) {
       action();
 
-      const pagination = await createPagination(link);
-      // console.log(pagination);
-      createList(pagination.array, pagination.paginationMarkup, userData.getName(link));
+      // const pagination = await createPagination(link);
+      // // console.log(pagination);
+      // createList(pagination.array, pagination.paginationMarkup, userData.getName(link));
     }
   };
   const subCategoryList = document.querySelector('.subcategories__list');
