@@ -19,7 +19,7 @@ const productCard = async item => {
   // console.log(item);
   updateLastSeen(item._id);
   modalModule(component, addListener);
-  updateFavorites(item._id);
+  updateFavorites(item);
 
   const btnBuy = document.getElementById('btnBuy');
   // ---------- favorites ---------
