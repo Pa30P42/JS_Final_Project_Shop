@@ -39,3 +39,5 @@ export const initialAction = async () => {
   // console.log('userData :>> ', userData);
 };
 initialAction();
+
+console.log(getEventListeners(document));
