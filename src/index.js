@@ -38,6 +38,6 @@ export const initialAction = async () => {
   // new Sim();
   // trigger.triggerFn();
   // console.log('userData :>> ', userData);
-  await createNewPagination('ref', document.querySelector('.sections'), createList);
+  // await createNewPagination('хол', createList, 'wash');
 };
 initialAction();

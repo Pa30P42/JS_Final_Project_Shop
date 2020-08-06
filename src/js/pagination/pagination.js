@@ -159,10 +159,9 @@ import userData from '../userData';
 // ========================================================
 // ========================================================
 
-export const createNewPagination = async (searchValue, destination, innerMarkup, search) => {
+export const createNewPagination = async (searchValue, innerMarkup, search) => {
   const constructor = {
     searchValue,
-    destination,
     products: [],
     countOfProducts: 0,
     currentPage: 1,
@@ -230,7 +229,9 @@ export const createNewPagination = async (searchValue, destination, innerMarkup,
     constructor.currentPage = Number(e.target.dataset.pagenumber);
 
     if (search) {
-      await await apiProducts.getSearchWithPagination(searchValue).then(res => (constructor.products = res.data));
+      await apiProducts
+        .getSearchWithPagination(searchValue, constructor.currentPage, userData.pagination.perPage)
+        .then(res => (constructor.products = res.data));
     } else
       await apiProducts
         .getProductsWithPagination(searchValue, constructor.currentPage, userData.pagination.perPage)
@@ -252,36 +253,36 @@ export const createNewPagination = async (searchValue, destination, innerMarkup,
   };
 
   const getCategory = async () => {
-    const reqParamName = userData.getName(searchValue);
+    // const reqParamName = userData.getName(searchValue);
 
-    const reqParamValue = userData.getValue(searchValue);
+    // const reqParamValue = userData.getValue(searchValue);
 
+    await apiProducts.getCountOfProducts(searchValue).then(res => (constructor.countOfProducts = res));
     await apiProducts
-      .getCountOfProducts(reqParamValue ? reqParamValue : reqParamName)
-      .then(res => (constructor.countOfProducts = res));
-    await apiProducts
-      .getProductsWithPagination(
-        reqParamValue ? reqParamValue : reqParamName,
-        constructor.currentPage,
-        userData.pagination.perPage,
-      )
+      .getProductsWithPagination(searchValue, constructor.currentPage, userData.pagination.perPage)
       .then(res => (constructor.products = res.data));
     constructor.countOfPages = Math.ceil(constructor.countOfProducts / userData.pagination.perPage);
   };
 
   const getSearch = async () => {
-    await apiProducts.getSearchWithPagination(searchValue).then(res => (constructor.products = res.data));
-
     await apiProducts.searchProductsbyName(searchValue).then(res => (constructor.countOfProducts = res.data.length));
     constructor.countOfPages = Math.ceil(constructor.countOfProducts / userData.pagination.perPage);
+    await apiProducts.getSearchWithPagination(searchValue).then(res => (constructor.products = res.data));
+    console.log('getSearch', constructor);
   };
 
   const cardsMarkups = () => {
-    innerMarkup(constructor.products, createPaginationTabs(), constructor.searchValue);
+    innerMarkup(
+      constructor.products,
+      createPaginationTabs(),
+      search ? constructor.searchValue : userData.getName(constructor.searchValue),
+    );
     paginationTabsListener();
   };
 
   if (searchValue.constructor.name === 'String') {
+    console.log('if', constructor);
+    console.log(search);
     if (search) {
       await getSearch();
     } else await getCategory();

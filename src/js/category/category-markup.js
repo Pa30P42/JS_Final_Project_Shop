@@ -3,7 +3,7 @@ import categoriesList from '../userData';
 import { modalModule } from '../components/modalModule/modalModule';
 import apiProducts from '../api/products/apiProducts';
 import { createList } from '../sale/saleSection';
-import { createPaginationMarkup, createPagination } from '../pagination/pagination';
+import { createNewPagination } from '../pagination/pagination';
 import userData from '../userData';
 
 const refs = {
@@ -89,16 +89,19 @@ export function categoriesListMarkupAddListeners() {
   }
 }
 
-function listeners(action) {
+async function listeners(action) {
   const getSubCategoryLink = async e => {
     const link = getLink(e);
 
+    console.log(link);
     if (link) {
       action();
 
       // const pagination = await createPagination(link);
       // // console.log(pagination);
       // createList(pagination.array, pagination.paginationMarkup, userData.getName(link));
+
+      await createNewPagination(link, createList);
     }
   };
   const subCategoryList = document.querySelector('.subcategories__list');

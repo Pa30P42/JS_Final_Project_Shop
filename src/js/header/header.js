@@ -21,7 +21,7 @@ import { authFn } from '../auth/authMenu';
 import apiProducts from '../api/products/apiProducts';
 import { createList } from '../sale/saleSection';
 import { initialAction } from '../../index';
-import { createPagination } from '../pagination/pagination.js';
+import { createNewPagination } from '../pagination/pagination.js';
 import userData from '../userData.js';
 
 const headerButton = async event => {
@@ -45,6 +45,7 @@ const headerButton = async event => {
   } else if (dataname === 'name_buttonClose') {
     closeHeaderMenu();
   } else if (dataname === 'name_sale') {
+    await createNewPagination('sale', createList);
     // const pagination = await createPagination('sale');
     // createList(pagination.array, pagination.paginationMarkup, userData.getName('sale'));
     closeHeaderMenu();

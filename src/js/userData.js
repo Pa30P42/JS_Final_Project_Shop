@@ -100,15 +100,11 @@ export default {
   },
 
   getName(link) {
-    if (this.categoriesItems.some(category => category.value.toLowerCase().includes(link.toLowerCase()))) {
-      return this.categoriesItems.find(category => category.value.toLowerCase().includes(link.toLowerCase())).name;
-    }
+    return this.categoriesItems.find(category => category.value.toLowerCase().includes(link.toLowerCase())).name;
   },
 
   getValue(link) {
-    if (this.categoriesItems.some(category => category.name.toLowerCase().includes(link.toLowerCase()))) {
-      return this.categoriesItems.find(category => category.name.toLowerCase().includes(link.toLowerCase())).value;
-    }
+    return this.categoriesItems.find(category => category.name.toLowerCase().includes(link.toLowerCase())).value;
   },
 };
 
