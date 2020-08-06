@@ -29,6 +29,11 @@ import
 productCard
 from '../adv/productCard';
 
+import {
+  addToCartProducts,
+  showCart
+} from '../components/cart/cart';
+
 //
 // apiAuth.getCurrentUser()   role: "ADMIN"
 //
@@ -461,6 +466,18 @@ export function favouritesFormMarkup(array) {
                 </div>
               </div>`;
   };
+  //============= добавить в корзину=============
+  // const favProfileBuyBtn = document.querySelector('.favorite-button');
+  // favProfileBuyBtn.addEventListener('click', fromProfileTocart);
+
+  // function fromProfileTocart() {
+
+  //   addToCartProducts(userData.user.favorites);
+  //   showCart();
+
+  // }
+  //============= добавить в корзину=============
+
   const favouritesBtn = document.querySelector(".favourites");
   favouritesBtn.insertAdjacentHTML(
     "afterend",
@@ -476,9 +493,10 @@ export function favouritesFormMarkup(array) {
 
   for (let i = 0; i < profileFavoritesLi.length; i += 1) {
     profileFavoritesLi[i].style.marginRight = '10px';
+    profileFavoritesLi[i].style.marginBottom = '0px';
     profileFavoritesLi[i].style.flexShrink = '0';
 
-    const profileHeartImg = document.querySelector('.card_vector-notActiv');
+    // const profileHeartImg = document.querySelector('.card_vector-notActiv');
 
     const renderIntoBigCard = (e, items) => {
       items = userData.user.favorites;
@@ -491,16 +509,10 @@ export function favouritesFormMarkup(array) {
 
     };
     profileFavoritesLi[i].addEventListener('click', renderIntoBigCard);
-    //=======tooltip=======
-    // const profileImgTooltip = document.querySelectorAll('img[data-clickvector="notActiv"]');
-    // for (let i = 0; i < profileImgTooltip.length; i += 1) {
-    //   profileImgTooltip[i].insertAdjacentHTML('afterEnd', `<span tooltip="Убрать из избранного">o</span>`);
-    //   console.log('profileImgTooltip :>> ', profileImgTooltip);
-    // }
 
-    //field.nextElementSibling.innerHTML = `<span tooltip="Убрать из избранного">o</span>`),
-    //======tooltip======
+
     setActive();
+
   }
 }
 //=======FAVOURITES=========================
@@ -892,3 +904,13 @@ function getInfo(event) {
   }
   // console.log('forms :>> ', forms);
 }
+//==========
+//=======tooltip=======
+// const profileImgTooltip = document.querySelectorAll('img[data-clickvector="notActiv"]');
+// for (let i = 0; i < profileImgTooltip.length; i += 1) {
+//   profileImgTooltip[i].insertAdjacentHTML('afterEnd', `<span tooltip="Убрать из избранного">o</span>`);
+//   console.log('profileImgTooltip :>> ', profileImgTooltip);
+// }
+
+//field.nextElementSibling.innerHTML = `<span tooltip="Убрать из избранного">o</span>`),
+//======tooltip======

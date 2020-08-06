@@ -15,7 +15,7 @@ import {
 } from '../profile/profileMarkups';
 import userData from '.././userData';
 
-  
+
 let authFormListeners = '';
 let listenPrivateAccount = '';
 let loginAccount = '';
@@ -32,7 +32,7 @@ const privateMenu = function (e) {
   const dataway = e.target.classList;
   if (dataway.contains('privateAccount')) {
     profile.maintabsMarkup(),
-modalContainer.innerHTML = '';
+      modalContainer.innerHTML = '';
     document.body.style.overflow = 'auto';
   }
   if (dataway.contains('favoritesAccount')) {
@@ -89,7 +89,7 @@ export const authFn = function () {
   } else {
     modalModule(authForm, authMenuMarkUpListener);
     authFormListeners = document.querySelector('.authForm');
-    
+
 
     authFormListeners.addEventListener('click', e => {
       e.preventDefault();
@@ -100,6 +100,7 @@ export const authFn = function () {
         e.currentTarget.reset();
         modalContainer.innerHTML = '';
         alert("Log in");
+        document.body.style.overflow = 'auto';
       }
       if (e.target === e.currentTarget[3]) {
         userValue.email = e.currentTarget[0].value;
@@ -107,6 +108,7 @@ export const authFn = function () {
         apiAuth.register(userValue);
         e.currentTarget.reset();
         alert("Register");
+        document.body.style.overflow = 'auto';
       }
       if (e.target.nodeName === "IMG") {
         modalContainer.innerHTML = "";
@@ -167,18 +169,18 @@ function validateForm(e) {
 
 
   if (nameOfInput === 'email') {
-    nameOfInput === 'email' && inputValue.match(regExEmail)
-      ? ((field.nextElementSibling.innerHTML = `<span class="helper-text-valid"></span>`),
-        (field.style.outlineColor = '#109b17'))
-      : ((field.nextElementSibling.innerHTML = `<span class="helper-text-invalid">Неверный адрес почты</span>`),
+    nameOfInput === 'email' && inputValue.match(regExEmail) ?
+      ((field.nextElementSibling.innerHTML = `<span class="helper-text-valid"></span>`),
+        (field.style.outlineColor = '#109b17')) :
+      ((field.nextElementSibling.innerHTML = `<span class="helper-text-invalid">Неверный адрес почты</span>`),
         (field.style.outlineColor = '#FF8A9D'));
   }
 
   if (nameOfInput === 'password') {
-    nameOfInput === 'password' && inputLength > 5
-      ? ((field.nextElementSibling.innerHTML = `<span class="helper-text-valid"></span>`),
-        (field.style.outlineColor = '#109b17'))
-      : ((field.nextElementSibling.innerHTML = `<span class="helper-text-invalid"><small>Пароль должен содержать не менее 6 символов</small></span>`),
+    nameOfInput === 'password' && inputLength > 5 ?
+      ((field.nextElementSibling.innerHTML = `<span class="helper-text-valid"></span>`),
+        (field.style.outlineColor = '#109b17')) :
+      ((field.nextElementSibling.innerHTML = `<span class="helper-text-invalid"><small>Пароль должен содержать не менее 6 символов</small></span>`),
         (field.style.outlineColor = '#FF8A9D'));
   }
 }
