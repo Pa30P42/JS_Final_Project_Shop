@@ -32,6 +32,7 @@ export default {
       //   password: 'ismayil123123',
       // };
       const response = await axios.post(this.regUrl, user);
+      modalModule(() => errorMarkup('Вы успешно зарегестрировались! '), addListener);
     } catch (error) {
       modalModule(() => errorMarkup('Введенные вами данные не являются валидными'), addListener);
       // console.log(error);
@@ -62,6 +63,7 @@ export default {
           favorites: [...currentUser.data.favorites],
         }),
       );
+      modalModule(() => errorMarkup('Вы успешно авторизировались!'), addListener);
     } catch (error) {
       modalModule(() => errorMarkup('Введенный вами емайл или пароль не верны'), addListener);
       // console.log(error.Preview);
