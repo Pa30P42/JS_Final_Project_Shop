@@ -50,17 +50,17 @@ export const userDataFn = async () => {
     'favorites',
     JSON.stringify([]),
   )
-  if (localStorage.getItem('info')) {
-    const favorites = JSON.parse(localStorage.getItem('info')).favorites;
-    if (favorites) {
-      return
-    } else {
+  // if (localStorage.getItem('info')) {
+  //   const favorites = JSON.parse(localStorage.getItem('info')).favorites;
+  //   if (favorites) {
+  //     return
+  //   } else {
 
-      localStorage.setItem(
-        'favorites',
-        JSON.stringify([]),
-      )
-    }
+  //     localStorage.setItem(
+  //       'favorites',
+  //       JSON.stringify([]),
+  //     )
+  //   }
 
-  }
+  // }
 };

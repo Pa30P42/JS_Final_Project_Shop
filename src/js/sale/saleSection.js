@@ -46,41 +46,21 @@ export const getItem = (event) => {
     let favorite = userData.localFavourites;
 
     let id = event.target.closest('[data-id]').dataset.id;
+
     if (!localStorage.getItem('info')) {
       if (event.target.src === vector) {
         event.target.src = vector_love;
-        console.log("id", id)
+        favorite.push(id)
+        localStorage.setItem('favorites', JSON.stringify(favorite));
+        console.log("Если токен пустой", favorite)
+      } else if (event.target.src === vector_love) {
+        event.target.src = vector;
 
-
-        // favorite.push(id)
-        console.log(favorite)
-
-        if (favorite.includes(id)) {
-
-          console.log('Такой ИД есть в масиве');
-        } else {
-          favorite.push(id)
-          console.log('Такой ИД отсутствует масиве');
-        }
+        favorite = favorite.filter(elem => elem !== id);
 
 
         localStorage.setItem('favorites', JSON.stringify(favorite));
-        console.log(favorite)
-
-
-      } else if (event.target.src === vector_love) {
-        event.target.src = vector;
-        if (favorite.includes(id)) {
-          favorite = favorite.filter(elem => elem !== id);
-          console.log('Такой ИД есть в масиве');
-        } else {
-          console.log('Такой ИД отсутствует масиве');
-        }
-
-
-        // localStorage.setItem('favorites', JSON.stringify(favorite));
         console.log("Если токен пустой", favorite)
-
       }
     }
 

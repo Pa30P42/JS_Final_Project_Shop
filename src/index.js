@@ -1,3 +1,6 @@
+import {
+  startSpinner
+} from './js/scroll_and_spiner/spinner'
 import './sass/main.scss';
 import './js/category/category-markup';
 import {
@@ -39,19 +42,20 @@ import {
   addNewAndLastSeen
 } from './js/components/new';
 
-let currentItem = null;
-btnShowModal.addEventListener('click', async () => {
-  const response = await axios.get('https://goit-store.herokuapp.com/products');
-  const item = response.data[8];
-  currentItem = item;
-  productCard(item);
-});
+// let currentItem = null;
+// btnShowModal.addEventListener('click', async () => {
+//   const response = await axios.get('https://goit-store.herokuapp.com/products');
+//   const item = response.data[8];
+//   currentItem = item;
+//   productCard(item);
+// });
 
 
 export const initialAction = async () => {
+  startSpinner();
   userData.getSettings();
+  console.log(userData)
 
-  
   await apiProducts.getCategories();
   setting.getDevice(document.documentElement.clientWidth);
   containerHandler();

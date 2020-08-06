@@ -1,0 +1,22 @@
+.scroll {
+  z-index: 999;
+  position: fixed;
+  color: #fff;
+  background-color: #286090;
+  right: 20px;
+  bottom: 0px;
+  padding: 4px 10px;
+  font-size: 20px;
+  border-top-left-radius: 4px;
+  border-top-right-radius: 4px;
+  cursor: pointer;
+  // display: none;
+
+  text-align: center;
+
+}
+
+// .scroll:hover {
+//   background-color: #000;
+//   /* цвет заднего фона при наведении */
+// }
