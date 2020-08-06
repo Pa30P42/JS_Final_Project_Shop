@@ -113,14 +113,14 @@ export default {
       <div id="tabs-1" class="profile-wrapper">
   
       <div class="profile__buttons-wrapper tabs__nav" id="parent_profile" >
-      <button class="profile__button contacts" type="button" title="contacts">Контакты</button>
+      <button class="profile__button contacts" type="button" title="contacts" data-action="tabsManager">Контакты</button>
       
-      <button class="profile__button password" type="button" title="password">Изменить пароль</button>
-      <button class="profile__button address" type="button" title="address">Мой Адрес</button>
-      <button class="profile__button favourites" type="button" title="favourites">Избранное</button>
+      <button class="profile__button password" type="button" title="password" data-action="tabsManager">Изменить пароль</button>
+      <button class="profile__button address" type="button" title="address" data-action="tabsManager" >Мой Адрес</button>
+      <button class="profile__button favourites" type="button" title="favourites" data-action="tabsManager" >Избранное</button>
       ${
         userData.user.role === "ADMIN"
-          ? `<button class="profile__button advertisement" type="button" title="advertisement">Создать
+          ? `<button class="profile__button advertisement" type="button" title="advertisement"  data-action="tabsManager" >Создать
       объявление</button>`
           : ``
       }
@@ -157,7 +157,7 @@ export default {
   },
 
   getMarkup(event) {
-    if (event.target.nodeName !== "BUTTON") {
+    if (event.target.nodeName !== "BUTTON" && event.target.dataset.action !== "tabsManager") {
       // console.log('Not a button');
       return;
     }
