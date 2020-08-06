@@ -143,9 +143,9 @@ export default class SliderMultiItems {
       this.itemIndex =
         this.items.length > this.countItems ? this.items.length - this.countItems : 0;
     }
-    this.slideIndex = this.isEnd
-      ? Math.ceil(this.items.length / this.countItems) - 1
-      : parseInt(this.itemIndex / this.countItems);
+    this.slideIndex = this.isEnd ?
+      Math.ceil(this.items.length / this.countItems) - 1 :
+      parseInt(this.itemIndex / this.countItems);
     this.trackPosition = -(this.itemIndex * this.itemWidth);
     this.track.style.transform = `translate3d(${this.trackPosition}px,0,0)`;
     if (this.isNavs) this.updateNavs();
@@ -192,9 +192,9 @@ export default class SliderMultiItems {
     if (this.dotIndex < dotsLength) {
       paginationWrapper.children[this.dotIndex].classList.remove('slide-dot_active');
     }
-    this.dotIndex = this.isEnd
-      ? paginationWrapper.children.length - 1
-      : parseInt(this.itemIndex / this.countItems);
+    this.dotIndex = this.isEnd ?
+      paginationWrapper.children.length - 1 :
+      parseInt(this.itemIndex / this.countItems);
     paginationWrapper.children[this.dotIndex].classList.add('slide-dot_active');
   }
 

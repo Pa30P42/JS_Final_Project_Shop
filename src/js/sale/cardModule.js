@@ -3,11 +3,7 @@ import vector from '../../images/sale/Vector.svg';
 import apiProducts from '../api/products/apiProducts';
 import getVector from './saleSection';
 // import vector from '';
-const userData = {
-  isMobile: false,
-  isTablet: false,
-  isDesktop: true,
-};
+import userData from '../../js/userData';
 const love = {
   isActiv: true,
   notActiv: false,
@@ -35,12 +31,13 @@ export const createSingleCardMarkup = (element, sale) => {
     return Math.floor(Math.random() * (max - min)) + min;
   };
   const cardItemMarkup = element => {
-    return `<li class="card_item" data-id=${element._id}>
+    // console.log(element);
+    return `<li class="card_item-sale" data-id=${element._id}>
   <div class="card-image">
   ${
-    userData.isMobile
+    userData.settings.isMobile
       ? ` <img class="card_img" src="${element.images[0]}" alt="${element.name}" width="86"/>`
-      : `<img class="card_img-tablet" src="${element.images[0]}" alt="${element.name}" width="149"/>`
+      : `<img class="card_img-tablet" src="${element.images[0]}" alt="${element.name}" width="149" />`
   }
  
   </div>

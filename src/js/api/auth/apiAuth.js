@@ -78,8 +78,10 @@ export default {
       //   password: 'ismayil123123',
       // };
       const response = await axios.post(this.regUrl, user);
+
     } catch (error) {
       console.log(error);
+
     }
   },
   async login(info) {
@@ -98,6 +100,7 @@ export default {
       );
       axios.defaults.headers['Authorization'] = response.data.accces_token;
       const currentUser = await axios.get(apiUsers.getUserInfoUrl);
+
       localStorage.setItem(
         'info',
         JSON.stringify({

@@ -1,7 +1,11 @@
 // import apiProducts from '../api/products/apiProducts';
-import { refs } from './refs';
+import {
+  refs
+} from './refs';
 import showLastSeen from './lastSeenOutput';
-import { createSingleCardMarkup } from '../sale/cardModule';
+import {
+  createSingleCardMarkup
+} from '../sale/cardModule';
 import productCard from '../adv/productCard';
 import SliderMI from './sliderMI/sliderMI';
 import axios from 'axios';
@@ -76,4 +80,6 @@ const addNewAndLastSeen = () => {
   }
 };
 
-export { addNewAndLastSeen };
+export {
+  addNewAndLastSeen
+};
