@@ -456,7 +456,6 @@ export function favouritesFormMarkup(array) {
                 </div>
               </div>`;
   };
-
   const favouritesBtn = document.querySelector(".favourites");
   favouritesBtn.insertAdjacentHTML(
     "afterend",
@@ -474,6 +473,15 @@ export function favouritesFormMarkup(array) {
     profileFavoritesLi[i].style.flexShrink = '0';
 
   }
+  //=======tooltip=======
+  // const profileImgTooltip = document.querySelectorAll('img[data-clickvector="notActiv"]');
+  // for (let i = 0; i < profileImgTooltip.length; i += 1) {
+  //   profileImgTooltip[i].insertAdjacentHTML('afterEnd', `<span tooltip="Убрать из избранного">o</span>`);
+  //   console.log('profileImgTooltip :>> ', profileImgTooltip);
+  // }
+
+  //field.nextElementSibling.innerHTML = `<span tooltip="Убрать из избранного">o</span>`),
+  //======tooltip======
   setActive();
 }
 //=======FAVOURITES=========================
