@@ -10,6 +10,8 @@ import {
 
 } from '../profile/profileMarkups';
 import userData from '.././userData';
+import { validateForm } from './authForm';
+
 
   
 let authFormListeners = '';
@@ -84,14 +86,15 @@ export const authFn = function () {
     authFormListeners = document.querySelector('.authForm');
     authFormListeners.addEventListener('click', e => {
       e.preventDefault();
+      validateForm(e);
       console.dir(e.target);
       if (e.target === e.currentTarget[2]) {
         userValue.email = e.currentTarget[0].value;
         userValue.password = e.currentTarget[1].value;
+
         apiAuth.login(userValue);
         e.currentTarget.reset();
         modalContainer.innerHTML = '';
-        alert("Log in");
         document.body.style.overflow = 'auto';
       }
 
@@ -100,10 +103,9 @@ export const authFn = function () {
         userValue.password = e.currentTarget[1].value;
         apiAuth.register(userValue);
         e.currentTarget.reset();
-        alert("Register");
         document.body.style.overflow = 'auto';
       }
-      
+
       if (e.target.nodeName === "IMG") {
         modalContainer.innerHTML = "";
         document.body.style.overflow = 'auto';
@@ -147,4 +149,4 @@ export const authMenuMarkUp = function () {
 
 export const authMenuMarkUpListener = function () {
   listenPrivateAccount = document.querySelector('.auth-menu__list');
-};
+}; 

@@ -1,15 +1,8 @@
 import close from '../../images/information/close-icon.svg';
 
-const authForms = {
-  authForm: {
-    email: '',
-    password: '',
-  },
-};
 
-
-export const authForm = () => {
-  return `
+export  const authForm = () => {
+    return `
   <form name="authForm" class="authForm" >
   <p class="authorization-title">Авторизация </p> 
     <label for="email">
@@ -47,39 +40,27 @@ export const authForm = () => {
     </button>
     
     <button type="submit"  data-wayclose="close" class="information__close">
-    <img
-    src="${close}"
-    alt="x"
-    width="20"
-    />
+    &#9587;
   </button>
   </form>
     `;
-};
+  };
 
 
-// const authSignInBtn = document.querySelector('.btn__sign_in');
-// authSignInBtn.addEventListener('click', event => {
-//   apiUsers
-//     .changeUserInfo({
-//       email: forms.authForm.email,
-//       password: forms.authForm.password,
-//     })
-//     .then(() => {
-//       userData.user = {
-//         ...userData.user,
-//         ...forms.authForm,
-//       };
-//     });
-// });
+  // <img
+    // src="${close}"
+    // alt="x"
+    // width="20"
+    // />
 
-
-function validateForm(event) {
-
+export function validateForm (event) {
+// console.log(event.target.value);
   const authField = event.target;
   const authInputValue = event.target.value;
   const authInputLength = event.target.value.length;
+  console.log(authInputLength);
   const authNameOfInput = authField.getAttribute('name');
+  console.log(authNameOfInput);
   const passwordRedEx = /(?=.*[a-zA-Zа-яёА-Я])/;
   const regExEmail = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{3,}))$/;
 
@@ -97,4 +78,5 @@ function validateForm(event) {
         (authField.style.outlineColor = '#FF8A9D'));
   }
 }
+
 
