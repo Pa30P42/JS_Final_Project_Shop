@@ -1,0 +1,124 @@
+.new-products-wrapper {
+  padding: 15px 0 40px;
+}
+
+.new-products__title {
+  margin-bottom: 20px;
+  color: $main--text-color;
+  line-height: 32px;
+  font-size: 26px;
+  font-weight: bold;
+}
+
+.slider__body {
+  position: relative;
+}
+
+.slider__holder {
+  margin-left: -10px;
+  margin-bottom: 10px;
+  width: calc(100% + 20px);
+  padding: 10px;
+  overflow: hidden;
+}
+
+.slider__list-cards {
+  display: flex;
+  transition: transform 500ms ease 0s;
+  .card_item-sale {
+    margin: 0 15px 0 0;
+    flex-shrink: 0;
+    cursor: pointer;
+  }
+  .product-card {
+    width: 135px;
+    height: 220px;
+    margin-right: 15px;
+    padding: 20px;
+    flex-shrink: 0;
+    background: #ffffff;
+    border-radius: 10px;
+    &:hover {
+      box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.15);
+    }
+    @media (min-width: 768px) {
+      width: 204px;
+      height: 300px;
+    }
+  }
+
+  .product-img {
+    margin: 0 auto 23px;
+    max-height: 80px;
+    width: auto;
+    @media (min-width: 768px) {
+      max-height: 140px;
+    }
+  }
+
+  .product-name {
+    margin-bottom: 25px;
+    font-size: 14px;
+    @media (min-width: 768px) {
+      margin-bottom: 50px;
+    }
+  }
+
+  .product-price {
+    font-size: 18px;
+  }
+}
+
+.slider__controls-arrow {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-width: 0;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.8);
+  box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.25);
+  cursor: pointer;
+  z-index: 10;
+  &:hover,
+  &:focus {
+    background-color: rgba(255, 255, 255, 1);
+  }
+
+  &_left {
+    left: -20px;
+  }
+
+  &_right {
+    right: -20px;
+  }
+
+  &_hidden {
+    visibility: hidden;
+  }
+}
+
+.slider__controls-dots {
+  display: flex;
+  justify-content: center;
+  .slide-dot {
+    cursor: pointer;
+    width: 10px;
+    height: 10px;
+    margin-right: 10px;
+    border-width: 0;
+    border-radius: 50%;
+    background: #c7c7cc;
+    &:hover {
+      background: $secondary-gradient;
+    }
+    &_active {
+      background: linear-gradient(47.73deg, #6368e5 15.48%, #b884f3 81.25%);
+    }
+  }
+}
