@@ -496,7 +496,7 @@ export function favouritesFormMarkup(array) {
     profileFavoritesLi[i].style.marginBottom = '0px';
     profileFavoritesLi[i].style.flexShrink = '0';
 
-    // const profileHeartImg = document.querySelector('.card_vector-notActiv');
+    profileFavoritesLi[i].addEventListener('click', renderIntoBigCard);
 
     const renderIntoBigCard = (e, items) => {
       items = userData.user.favorites;
@@ -505,16 +505,23 @@ export function favouritesFormMarkup(array) {
       const id = e.target.closest('[data-id]').dataset.id;
       const product = items.find(item => item._id === id);
       productCard(product);
-
-
     };
-    profileFavoritesLi[i].addEventListener('click', renderIntoBigCard);
-
-
-    setActive();
-
   }
+
+  const profileImgTooltip = document.querySelectorAll('img[data-clickvector="notActiv"]');
+  for (let i = 0; i < profileImgTooltip.length; i += 1) {
+    profileImgTooltip[i].insertAdjacentHTML('afterEnd', `<span tooltip="Убрать из избранного">o</span>`);
+    console.log('profileImgTooltip :>> ', profileImgTooltip);
+  }
+
+
+  setActive();
 }
+//=======tooltip=======
+
+//field.nextElementSibling.innerHTML = `<span tooltip="Убрать из избранного">o</span>`),
+//======tooltip======
+// const profileHeartImg = document.querySelector('.card_vector-notActiv');
 //=======FAVOURITES=========================
 
 export function advertisementFormMarkup() {
@@ -905,12 +912,3 @@ function getInfo(event) {
   // console.log('forms :>> ', forms);
 }
 //==========
-//=======tooltip=======
-// const profileImgTooltip = document.querySelectorAll('img[data-clickvector="notActiv"]');
-// for (let i = 0; i < profileImgTooltip.length; i += 1) {
-//   profileImgTooltip[i].insertAdjacentHTML('afterEnd', `<span tooltip="Убрать из избранного">o</span>`);
-//   console.log('profileImgTooltip :>> ', profileImgTooltip);
-// }
-
-//field.nextElementSibling.innerHTML = `<span tooltip="Убрать из избранного">o</span>`),
-//======tooltip======
