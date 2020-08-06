@@ -4,11 +4,9 @@ import deviceWidth from '../setting';
 import userData from '../userData';
 import { createList } from '../sale/saleSection';
 import { createSingleCardMarkup } from '../sale/cardModule';
-
-// export const refsPagination = {
-//   pagination: document.querySelector('.products_pagination'),
-// };
-
+import productCard from '../adv/productCard';
+import products from '../components/products';
+// import { onSelectCard } from '../components/new';
 //
 //
 //
@@ -17,29 +15,29 @@ import { createSingleCardMarkup } from '../sale/cardModule';
 // =============== MARKUP ================= //
 
 const createPaginationItemMarkup = number => {
-  // console.log('number', number);
   let markup = '';
+
   for (let i = 1; i <= number; i += 1) {
     markup += `<li class="products_pagination__item" data-pagenumber="${i}"><span class="products_pagination__item_number">${i}</span>
   </li>`;
   }
+
   return markup;
 };
 
 export const createPaginationMarkup = totalProducts => {
-  // console.log('DATA', totalProducts);
+  // console.log('totalProducts', totalProducts);
+  // console.log('userData.pagination.perPage', userData.pagination.perPage);
+  // console.log('userData.pagination.currentPage', userData.pagination.currentPage);
   userData.pagination.totalProducts = totalProducts;
 
-  userData.pagination.maxPages = Math.ceil(
-    userData.pagination.totalProducts / userData.pagination.perPage,
-  );
+  userData.pagination.maxPages = Math.ceil(userData.pagination.totalProducts / userData.pagination.perPage);
 
+  let maxProd;
+  if (userData.pagination.currentPage === userData.pagination.maxPages) {
+    maxProd = userData.pagination.maxPages;
+  } else maxProd = userData.pagination.perPage * userData.pagination.currentPage;
   let numberOfPages = userData.pagination.maxPages;
-
-  // console.log('userData.pagination.maxPages', userData.pagination.maxPages);
-  // console.log('userData', userData);
-
-  let maxProd = userData.pagination.perPage * userData.pagination.currentPage;
   let minProd = maxProd - userData.pagination.perPage + 1;
   // console.log('maxProd', maxProd);
   // console.log('minProd', minProd);
@@ -48,12 +46,6 @@ export const createPaginationMarkup = totalProducts => {
     (deviceWidth.isMobile || deviceWidth.isTablet || deviceWidth.isDesktop) &&
     userData.pagination.totalProducts > userData.pagination.perPage
   ) {
-    // console.log('numberOfPagesIF', numberOfPages);
-    // console.log(
-    //   'userData.pagination.totalProducts',
-    //   userData.pagination.totalProducts,
-    // );
-
     let markup = `
       <ul class="products_pagination">
         ${createPaginationItemMarkup(numberOfPages)}
@@ -76,23 +68,16 @@ export const createPaginationMarkup = totalProducts => {
 
 export async function createPagination(link, pagenumber = 1) {
   // console.log('CRpageLINK', link);
-  userData.pagination.category = link;
-  const response = await apiProducts
-    .getProductsWithPagination(link, pagenumber)
-    .then(res => res.data);
-  if (userData.categories[link]) {
-    if (userData.categories[link].totalQuantity === 0) {
-      userData.categories[link].totalQuantity = await apiProducts.getCountOfProducts(link);
-    }
+
+  const response = await apiProducts.getProductsWithPagination(link, pagenumber).then(res => res.data);
+
+  if (!userData.categories[link]) {
+    userData.categories[link] = await apiProducts.getCountOfProducts(link);
   }
-  // .then(res => console.log('res.data', res.data));
-  // console.log('arrayLength', arrayLength);
-
-  // console.log(createPaginationMarkup(arrayLength));
-
+  console.log(userData.categories);
   return {
     array: response,
-    paginationMarkup: createPaginationMarkup(userData.categories[link].totalQuantity),
+    paginationMarkup: createPaginationMarkup(userData.categories[link]),
     getPaginationPage,
   };
 }
@@ -104,14 +89,29 @@ export async function createPagination(link, pagenumber = 1) {
 // =============== LOGIC ================= //
 
 export async function getPaginationPage(e, category) {
-  // userData.pagination.currentPage = 1;
   // console.log('Hoooray', e.target);
+  // console.log('e.target', e.target);
+  const pagination = await createPagination(userData.getValue(category), userData.pagination.currentPage);
+
+  const onSelectCard = (e, items) => {
+    items = pagination.array;
+    console.log('Marina', e.target);
+    if (e.target.nodeName === 'UL') return;
+    const id = e.target.closest('[data-id]').dataset.id;
+    const product = items.find(item => item._id === id);
+    productCard(product);
+    // const imgMain = document.querySelector('.product__image img');
+    // imgMain.src = product.images[0];
+  };
+
+  const cardList = document.querySelector('.card_list');
+  cardList.addEventListener('click', onSelectCard);
   // userData.pagination.maxPages = Math.ceil(
   //   userData.pagination.totalProducts / userData.pagination.perPage,
   // );
 
-  // console.log(e.target.dataset.pagenumber);
-  // console.log(e.target);
+  // if (e.target.closest('[data-id]')) {
+  // }
 
   if (e.target.nodeName !== 'SPAN' || e.target.dataset.pagenumber === 'undefined') {
     return;
@@ -121,17 +121,12 @@ export async function getPaginationPage(e, category) {
     e.target.closest('[data-pagenumber]').dataset.pagenumber !== 'next' &&
     e.target.closest('[data-pagenumber]').dataset.pagenumber !== 'end'
   ) {
-    userData.pagination.currentPage = Number(
-      e.target.closest('[data-pagenumber]').dataset.pagenumber,
-    );
+    userData.pagination.currentPage = Number(e.target.closest('[data-pagenumber]').dataset.pagenumber);
   }
   if (e.target.closest('[data-pagenumber]')) {
     if (e.target.closest('[data-pagenumber]').dataset.pagenumber === 'next') {
       if (userData.pagination.currentPage < userData.pagination.maxPages) {
-        // console.log('userDataALL', userData);
         userData.pagination.currentPage = Number(userData.pagination.currentPage) + 1;
-        // console.log('userData.currentPage', userData.pagination.currentPage);
-        // console.log('nextPage', userData.pagination.currentPage);
       } else if (userData.pagination.currentPage >= userData.pagination.maxPages) {
         userData.pagination.currentPage = Number(userData.pagination.currentPage);
       }
@@ -142,41 +137,16 @@ export async function getPaginationPage(e, category) {
       userData.pagination.currentPage = userData.pagination.maxPages;
     }
   }
-  // else return;
 
   //   console.log(userData.perPage);
   //   console.log(userData.currentPage);
 
-  const pagination = await createPagination(
-    userData.getValue(category),
-    userData.pagination.currentPage,
-  );
-  // console.log('category', category);
-  // console.log('pagination', pagination);
-
-  // console.log('UserData!!!', userData);
-
-  // const response = await apiProducts
-  //   .getProductsWithPagination(userData.getValue(category), userData.pagination.currentPage)
-  //   .then(res => console.log('RESPONSE', res));
-
-  // createList(pagination.array, pagination.paginationMarkup, category);
-
-  const cardList = document.querySelector('.card_list');
   const markup = pagination.array.reduce((acc, element) => {
-    acc += createSingleCardMarkup(element, 'sale');
+    acc += createSingleCardMarkup(element, category);
+
     return acc;
   }, '');
   cardList.innerHTML = markup;
-
-  // createList(response)
-
-  // =====================================
-  // apiProducts
-  //   .getProductsWithPagination('ref', userData.pagination.currentPage, userData.pagination.perPage)
-  //   .then(res => console.log('RESPONSE', res.config.url));
-  // // .then(data => console.log('getProductsWithPagination', data.data));
-  // // .then(data => createList(data.data));
 }
 
 //
@@ -184,10 +154,4 @@ export async function getPaginationPage(e, category) {
 //
 //
 //
-//
-//
-// =============Запрос на кол-вот товара в категории=======================
-// https://goit-store.herokuapp.com/products/getCategories?category=accessories_for_kitchen_appliances
-// ========================================================================
-
-// refsPagination.pagination.addEventListener('click', getPaginationPage);
+// ============== Get Item For Card ===============

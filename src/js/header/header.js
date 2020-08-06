@@ -7,10 +7,7 @@ import { headerMenu, closeHeaderMenu } from '../sideBar/headerSideBar.js';
 // import { contactMarkUp } from '../contacts/contacts.js';
 import { catalogListMarkup, listeners, catalogListMarkupAddListeners } from '../catalog/catalog';
 
-import {
-  categoriesListMarkup,
-  categoriesListMarkupAddListeners,
-} from '../category/category-markup';
+import { categoriesListMarkup, categoriesListMarkupAddListeners } from '../category/category-markup';
 import { modalModule } from '../components/modalModule/modalModule.js';
 import information from '../information/information';
 
@@ -48,11 +45,8 @@ const headerButton = async event => {
   } else if (dataname === 'name_buttonClose') {
     closeHeaderMenu();
   } else if (dataname === 'name_sale') {
-    const pagination = await createPagination('refrigerators');
-    createList(pagination.array, pagination.paginationMarkup, userData.getName('refrigerators'));
-    // pagination.getPaginationPage();
-    // apiProducts.searchProductsbyCategory('new').then(data => createList(data.data));
-    // console.log('sale');
+    const pagination = await createPagination('sale');
+    createList(pagination.array, pagination.paginationMarkup, userData.getName('sale'));
     closeHeaderMenu();
   } else if (dataname === 'name_info') {
     console.log('info');
