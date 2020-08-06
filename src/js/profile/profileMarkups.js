@@ -586,7 +586,7 @@ function deleteActive() {
 // };
 
 function addInfoListener(key) {
-  // e.preventDefault()
+//   e.preventDefault()
 
 // if (e.target.dataset.create !== "addProdact") {
 //   return

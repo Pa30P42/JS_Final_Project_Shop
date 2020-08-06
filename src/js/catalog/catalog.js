@@ -19,19 +19,21 @@ const refs = {
 
 const categories = Object.values(catalogList.appliances);
 
-function getLink(e) {
+async function getLink(e) {
 
   
 
       if ((e.target.nodeName === "LI" || e.target.nodeName === "P")  && e.target.closest('[data-sublink]')) {
         const subLink = e.target.closest('[data-sublink]').dataset.sublink
+        const pagination = await createPagination(subLink);
+        createList(pagination.array, pagination.paginationMarkup, userData.getName(subLink))
         closeHeaderMenu()
         return subLink
       } 
 
       if (e.target.nodeName === "H2" && e.target.dataset.title) {
 
-        if (isMobile || isTablet) {
+        if (userData.settings.isMobile || userData.settings.isTablet) {
         const activeSubCatalog = refs.catalogList.querySelector('.catalog__active') 
 
         const catalog = e.target.closest('[data-link]')       
@@ -67,7 +69,7 @@ function getLink(e) {
     }
 
 function getVisibilitySubCatalog() {
-  if (isMobile || isTablet) {
+  if (userData.settings.isMobile || userData.settings.isTablet) {
     return 'catalog__hidden';
   } else return 'catalog__active';
 }
