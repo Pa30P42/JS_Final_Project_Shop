@@ -135,12 +135,12 @@ function catalogItemMarkup(categories) {
       const getSubCatalogLink = async e => {
         const link = getLink(e)
         console.log(link);
-        const pagination = await createPagination(link);
-    // console.log(pagination);
-    createList(pagination.array, pagination.paginationMarkup, userData.getName(link));
+
         if (link) {         
           action()
         }
+        const pagination = await createPagination(link);
+        createList(pagination.array, pagination.paginationMarkup, userData.getName(link));
       }
       const catalogList = document.querySelector('.catalog__list');
       catalogList.addEventListener('click', getSubCatalogLink);
