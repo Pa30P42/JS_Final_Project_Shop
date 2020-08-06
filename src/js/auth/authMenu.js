@@ -9,7 +9,8 @@ import apiUsers from '../api/users/apiUsers';
 import profile from '../profile/profileMarkups';
 import {
   profileFavErrorMarkup,
-  favouritesFormMarkup
+  favouritesFormMarkup,
+  advertisementFormMarkup
 
 } from '../profile/profileMarkups';
 import userData from '.././userData';
@@ -28,14 +29,25 @@ const modalContainer = document.querySelector('.modalModule');
 const privateMenu = function (e) {
   const dataway = e.target.classList;
   if (dataway.contains('privateAccount')) {
-    modalContainer.innerHTML = '';
+    profile.maintabsMarkup(),
+
+      modalContainer.innerHTML = '';
   }
   if (dataway.contains('favoritesAccount')) {
     modalContainer.innerHTML = '';
+  }
+  if (dataway.contains('createAdAccount')) {
+    if (userData.user.role === "ADMIN") {
 
+      profile.maintabsMarkup(),
+        advertisementFormMarkup();
+      modalContainer.innerHTML = '';
+
+      const controlItemAdv = document.querySelector('button[title="advertisement"]');
+      controlItemAdv.classList.add('active');
+    } else authFn();
 
   }
-  if (dataway.contains('createAdAccount')) {}
   if (dataway.contains('exitAccount')) {
     localStorage.removeItem('info');
     modalContainer.innerHTML = '';
