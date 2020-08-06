@@ -26,6 +26,12 @@ export default {
     },
   },
 
+  categories: {
+    refrigerators: {
+      totalQuantity: 0,
+    },
+  },
+
   pagination: {
     currentPage: 1,
     maxPages: 0,

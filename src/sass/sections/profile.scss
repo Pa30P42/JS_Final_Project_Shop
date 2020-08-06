@@ -119,7 +119,6 @@
 }
 
 .page-control {
-
   font-style: normal;
   font-weight: 500;
   font-size: 14px;
@@ -187,9 +186,8 @@
     width: 302px;
   }
 
-  @media (min-width: 1200px) {}
-
-
+  @media (min-width: 1200px) {
+  }
 }
 
 em {
@@ -197,8 +195,6 @@ em {
 }
 
 //==========favourites========
-
-
 
 .favourites-wrapper__position {
   width: 280px;
@@ -253,7 +249,8 @@ em {
     line-height: 17px;
   }
 
-  @media (min-width: 1200px) {}
+  @media (min-width: 1200px) {
+  }
 
   &__address::placeholder {
     color: #b3b3b3;
@@ -390,15 +387,12 @@ label {
   font-size: 15px;
 }
 
-
-
 .input-photo {
   width: 75px;
   height: 74px;
   border-radius: 10px;
   background-color: #fff;
   padding-left: 73px;
-
 }
 
 .js-active-tab-advertisement {
@@ -442,9 +436,6 @@ label {
   @media (min-width: 768px) {
     width: 395px;
   }
-
-  @media (min-width: 1200px) {}
-
 
   &__address::placeholder {
     color: #b3b3b3;
@@ -696,30 +687,23 @@ div.helper-text-div {
 .form-group,
 .address-form-group,
 .favourites-wrapper {
-
   @media (max-width: 767px) {
     animation-name: rotate;
     animation-duration: 200ms;
-
   }
 
-  @media (min-width: 768px) and (max-width:1198px) {
+  @media (min-width: 768px) and (max-width: 1198px) {
     animation-name: rotate2;
     animation-duration: 200ms;
     // width: 223px;
     display: flex;
   }
-
-
 }
 
 .form-group__favourites-position {
-  @media (min-width: 768px) and (max-width:1198px) {
-
+  @media (min-width: 768px) and (max-width: 1198px) {
     width: 223px;
-
   }
-
 }
 
 //==============button anim============
@@ -758,7 +742,6 @@ div.helper-text-div {
   }
 }
 
-
 .save-button__valid {
   width: 250px;
   height: 44px;
@@ -789,7 +772,6 @@ div.helper-text-div {
   @media (min-width: 768px) {
     transform: translate(86px, 383px);
   }
-
 }
 
 .profile-favourites-empty {
@@ -820,7 +802,6 @@ div.helper-text-div {
     width: 392px;
     // height: 300px;
     font-size: 15px;
-
   }
 
   @media (min-width: 1200px) {
@@ -829,11 +810,9 @@ div.helper-text-div {
     transform: translate(200px, -330px);
     font-size: 18px;
   }
-
 }
 
 .profile-favourites-empty_top {
-
   background-color: white;
   color: black;
   display: flex;
@@ -855,7 +834,6 @@ div.helper-text-div {
     width: 388px;
     // height: 280px;
     font-size: 15px;
-
   }
 
   @media (min-width: 1200px) {

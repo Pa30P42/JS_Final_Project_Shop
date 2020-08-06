@@ -86,7 +86,11 @@ function categoriesItemMarkup(globalCategoriesObjects) {
 
 export function categoriesListMarkupAddListeners() {
   refs.categoriesListInsert = document.querySelector('.categories__list');
-  refs.categoriesListInsert.addEventListener('click', showModal);
+
+  if (refs.categoriesListInsert) {
+    console.log('refs.categoriesListInsert', refs.categoriesListInsert);
+    refs.categoriesListInsert.addEventListener('click', showModal);
+  }
 }
 
 function listeners(action) {
@@ -95,16 +99,19 @@ function listeners(action) {
     // console.log('link getSubCategoryLink', link);
 
     // createPagination(link);
-    const pagination = await createPagination(link);
-    // console.log(pagination);
-    createList(pagination.array, pagination.paginationMarkup, userData.getName(link));
 
     if (link) {
       action();
+
+      const pagination = await createPagination(link);
+      // console.log(pagination);
+      createList(pagination.array, pagination.paginationMarkup, userData.getName(link));
+      // const subCategoryList = document.querySelector('.subcategories__list');
+      // subCategoryList.removeEventListener('click', getSubCategoryLink);
     }
   };
-
   const subCategoryList = document.querySelector('.subcategories__list');
+  // console.log('subCategoryList', subCategoryList);
   subCategoryList.addEventListener('click', getSubCategoryLink);
 }
 

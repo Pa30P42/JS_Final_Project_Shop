@@ -3,6 +3,7 @@ import userData from '../../userData';
 import setting from '../../setting';
 import { modalModule } from '../modalModule/modalModule';
 import apiOrders from '../../api/orders/apiOrders';
+import apiUsers from '../../api/users/apiUsers';
 
 const headerRef = document.querySelector('.header');
 
@@ -23,16 +24,19 @@ const getTotalQuantity = cartItems => {
 };
 
 const setCartCounter = () => {
-  let container;
+  // let container;
 
-  if (setting.isMobile) container = headerRef.querySelector('.header_phone');
-  if (setting.isTablet) container = headerRef.querySelector('.header_tablet');
-  if (setting.isDesktop) container = headerRef.querySelector('.header_desktop');
+  // if (setting.isMobile) container = headerRef.querySelector('.header_phone');
+  // if (setting.isTablet) container = headerRef.querySelector('.header_tablet');
+  // if (setting.isDesktop) container = headerRef.querySelector('.header_desktop');
 
-  const headerNav = container.querySelector('.header__nav');
-  const cartCounter = headerNav.querySelector('.amount_cart');
+  // const headerNav = container.querySelector('.header__nav');
+  const headerNavCarts = document.querySelectorAll('header .counter_cart-items');
+  const cartCounters = Array.from(headerNavCarts);
   const totalCount = getTotalQuantity(userData.user.cart.cartItems);
-  cartCounter.textContent = totalCount ? totalCount : 0;
+  cartCounters.forEach(counter => {
+    counter.textContent = totalCount;
+  });
 };
 
 const setupEvents = () => {
@@ -103,7 +107,7 @@ const setHeightList = () => {
 
 const changeListHeight = () => {
   const cartList = document.querySelector('.cart__list');
-  console.log('onchangeCart');
+  // console.log('onchangeCart');
   cartList.setAttribute('style', `max-height: ${setHeightList()}px`);
 };
 
@@ -137,9 +141,7 @@ const createCartItemMarkup = item => {
           </svg>
         </button>
       </div>
-      <p class="cart__item-amount">${new Intl.NumberFormat('ua-UA').format(
-        item.price * item.quantity,
-      )} ₴</p>
+      <p class="cart__item-amount">${new Intl.NumberFormat('ua-UA').format(item.price * item.quantity)} ₴</p>
     </div>
   </li>`;
 };
@@ -186,8 +188,7 @@ const inputQuantityHandler = ({ target }) => {
   const element = userData.user.cart.cartItems.find(item => item.id === id);
   element.quantity = newCount;
   setCartCounter();
-  cartItemAmount.textContent =
-    new Intl.NumberFormat('ua-UA').format(element.quantity * element.price) + ' ₴';
+  cartItemAmount.textContent = new Intl.NumberFormat('ua-UA').format(element.quantity * element.price) + ' ₴';
   const totalAmount = getTotalAmount(userData.user.cart.cartItems);
   cartTotalAmount.textContent = new Intl.NumberFormat('ua-UA').format(totalAmount) + ' ₴';
   userData.user.cart.totalAmount = totalAmount;
@@ -196,11 +197,7 @@ const inputQuantityHandler = ({ target }) => {
 
 const counterHandler = e => {
   const counterBtn = e.target.closest('[data-button]');
-  if (
-    !counterBtn ||
-    (counterBtn.dataset.button !== 'decrement' && counterBtn.dataset.button !== 'increment')
-  )
-    return;
+  if (!counterBtn || (counterBtn.dataset.button !== 'decrement' && counterBtn.dataset.button !== 'increment')) return;
   const listItem = counterBtn.closest('[data-id]');
   const buttonDecrement = listItem.querySelector('[data-button="decrement"]');
   const inputNumber = listItem.querySelector('[data-input="inputNumber"]');
@@ -224,8 +221,7 @@ const counterHandler = e => {
   }
   inputNumber.value = element.quantity;
   setCartCounter();
-  cartItemAmount.textContent =
-    new Intl.NumberFormat('ua-UA').format(element.quantity * element.price) + ' ₴';
+  cartItemAmount.textContent = new Intl.NumberFormat('ua-UA').format(element.quantity * element.price) + ' ₴';
   const totalAmount = getTotalAmount(userData.user.cart.cartItems);
   cartTotalAmount.textContent = new Intl.NumberFormat('ua-UA').format(totalAmount) + ' ₴';
   userData.user.cart.totalAmount = totalAmount;
@@ -258,48 +254,85 @@ const addListener = callbackClose => {
   buttonRef.addEventListener('click', callbackClose);
 };
 
-const createMsgMarkup = () => {
+const createMsgMarkup = msg => {
   return `
     <div style="padding: 40px; text-align: center; font-size: 26px; font-weight: bold;">
-      Зарегитрируйтесь, пожалуйста, для оформления заказа
+      ${msg}
     </div>`;
 };
 
 const createOrder = closeModal => {
   closeModal();
   if (localStorage.getItem('info')) {
+    userData.user.address = {};
     const productIds = userData.user.cart.cartItems.map(({ id }) => id);
-    userData.user.adress = {
-      country: 'UA',
-      city: 'Kyiv',
-      place: 'Center',
-      street: 'Победы',
-      block: '4',
-      building: '18',
-      flat: '777',
+    const getUserData = async () => {
+      try {
+        const response = await apiUsers.getCurrentUser();
+        // console.log(response.data.address);
+        return response.data.address;
+      } catch (error) {
+        console.log('Лог ошибки из apiUsers.getCurrentUser ' + error);
+      }
     };
-    const order = {
-      address: userData.user.adress,
-      productList: productIds,
-    };
+
     const sendOrder = async newOrder => {
       try {
         const response = await apiOrders.createNewOrder(newOrder);
         // console.log(response);
         return response.data;
       } catch (error) {
-        console.log('Лог ошибки в sendOrder ' + error);
+        console.log('Лог ошибки из apiOrders.createNewOrder ' + error);
       }
     };
-    console.log(JSON.stringify(order));
-    sendOrder(JSON.stringify(order)).then(data => {
-      console.log(data);
-      userData.user.cart.cartItems = [];
-      userData.user.cart.totalAmount = 0;
-      setCartCounter();
-    });
+
+    getUserData()
+      .then(address => {
+        userData.user.address = address;
+
+        delete userData.user.address._id;
+        // console.log(userData.user.address);
+        /*
+         * Временно для тестирования заполняем все поля
+         * иначе сервер не примет запрос
+         * должна быть валидация в форме авторизации при заполнении адреса
+         * чтобы не было пустых полей
+         * (успели до того наши создать учетные записи с кое-где пустыми полями)
+         */
+        const keys = Object.keys(userData.user.address);
+        for (const key of keys) {
+          if (userData.user.address[key]) {
+            continue;
+          }
+          userData.user.address[key] = 'x';
+        }
+        // console.log(userData.user.address);
+        const order = {
+          address: userData.user.address,
+          productList: productIds,
+        };
+        // console.log(JSON.stringify(order));
+        return order;
+      })
+      .then(order => sendOrder(order))
+      .then(data => {
+        const msg = `Ваш заказ был успешно отправлен!
+      Номер вашего заказа: ${data.id}.
+      Благодарим за выбор нашего магазина,
+      надеемся, что Вы к нам заглянете ещё не раз!`;
+        modalModule(() => createMsgMarkup(msg), addListener);
+      })
+      .catch(console.log);
+
+    const createOrderFromCart = async listIdProducts => {};
+    userData.user.cart.cartItems = [];
+    userData.user.cart.totalAmount = 0;
+    setCartCounter();
+
+    const promise = createOrderFromCart(productIds);
   } else {
-    modalModule(createMsgMarkup, addListener);
+    const msg = 'Зарегистрируйтесь, пожалуйста, для оформления заказа';
+    modalModule(() => createMsgMarkup(msg), addListener);
   }
 };
 
@@ -313,6 +346,7 @@ const listeners = closeModal => {
 };
 
 const showCart = () => {
+  setCartCounter();
   modalModule(createCartMarkup, listeners);
   const cartList = document.querySelector('.cart__list');
   cartList.addEventListener('click', counterHandler);

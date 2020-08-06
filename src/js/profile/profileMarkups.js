@@ -36,8 +36,8 @@ import SliderMI from "../components/sliderMI/sliderMI";
 
 import {
   categoriesListMarkup,
-  categoriesListMarkupAddListeners,
-} from "../category/category-markup";
+  categoriesListMarkupAddListeners
+} from '../category/category-markup';
 
 const forms = {
   infoForm: {

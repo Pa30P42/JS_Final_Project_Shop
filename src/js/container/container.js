@@ -14,7 +14,7 @@ import {
 } from '../header/header';
 import {
   categoriesListMarkup,
-  categoriesListMarkupAddListeners,
+  categoriesListMarkupAddListeners
 } from '../category/category-markup';
 import {
   searchSideBar
@@ -66,7 +66,6 @@ export const containerHandler = () => {
   }
   addNewAndLastSeen();
   setCartCounter();
-  setupEvents();
 };
 
 // categoriesListMarkup(categories);
