@@ -1,9 +1,12 @@
-import './catalog.scss';
 import catalogList from '../userData';
 import subItem from '../api/products/services';
 import apiProducts from '../api/products/apiProducts';
-import { modalModule } from '../components/modalModule/modalModule';
+import {modalModule} from '../components/modalModule/modalModule';
+import {closeHeaderMenu} from '../sideBar/headerSideBar';
 import caretblack from '../../images/svgHeader/caret-black.svg';
+import {createPagination} from '../pagination/pagination';
+import {createList} from '../sale/saleSection';
+import userData from '../userData';
 
 const isMobile = true;
 const isTablet = false;
@@ -16,53 +19,57 @@ const refs = {
 
 const categories = Object.values(catalogList.appliances);
 
-function getLink(e) {
-  // console.log("nodeName", e.target.nodeName);
-  // console.log(e.target);
-  // if (e.target.dataset.sublink) {
-  //   console.log(e.target.dataset.sublink);
-  // }
-  // console.log(e.target);
-  if (
-    (e.target.nodeName === 'LI' || e.target.nodeName === 'P') &&
-    e.target.closest('[data-sublink]')
-  ) {
-    const subLink = e.target.closest('[data-sublink]').dataset.sublink;
-    return subLink;
-  }
+async function getLink(e) {
 
-  if (e.target.nodeName === 'H2' && e.target.dataset.title) {
-    if (isMobile || isTablet) {
-      const activeSubCatalog = refs.catalogList.querySelector(
-        '.catalog__active',
-      );
+  
 
-      if (activeSubCatalog) {
-        activeSubCatalog.classList.remove('catalog__active');
-        activeSubCatalog.classList.add('catalog__hidden');
+      if ((e.target.nodeName === "LI" || e.target.nodeName === "P")  && e.target.closest('[data-sublink]')) {
+        const subLink = e.target.closest('[data-sublink]').dataset.sublink
+        const pagination = await createPagination(subLink);
+        createList(pagination.array, pagination.paginationMarkup, userData.getName(subLink))
+        closeHeaderMenu()
+        return subLink
+      } 
+
+      if (e.target.nodeName === "H2" && e.target.dataset.title) {
+
+        if (userData.settings.isMobile || userData.settings.isTablet) {
+        const activeSubCatalog = refs.catalogList.querySelector('.catalog__active') 
+
+        const catalog = e.target.closest('[data-link]')       
+        const subCatalog = catalog.querySelector('.sub__catalog__list')
+
+        subCatalog.classList.toggle('catalog__active')
+
+
+        if (activeSubCatalog) {
+          activeSubCatalog.classList.remove('catalog__active')
+          activeSubCatalog.classList.add('catalog__hidden')
+        } 
+      
+        const catalogLink = e.target.closest('[data-sublink]')
+      }
       }
 
-      // console.log(activeSubCatalog);
-      // console.log(e.target);
-
-      // if (activeSubCatalog.closest('[data-title]') === e.target) {
-      //   e.target.classList.remove('active')
-      //   e.target.classList.add('hidden')
-      // }
-
-      const catalog = e.target.closest('[data-link]');
-      const subCatalog = catalog.querySelector('.sub__catalog__list');
-
-      subCatalog.classList.add('catalog__active');
-
-      const catalogLink = e.target.closest('[data-sublink]');
-      console.log(catalogLink);
     }
-  }
-}
+
+
+    function incomingData (e) {
+      if ((e.target.nodeName === "LI" || e.target.nodeName === "P")  && e.target.closest('[data-categoryName]')) {
+        const categoryNameLink = e.target.dataset.categoryname
+        console.log("categoryNameLink", categoryNameLink);
+
+
+        //! ==============================================================================
+        //? вместо console.log вставляем функцию Ани которая принимает массив продуктов для открисовки категории по клику
+
+        // apiProducts.searchProductsbyCategory(`${categoryNameLink}`).then(data => createList(data.data));
+        
+      } 
+    }
 
 function getVisibilitySubCatalog() {
-  if (isMobile || isTablet) {
+  if (userData.settings.isMobile || userData.settings.isTablet) {
     return 'catalog__hidden';
   } else return 'catalog__active';
 }
@@ -79,7 +86,7 @@ function getCategories(category) {
   const markup = category.categories.reduce((acc, category) => {
     acc += `
         <li class="sub__catalog__item" data-sublink="${category.value}">
-        <p class="sub__catalog__text">${category.name}</p>
+        <p class="sub__catalog__text" data-categoryName="${category.value}">${category.name}</p>
         </li>
         `;
     return acc;
@@ -105,30 +112,37 @@ function catalogItemMarkup(categories) {
         </ul>
       
       </li>`;
-    return acc;
-  }, '');
-}
-
-export function catalogListMarkupAddListeners() {
-  const li = document.querySelector('.catalog__item');
-
-  refs.catalogList = document.querySelector('.catalog__list');
-  refs.catalogList.addEventListener('click', getLink);
-  // refs.subCatalogList = document.querySelector('.sub__catalog__list')
-}
-
-function catalogListMarkupRemoveListeners() {
-  refs.catalogList.removeEventListener('click', getLink);
-}
-
-export function listeners(action) {
-  const getSubCatalogLink = e => {
-    const link = getLink(e);
-    // console.log(link);
-    if (link) {
-      action();
+        return acc;
+      }, '');
     }
-  };
-  const catalogList = document.querySelector('.catalog__list');
-  catalogList.addEventListener('click', getSubCatalogLink);
-}
+
+    export function catalogListMarkupAddListeners() {
+      const li = document.querySelector('.catalog__item');
+    
+      refs.catalogList = document.querySelector('.catalog__list');
+      refs.catalogList.addEventListener('click', getLink);
+      refs.catalogList.addEventListener('click', incomingData)
+      // refs.subCatalogList = document.querySelector('.sub__catalog__list')
+    }
+    
+    
+    function catalogListMarkupRemoveListeners() {
+      refs.catalogList.removeEventListener('click', getLink);
+    }
+
+    export function listeners  (action) {
+
+      const getSubCatalogLink = async e => {
+        const link = getLink(e)
+        console.log(link);
+
+        if (link) {         
+          action()
+        }
+        const pagination = await createPagination(link);
+        createList(pagination.array, pagination.paginationMarkup, userData.getName(link));
+      }
+      const catalogList = document.querySelector('.catalog__list');
+      catalogList.addEventListener('click', getSubCatalogLink);
+
+    }

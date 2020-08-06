@@ -34,7 +34,7 @@ export default {
     try {
       axios.defaults.headers['Authorization'] = JSON.parse(localStorage.getItem('info')).token;
       const response = await axios.delete(`${this.deleteFavoriteUrl}${id}`);
-      console.log(response);
+      // console.log(response);
     } catch (error) {
       console.log(error);
       // throw error;
@@ -43,7 +43,7 @@ export default {
   async getInfo() {
     try {
       const response = await axios.get(this.usersUrl);
-      console.log(response);
+      // console.log(response);
       return response;
     } catch (error) {
       console.log(error);
@@ -56,7 +56,7 @@ export default {
       const user = info;
       // const user = { email: 'cheeseburger555555@gmail.com' };
       const response = await axios.patch(this.usersUrl, user);
-      console.log(response);
+      // console.log(response);
     } catch (error) {
       console.log(error);
       // throw error;
@@ -94,8 +94,8 @@ export default {
       const response = await axios.patch(this.changePasswordUrl, newPassword);
       // console.log(response);
     } catch (error) {
-      console.log(error);
-      // throw error;
+      // console.log(error);
+      throw new Error(err);
     }
   },
   async getCurrentUser() {
@@ -103,25 +103,19 @@ export default {
       try {
         axios.defaults.headers['Authorization'] = JSON.parse(localStorage.getItem('info')).token;
         const response = await axios.get(this.getUserInfoUrl);
-        console.log(response);
+        // console.log(response);
         return response;
       } catch (error) {
-        console.log(error);
-        // throw error;
+        // console.log(error);
+        throw new Error(err);
       }
-    } else
-      localStorage.setItem(
-        'info',
-        JSON.stringify({
-          favorites: [],
-        }),
-      );
+    } else return;
   },
   async getUserById(id) {
     try {
       axios.defaults.headers['Authorization'] = JSON.parse(localStorage.getItem('info')).token;
       const response = await axios.get(`${this.getUserByIdUrl}${id}`);
-      console.log(response);
+      // console.log(response);
     } catch (error) {
       console.log(error);
       // throw error;

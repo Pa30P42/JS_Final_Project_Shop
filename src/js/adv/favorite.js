@@ -1,6 +1,6 @@
-const INFO = 'info';
+// const INFO = 'info';
 // const FAVORITES = 'favorites';
-
+import userData from '../api/';
 import apiUsers from '../api/users/apiUsers';
 import userData from '../../js/userData';
 import favorite from '../../images/adv/icons/favorite.svg';
@@ -10,16 +10,17 @@ function updateFavorites(id) {
   const refBtnFavourite = document.getElementById('btnFavourite');
   const refChangeTextFavorite = document.querySelector('.adv__in-favorite');
 
-  const favoriteData = localStorage.getItem(INFO); //array
-  const info = JSON.parse(favoriteData);
-  let favorites = info.favorites;
+  const favoriteData = localStorage.getItem('favorites'); //array
+  let favorites = JSON.parse(favoriteData);
+
   // if (!favorites) {
   // favorites = [];
   // refBtnFavourite.src = favorite;
   // refChangeTextFavorite.textContent = 'В избранное';
   // }
-  // const item = favorites.find(elem => elem.id === id);
-  console.log(favorites);
+  // const elem = favorites.find(elem => elem === id);
+  // console.log(elem);
+
   if (favorites.find(elem => elem === id)) {
     refBtnFavourite.src = favoriteFill;
     refChangeTextFavorite.textContent = 'Из избранного';
@@ -34,20 +35,23 @@ function updateFavorites(id) {
       refChangeTextFavorite.textContent = 'Из избранного';
 
       favorites.push(id);
-      localStorage.setItem(INFO, JSON.stringify(favorites));
+      localStorage.setItem('favorites', JSON.stringify(favorites));
 
       await apiUsers.addFavorite(id);
-      // userData.favorite = [...userData.favorite, item];
-      // console.log(userData.favorite);
+      userData.user.favorites = [...userData.user.favorites, id];
+      console.log(userData.user.favorite);
     } else if (event.target.src === favoriteFill) {
       event.target.src = favorite;
       refChangeTextFavorite.textContent = 'В избранное';
 
       const indexFavorites = favorites.indexOf(id);
       favorites.splice(indexFavorites, 1);
-      localStorage.setItem(INFO, JSON.stringify(favorites));
+      localStorage.setItem('favorites', JSON.stringify(favorites));
 
       await apiUsers.deleteFavorite(id);
+      const result = userData.user.favorites.filter(elem => elem !== id);
+      userData.user.favorites = [...result];
+      console.log(userData.user.favorite);
     }
     // --------- проверка ---/
     // console.log('id ', id._id);

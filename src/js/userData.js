@@ -4,6 +4,7 @@ import homeCareTech from '../images/category/home-care-tech.jpg';
 import kitchenTech from '../images/category/kitchen-tech.jpg';
 import { userDataFn } from './setting';
 
+
 export default {
   settings: {
     isMobile: false,
@@ -24,6 +25,21 @@ export default {
       totalAmount: 0,
       totalQuantity: 0,
     },
+  },
+
+  categories: {
+    refrigerators: {
+      totalQuantity: 0,
+    },
+  },
+
+  pagination: {
+    currentPage: 1,
+    maxPages: 0,
+    totalProducts: 0,
+    perPage: 0,
+    pagesCount: 0,
+    category: '',
   },
 
   categoriesItems: [],
@@ -86,15 +102,37 @@ export default {
     },
   },
   getSettings(width = document.documentElement.clientWidth) {
-    userDataFn();
+    if (localStorage.getItem("info")) {
+      this.user = {...this.user, ...JSON.parse(localStorage.getItem("info")).user.user}
+      console.log("this", this);
+
+    }
+    // userData();
     if (width < 768) {
       this.settings.isMobile = true;
+      this.pagination.perPage = 2;
     }
     if (width >= 768 && width < 1200) {
       this.settings.isTablet = true;
+      this.pagination.perPage = 4;
     }
     if (width >= 1200) {
       this.settings.isDesktop = true;
+      this.pagination.perPage = 4;
     }
   },
+
+  getName(link) {
+    return this.categoriesItems.find(category =>
+      category.value.toLowerCase().includes(link.toLowerCase()),
+    ).name;
+  },
+
+  getValue(link) {
+    return this.categoriesItems.find(category =>
+      category.name.toLowerCase().includes(link.toLowerCase()),
+    ).value;
+  },
 };
+
+// ============================================================

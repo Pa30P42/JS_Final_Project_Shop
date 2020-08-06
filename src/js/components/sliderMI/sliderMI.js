@@ -1,3 +1,7 @@
+import debounce from 'debounce';
+import setting from '../../setting';
+import userData from '../../userData';
+
 export default class SliderMultiItems {
   constructor(selector, options) {
     this.wrapper = document.querySelector(selector);
@@ -93,19 +97,21 @@ export default class SliderMultiItems {
   handlerClickDot(e) {
     const paginationWrapper = this.wrapper.querySelector('.slider__controls-dots');
     if (e.target.nodeName !== 'BUTTON') return;
-    if (this.dotIndex === 0) this.showPrevNav();
-    if (this.dotIndex === paginationWrapper.children.length - 1) this.showNextNav();
+    if (this.isNavs) {
+      if (this.dotIndex === 0) this.showPrevNav();
+      if (this.dotIndex === paginationWrapper.children.length - 1) this.showNextNav();
+    }
     const currentDot = paginationWrapper.querySelector('.slide-dot_active');
     currentDot.classList.remove('slide-dot_active');
     e.target.classList.add('slide-dot_active');
     const index = Number(e.target.dataset.index);
     if (index === 0) {
       this.isStart = true;
-      this.hidePrevNav();
+      this.isNavs && this.hidePrevNav();
     } else this.isStart = false;
     if (index === paginationWrapper.children.length - 1) {
       this.isEnd = true;
-      this.hideNextNav();
+      this.isNavs && this.hideNextNav();
     } else this.isEnd = false;
     this.dotIndex = index;
     this.slideIndex = index;
@@ -113,19 +119,16 @@ export default class SliderMultiItems {
   }
 
   setupEvents() {
-    let resizeTimer;
-    const self = this;
-    window.addEventListener('resize', () => {
-      if (resizeTimer) clearTimeout(resizeTimer);
-      resizeTimer = setTimeout(function () {
-        self.updateUI.call(self);
-        if (self.isNavs) self.updateNavs.call(self);
-        if (self.isPagination) self.updatePagination.call(self);
-      }, 100);
-    });
+    const onResizeWindow = debounce(this.updateUI.bind(this), 200);
+    setting.handlers.resize.push(onResizeWindow);
+    let last = setting.handlers.resize.length - 1;
+    window.addEventListener('resize', setting.handlers.resize[last]);
   }
 
   updateUI() {
+    if (!this.wrapper.clientWidth) {
+      return;
+    }
     const style = window.getComputedStyle(this.items[0]);
     const itemMarginRight = parseInt(style.marginRight);
     this.itemWidth = this.items[0].clientWidth + itemMarginRight;
@@ -134,18 +137,19 @@ export default class SliderMultiItems {
     this.track.style.width = this.trackWidth + 'px';
     const holderRef = this.wrapper.querySelector('.slider__holder');
     holderRef.style.width = this.itemWidth * this.countItems - itemMarginRight + 20 + 'px';
-    this.isStart = this.items.length <= this.countItems ? true : false;
+    this.isStart = this.items.length <= this.countItems || this.itemIndex < this.countItems ? true : false;
     this.isEnd = this.itemIndex > this.items.length - this.countItems ? true : false;
     if (this.isStart) this.itemIndex = 0;
     if (this.isEnd) {
-      this.itemIndex =
-        this.items.length > this.countItems ? this.items.length - this.countItems : 0;
+      this.itemIndex = this.items.length > this.countItems ? this.items.length - this.countItems : 0;
     }
     this.slideIndex = this.isEnd
       ? Math.ceil(this.items.length / this.countItems) - 1
       : parseInt(this.itemIndex / this.countItems);
     this.trackPosition = -(this.itemIndex * this.itemWidth);
     this.track.style.transform = `translate3d(${this.trackPosition}px,0,0)`;
+    if (this.isNavs) this.updateNavs();
+    if (this.isPagination) this.updatePagination();
   }
 
   updateNavs() {
@@ -188,10 +192,7 @@ export default class SliderMultiItems {
     if (this.dotIndex < dotsLength) {
       paginationWrapper.children[this.dotIndex].classList.remove('slide-dot_active');
     }
-    this.dotIndex = this.isEnd
-      ? paginationWrapper.children.length - 1
-      : parseInt(this.itemIndex / this.countItems);
-    console.log(this.dotIndex);
+    this.dotIndex = this.isEnd ? paginationWrapper.children.length - 1 : parseInt(this.itemIndex / this.countItems);
     paginationWrapper.children[this.dotIndex].classList.add('slide-dot_active');
   }
 
