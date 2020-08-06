@@ -152,7 +152,7 @@ export default {
   },
 
   getMarkup(event) {
-    if (event.target.nodeName !== 'BUTTON' || event.target.dataset.action !== 'tabsManager') {
+    if (event.target.dataset.action !== 'tabsManager') {
       // console.log('Not a button');
       return;
     }
