@@ -1,6 +1,5 @@
 // const INFO = 'info';
 // const FAVORITES = 'favorites';
-import userData from '../api/';
 import apiUsers from '../api/users/apiUsers';
 import userData from '../../js/userData';
 import favorite from '../../images/adv/icons/favorite.svg';
