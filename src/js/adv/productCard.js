@@ -1,4 +1,6 @@
-import { modalModule } from '../components/modalModule/modalModule';
+import {
+  modalModule
+} from '../components/modalModule/modalModule';
 import markup from './markup';
 import updateLastSeen from './lastSeen';
 import addToFavourite from './favorite';
@@ -9,7 +11,7 @@ import allProducts from '../api/products/apiProducts';
 import userData from '../../js/userData';
 import apiUsers from '../../js/api/users/apiUsers';
 
-const productCard = async item => {
+export const productCard = async item => {
   // const items = await allProducts.getAllProducts();
   // const item = items.find(i => i._id === id);
   // console.log('items ', items);

@@ -24,6 +24,11 @@ import {
   initialAction
 } from "../../index";
 import SliderMI from "../components/sliderMI/sliderMI";
+
+import {
+  productCard
+} from '../adv/productCard';
+
 //
 // apiAuth.getCurrentUser()   role: "ADMIN"
 //
@@ -447,9 +452,9 @@ export function favouritesFormMarkup(array) {
     
                 <ul class="favourites-list">
                 ${array.reduce((acc, element) => {
-                  acc += createSingleCardMarkup(element);
-                  return acc;
-                }, "")} </ul>
+      acc += createSingleCardMarkup(element);
+      return acc;
+    }, "")} </ul>
                 <button type="submit" id="submit" class="favorite-button save-button">
                   Купить всё
                 </button>
@@ -468,21 +473,35 @@ export function favouritesFormMarkup(array) {
   });
 
   const profileFavoritesLi = document.querySelectorAll('li');
+
   for (let i = 0; i < profileFavoritesLi.length; i += 1) {
     profileFavoritesLi[i].style.marginRight = '10px';
     profileFavoritesLi[i].style.flexShrink = '0';
 
-  }
-  //=======tooltip=======
-  // const profileImgTooltip = document.querySelectorAll('img[data-clickvector="notActiv"]');
-  // for (let i = 0; i < profileImgTooltip.length; i += 1) {
-  //   profileImgTooltip[i].insertAdjacentHTML('afterEnd', `<span tooltip="Убрать из избранного">o</span>`);
-  //   console.log('profileImgTooltip :>> ', profileImgTooltip);
-  // }
+    const profileHeartImg = document.querySelector('.card_vector-notActiv');
 
-  //field.nextElementSibling.innerHTML = `<span tooltip="Убрать из избранного">o</span>`),
-  //======tooltip======
-  setActive();
+    const renderIntoBigCard = (e, items) => {
+      items = userData.user.favorites;
+      console.log('items :>> ', items);
+      if (e.target.nodeName === "UL") return;
+      const id = e.target.closest('[data-id]').dataset.id;
+      const product = items.find(item => item._id === id);
+      productCard(product);
+
+
+    };
+    profileFavoritesLi[i].addEventListener('click', renderIntoBigCard);
+    //=======tooltip=======
+    // const profileImgTooltip = document.querySelectorAll('img[data-clickvector="notActiv"]');
+    // for (let i = 0; i < profileImgTooltip.length; i += 1) {
+    //   profileImgTooltip[i].insertAdjacentHTML('afterEnd', `<span tooltip="Убрать из избранного">o</span>`);
+    //   console.log('profileImgTooltip :>> ', profileImgTooltip);
+    // }
+
+    //field.nextElementSibling.innerHTML = `<span tooltip="Убрать из избранного">o</span>`),
+    //======tooltip======
+    setActive();
+  }
 }
 //=======FAVOURITES=========================
 
