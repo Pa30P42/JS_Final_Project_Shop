@@ -8,14 +8,10 @@
 .information__close {
   position: absolute;
   right: 20px;
-  top: 10px;
+  top: 20px;
   line-height: 40px;
-  font-size: 20px;
-  font-weight: bold;
   border: none;
-  color: $main--text-color;
   background-color: rgba(0, 0, 0, 0);
-  transform: matrix(0, 1, 1, 0, 0, 0);
   cursor: pointer;
 }
 
