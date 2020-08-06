@@ -3,12 +3,19 @@ import delivery from '../../images/information/delivery.svg';
 import payment from '../../images/information/payment.svg';
 import conditions from '../../images/information/conditions.svg';
 import returns from '../../images/information/return.svg';
+import close from '../../images/information/close-icon.svg';
 
 function markupInformation() {
   let markup = `
   <section class="information container">
   
-  <button class="information__close">X</button>
+  <button class="information__close">
+    <img 
+    src="${close}"
+    alt="x"
+    width="20"
+    />
+  </button>
   
     <div class="information__mobile-tablet">
       <ul class="information__list">
