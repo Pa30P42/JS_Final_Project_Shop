@@ -1,8 +1,19 @@
-import { modalModule } from '../components/modalModule/modalModule';
-import { authForm } from '../auth/authForm';
+import {
+  modalModule
+} from '../components/modalModule/modalModule';
+import {
+  authForm
+} from '../auth/authForm';
 import apiAuth from '../api/auth/apiAuth';
 import apiUsers from '../api/users/apiUsers';
 import profile from '../profile/profileMarkups';
+import {
+  profileFavErrorMarkup,
+  favouritesFormMarkup,
+  advertisementFormMarkup
+
+} from '../profile/profileMarkups';
+import userData from '.././userData';
 
 let authFormListeners = '';
 let listenPrivateAccount = '';
@@ -18,11 +29,24 @@ const modalContainer = document.querySelector('.modalModule');
 const privateMenu = function (e) {
   const dataway = e.target.classList;
   if (dataway.contains('privateAccount')) {
-    modalContainer.innerHTML = '';
+    profile.maintabsMarkup(),
+
+      modalContainer.innerHTML = '';
   }
   if (dataway.contains('favoritesAccount')) {
+    modalContainer.innerHTML = '';
   }
   if (dataway.contains('createAdAccount')) {
+    if (userData.user.role === "ADMIN") {
+
+      profile.maintabsMarkup(),
+        advertisementFormMarkup();
+      modalContainer.innerHTML = '';
+
+      const controlItemAdv = document.querySelector('button[title="advertisement"]');
+      controlItemAdv.classList.add('active');
+    } else authFn();
+
   }
   if (dataway.contains('exitAccount')) {
     localStorage.removeItem('info');
@@ -39,6 +63,22 @@ export const authFn = function () {
     loginAccount.addEventListener('click', privateMenu);
     const pseudoRef = document.querySelector('.privateAccount'); // был класс .check -  если не нужно нигде большье, удаляем. Т.к. было привязано к тестовой кнопке.
     pseudoRef.addEventListener('click', profile.maintabsMarkup.bind(profile));
+    const profileFavBtnInAuth = document.querySelector('.favoritesAccount');
+    profileFavBtnInAuth.addEventListener('click', restFavOpen);
+
+    //======open favourites=====
+    function restFavOpen() {
+      profile.maintabsMarkup();
+      (userData.user.favorites) ?
+      favouritesFormMarkup(userData.user.favorites): profileFavErrorMarkup();
+
+      const controlItem = document.querySelector('button[title="favourites"]');
+      controlItem.classList.add('active');
+    }
+
+    //======open favourites=====
+
+
   } else {
     modalModule(authForm, authMenuMarkUpListener);
     authFormListeners = document.querySelector('.authForm');
