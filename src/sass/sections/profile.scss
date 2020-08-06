@@ -201,7 +201,7 @@ em {
 
 
 .favourites-wrapper__position {
-  // width: 320px;
+  width: 280px;
 
   @media (min-width: 768px) {
     position: absolute;
@@ -396,7 +396,7 @@ label {
   height: 74px;
   border-radius: 10px;
   background-color: #fff;
- padding-left: 73px;
+  padding-left: 73px;
 
 }
 
@@ -442,9 +442,7 @@ label {
     width: 395px;
   }
 
-  @media (min-width: 1200px) {
-
-  }
+  @media (min-width: 1200px) {}
 
 
   &__address::placeholder {
