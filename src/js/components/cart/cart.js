@@ -264,6 +264,8 @@ const createMsgMarkup = msg => {
 const createOrder = closeModal => {
   closeModal();
   if (localStorage.getItem('info')) {
+    const token = JSON.parse(localStorage.getItem('info')).token;
+    console.log(token);
     userData.user.address = {};
     const productIds = userData.user.cart.cartItems.map(({ id }) => id);
     const getUserData = async () => {
@@ -316,10 +318,10 @@ const createOrder = closeModal => {
       })
       .then(order => sendOrder(order))
       .then(data => {
-        const msg = `Ваш заказ был успешно отправлен!
+        const msg = `<div class="cart">Ваш заказ был успешно отправлен!
       Номер вашего заказа: ${data.id}.
       Благодарим за выбор нашего магазина,
-      надеемся, что Вы к нам заглянете ещё не раз!`;
+      надеемся, что Вы к нам заглянете ещё не раз!</div>`;
         modalModule(() => createMsgMarkup(msg), addListener);
       })
       .catch(console.log);

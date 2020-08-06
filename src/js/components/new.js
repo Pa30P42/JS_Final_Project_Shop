@@ -29,18 +29,16 @@ const createCardsListMarkup = products => {
     </ul>`;
 };
 
+const onSelectCard = (e, products) => {
+  if (e.target.nodeName === 'UL') return;
+  const id = e.target.closest('[data-id]').dataset.id;
+  const product = products.find(item => item._id === id);
+  productCard(product);
+};
+
 const addNewAndLastSeen = () => {
   const newProducts = products.filter(item => item.category === 'new');
   const lastSeenProducts = showLastSeen(products);
-
-  const onSelectCard = (e, products) => {
-    if (e.target.nodeName === 'UL') return;
-    const id = e.target.closest('[data-id]').dataset.id;
-    const product = products.find(item => item._id === id);
-    productCard(product);
-    // const imgMain = document.querySelector('.product__image img');
-    // imgMain.src = product.images[0];
-  };
 
   const newRef = refs.sections.querySelector('.new-products-wrapper');
   if (newProducts) {
@@ -76,4 +74,4 @@ const addNewAndLastSeen = () => {
   }
 };
 
-export { addNewAndLastSeen };
+export { addNewAndLastSeen, onSelectCard };
