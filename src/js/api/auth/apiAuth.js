@@ -17,7 +17,7 @@ const errorMarkup = error => {
 };
 const addListener = callbackClose => {
   const buttonRef = document.createElement('button');
-  buttonRef.addEventListener('click', callbackClose);
+  // buttonRef.addEventListener('click', callbackClose);
 };
 
 export default {
