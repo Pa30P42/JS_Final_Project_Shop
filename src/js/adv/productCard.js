@@ -11,7 +11,7 @@ import allProducts from '../api/products/apiProducts';
 import userData from '../../js/userData';
 import apiUsers from '../../js/api/users/apiUsers';
 
-export const productCard = async item => {
+const productCard = async item => {
   // const items = await allProducts.getAllProducts();
   // const item = items.find(i => i._id === id);
   // console.log('items ', items);

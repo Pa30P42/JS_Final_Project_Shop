@@ -25,9 +25,9 @@ import {
 } from "../../index";
 import SliderMI from "../components/sliderMI/sliderMI";
 
-import {
-  productCard
-} from '../adv/productCard';
+import
+productCard
+from '../adv/productCard';
 
 //
 // apiAuth.getCurrentUser()   role: "ADMIN"
