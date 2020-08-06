@@ -1,40 +1,47 @@
 let scrollElem = document.querySelector('.scroll');
-
-// var smoothJumpUp = function() {
-//         if (document.body.scrollTop>0 || document.documentElement.scrollTop>0) {
-//             window.scrollBy(0,-50);
-//             setTimeout(smoothJumpUp, 20);
-//         }
-//     }
-
-//     window.onscroll = function() {
-//       var scrolled = window.pageYOffset || document.documentElement.scrollTop;
-//       if (scrolled > 100) {
-//       	document.getElementById('upbutton').style.display = 'block';
-//       } else {
-//       	document.getElementById('upbutton').style.display = 'none';
-//       }
-//     }
-
-// window.addEventListener('onscroll', () => {
-//   if (document.body.scrollTop > document.documentElement.clientHeight) {
-//     scrollElem.style.opacity = '1';
-//   } else {
-//     scrollElem.style.opacity = '0';
-//   }
-// })
+let currentHeight = document.documentElement.clientHeight;
+let height = document.documentElement.clientHeight;
+export function heightScroll() {
 
 
-// let timeOut;
+  // баг, когда загрузка произошла не до конца, не щитает праивильно кнопку
 
 
-// function goUp() {
-//   let top = Math.max(document.body.scrollTop, document.documentElement.scrollTop);
-//   if (top > 0) {
-//     window.scrollBy(0, -100);
-//     timeOut = setTimeout(`${goUp()}`, 20)
-//   } else {
-//     setTimeout(timeOut)
-//   }
-// }
-// scrollElem.addEventListener('click', goUp)
+  window.addEventListener('scroll', () => {
+    currentHeight = currentHeight + 1;
+    console.log(currentHeight, "height2")
+
+    if (currentHeight > 450) {
+      scrollElem.classList.remove('scroll_delite')
+      console.log(currentHeight, "height2")
+      currentHeight = height;
+    } else return;
+  });
+
+  scrollElem.addEventListener('click', (e) => {
+    if (e.target.nodeName === "IMG" || e.target.dataset.moveScroll) {
+      console.log(e.target)
+      scrollElem.classList.add('scroll_delite');
+      currentHeight = height;
+      console.log(currentHeight, "height2")
+    }
+
+  })
+
+
+}
+
+window.addEventListener('DOMMouseScroll', function (e) {
+  console.log(e, "e")
+  console.log(e.originalEvent, "e")
+  if (e.originalEvent.detail > 0) {
+    //scroll down
+    console.log('Down');
+  } else {
+    //scroll up
+    console.log('Up');
+  }
+
+  //prevent page fom scrolling
+  return false;
+});

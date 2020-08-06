@@ -41,7 +41,9 @@ import {
 import {
   addNewAndLastSeen
 } from './js/components/new';
-
+import {
+  heightScroll
+} from './js/scroll_and_spiner/scroll';
 // let currentItem = null;
 // btnShowModal.addEventListener('click', async () => {
 //   const response = await axios.get('https://goit-store.herokuapp.com/products');
@@ -59,6 +61,7 @@ export const initialAction = async () => {
   await apiProducts.getCategories();
   setting.getDevice(document.documentElement.clientWidth);
   containerHandler();
+  heightScroll();
 
   new Sim();
 };
