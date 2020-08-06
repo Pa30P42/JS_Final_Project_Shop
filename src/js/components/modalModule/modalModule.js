@@ -23,6 +23,7 @@ const container = document.querySelector('.modalModule');
 export const modalModule = (component, listeners) => {
   const closeModalComponent = () => {
     container.innerHTML = '';
+    document.body.style.overflow = 'auto';
   };
 
   const closeModalWindow = e => {
