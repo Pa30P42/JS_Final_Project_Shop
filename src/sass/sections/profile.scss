@@ -1,5 +1,5 @@
 .profile {
-  padding: 20px 0 60px;
+  padding: 20px 0 100px;
   background: #e5e5e5;
 
   @media (min-width: 768px) {
@@ -202,10 +202,11 @@ em {
 
 .favourites-wrapper__position {
   width: 280px;
+  height: 350px;
 
   @media (min-width: 768px) {
     position: absolute;
-    transform: translate(40%, -96%);
+    transform: translate(30%, -96%);
     width: 444px;
   }
 
@@ -783,10 +784,10 @@ div.helper-text-div {
 
 .favorite-button {
   position: absolute;
-  transform: translate(79px, 280px);
+  transform: translate(20px, 280px);
 
   @media (min-width: 768px) {
-    transform: translate(70px, 383px);
+    transform: translate(86px, 383px);
   }
 
 }

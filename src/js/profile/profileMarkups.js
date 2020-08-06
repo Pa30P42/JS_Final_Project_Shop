@@ -162,9 +162,9 @@ export default {
 
     // }
   },
-
+  //event.target.nodeName !== "BUTTON" && 
   getMarkup(event) {
-    if (event.target.nodeName !== "BUTTON" && event.target.dataset.action !== "tabsManager") {
+    if (event.target.dataset.action !== "tabsManager") {
       // console.log('Not a button');
       return;
     }
@@ -438,7 +438,7 @@ function addressFormMarkup() {
   setActive();
 }
 //=======FAVOURITES=========================
-
+//<span tooltip="Убрать из избранного">o</span>
 export function favouritesFormMarkup(array) {
   const favouritesMarkup = (array) => {
     return `
@@ -470,7 +470,9 @@ export function favouritesFormMarkup(array) {
 
   const profileFavoritesLi = document.querySelectorAll('li');
   for (let i = 0; i < profileFavoritesLi.length; i += 1) {
-    profileFavoritesLi[i].style.marginRight = '15px';
+    profileFavoritesLi[i].style.marginRight = '10px';
+    profileFavoritesLi[i].style.flexShrink = '0';
+
   }
   setActive();
 }
