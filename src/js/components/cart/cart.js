@@ -31,7 +31,7 @@ const setCartCounter = () => {
   // if (setting.isDesktop) container = headerRef.querySelector('.header_desktop');
 
   // const headerNav = container.querySelector('.header__nav');
-  const headerNavCarts = document.querySelectorAll('header .amount_cart');
+  const headerNavCarts = document.querySelectorAll('header .counter_cart-items');
   const cartCounters = Array.from(headerNavCarts);
   const totalCount = getTotalQuantity(userData.user.cart.cartItems);
   cartCounters.forEach(counter => {
@@ -107,7 +107,7 @@ const setHeightList = () => {
 
 const changeListHeight = () => {
   const cartList = document.querySelector('.cart__list');
-  console.log('onchangeCart');
+  // console.log('onchangeCart');
   cartList.setAttribute('style', `max-height: ${setHeightList()}px`);
 };
 
@@ -269,7 +269,7 @@ const createOrder = closeModal => {
     const getUserData = async () => {
       try {
         const response = await apiUsers.getCurrentUser();
-        console.log(response.data.address);
+        // console.log(response.data.address);
         return response.data.address;
       } catch (error) {
         console.log('Лог ошибки из apiUsers.getCurrentUser ' + error);
@@ -279,7 +279,7 @@ const createOrder = closeModal => {
     const sendOrder = async newOrder => {
       try {
         const response = await apiOrders.createNewOrder(newOrder);
-        console.log(response);
+        // console.log(response);
         return response.data;
       } catch (error) {
         console.log('Лог ошибки из apiOrders.createNewOrder ' + error);
@@ -306,12 +306,12 @@ const createOrder = closeModal => {
           }
           userData.user.address[key] = 'x';
         }
-        console.log(userData.user.address);
+        // console.log(userData.user.address);
         const order = {
           address: userData.user.address,
           productList: productIds,
         };
-        console.log(JSON.stringify(order));
+        // console.log(JSON.stringify(order));
         return order;
       })
       .then(order => sendOrder(order))
@@ -325,6 +325,10 @@ const createOrder = closeModal => {
       .catch(console.log);
 
     const createOrderFromCart = async listIdProducts => {};
+    userData.user.cart.cartItems = [];
+    userData.user.cart.totalAmount = 0;
+    setCartCounter();
+
     const promise = createOrderFromCart(productIds);
   } else {
     const msg = 'Зарегистрируйтесь, пожалуйста, для оформления заказа';
