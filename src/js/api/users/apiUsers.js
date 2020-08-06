@@ -94,8 +94,8 @@ export default {
       const response = await axios.patch(this.changePasswordUrl, newPassword);
       // console.log(response);
     } catch (error) {
-      console.log(error);
-      // throw error;
+      // console.log(error);
+      throw new Error(err);
     }
   },
   async getCurrentUser() {
@@ -106,8 +106,8 @@ export default {
         // console.log(response);
         return response;
       } catch (error) {
-        console.log(error);
-        // throw error;
+        // console.log(error);
+        throw new Error(err);
       }
     } else return;
   },

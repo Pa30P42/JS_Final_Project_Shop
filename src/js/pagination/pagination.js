@@ -80,7 +80,11 @@ export async function createPagination(link, pagenumber = 1) {
   const response = await apiProducts
     .getProductsWithPagination(link, pagenumber)
     .then(res => res.data);
-  const arrayLength = await apiProducts.getCountOfProducts(link);
+  if (userData.categories[link]) {
+    if (userData.categories[link].totalQuantity === 0) {
+      userData.categories[link].totalQuantity = await apiProducts.getCountOfProducts(link);
+    }
+  }
   // .then(res => console.log('res.data', res.data));
   // console.log('arrayLength', arrayLength);
 
@@ -88,7 +92,7 @@ export async function createPagination(link, pagenumber = 1) {
 
   return {
     array: response,
-    paginationMarkup: createPaginationMarkup(arrayLength),
+    paginationMarkup: createPaginationMarkup(userData.categories[link].totalQuantity),
     getPaginationPage,
   };
 }
@@ -106,6 +110,12 @@ export async function getPaginationPage(e, category) {
   //   userData.pagination.totalProducts / userData.pagination.perPage,
   // );
 
+  // console.log(e.target.dataset.pagenumber);
+  // console.log(e.target);
+
+  if (e.target.nodeName !== 'SPAN' || e.target.dataset.pagenumber === 'undefined') {
+    return;
+  }
   if (
     (e.target.nodeName === 'SPAN' || e.target.dataset.pagenumber) &&
     e.target.closest('[data-pagenumber]').dataset.pagenumber !== 'next' &&
@@ -114,17 +124,23 @@ export async function getPaginationPage(e, category) {
     userData.pagination.currentPage = Number(
       e.target.closest('[data-pagenumber]').dataset.pagenumber,
     );
-  } else if (e.target.closest('[data-pagenumber]').dataset.pagenumber === 'next') {
-    if (userData.pagination.currentPage < userData.pagination.maxPages) {
-      // console.log('userDataALL', userData);
-      userData.pagination.currentPage = Number(userData.pagination.currentPage) + 1;
-      // console.log('userData.currentPage', userData.pagination.currentPage);
-      // console.log('nextPage', userData.pagination.currentPage);
-    } else if (userData.pagination.currentPage >= userData.pagination.maxPages) {
-      userData.pagination.currentPage = Number(userData.pagination.currentPage);
+  }
+  if (e.target.closest('[data-pagenumber]')) {
+    if (e.target.closest('[data-pagenumber]').dataset.pagenumber === 'next') {
+      if (userData.pagination.currentPage < userData.pagination.maxPages) {
+        // console.log('userDataALL', userData);
+        userData.pagination.currentPage = Number(userData.pagination.currentPage) + 1;
+        // console.log('userData.currentPage', userData.pagination.currentPage);
+        // console.log('nextPage', userData.pagination.currentPage);
+      } else if (userData.pagination.currentPage >= userData.pagination.maxPages) {
+        userData.pagination.currentPage = Number(userData.pagination.currentPage);
+      }
     }
-  } else if (e.target.closest('[data-pagenumber]').dataset.pagenumber === 'end') {
-    userData.pagination.currentPage = userData.pagination.maxPages;
+  }
+  if (e.target.closest('[data-pagenumber]')) {
+    if (e.target.closest('[data-pagenumber]').dataset.pagenumber === 'end') {
+      userData.pagination.currentPage = userData.pagination.maxPages;
+    }
   }
   // else return;
 

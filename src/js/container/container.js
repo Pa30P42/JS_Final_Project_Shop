@@ -4,10 +4,7 @@ import { sliderItemMarkup } from '../slider/sliderMarkup';
 
 import { catalogListMarkup } from '../catalog/catalog';
 import { header } from '../header/header';
-import {
-  categoriesListMarkup,
-  categoriesListMarkupAddListeners,
-} from '../category/category-markup';
+import { categoriesListMarkup, categoriesListMarkupAddListeners } from '../category/category-markup';
 import { searchSideBar } from '../search/searchsidebar/searchSideBar.js';
 import { setCartCounter, setupEvents } from '../components/cart/cart';
 import { addNewAndLastSeen } from '../components/new';
@@ -51,7 +48,6 @@ export const containerHandler = () => {
   }
   addNewAndLastSeen();
   setCartCounter();
-  setupEvents();
 };
 
 // categoriesListMarkup(categories);
