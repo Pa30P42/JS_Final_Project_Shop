@@ -201,16 +201,16 @@ em {
 
 
 .favourites-wrapper__position {
-
+  // width: 320px;
 
   @media (min-width: 768px) {
     position: absolute;
-    transform: translate(30%, -48%);
-    max-width: 444px;
+    transform: translate(40%, -96%);
+    width: 444px;
   }
 
   @media (min-width: 1200px) {
-    transform: translate(50%, -47%);
+    transform: translate(50%, -97%);
   }
 }
 
@@ -218,7 +218,7 @@ em {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  flex-wrap: wrap;
+  // flex-wrap: wrap;
 }
 
 .favourites-list__items {
@@ -771,6 +771,17 @@ div.helper-text-div {
 }
 
 //==============favourites-empty-error==
+
+.favorite-button {
+  position: absolute;
+  transform: translate(79px, 280px);
+
+  @media (min-width: 768px) {
+    transform: translate(70px, 383px);
+  }
+
+}
+
 .profile-favourites-empty {
   position: relative;
   //background-color: white;
