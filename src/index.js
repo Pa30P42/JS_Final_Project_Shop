@@ -15,6 +15,12 @@ import axios from 'axios';
 import apiAuth from './js/api/auth/apiAuth';
 import apiUsers from './js/api/users/apiUsers';
 import productCard from './js/adv/productCard';
+
+// =========== adv ==============
+
+// apiProducts.searchProductsbyCategory('new').then(data => createList(data.data));
+// =========== adv ==============
+
 import userData from './js/userData';
 import { getPofileTest, favouritesFormMarkup } from './js/profile/profileMarkups';
 import { setCartCounter, setupEvents } from './js/components/cart/cart';
@@ -30,42 +36,6 @@ export const initialAction = async () => {
 
   new Sim();
   // trigger.triggerFn();
-  console.log('userData :>> ', userData);
+  // console.log('userData :>> ', userData);
 };
 initialAction();
-const order = {
-  address: {
-    country: 'UA',
-    city: 'Kyiv',
-    place: 'Печерский',
-    street: 'бул. Леси Украинки',
-    block: '7',
-    building: '26',
-    flat: '777',
-  },
-  productList: ['5f23d313c6263100179ab99c', '5f23c8ebc6263100179ab99a'],
-};
-// apiOrders.createNewOrder(order);
-
-// const userDataFn = async () => {
-//   if (localStorage.getItem('info')) {
-//     const userToken = JSON.parse(localStorage.getItem('info')).token;
-//     if (userToken) {
-//       const response = await apiUsers.getCurrentUser();
-
-//       userData.user = {
-//         ...userData.user,
-//         ...response.data,
-//       };
-//     }
-//     delete userData.user.password;
-//   } else {
-//     localStorage.setItem(
-//       'info',
-//       JSON.stringify({
-//         favorites: [],
-//       }),
-//     );
-//   }
-
-// };

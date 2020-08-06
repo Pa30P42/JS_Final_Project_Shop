@@ -88,60 +88,60 @@
 }
 
 @media (min-width: 1200px) {
-  .catalog__img {
-    display: block;
-    border-radius: 10px;
-    width: 247px;
-    height: 127px;
-  }
-  // .catalog__wrapper {
+    .catalog__img {
+        display: block;
+        margin-bottom: 14px;
+        object-fit: cover;
+        border-radius: 10px;
+        width: 247px;
+        height: 127px;
+    }
 
-  //     height: 440px;
+    .catalog__list {
+        display: flex;
+        justify-content: space-between;
+        padding: 20px;
+        position: absolute;
+        // z-index: 999999;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 1120px;
+        min-height: 440px;
+        border-radius: 10px;
+        box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.15);
 
-  // }
-  .catalog__list {
-    display: flex;
-    justify-content: space-between;
-    padding: 20px;
-    position: absolute;
-    // z-index: 999999;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 1120px;
-    min-height: 440px;
-    border-radius: 10px;
-    box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.15);
-  }
+    }
 
-  .catalog__item {
-    width: 247px;
-  }
+    .catalog__item {
+        width: 247px;
+    }
 
-  .sub-catalog__list {
-    background-color: #e5e5e5;
-  }
+    .sub-catalog__list {
+        background-color: #E5E5E5;
+        
+        }
 
-  .catalog__title {
-    //  text-align: center;
-    display: flex;
-    height: 42px;
-    font-weight: 600;
-    line-height: 21px;
-    color: #6368e5;
-    flex-direction: column;
-    justify-content: center;
-  }
+     .catalog__title {
+        //  text-align: center;
+            display: flex;
+            height: 42px;
+            font-weight: 600;
+            line-height: 21px;
+            color: #6368E5;
+            flex-direction: column;
+            justify-content: center;
+            
+            
+            }
 
-  .catalog__img {
-    margin-bottom: 14px;
-  }
+    .sub__catalog__list {
+        background: #E5E5E5;
+    }
 
-  .sub__catalog__list {
-    background: #e5e5e5;
-  }
+    .catalog__hidden {
+        display: block;
+      }
 
-  .catalog__hidden {
-    display: block;
+
   }
-}

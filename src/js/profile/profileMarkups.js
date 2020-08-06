@@ -1,6 +1,7 @@
 import apiProducts from '../api/products/apiProducts';
 import globeUserData from '../userData';
 import axios from 'axios';
+import {addNewProductCard, addAdvListeners, getNewADV, previewImg, chengeImg} from '../newADV/newAdv'
 import apiUsers from '../api/users/apiUsers';
 import userData from '.././userData';
 
@@ -180,7 +181,14 @@ export default {
         break;
       case 'advertisement':
         advertisementFormMarkup();
-        addInfoListener('advertisementForm');
+        addInfoListener('advertisementForm')
+        const refs =  {
+          newAdvInput: document.querySelector('.add__product'),
+        };
+        refs.newAdvInput.addEventListener('input', getNewADV)
+        refs.newAdvInput.addEventListener('input', previewImg);
+
+        addAdvListeners(".addnewproduct__wrapper")
         break;
 
       default:
@@ -404,10 +412,12 @@ export function advertisementFormMarkup() {
               <label  class="adv-label" for="name">Название товара</label>
               <input type="text" name="productName" id="productName" class="advertisement-inputs form-control-advertisement productName" placeholder="Название"
                 required />
-          
-              <label class="adv-label"  for="name">Фото</label>
-              <input type="file" id="productImage" name="productImage" class="input-photo form-control productImage" accept="image/*"
-                class="form-control" required />
+               
+
+              <p class="newadv__description">Фото</p>
+            <div class="addnewproduct__wrapper">
+              ${addNewProductCard()}
+              </div>
 
               <label  class="adv-label" for="name">Описание товара</label>
               <textarea style="resize:none"  name="productDescription" id="comments" class="advertisement-inputs form-control-advertisement  input-textarea productDescription"
@@ -415,38 +425,125 @@ export function advertisementFormMarkup() {
              
               <label  class="adv-label" for="name">Категория товара</label>
               <select id="productCatygory" name="productCatygory" class="advertisement-inputs form-control-advertisement productCatygory" required>
-              <option disabled selected value class="input-select">Выберите категорию</option>
-              <option value="student">2</option>
-              <option value="job">3</option>
-              <option value="learner">4</option>
-              <option value="preferNo">5</option>
-              <option value="other">6</option>
+              <option disabled selected value="choose__categorie" class="input-select">Выберите категорию</option>
+              <option value="refrigerators">Холодильники</option>
+              <option value="washing_machines">Стиральные машины</option>
+              <option value="dishwashers">Посудомоечные машины</option>
+              <option value="сookers">Кухонные плиты</option>
+              <option value="freezers">Морозильные камеры</option>
+              <option value="drying_machines">Сушильные машины</option>
+              <option value="built_in_ovens">Встраиваемые духовые шкафы</option>
+              <option value="built_in_hobs">Встраиваемые варочные поверхности</option>
+              <option value="cooker_hoods">Кухонные вытяжки</option>
+              <option value="food_waste_disposers">Измельчители пищевых отходов</option>
+              <option value="Accessories_for_vbt">Аксессуары к вбт</option>
+              <option value="coffee_machines">Кофемашины</option>
+              <option value="multicooker">Мультиварки</option>
+              <option value="microwave_ovens">Печи СВЧ</option>
+              <option value="blenders">Блендеры</option>
+              <option value="grills">Грили</option>
+              <option value="accessories_for_kitchen_appliances">Аксессуары для кухонной техники</option>
+              <option value="other_small_equipment">Прочая мелкая техника</option>
+              <option value="vacuum_cleaners">Пылесосы</option>
+              <option value="robot_vacuum_cleaners">Роботы-пылесосы</option>
+              <option value="irons">Утюги</option>
+              <option value="sewing_equipment_and_accessories">Швейная техника и аксессуары</option>
+              <option value="steam_cleaners">Пароочистители</option>
+              <option value="accessories_for_home_care_and_clothing_products">Аксессуары к товарам по уходу за домом и одеждой</option>
+              <option value="sale">Распродажа</option>
+              <option value="new">Новые поступления</option>
                </select>
                
               <label class="adv-label"  id="name-label" for="name">Цена</label>
               <input type="text" name="productPrice" class="form-control form-control__address productPrice" placeholder="0.000 &#x20b4;"
                 required />
-                <label class="adv-label" id="phone-number">Телефон</label>
-              <input type="tel" name="productPhone" class="form-control form-control__address productPhone"
-                placeholder="+38 (093) 333 99 99" required />
-
+    
+    
             </div>
-            <button type="submit" data-create="addProdact" id="submit" class="save-button">
+            <button type="button" data-create="addProdact" id="submit" class="save-button">
               Создать
             </button>
           </form>
     `;
   };
-  const advertisementBtn = document.querySelector('.advertisement');
-  advertisementBtn.insertAdjacentHTML('afterend', advertisementMarkup());
+  const advertisementBtn = document.querySelector(".advertisement");
+  advertisementBtn.insertAdjacentHTML("afterend", advertisementMarkup());
+
   setActive();
 
   //! ============================= Kostya ==================
-  const btnAddProduct = document.querySelector('.js-active-tab-advertisement');
-  btnAddProduct.addEventListener('click', addProduct);
+  const btnAddProduct = document.querySelector('.js-active-tab-advertisement')
+  const addImage = document.querySelector('.js-active-tab-advertisement')
+  btnAddProduct.addEventListener('click', addProduct)
 
-  // const optin = document.querySelector('.js__option')
-  // optin.insertAdjacentHTML('beforeend', chooseCategory());
+  addImage.productImageFirst.addEventListener('input', createbaseFirst);
+  addImage.productImageSecond.addEventListener('input', createbaseSecond);
+  addImage.productImageThird.addEventListener('input', createbaseThird);
+  addImage.productImageFourth.addEventListener('input', createbaseFourth);
+  addImage.productImageFifth.addEventListener('input', createbaseFifth);
+  addImage.productImageSixth.addEventListener('input', createbaseSixth);
+
+
+ 
+  
+  function createbaseFirst() {
+
+    const element = addImage.productImageFirst;
+    toDataUrl(element).then(data => {
+      product.images = [...product.images, ...data]
+
+    });
+  }
+
+  function createbaseSecond() {
+
+    const element = addImage.productImageSecond;
+    toDataUrl(element).then(data => {
+      product.images = [...product.images, ...data]
+
+    });
+  }
+
+  function createbaseThird() {
+
+    const element = addImage.productImageThird;
+    toDataUrl(element).then(data => {
+      product.images = [...product.images, ...data]
+
+    });
+  }
+
+
+  function createbaseFourth() {
+
+    const element = addImage.productImageFourth;
+    toDataUrl(element).then(data => {
+      product.images = [...product.images, ...data]
+
+    });
+  }
+
+
+  function createbaseFifth() {
+
+    const element = addImage.productImageFifth;
+    toDataUrl(element).then(data => {
+      product.images = [...product.images, ...data]
+
+    });
+  }
+
+
+  function createbaseSixth() {
+
+    const element = addImage.productImageSixth;
+    toDataUrl(element).then(data => {
+      product.images = [...product.images, ...data]
+
+    });
+  }
+
+
 
   //! ===============================================
 }
@@ -477,11 +574,17 @@ function deleteActive() {
 // };
 
 function addInfoListener(key) {
+  // e.preventDefault()
+
+// if (e.target.dataset.create !== "addProdact") {
+//   return
+// }
+
   const form = document.querySelector('#profile');
-  // console.log(forms[key]);
   const inputForm = form.querySelector(`[data-form="${key}"]`);
 
   inputForm.addEventListener('input', getInfo);
+  // console.log("inputForm", inputForm);
 }
 //apiUsers.getInfo();
 //getCurrentUser
@@ -500,66 +603,54 @@ function addInfoListener(key) {
 //! ==================== Kostya ==================
 const product = {
   images: [],
-  totalQuantity: 1,
+  totalQuantity: 10,
   name: '',
   category: '',
   price: 0,
   description: '',
 };
 
-// export async function wayToCategory() {
-//   const response = await axios.get(
-//     'https://goit-store.herokuapp.com/products/getCategories',
-//   )
-//   chooseCategory(response.data)
-// };
-// wayToCategory()
+  
+  function toDataUrl(element) {
+    return new Promise(resolve => {
+      const reader = new FileReader();
+      reader.onloadend = () => resolve(reader.result);
+      reader.readAsDataURL(element.files[0]);
+    })
+  }
+  
 
-// function chooseCategory(categories) {
-//   const values = Object.values(categories)
-//   console.log(values);
-// // console.log(valueCategories);
-//   // console.log(values);
-//   const arrValues = values[0]
-//   return arrValues.reduce((acc, value) => {
-//     acc += `
-//     <option value="${value.name}">${value.name}</option>
-//     `
-//     return acc;
-//   }, '');
-
-//   };
-
-function addProduct(e) {
-  // console.log('e.target', e.target);
-  if (e.target.nodeName === 'BUTTON' && e.target.closest('[data-create]')) {
-    const createBtn = e.target.closest('[data-create]').dataset.create;
-    // console.log('createBtn', createBtn);
-    apiProducts.CreateNewProduct(product);
-  } else return;
+  function addProduct (e) {
+  if ((e.target.nodeName === "BUTTON")  && e.target.closest('[data-create]')) {
+    const createBtn = e.target.closest('[data-create]').dataset.create
+    // console.log("product", product);
+    apiProducts.CreateNewProduct(product)
+      
+  }
+  
+  }
+  
+  function getInfo(event) {
+    // console.log("product", product);
+  
+ if (event.target.name === "productPrice") {
+    product.price = event.target.value
 }
-
-function getInfo(event) {
-  if (event.target.name === 'productPrice') {
-    product.price = event.target.value;
-  }
-  if (event.target.name === 'productName') {
-    product.name = event.target.value;
-  }
-  if (event.target.name === 'productDescription') {
-    product.description = event.target.value;
-  }
-  if (event.target.name === 'productCatygory') {
-    product.category = event.target.value;
-  }
+ if (event.target.name === "productName") {
+  product.name = event.target.value
+}
+ if (event.target.name === "productDescription") {
+  product.description = event.target.value
+}
+ if (event.target.name === "productCatygory") {
+  product.category = event.target.value
+}
 
   //! =======================================
 
   let key = event.target.closest('[data-form]').dataset.form;
   forms[key][event.target.name] = event.target.value;
-  // console.log("KEY", key);
-  // console.log("!!!!!!", event.target.name);
-  // console.log("&&&&&&&", event.target.value);
+
 
   forms[key][event.target] = event.target;
   // console.log('forms[key]', forms[key]);
@@ -675,5 +766,5 @@ function getInfo(event) {
     // } else if (inputForm.dataset.form === 'favourites') {
     //console.log('key :>> ', event.target.dataset.form);
   }
-  console.log('forms :>> ', forms);
+  // console.log('forms :>> ', forms);
 }

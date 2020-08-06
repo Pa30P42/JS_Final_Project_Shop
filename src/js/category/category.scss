@@ -50,6 +50,12 @@
 }
 
 .category {
+  &-wrapper {
+    @media (min-width: 1200px) {
+      max-width: 1080px;
+      margin: 0 auto;
+    }
+  }
   &__img {
     border-radius: 10px;
     height: 144px;
@@ -105,9 +111,19 @@
 
 .modal_wrapper {
   background: #fff;
-  // width: 300px;
-  // height: 300px;
+  width: 350px;
+
   padding: 30px;
+  position: absolute;
+  border-radius: 10px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  @media (max-width: 320px) {
+    width: 300px;
+    word-wrap: break-word;
+  }
 }
 
 .subcategories {
