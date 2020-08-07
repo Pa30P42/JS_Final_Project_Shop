@@ -1,94 +1,14 @@
-// import vector_love from '../../images/sale/Vector_love.svg';
-// import vector from '../../images/sale/Vector.svg';
-// import { createSingleCardMarkup } from './cardModule';
-// import apiUsers from '../api/users/apiUsers';
-
-// // /* <section class="card container"></section> *
-
-// const createListMarkup = array => {
-//   return `
-//    <section class="card">
-//   <h2 class="card_description">Акции</h2>
-//   <ul class="card_list">${array.reduce((acc, element) => {
-//     acc += createSingleCardMarkup(element, 'sale');
-//     return acc;
-//   }, '')}</ul></section>`;
-// };
-// const favoritesArr = [];
-// const getItem = event => {
-//   if (event.target.closest('[data-id]') && event.target.nodeName === 'IMG') {
-//     const id = event.target.closest('[data-id]').dataset.id;
-//     console.log('id', id);
-//     if (event.target.src === vector) {
-//       event.target.src = vector_love;
-//       favoritesArr.push(id);
-//       apiUsers.addFavorite(id);
-
-//       localStorage.setItem('favorites', JSON.stringify(favoritesArr));
-//     } else if (event.target.src === vector_love) {
-//       event.target.src = vector;
-//       apiUsers.deleteFavorite(id);
-//       console.log(favoritesArr);
-//       const itemFavoriteID = favoritesArr.find(element => {
-//         element === id;
-
-//         console.log(id);
-//       });
-//       //   for (let arr of favoritesArr) {
-//       //     if (arr !== id) {
-//       //       favoritesArr = [];
-//       //       favoritesArr.push(arr);
-//       //     }
-//       //   }
-//       console.log('itemFavoriteID', itemFavoriteID);
-//     }
-
-//     // productCard(id);
-//     return id; // функция Ани(id)
-//   } else return;
-// };
-
-// ///
-
-// // apiUsers.getCurrentUser();
-// // apiUsers.getCurrentUser().then(data => console.log(data));
-
-// // const cardList = document.querySelector('.card_list');
-// export const createList = array => {
-//   const container = document.querySelector('.sections');
-//   container.innerHTML = createListMarkup(array);
-//   container.addEventListener('click', getItem);
-//   // cardList.addEventListener('click', getVector);
-
-//   // cardList.addEventListener('click', getVector);
-// };
-
-// // export const getVector = event => {
-// //   if (event.target.closest('[data-clickVector]') && event.target.nodeName === 'IMG') {
-// //     const clickVector = event.target.closest('[data-clickVector]').dataset.clickVector;
-// //     console.log('clickVector', clickVector);
-// //     return clickVector;
-// //   } else return;
-// // };
 import vector_love from '../../images/sale/Vector_love.svg';
 import vector from '../../images/sale/Vector.svg';
-import { createSingleCardMarkup } from '../sale/cardModule';
 import apiUsers from '../api/users/apiUsers';
-import userData from '../userData';
-
-import { createPaginationMarkup } from '../pagination/pagination';
-// import { refsPagination } from '../pagination/pagination';
-// import { getPaginationPage } from '../pagination/pagination';
-// import { getPaginationPage } from '../pagination/pagination';
+import userData from '../userData'
+import {
+  createSingleCardMarkup
+} from '../sale/cardModule';
 import productCard from '../adv/productCard';
 
 // /* <section class="card container"></section> *
 const createListMarkup = (array, paginationMarkup, link) => {
-  // console.log('array', array);
-  // console.log('link', link);
-
-  // /* <section class="card container"></section> *
-
   return `
    <section class="card">
   <h2 class="card_description">${link}</h2>
@@ -100,57 +20,144 @@ const createListMarkup = (array, paginationMarkup, link) => {
   ${paginationMarkup}
   </div>
   </section>`;
-};
+}
 
-export const createList = (array, paginationMarkup, link) => {
-  // const container = document.querySelector('.container');
-  const container = document.querySelector('.sections');
 
-  container.innerHTML = createListMarkup(array, paginationMarkup, link);
-  container.addEventListener('click', getItem);
-  // container.addEventListener('click', e => getPaginationPage(e, link));
-};
+export function getElementsForFavorites(element, reset) {
+  reset && (userData.currentPrintElements = []);
+  userData.currentPrintElements = [...userData.currentPrintElements, element];
+  return "favorite_product";
+}
 
-// export const createList = array => {
-//   const container = document.querySelector('.sections');
-//   container.innerHTML = createListMarkup(array);
-//   container.addEventListener('click', e => {
-//     getItem(e, array);
-//   });
-// };
 
-const getItem = (event, products) => {
-  if (event.target.closest('[data-id]') && event.target.nodeName === 'IMG') {
-    const id = event.target.closest('[data-id]').dataset.id;
-    // console.log('id', id);
-    if (event.target.src === vector) {
-      event.target.src = vector_love;
-      if (localStorage.getItem('info')) {
-        const token = localStorage.getItem('info');
-        const tokenParse = JSON.parse(token).token;
-        if (tokenParse) {
-          apiUsers.addFavorite(id).then(data => {
-            apiUsers.getCurrentUser().then(response => {
-              userData.user.favorites = response.data.favorites;
-            });
-          });
+function selectImg(e) {
+  const favorites = {
+    user: [],
+    local: [],
+    id: "",
+    isAuth: false,
+    element: {},
+
+  }
+
+  function isAuth() {
+    if (localStorage.getItem('info')) {
+      favorites.isAuth = true;
+    } else return false
+  }
+
+  function getObject() {
+    favorites.element = userData.currentPrintElements.find(element => element._id === favorites.id);
+  }
+
+  function getId() {
+    favorites.id = e.target.dataset.id;
+  }
+
+  function isExistUserData() {
+    if (localStorage.getItem('user-data')) {
+      userData.user.favorites = [...JSON.parse(localStorage.getItem('user-data')).response_data_user[0].favorites];
+      favorites.user = [...JSON.parse(localStorage.getItem('user-data')).response_data_user[0].favorites]
+      return favorites.user.some(product => product._id === favorites.id)
+    }
+    return false
+  }
+
+  function isExistLocalData() {
+    if (localStorage.getItem("favorites__")) {
+      favorites.local = [...JSON.parse(localStorage.getItem("favorites__"))]
+    } else localStorage.setItem("favorites__", JSON.stringify([]))
+  }
+
+  function isExistElementLocally() {
+    return favorites.local.some(id => id === favorites.id)
+  }
+
+  if (e.target.dataset) {
+    if (e.target.nodeName === "IMG" && e.target.dataset.favorite) {
+      isAuth();
+      getId();
+      getObject();
+      isExistLocalData();
+      if (favorites.isAuth) {
+        if (isExistUserData()) {
+          userData.user.favorites = [...userData.user.favorites.filter(product => product._id !== favorites.id)];
+          favorites.user = [...favorites.user.filter(product => product._id !== favorites.id)];
+          const localUserFavorites = JSON.parse(localStorage.getItem('user-data')).response_data_user[0].favorites;
+          const localeData = {
+            ...JSON.parse(localStorage.getItem('user-data'))
+          };
+          localeData.response_data_user[0].favorites = [...localUserFavorites.filter(item => item._id !== favorites.id)];
+          localStorage.setItem('user-data', JSON.stringify(localeData));
+          apiUsers.deleteFavorite(favorites.id);
+          e.target.src = vector;
+
         } else {
-          localStorage.setItem('favorites', JSON.stringify(favoritesArr));
+          userData.user.favorites = [...userData.user.favorites, favorites.element];
+          const localUserFavorites = JSON.parse(localStorage.getItem('user-data')).response_data_user[0].favorites;
+          const localeData = {
+            ...JSON.parse(localStorage.getItem('user-data'))
+          };
+          localeData.response_data_user[0].favorites = [...localUserFavorites, favorites.element];
+          localStorage.setItem('user-data', JSON.stringify(localeData));
+          apiUsers.addFavorite(favorites.id);
+          e.target.src = vector_love;
         }
       }
-    } else if (event.target.src === vector_love) {
-      event.target.src = vector;
-      apiUsers.deleteFavorite(id);
-      favoritesArr.find(elem => {
-        elem !== id;
-        favoritesArr.push(element);
-      });
+
+      if (!favorites.isAuth) {
+        if (isExistElementLocally()) {
+          console.log('favorites.local', favorites.local)
+          favorites.local = [...favorites.local.filter(id => id !== favorites.id)];
+          localStorage.setItem('favorites__', JSON.stringify(favorites.local))
+          e.target.src = vector;
+        } else {
+          favorites.local = [...favorites.local, favorites.id]
+          localStorage.setItem('favorites__', JSON.stringify(favorites.local))
+          e.target.src = vector_love;
+        }
+      }
+    } else return
+  }
+}
+
+export function getImg(id) {
+  const favoritesItems = {
+    user: [],
+    local: []
+  }
+  if (localStorage.getItem('info')) {
+    let result = false
+    if (localStorage.getItem('user-data')) {
+      userData.user.favorites = [...JSON.parse(localStorage.getItem('user-data')).response_data_user[0].favorites];
+      const data = [...JSON.parse(localStorage.getItem('user-data')).response_data_user[0].favorites]
+      result = data.some(product => product._id === id)
     }
-    // console.log(products);
-    // console.log(id);
-    const filteredproduct = products.find(item => item._id === id);
-    // console.log(filteredproduct);
-    productCard(filteredproduct);
-    return id; // функция Ани(id)
-  } else return;
-};
+    if (result) {
+      return vector_love
+    } else {
+      return vector
+    }
+  } else {
+    if (localStorage.getItem('favorites__')) {
+      favoritesItems.local = localStorage.getItem('favorites__') ? [...JSON.parse(localStorage.getItem('favorites__'))] : [];
+      if (favoritesItems.local.includes(id)) {
+        return vector_love
+      } else {
+        return vector
+      }
+    } else {
+      return vector
+    }
+  }
+}
+
+
+export const createList = (array, paginationMarkup, link) => {
+  const container = document.querySelector('.sections');
+  container.innerHTML = createListMarkup(array, paginationMarkup, link);
+  container.addEventListener('click', selectImg);
+  // const filteredproduct = products.find(item => item._id === id);
+  // productCard(filteredproduct);
+
+}

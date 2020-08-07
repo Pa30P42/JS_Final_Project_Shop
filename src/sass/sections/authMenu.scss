@@ -7,17 +7,17 @@
   min-height: auto;
   background: $auth-menu__background-color;
   word-wrap: break-word;
-  transform: translate(275%, -151%);
   border-radius: 10px;
-  top: 11%;
-  right: 25%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
 .authMenu_component {
   position: absolute;
-  top: 25%;
-  right: 15%;
-  transform: translate(-50%, -50%);
+  // top: 25%;
+  // right: 15%;
+  // transform: translate(-50%, -50%);
   border-radius: 10px;
   background-color: $auth-menu__background-color;
 }
@@ -69,7 +69,17 @@
   .body {
     overflow: auto;
   }
-  // .auth-menu {
-  //   display: none;
-  // }
+  .auth-menu {
+    top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  }
+}
+
+@media (min-width: 20px) and (max-width: 767px) {
+  .auth-menu {
+    top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  }
 }

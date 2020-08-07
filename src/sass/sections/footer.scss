@@ -6,6 +6,9 @@
   background: #53535c;
 }
 
+
+
+
 .footer-container_title {
   @include font(600, 1.3em, 22px, #ffc390);
 }
@@ -63,11 +66,14 @@
   font-weight: 500;
   font-size: 14px;
   line-height: 190%;
+  line-height: 190%;
 }
+
 .footer-container_box {
   display: flex;
   flex-direction: column;
 }
+
 .footer-container_schedule {
   margin-top: 5px;
 }
@@ -84,7 +90,7 @@
 
   .footer-container_box {
     display: flex;
-    align-items: flex-start;
+    align-items: center;
     justify-content: space-between;
     flex-direction: row;
   }
@@ -96,4 +102,196 @@
   .footer-container_box {
     margin-top: 15px;
   }
+}
+
+
+
+
+
+
+
+.wrapper {}
+
+.wrapper ul {
+  list-style: none;
+}
+
+.wrapper ul li {
+  width: 3.8em;
+  height: 3.8em;
+  margin: 0 10px;
+  text-align: center;
+  cursor: pointer;
+  border-radius: 50%;
+  border: 0.25em solid #fff;
+  float: left;
+  position: relative;
+  transition: all 0.5s ease;
+}
+
+.wrapper ul li .fa {
+  color: #fff;
+  line-height: 2.1em;
+  font-size: 1.3rem;
+  transition: all 0.5s ease;
+}
+
+
+/* For creating the text below the icons, I'm going to use the before pseudo element.*/
+// ul li.facebook:before {
+//   content: "facebook";
+
+// }
+
+// ul li.twitter:before {
+//   content: "twitter";
+//   left: 5px;
+// }
+
+// ul li.instagram:before {
+//   content: "instagram";
+// }
+
+// ul li.google:before {
+//   content: "google";
+//   left: 5px;
+// }
+
+// ul li.whatsapp:before {
+//   content: "whatsapp";
+// }
+
+ul li:before {
+  content: "";
+  position: absolute;
+  bottom: -35px;
+  left: -5px;
+  color: #fff;
+  font-size: 18px;
+  font-weight: bold;
+  text-transform: capitalize;
+  transition: all 0.5s ease;
+}
+
+/*facebook*/
+.wrapper ul li:hover.facebook {
+  border: 5px solid #3b5998;
+  box-shadow: 0 0 15px #3b5998;
+  transition: all 0.5s ease;
+}
+
+.wrapper ul li:hover .fa-facebook {
+  color: #3b5998;
+  text-shadow: 0 0 15px #3b5998;
+  transition: all 0.5s ease;
+}
+
+.wrapper ul li.facebook:hover:before {
+  color: #3b5998;
+  text-shadow: 0 0 15px #3b5998;
+}
+
+// /*twitter*/
+// .wrapper ul li:hover.twitter {
+//   border: 5px solid #00aced;
+//   box-shadow: 0 0 15px #00aced;
+//   transition: all 0.5s ease;
+// }
+
+// .wrapper ul li:hover .fa-twitter {
+//   color: #00aced;
+//   text-shadow: 0 0 15px #00aced;
+//   transition: all 0.5s ease;
+// }
+
+// .wrapper ul li.twitter:hover:before {
+//   color: #00aced;
+//   text-shadow: 0 0 15px #00aced;
+// }
+
+/* instagram */
+.wrapper ul li:hover.instagram {
+  border: 5px solid #bc2a8d;
+  box-shadow: 0 0 15px #bc2a8d;
+  transition: all 0.5s ease;
+}
+
+.wrapper ul li:hover .fa-instagram {
+  color: #bc2a8d;
+  text-shadow: 0 0 15px #bc2a8d;
+  transition: all 0.5s ease;
+}
+
+.wrapper ul li.instagram:hover:before {
+  color: #bc2a8d;
+  text-shadow: 0 0 15px #bc2a8d;
+}
+
+/* google */
+.wrapper ul li:hover.google {
+  border: 5px solid #dd4b39;
+  box-shadow: 0 0 15px #dd4b39;
+  transition: all 0.5s ease;
+}
+
+.wrapper ul li:hover .fa-google {
+  color: #dd4b39;
+  text-shadow: 0 0 15px #dd4b39;
+  transition: all 0.5s ease;
+}
+
+
+.wrapper ul li.google:hover:before {
+  color: #dd4b39;
+  text-shadow: 0 0 15px #dd4b39;
+}
+
+
+/* whatsapp */
+.wrapper ul li:hover.whatsapp {
+  border: 5px solid #4dc247;
+  box-shadow: 0 0 15px #4dc247;
+  transition: all 0.5s ease;
+}
+
+.wrapper ul li:hover .fa-whatsapp {
+  color: #4dc247;
+  text-shadow: 0 0 15px #4dc247;
+  transition: all 0.5s ease;
+}
+
+.wrapper ul li.whatsapp:hover:before {
+  color: #4dc247;
+  text-shadow: 0 0 15px #4dc247;
+}
+
+/* media queries */
+@media screen and (max-width: 680px) {
+  .wrapper {
+    width: 150px;
+  }
+
+  .wrapper ul li {
+    margin-bottom: 45px;
+  }
+}
+
+
+/* youtube link */
+.youtube {
+  position: fixed;
+  bottom: 10px;
+  right: 10px;
+  width: 160px;
+  text-align: center;
+  padding: 15px 10px;
+  background: #bb0000;
+  border-radius: 5px;
+}
+
+.youtube a {
+  text-decoration: none;
+  color: #fff;
+  text-transform: capitalize;
+  letter-spacing: 1px;
 }
