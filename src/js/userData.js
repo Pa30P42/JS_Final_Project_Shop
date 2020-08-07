@@ -3,8 +3,9 @@ import buildInTech from '../images/category/build-in-tech.jpg';
 import homeCareTech from '../images/category/home-care-tech.jpg';
 import kitchenTech from '../images/category/kitchen-tech.jpg';
 import { userDataFn } from './setting';
-
 export default {
+  localFavourites: [],
+  currentPrintElements: [],
   settings: {
     isMobile: false,
     isTablet: false,
@@ -84,9 +85,10 @@ export default {
     },
   },
   getSettings(width = document.documentElement.clientWidth) {
+    userDataFn();
     if (localStorage.getItem('info')) {
-      this.user = { ...this.user, ...JSON.parse(localStorage.getItem('info')).user.user };
-      console.log('this', this);
+      if (JSON.parse(localStorage.getItem('info')).user)
+        this.user = { ...this.user, ...JSON.parse(localStorage.getItem('info')).user.user };
     }
     // userData();
     if (width < 768) {
@@ -111,5 +113,3 @@ export default {
     return this.categoriesItems.find(category => category.name.toLowerCase().includes(link.toLowerCase())).value;
   },
 };
-
-// ============================================================

@@ -1,81 +1,44 @@
 import { modalModule } from '../components/modalModule/modalModule';
 import markup from './markup';
 import updateLastSeen from './lastSeen';
-import updateFavorites from './favorite';
+// import updateFavorites from './favorite';
 import buy from './buy';
 import favoriteFill from '../../images/adv/icons/favorite_fill.svg';
 import favorite from '../../images/adv/icons/favorite.svg';
 import allProducts from '../api/products/apiProducts';
 import userData from '../../js/userData';
 import apiUsers from '../../js/api/users/apiUsers';
+import { selectImg, getImg } from '../../js/sale/saleSection';
 
 const productCard = async item => {
-  // const items = await allProducts.getAllProducts();
-  // const item = items.find(i => i._id === id);
-  // console.log('items ', items);
-  // console.log('item ', item);
-  // console.log('id ', item._id);
   const component = () => markup(item);
-  // console.log(item);
   updateLastSeen(item._id);
   modalModule(component, addListener);
-  updateFavorites(item._id);
+  // updateFavorites(item);
 
-  const btnBuy = document.getElementById('btnBuy');
-  // ---------- favorites ---------
-  // const btnFavourite = document.getElementById('btnFavourite');
-  // const changeTextFavorite = document.querySelector('.adv__in-favorite');
-  // const FAVORITES = 'favorites';
-
-  // const favoriteToLocalStorage = localStorage.getItem(FAVORITES); //array
-  // let favorites = JSON.parse(favoriteToLocalStorage);
-
-  // // if (!favorites) {
-  // //   // favorites = [];
-  // //   btnFavourite.src = favorite;
-  // //   changeTextFavorite.textContent = 'В избранное';
-  // // }
-
-  // if (favorites.find(elem => elem._id === item._id)) {
-  //   btnFavourite.src = favoriteFill;
-  //   changeTextFavorite.textContent = 'Из избранного';
+  const refChangeTextFavorite = document.querySelector('.adv__in-favorite');
+  // console.log('btn', refBtnFavourite);
+  console.log(userData);
+  // if (favorites.find(elem => elem === id._id)) {
+  //   refBtnFavourite.src = favoriteFill;
+  //   refChangeTextFavorite.textContent = 'Из избранного';
   // }
 
-  // btnFavourite.addEventListener('click', async event => {
-  //   const favoriteToLocalStorage = localStorage.getItem(FAVORITES);
-  //   let favorites = JSON.parse(favoriteToLocalStorage);
+  const refSection = document.querySelector('.product__card');
+  refSection.addEventListener('click', selectImg);
+  // function test(e) {
+  //   selectImg(e);
+  //   console.log(e.target);
+  // }
 
-  //   if (event.target.src === favorite) {
-  //     event.target.src = favoriteFill;
-  //     changeTextFavorite.textContent = 'Из избранного';
-
-  //     favorites.push(item);
-  //     localStorage.setItem(FAVORITES, JSON.stringify(favorites));
-
-  //     await apiUsers.addFavorite(item._id);
-  //     // userData.user.favorite = [...userData.favorite, item];
-  //     // console.log(userData.user.favorite);
-  //   } else if (event.target.src === favoriteFill) {
-  //     event.target.src = favorite;
-  //     changeTextFavorite.textContent = 'В избранное';
-
-  //     const indexFavorites = favorites.indexOf(item._id);
-  //     favorites.splice(indexFavorites, 1);
-  //     localStorage.setItem(FAVORITES, JSON.stringify(favorites));
-
-  //     await apiUsers.deleteFavorite(item._id);
-  //   }
-  //   // --------- проверка ---/
-  //   // console.log('id ', id._id);
-  //   // apiUsers.addFavorite(id._id).then(data => console.log('favorites ', data));
-  //   // apiUsers.getCurrentUser().then(data => console.log('current ', data));
-  //   // ----------------------/
-  //   // }
-  // });
+  const btnBuy = document.getElementById('btnBuy');
 
   function addListener(closeModal) {
     const btnBuy = document.getElementById('btnBuy');
     const btnClose = document.querySelector('.product__card-close');
+    const refBtnFavourite = document.getElementById('btnFavourite');
+    refBtnFavourite.addEventListener('click', selectImg);
+
     btnBuy.addEventListener('click', () => {
       if (item) {
         buy(item, closeModal);

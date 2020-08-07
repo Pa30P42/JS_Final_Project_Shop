@@ -115,7 +115,6 @@ export default {
       );
       axios.defaults.headers['Authorization'] = response.data.accces_token;
       const currentUser = await axios.get(apiUsers.getUserInfoUrl);
-
       localStorage.setItem(
         'info',
         JSON.stringify({
