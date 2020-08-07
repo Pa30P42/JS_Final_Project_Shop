@@ -4,7 +4,7 @@ import apiProducts from '../api/products/apiProducts';
 import {modalModule} from '../components/modalModule/modalModule';
 import {closeHeaderMenu} from '../sideBar/headerSideBar';
 import caretblack from '../../images/svgHeader/caret-black.svg';
-import {createPagination} from '../pagination/pagination';
+import {createNewPagination} from '../pagination/pagination';
 import {createList} from '../sale/saleSection';
 import userData from '../userData';
 
@@ -25,8 +25,7 @@ async function getLink(e) {
 
       if ((e.target.nodeName === "LI" || e.target.nodeName === "P")  && e.target.closest('[data-sublink]')) {
         const subLink = e.target.closest('[data-sublink]').dataset.sublink
-        const pagination = await createPagination(subLink);
-        createList(pagination.array, pagination.paginationMarkup, userData.getName(subLink))
+       await createNewPagination(subLink, createList);
         closeHeaderMenu()
         return subLink
       } 
@@ -139,8 +138,7 @@ function catalogItemMarkup(categories) {
         if (link) {         
           action()
         }
-        const pagination = await createPagination(link);
-        createList(pagination.array, pagination.paginationMarkup, userData.getName(link));
+      await createNewPagination(link, createList);
       }
       const catalogList = document.querySelector('.catalog__list');
       catalogList.addEventListener('click', getSubCatalogLink);
