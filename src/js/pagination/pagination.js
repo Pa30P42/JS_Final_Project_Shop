@@ -272,15 +272,12 @@ export const createNewPagination = async (searchValue, innerMarkup, search) => {
 
     // =================================================================================
 
-    console.log(constructor.product);
     const cardsWrapper = document.querySelector('.card_list');
     console.log(cardsWrapper);
 
     cardsWrapper.addEventListener('click', async e => {
       productCard(await getCardItem(e));
     });
-
-    console.log('after', constructor.product);
   };
 
   const getCategory = async () => {
