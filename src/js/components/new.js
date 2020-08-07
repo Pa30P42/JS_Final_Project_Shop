@@ -7,6 +7,7 @@ import productCard from '../adv/productCard';
 import SliderMI from './sliderMI/sliderMI';
 import products from './products.json';
 import { addProductsToCart, showCart } from './cart/cart';
+import { selectImg } from '../sale/saleSection';
 
 const newHeadMarkup = () => {
   return `
@@ -34,31 +35,32 @@ const onSelectCard = (e, products) => {
     return;
   }
   const id = e.target.closest('[data-id]').dataset.id;
-  if (e.target.dataset.clickvector) {
-    if (e.target.src === vector) {
-      e.target.src = vector_love;
-      // if (localStorage.getItem('info')) {
-      //   const token = localStorage.getItem('info');
-      //   const tokenParse = JSON.parse(token).token;
-      //   if (tokenParse) {
-      //     apiUsers.addFavorite(id).then(data => {
-      //       apiUsers.getCurrentUser().then(response => {
-      //         userData.user.favorites = response.data.favorites;
-      //       });
-      //     });
-      //   } else {
-      //     localStorage.setItem('favorites', JSON.stringify(favoritesArr));
-      //   }
-      // }
-    } else if (e.target.src === vector_love) {
-      e.target.src = vector;
-      // apiUsers.deleteFavorite(id);
-      // favoritesArr.find(elem => {
-      //   elem !== id;
-      //   favoritesArr.push(element);
-      // });
-    }
-  } else {
+  // if (e.target.dataset.favorite) {
+  //   if (e.target.src === vector) {
+  //     e.target.src = vector_love;
+  //     // if (localStorage.getItem('info')) {
+  //     //   const token = localStorage.getItem('info');
+  //     //   const tokenParse = JSON.parse(token).token;
+  //     //   if (tokenParse) {
+  //     //     apiUsers.addFavorite(id).then(data => {
+  //     //       apiUsers.getCurrentUser().then(response => {
+  //     //         userData.user.favorites = response.data.favorites;
+  //     //       });
+  //     //     });
+  //     //   } else {
+  //     //     localStorage.setItem('favorites', JSON.stringify(favoritesArr));
+  //     //   }
+  //     // }
+  //   } else if (e.target.src === vector_love) {
+  //     e.target.src = vector;
+  //     // apiUsers.deleteFavorite(id);
+  //     // favoritesArr.find(elem => {
+  //     //   elem !== id;
+  //     //   favoritesArr.push(element);
+  //     // });
+  //   }
+  // } else {
+  if (!e.target.dataset.favorite) {
     const product = products.find(item => item._id === id);
     productCard(product);
   }
@@ -91,6 +93,7 @@ const addNewAndLastSeen = () => {
     newListCards.addEventListener('click', e => {
       onSelectCard(e, newProducts);
     });
+    newListCards.addEventListener('click', selectImg);
   }
 
   newRef.insertAdjacentHTML('beforeend', `<button id="buyNew">Buy</button>`);
