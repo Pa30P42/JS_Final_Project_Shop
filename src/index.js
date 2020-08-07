@@ -28,8 +28,9 @@ import axios from 'axios';
 import apiAuth from './js/api/auth/apiAuth';
 import apiUsers from './js/api/users/apiUsers';
 import productCard from './js/adv/productCard';
+import { createNewPagination } from './js/pagination/pagination';
+
 import userData from './js/userData';
-const btnShowModal = document.getElementById('btnShowModal');
 import {
   getPofileTest,
   favouritesFormMarkup
@@ -44,14 +45,6 @@ import {
 import {
   heightScroll
 } from './js/scroll_and_spiner/scroll';
-// let currentItem = null;
-// btnShowModal.addEventListener('click', async () => {
-//   const response = await axios.get('https://goit-store.herokuapp.com/products');
-//   const item = response.data[8];
-//   currentItem = item;
-//   productCard(item);
-// });
-
 
 export const initialAction = async () => {
   startSpinner();

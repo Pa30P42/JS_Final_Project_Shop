@@ -2,6 +2,8 @@ import { refs } from '../../components/refs.js';
 import apiProducts from '../../api/products/apiProducts.js';
 import sprite from '../../../images/svgHeader/sprite.svg';
 import { createList } from '../../searchMarkUp/searchSection';
+import { createNewPagination } from '../../pagination/pagination.js';
+
 export const searshForm = () => {
   return ` <div class="search">
   <div class="search__block">
@@ -24,14 +26,18 @@ export const searshForm = () => {
 export const listenersForSearch = clsmodal => {
   const hoverSearch = document.querySelector('.hover_search');
 
-  const searchList = event => {
+  const searchList = async event => {
     event.preventDefault();
+    // event.persist();
 
-    apiProducts
-      .searchProductsbyName(event.target[0].value)
-      .then(res => createList(res.data));
-    event.target[0].value = '';
+    const link = event.target[0].value;
+
     clsmodal();
+    await createNewPagination(link, createList, 'search');
+    // apiProducts
+    //   .searchProductsbyName(event.target[0].value)
+    //   .then(res => createList(res.data));
+    // event.target[0].value = '';
   };
   hoverSearch.addEventListener('submit', searchList);
 };

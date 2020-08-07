@@ -56,7 +56,6 @@
 .footer-container {
   display: flex;
   justify-content: center;
-  width: 80%;
   margin: 0 auto;
 }
 
@@ -79,7 +78,7 @@
   margin-top: 5px;
 }
 
-@media (min-width: 769px) {
+@media (min-width: 768px) {
   .footer-container {
     flex-direction: column;
     color: #c7c7c7;

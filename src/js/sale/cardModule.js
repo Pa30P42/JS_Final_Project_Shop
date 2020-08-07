@@ -1,17 +1,15 @@
 import vector_love from '../../images/sale/Vector_love.svg';
 import vector from '../../images/sale/Vector.svg';
+
 import {
   getElementsForFavorites
 } from './saleSection';
 import {
   getImg
 } from './saleSection'
-
-const userData = {
-  isMobile: false,
-  isTablet: false,
-  isDesktop: true,
-};
+import apiProducts from '../api/products/apiProducts';
+import getVector from './saleSection';
+import userData from '../userData'
 
 
 export const createSingleCardMarkup = (element, sale) => {
@@ -29,13 +27,14 @@ export const createSingleCardMarkup = (element, sale) => {
     return Math.floor(Math.random() * (max - min)) + min;
   };
   const cardItemMarkup = element => {
-    return `<li class="card_item" data-id=${element._id}>
+    // console.log(element);
+    return `<li class="card_item-sale" data-id=${element._id}>
   <div class="card-image">
   ${
-      userData.isMobile
-        ? ` <img class="card_img" src="${element.images[0]}" alt="${element.name}" width="86"/>`
-        : `<img class="card_img-tablet" src="${element.images[0]}" alt="${element.name}" width="149"/>`
-      }
+    userData.settings.isMobile
+      ? ` <img class="card_img" src="${element.images[0]}" alt="${element.name}" width="86"/>`
+      : `<img class="card_img-tablet" src="${element.images[0]}" alt="${element.name}" width="149" />`
+  }
 
   </div>
   <div class="card-vector">
@@ -65,29 +64,3 @@ ${
   };
   return cardItemMarkup(element);
 };
-
-// {/* <div class="card-vector">
-//   ${
-//     love.isActive
-//       ? `<img class="card_vector-isActiv" src="${vector_love}" data-clickVector="isActiv"/>`
-//       : `<img class="card_vector-notActiv" src="${vector}" data-clickVector="notActiv"/>`
-//   }
-//   </div> */}
-// const createListMarkup = array => {
-// return `<ul class="card_list">${array.reduce((acc, element) => {
-//     acc += cardCartItem(element);
-//     return acc;
-//   }, '')}</ul>`;
-// };
-
-// const getItem = event => {
-//   if (event.target !== current.target) {
-//     const id = event.target.closest('[data-id]').dataset.id;
-//     // функция Ани(id)
-//   } else return id;
-// };
-// const createList = array => {
-//   const container = document.querySelector('.container');
-//   container.innerHTML = createListMarkup(array);
-//   container.addEventListener('click', getItem);
-// };
