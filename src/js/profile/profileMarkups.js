@@ -1,38 +1,27 @@
-import apiProducts from '../api/products/apiProducts';
-import globeUserData from '../userData';
-import axios from 'axios';
+import apiProducts from "../api/products/apiProducts";
+import globeUserData from "../userData";
+import axios from "axios";
 import {
   addNewProductCard,
   addAdvListeners,
   getNewADV,
   previewImg,
-  chengeImg
-} from '../newADV/newAdv'
-import apiUsers from '../api/users/apiUsers';
-import userData from '.././userData';
+  chengeImg,
+} from "../newADV/newAdv";
+import apiUsers from "../api/users/apiUsers";
+import userData from ".././userData";
 
-import Inputmask from 'inputmask';
-import image6 from '../../images/profile/image6.png';
-import {
-  refs
-} from "../components/refs";
-import {
-  createSingleCardMarkup
-} from "../sale/cardModule";
+import Inputmask from "inputmask";
+import image6 from "../../images/profile/image6.png";
+import { refs } from "../components/refs";
+import { createSingleCardMarkup } from "../sale/cardModule";
 import vector from "../../images/sale/Vector.svg";
-import {
-  initialAction
-} from "../../index";
+import { initialAction } from "../../index";
 import SliderMI from "../components/sliderMI/sliderMI";
 
-import
-productCard
-from '../adv/productCard';
+import productCard from "../adv/productCard";
 
-import {
-  addToCartProducts,
-  showCart
-} from '../components/cart/cart';
+import { addToCartProducts, showCart } from "../components/cart/cart";
 // import {
 //   addToCart
 // } from '..components/cart/cart';
@@ -49,8 +38,8 @@ import {
 
 import {
   categoriesListMarkup,
-  categoriesListMarkupAddListeners
-} from '../category/category-markup';
+  categoriesListMarkupAddListeners,
+} from "../category/category-markup";
 
 const forms = {
   infoForm: {
@@ -175,7 +164,7 @@ export default {
 
     // }
   },
-  //event.target.nodeName !== "BUTTON" && 
+  //event.target.nodeName !== "BUTTON" &&
   getMarkup(event) {
     if (event.target.dataset.action !== "tabsManager") {
       // console.log('Not a button');
@@ -207,21 +196,21 @@ export default {
         break;
       case "favourites":
         console.log("userdData :>> ", userData.user);
-        userData.user.favorites ?
-          favouritesFormMarkup(userData.user.favorites) :
-          profileFavErrorMarkup();
+        userData.user.favorites
+          ? favouritesFormMarkup(userData.user.favorites)
+          : profileFavErrorMarkup();
 
         break;
       case "advertisement":
         advertisementFormMarkup();
-        addInfoListener('advertisementForm')
+        addInfoListener("advertisementForm");
         const refs = {
-          newAdvInput: document.querySelector('.add__product'),
+          newAdvInput: document.querySelector(".add__product"),
         };
-        refs.newAdvInput.addEventListener('input', getNewADV)
-        refs.newAdvInput.addEventListener('input', previewImg);
+        refs.newAdvInput.addEventListener("input", getNewADV);
+        refs.newAdvInput.addEventListener("input", previewImg);
 
-        addAdvListeners(".addnewproduct__wrapper")
+        addAdvListeners(".addnewproduct__wrapper");
         break;
 
       default:
@@ -460,9 +449,9 @@ export function favouritesFormMarkup(array) {
     
                 <ul class="favourites-list">
                 ${array.reduce((acc, element) => {
-      acc += createSingleCardMarkup(element);
-      return acc;
-    }, "")} </ul>
+                  acc += createSingleCardMarkup(element);
+                  return acc;
+                }, "")} </ul>
                 <button type="submit" id="submit" class="favorite-button save-button">
                   Купить всё
                 </button>
@@ -486,28 +475,29 @@ export function favouritesFormMarkup(array) {
     "afterend",
     favouritesMarkup(userData.user.favorites)
   );
-  new SliderMI('.favourites-wrapper__position', {
+  new SliderMI(".favourites-wrapper__position", {
     step: 1,
     isNavs: false,
     isPagination: true,
   });
 
-  const profileFavoritesLi = document.querySelectorAll('.card_item-sale');
+  const profileFavoritesLi = document.querySelectorAll(".card_item-sale");
 
   for (let i = 0; i < profileFavoritesLi.length; i += 1) {
-    profileFavoritesLi[i].style.marginRight = '10px';
-    profileFavoritesLi[i].style.marginBottom = '0px';
-    profileFavoritesLi[i].style.flexShrink = '0';
+    profileFavoritesLi[i].style.marginRight = "10px";
+    profileFavoritesLi[i].style.marginBottom = "0px";
+    profileFavoritesLi[i].style.flexShrink = "0";
 
-    profileFavoritesLi[i].addEventListener('click', renderIntoBigCard);
+    profileFavoritesLi[0].addEventListener("click", renderIntoBigCard);
+    profileFavoritesLi[i].addEventListener("click", renderIntoBigCard);
 
     const renderIntoBigCard = (e, items) => {
       items = userData.user.favorites;
-      console.log('items :>> ', items);
-      console.log('e.target :>> ', e.target);
+      console.log("items :>> ", items);
+      console.log("e.target :>> ", e.target);
       if (e.target.nodeName === "UL") return;
-      const id = e.target.closest('[data-id]').dataset.id;
-      const product = items.find(item => item._id === id);
+      const id = e.target.closest("[data-id]").dataset.id;
+      const product = items.find((item) => item._id === id);
       productCard(product);
     };
   }
@@ -519,11 +509,8 @@ export function favouritesFormMarkup(array) {
   // }
   // //=======tooltip=======
 
-
   setActive();
 }
-
-
 
 export function advertisementFormMarkup() {
   const advertisementMarkup = () => {
@@ -595,78 +582,58 @@ export function advertisementFormMarkup() {
   setActive();
 
   //! ============================= Kostya ==================
-  const btnAddProduct = document.querySelector('.js-active-tab-advertisement')
-  const addImage = document.querySelector('.js-active-tab-advertisement')
-  btnAddProduct.addEventListener('click', addProduct)
+  const btnAddProduct = document.querySelector(".js-active-tab-advertisement");
+  const addImage = document.querySelector(".js-active-tab-advertisement");
+  btnAddProduct.addEventListener("click", addProduct);
 
-  addImage.productImageFirst.addEventListener('input', createbaseFirst);
-  addImage.productImageSecond.addEventListener('input', createbaseSecond);
-  addImage.productImageThird.addEventListener('input', createbaseThird);
-  addImage.productImageFourth.addEventListener('input', createbaseFourth);
-  addImage.productImageFifth.addEventListener('input', createbaseFifth);
-  addImage.productImageSixth.addEventListener('input', createbaseSixth);
-
-
-
+  addImage.productImageFirst.addEventListener("input", createbaseFirst);
+  addImage.productImageSecond.addEventListener("input", createbaseSecond);
+  addImage.productImageThird.addEventListener("input", createbaseThird);
+  addImage.productImageFourth.addEventListener("input", createbaseFourth);
+  addImage.productImageFifth.addEventListener("input", createbaseFifth);
+  addImage.productImageSixth.addEventListener("input", createbaseSixth);
 
   function createbaseFirst() {
-
     const element = addImage.productImageFirst;
-    toDataUrl(element).then(data => {
-      product.images = [...product.images, ...data]
-
+    toDataUrl(element).then((data) => {
+      product.images = [...product.images, ...data];
     });
   }
 
   function createbaseSecond() {
-
     const element = addImage.productImageSecond;
-    toDataUrl(element).then(data => {
-      product.images = [...product.images, ...data]
-
+    toDataUrl(element).then((data) => {
+      product.images = [...product.images, ...data];
     });
   }
 
   function createbaseThird() {
-
     const element = addImage.productImageThird;
-    toDataUrl(element).then(data => {
-      product.images = [...product.images, ...data]
-
+    toDataUrl(element).then((data) => {
+      product.images = [...product.images, ...data];
     });
   }
-
 
   function createbaseFourth() {
-
     const element = addImage.productImageFourth;
-    toDataUrl(element).then(data => {
-      product.images = [...product.images, ...data]
-
+    toDataUrl(element).then((data) => {
+      product.images = [...product.images, ...data];
     });
   }
-
 
   function createbaseFifth() {
-
     const element = addImage.productImageFifth;
-    toDataUrl(element).then(data => {
-      product.images = [...product.images, ...data]
-
+    toDataUrl(element).then((data) => {
+      product.images = [...product.images, ...data];
     });
   }
-
 
   function createbaseSixth() {
-
     const element = addImage.productImageSixth;
-    toDataUrl(element).then(data => {
-      product.images = [...product.images, ...data]
-
+    toDataUrl(element).then((data) => {
+      product.images = [...product.images, ...data];
     });
   }
-
-
 
   //! ===============================================
 }
@@ -703,10 +670,10 @@ function addInfoListener(key) {
   //   return
   // }
 
-  const form = document.querySelector('#profile');
+  const form = document.querySelector("#profile");
   const inputForm = form.querySelector(`[data-form="${key}"]`);
 
-  inputForm.addEventListener('input', getInfo);
+  inputForm.addEventListener("input", getInfo);
   // console.log("inputForm", inputForm);
 }
 //apiUsers.getInfo();
@@ -727,52 +694,47 @@ function addInfoListener(key) {
 const product = {
   images: [],
   totalQuantity: 10,
-  name: '',
-  category: '',
+  name: "",
+  category: "",
   price: 0,
   description: "",
 };
 
-
 function toDataUrl(element) {
-  return new Promise(resolve => {
+  return new Promise((resolve) => {
     const reader = new FileReader();
     reader.onloadend = () => resolve(reader.result);
     reader.readAsDataURL(element.files[0]);
-  })
+  });
 }
 
-
 function addProduct(e) {
-  if ((e.target.nodeName === "BUTTON") && e.target.closest('[data-create]')) {
-    const createBtn = e.target.closest('[data-create]').dataset.create
+  if (e.target.nodeName === "BUTTON" && e.target.closest("[data-create]")) {
+    const createBtn = e.target.closest("[data-create]").dataset.create;
     // console.log("product", product);
-    apiProducts.CreateNewProduct(product)
-
+    apiProducts.CreateNewProduct(product);
   }
-
 }
 
 function getInfo(event) {
   // console.log("product", product);
 
   if (event.target.name === "productPrice") {
-    product.price = event.target.value
+    product.price = event.target.value;
   }
   if (event.target.name === "productName") {
-    product.name = event.target.value
+    product.name = event.target.value;
   }
   if (event.target.name === "productDescription") {
-    product.description = event.target.value
+    product.description = event.target.value;
   }
   if (event.target.name === "productCatygory") {
-    product.category = event.target.value
+    product.category = event.target.value;
   }
 
   //! =======================================
   let key = event.target.closest("[data-form]").dataset.form;
   forms[key][event.target.name] = event.target.value;
-
 
   forms[key][event.target] = event.target;
   // console.log('forms[key]', forms[key]);
@@ -802,53 +764,53 @@ function getInfo(event) {
 
   if (nameOfInput === "name") {
     inputLength > 1 &&
-      inputLength < 35 &&
-      inputValue.match(onlyLetAndSymbolRegEx) ?
-      ((field.nextElementSibling.innerHTML = `<span class="helper-text-valid"></span>`),
-        (field.style.outlineColor = "#109b17")) :
-      ((field.nextElementSibling.innerHTML = `<span class="helper-text-invalid">Введите имя, отчество </span>`),
+    inputLength < 35 &&
+    inputValue.match(onlyLetAndSymbolRegEx)
+      ? ((field.nextElementSibling.innerHTML = `<span class="helper-text-valid"></span>`),
+        (field.style.outlineColor = "#109b17"))
+      : ((field.nextElementSibling.innerHTML = `<span class="helper-text-invalid">Введите имя, отчество </span>`),
         (field.style.outlineColor = "#FF8A9D"));
   } else if (nameOfInput === "surname") {
     inputLength < 35 &&
-      inputLength > 1 &&
-      inputValue.match(onlyLetAndSymbolRegEx) ?
-      ((field.nextElementSibling.innerHTML = `<span class="helper-text-valid"></span>`),
-        (field.style.outlineColor = "#109b17")) :
-      ((field.nextElementSibling.innerHTML = `<span class="helper-text-invalid">Введите фамилию</span>`),
+    inputLength > 1 &&
+    inputValue.match(onlyLetAndSymbolRegEx)
+      ? ((field.nextElementSibling.innerHTML = `<span class="helper-text-valid"></span>`),
+        (field.style.outlineColor = "#109b17"))
+      : ((field.nextElementSibling.innerHTML = `<span class="helper-text-invalid">Введите фамилию</span>`),
         (field.style.outlineColor = "#FF8A9D"));
   } else if (nameOfInput === "email") {
     const regExEmail = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{3,}))$/;
-    nameOfInput === "email" && inputValue.match(regExEmail) ?
-      ((field.nextElementSibling.innerHTML = `<span class="helper-text-valid"></span>`),
-        (field.style.outlineColor = "#109b17")) :
-      ((field.nextElementSibling.innerHTML = `<span class="helper-text-invalid">Неверный адрес почты</span>`),
+    nameOfInput === "email" && inputValue.match(regExEmail)
+      ? ((field.nextElementSibling.innerHTML = `<span class="helper-text-valid"></span>`),
+        (field.style.outlineColor = "#109b17"))
+      : ((field.nextElementSibling.innerHTML = `<span class="helper-text-invalid">Неверный адрес почты</span>`),
         (field.style.outlineColor = "#FF8A9D"));
   } else if (nameOfInput === "tel") {
     let selector = document.querySelector('input[type="tel"]');
 
     let im = new Inputmask("+38 (999) 999-99-99");
     im.mask(selector);
-    inputLength > 18 ?
-      ((field.nextElementSibling.innerHTML = `<span class="helper-text-valid"></span>`),
-        (field.style.outlineColor = "#109b17")) :
-      ((field.nextElementSibling.innerHTML = `<span class="helper-text-invalid">Введите номер телефона</span>`),
+    inputLength > 18
+      ? ((field.nextElementSibling.innerHTML = `<span class="helper-text-valid"></span>`),
+        (field.style.outlineColor = "#109b17"))
+      : ((field.nextElementSibling.innerHTML = `<span class="helper-text-invalid">Введите номер телефона</span>`),
         (field.style.outlineColor = "#FF8A9D"));
 
     const inputValueProfile = document.querySelectorAll(".helper-text-valid");
-    inputValueProfile.length === 4 ?
-      document
-      .querySelector(".save-button")
-      .classList.add("save-button__valid") :
-      document
-      .querySelector(".save-button")
-      .classList.remove("save-button__valid");
+    inputValueProfile.length === 4
+      ? document
+          .querySelector(".save-button")
+          .classList.add("save-button__valid")
+      : document
+          .querySelector(".save-button")
+          .classList.remove("save-button__valid");
   } else if (nameOfInput === "password") {
     nameOfInput === "password" &&
-      inputLength > 7 &&
-      inputValue.match(passwordRedEx) ?
-      ((field.nextElementSibling.innerHTML = `<span class="helper-text-valid"></span>`),
-        (field.style.outlineColor = "#109b17")) :
-      ((field.nextElementSibling.innerHTML = `<span class="helper-text-invalid"><small>Пароль должен содержать не менее 8 символов</small></span>`),
+    inputLength > 7 &&
+    inputValue.match(passwordRedEx)
+      ? ((field.nextElementSibling.innerHTML = `<span class="helper-text-valid"></span>`),
+        (field.style.outlineColor = "#109b17"))
+      : ((field.nextElementSibling.innerHTML = `<span class="helper-text-invalid"><small>Пароль должен содержать не менее 8 символов</small></span>`),
         (field.style.outlineColor = "#FF8A9D"));
   } else if (nameOfInput === "confirmPassword") {
     let password = document.querySelector('[name="password"]').value;
@@ -856,19 +818,19 @@ function getInfo(event) {
       .value;
     const errorDiv = document.querySelector("#helper-text-div");
 
-    password === confirmPassword ?
-      ((errorDiv.innerHTML = `<span class="helper-text-valid"></span>`),
-        (field.style.outlineColor = "#109b17")) :
-      ((errorDiv.innerHTML = `<span class="helper-text-invalid"><small>Подтвердите пароль</small></span>`),
+    password === confirmPassword
+      ? ((errorDiv.innerHTML = `<span class="helper-text-valid"></span>`),
+        (field.style.outlineColor = "#109b17"))
+      : ((errorDiv.innerHTML = `<span class="helper-text-invalid"><small>Подтвердите пароль</small></span>`),
         (field.style.outlineColor = "#FF8A9D"));
     const inputValueProfile = document.querySelectorAll(".helper-text-valid");
-    inputValueProfile.length === 2 ?
-      document
-      .querySelector(".save-button")
-      .classList.add("save-button__valid") :
-      document
-      .querySelector(".save-button")
-      .classList.remove("save-button__valid");
+    inputValueProfile.length === 2
+      ? document
+          .querySelector(".save-button")
+          .classList.add("save-button__valid")
+      : document
+          .querySelector(".save-button")
+          .classList.remove("save-button__valid");
   } else if (
     nameOfInput === "country" ||
     nameOfInput === "city" ||
@@ -876,36 +838,36 @@ function getInfo(event) {
     nameOfInput === "street"
   ) {
     inputLength > 2 &&
-      inputLength < 35 &&
-      inputValue.match(onlyLetAndSymbolRegEx) ?
-      ((field.nextElementSibling.innerHTML = `<span class="helper-text-valid"></span>`),
-        (field.style.outlineColor = "#109b17")) :
-      ((field.nextElementSibling.innerHTML = `<span class="helper-text-invalid">Введите данные</span>`),
+    inputLength < 35 &&
+    inputValue.match(onlyLetAndSymbolRegEx)
+      ? ((field.nextElementSibling.innerHTML = `<span class="helper-text-valid"></span>`),
+        (field.style.outlineColor = "#109b17"))
+      : ((field.nextElementSibling.innerHTML = `<span class="helper-text-invalid">Введите данные</span>`),
         (field.style.outlineColor = "#FF8A9D"));
   } else if (
     nameOfInput === "building" ||
     nameOfInput === "block" ||
     nameOfInput === "flat"
   ) {
-    inputLength > 0 && inputLength < 9 && inputValue.match(numbersRegEx) ?
-      ((field.nextElementSibling.innerHTML = `<span class="helper-text-valid"></span>`),
-        (field.style.outlineColor = "#109b17")) :
-      ((field.nextElementSibling.innerHTML = `<span class="helper-text-invalid">Введите данные</span>`),
+    inputLength > 0 && inputLength < 9 && inputValue.match(numbersRegEx)
+      ? ((field.nextElementSibling.innerHTML = `<span class="helper-text-valid"></span>`),
+        (field.style.outlineColor = "#109b17"))
+      : ((field.nextElementSibling.innerHTML = `<span class="helper-text-invalid">Введите данные</span>`),
         (field.style.outlineColor = "#FF8A9D"));
     const inputValueProfile = document.querySelectorAll(".helper-text-valid");
-    inputValueProfile.length >= 5 ?
-      document
-      .querySelector(".save-button")
-      .classList.add("save-button__valid") :
-      document
-      .querySelector(".save-button")
-      .classList.remove("save-button__valid");
+    inputValueProfile.length >= 5
+      ? document
+          .querySelector(".save-button")
+          .classList.add("save-button__valid")
+      : document
+          .querySelector(".save-button")
+          .classList.remove("save-button__valid");
     //======= address==========
   } else if (nameOfInput === "postIndex") {
-    inputLength === 5 && inputValue.match(zipRegEx) ?
-      ((field.nextElementSibling.innerHTML = `<span class="helper-text-valid"></span>`),
-        (field.style.outlineColor = "#109b17")) :
-      ((field.nextElementSibling.innerHTML = `<span class="helper-text-invalid">Введите 5 цифр индекса</span>`),
+    inputLength === 5 && inputValue.match(zipRegEx)
+      ? ((field.nextElementSibling.innerHTML = `<span class="helper-text-valid"></span>`),
+        (field.style.outlineColor = "#109b17"))
+      : ((field.nextElementSibling.innerHTML = `<span class="helper-text-invalid">Введите 5 цифр индекса</span>`),
         (field.style.outlineColor = "#FF8A9D"));
     // } else if (inputForm.dataset.form === 'favourites') {
     //console.log('key :>> ', event.target.dataset.form);
