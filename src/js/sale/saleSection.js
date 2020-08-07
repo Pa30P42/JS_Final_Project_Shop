@@ -75,11 +75,7 @@ import vector from '../../images/sale/Vector.svg';
 import { createSingleCardMarkup } from '../sale/cardModule';
 import apiUsers from '../api/users/apiUsers';
 import userData from '../userData';
-
 import { createPaginationMarkup } from '../pagination/pagination';
-// import { refsPagination } from '../pagination/pagination';
-// import { getPaginationPage } from '../pagination/pagination';
-// import { getPaginationPage } from '../pagination/pagination';
 import productCard from '../adv/productCard';
 
 // /* <section class="card container"></section> *
