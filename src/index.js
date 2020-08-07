@@ -35,7 +35,7 @@ export const initialAction = async () => {
   setting.getDevice(document.documentElement.clientWidth);
   containerHandler();
 
-  // new Sim();
+  new Sim();
   // trigger.triggerFn();
   // console.log('userData :>> ', userData);
   // await createNewPagination('хол', createList, 'wash');

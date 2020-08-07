@@ -31,9 +31,8 @@ const createListMarkup = (array, paginationMarkup, link) => {
 };
 
 export const createList = (array, paginationMarkup, link) => {
-  const container = document.querySelector('.container');
-  // const container = document.querySelector('.sections');
-  //
+  // const container = document.querySelector('.container');
+  const container = document.querySelector('.sections');
 
   container.innerHTML = createListMarkup(array, paginationMarkup, link);
   container.addEventListener('click', getItem);
