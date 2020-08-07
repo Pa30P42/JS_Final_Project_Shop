@@ -4,6 +4,7 @@ import homeCareTech from '../images/category/home-care-tech.jpg';
 import kitchenTech from '../images/category/kitchen-tech.jpg';
 import { userDataFn } from './setting';
 
+
 export default {
   settings: {
     isMobile: false,
@@ -84,6 +85,11 @@ export default {
     },
   },
   getSettings(width = document.documentElement.clientWidth) {
+    if (localStorage.getItem("info")) {
+      this.user = {...this.user, ...JSON.parse(localStorage.getItem("info")).user.user}
+      console.log("this", this);
+
+    }
     // userData();
     if (width < 768) {
       this.settings.isMobile = true;
