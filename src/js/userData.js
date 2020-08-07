@@ -4,7 +4,6 @@ import homeCareTech from '../images/category/home-care-tech.jpg';
 import kitchenTech from '../images/category/kitchen-tech.jpg';
 import { userDataFn } from './setting';
 
-
 export default {
   settings: {
     isMobile: false,
@@ -49,27 +48,14 @@ export default {
       value: 'large_home_appliances',
       image: bigTech,
       categories: [],
-      filter: [
-        'refrigerators',
-        'washing_machines',
-        'dishwashers',
-        'сookers',
-        'freezers',
-        'drying_machines',
-      ],
+      filter: ['refrigerators', 'washing_machines', 'dishwashers', 'сookers', 'freezers', 'drying_machines'],
     },
     built_in_appliances: {
       name: 'Встраиваемая техника',
       value: 'built_in_appliances',
       image: buildInTech,
       categories: [],
-      filter: [
-        'built_in_ovens',
-        'built_in_hobs',
-        'cooker_hoods',
-        'food_waste_disposers',
-        'Accessories_for_vbt',
-      ],
+      filter: ['built_in_ovens', 'built_in_hobs', 'cooker_hoods', 'food_waste_disposers', 'Accessories_for_vbt'],
     },
     home_and_clothing_care: {
       name: 'Уход за домом и одеждой',
@@ -102,10 +88,9 @@ export default {
     },
   },
   getSettings(width = document.documentElement.clientWidth) {
-    if (localStorage.getItem("info")) {
-      this.user = {...this.user, ...JSON.parse(localStorage.getItem("info")).user.user}
-      console.log("this", this);
-
+    if (localStorage.getItem('info')) {
+      this.user = { ...this.user, ...JSON.parse(localStorage.getItem('info')).user.user };
+      console.log('this', this);
     }
     // userData();
     if (width < 768) {
@@ -123,15 +108,11 @@ export default {
   },
 
   getName(link) {
-    return this.categoriesItems.find(category =>
-      category.value.toLowerCase().includes(link.toLowerCase()),
-    ).name;
+    return this.categoriesItems.find(category => category.value.toLowerCase().includes(link.toLowerCase())).name;
   },
 
   getValue(link) {
-    return this.categoriesItems.find(category =>
-      category.name.toLowerCase().includes(link.toLowerCase()),
-    ).value;
+    return this.categoriesItems.find(category => category.name.toLowerCase().includes(link.toLowerCase())).value;
   },
 };
 

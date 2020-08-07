@@ -1,5 +1,6 @@
 import favourite from '../../images/adv/icons/favorite.svg';
 import close from '../../images/adv/icons/close-icon.svg';
+// import { getImg } from '../../js/sale/saleSection';
 
 const productItem = item => {
   return `

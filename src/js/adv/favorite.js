@@ -5,22 +5,22 @@ import userData from '../../js/userData';
 import favorite from '../../images/adv/icons/favorite.svg';
 import favoriteFill from '../../images/adv/icons/favorite_fill.svg';
 
+const refBtnFavourite = document.getElementById('btnFavourite');
+const refChangeTextFavorite = document.querySelector('.adv__in-favorite');
+
 function updateFavorites(id) {
-  const refBtnFavourite = document.getElementById('btnFavourite');
-  const refChangeTextFavorite = document.querySelector('.adv__in-favorite');
-
-  const favoriteData = localStorage.getItem('favorites'); //array
+  const favoriteData = localStorage.getItem('user-data');
   let favorites = JSON.parse(favoriteData);
-
+  console.log(favorites.response_data_user); //!массив с id
   // if (!favorites) {
   // favorites = [];
   // refBtnFavourite.src = favorite;
   // refChangeTextFavorite.textContent = 'В избранное';
   // }
   // const elem = favorites.find(elem => elem === id);
-  // console.log(elem);
+  console.log(userData.user.favorites); //!массив с объектами
 
-  if (favorites.find(elem => elem === id)) {
+  if (favorites.find(elem => elem === id._id)) {
     refBtnFavourite.src = favoriteFill;
     refChangeTextFavorite.textContent = 'Из избранного';
   }
