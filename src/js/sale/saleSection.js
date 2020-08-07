@@ -27,7 +27,6 @@ export function getElementsForFavorites(element, reset) {
 }
 
 function selectImg(e) {
-  e.persist();
   console.log(e.target);
   const favorites = {
     user: [],

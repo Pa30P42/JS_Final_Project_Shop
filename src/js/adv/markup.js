@@ -64,11 +64,13 @@ const productItem = item => {
           </div>
           <div class="product__to-add-wrapper">
             <button id="btnBuy" class="buy-btn">купить</button>
-            <img class="adv__favorite" id="btnFavourite" data-id="${item._id}" 
-            data-favorite="${getElementsForFavorites(item)}" 
-    src="${getImg(item._id)}" alt="like" width="20" />
-            <span class="adv__in-favorite" data-action="adv__action_favorite">В избранное</span>
-          </div>
+            <div class="wrapper_test">
+              <img class="adv__favorite" id="btnFavourite" data-id="${item._id}" 
+              data-favorite="${getElementsForFavorites(item)}" 
+      src="${getImg(item._id)}" alt="like" width="20" />
+              <span class="adv__in-favorite" data-action="adv__action_favorite">В избранное</span>
+            </div>
+            </div>
 
           <div class="product__describtion-desktop">
             <div class="product__describtion-wrapper">
