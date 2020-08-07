@@ -299,7 +299,7 @@ const listeners = closeModal => {
   btnBackToProducts.addEventListener('click', closeModal);
   btnConfirm.addEventListener('click', () => createOrder(closeModal));
 };
-
+document.body.style.overflow = 'auto';
 const showCart = () => {
   modalModule(createCartMarkup, listeners);
   const cartList = document.querySelector('.cart__list');

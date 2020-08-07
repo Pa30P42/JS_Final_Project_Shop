@@ -6,7 +6,6 @@ import { catalogListMarkup } from '../catalog/catalog';
 import { header } from '../header/header';
 import { categoriesListMarkup, categoriesListMarkupAddListeners } from '../category/category-markup';
 import { searchSideBar } from '../search/searchsidebar/searchSideBar.js';
-import { setCartCounter, setupEvents } from '../components/cart/cart';
 import { addNewAndLastSeen } from '../components/new';
 
 //В каждом диве запустить функцию определенного модуля который булет отрисовывать блок.

@@ -88,4 +88,10 @@ const addNewAndLastSeen = () => {
   }
 };
 
+<<<<<<< HEAD
 export { addNewAndLastSeen, onSelectCard };
+=======
+export {
+  addNewAndLastSeen
+};
+>>>>>>> ea61955cc46e88c3acd296dc249917c0aa573d52

@@ -1,9 +1,12 @@
 import catalogList from '../userData';
 import subItem from '../api/products/services';
 import apiProducts from '../api/products/apiProducts';
-import {modalModule} from '../components/modalModule/modalModule'
-import {closeHeaderMenu} from '../sideBar/headerSideBar'
+import {modalModule} from '../components/modalModule/modalModule';
+import {closeHeaderMenu} from '../sideBar/headerSideBar';
 import caretblack from '../../images/svgHeader/caret-black.svg';
+import {createNewPagination} from '../pagination/pagination';
+import {createList} from '../sale/saleSection';
+import userData from '../userData';
 
 const isMobile = true;
 const isTablet = false;
@@ -16,19 +19,20 @@ const refs = {
 
 const categories = Object.values(catalogList.appliances);
 
-function getLink(e) {
+async function getLink(e) {
 
   
 
       if ((e.target.nodeName === "LI" || e.target.nodeName === "P")  && e.target.closest('[data-sublink]')) {
         const subLink = e.target.closest('[data-sublink]').dataset.sublink
+       await createNewPagination(subLink, createList);
         closeHeaderMenu()
         return subLink
       } 
 
       if (e.target.nodeName === "H2" && e.target.dataset.title) {
 
-        if (isMobile || isTablet) {
+        if (userData.settings.isMobile || userData.settings.isTablet) {
         const activeSubCatalog = refs.catalogList.querySelector('.catalog__active') 
 
         const catalog = e.target.closest('[data-link]')       
@@ -52,7 +56,7 @@ function getLink(e) {
     function incomingData (e) {
       if ((e.target.nodeName === "LI" || e.target.nodeName === "P")  && e.target.closest('[data-categoryName]')) {
         const categoryNameLink = e.target.dataset.categoryname
-        // console.log("categoryNameLink", categoryNameLink);
+        console.log("categoryNameLink", categoryNameLink);
 
 
         //! ==============================================================================
@@ -64,7 +68,7 @@ function getLink(e) {
     }
 
 function getVisibilitySubCatalog() {
-  if (isMobile || isTablet) {
+  if (userData.settings.isMobile || userData.settings.isTablet) {
     return 'catalog__hidden';
   } else return 'catalog__active';
 }
@@ -127,12 +131,14 @@ function catalogItemMarkup(categories) {
 
     export function listeners  (action) {
 
-      const getSubCatalogLink = (e) => {
+      const getSubCatalogLink = async e => {
         const link = getLink(e)
-        // console.log(link);
+        console.log(link);
+
         if (link) {         
           action()
         }
+      await createNewPagination(link, createList);
       }
       const catalogList = document.querySelector('.catalog__list');
       catalogList.addEventListener('click', getSubCatalogLink);

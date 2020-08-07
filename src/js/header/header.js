@@ -7,10 +7,7 @@ import { headerMenu, closeHeaderMenu } from '../sideBar/headerSideBar.js';
 // import { contactMarkUp } from '../contacts/contacts.js';
 import { catalogListMarkup, listeners, catalogListMarkupAddListeners } from '../catalog/catalog';
 
-import {
-  categoriesListMarkup,
-  categoriesListMarkupAddListeners,
-} from '../category/category-markup';
+import { categoriesListMarkup, categoriesListMarkupAddListeners } from '../category/category-markup';
 import { modalModule } from '../components/modalModule/modalModule.js';
 import information from '../information/information';
 
@@ -22,10 +19,17 @@ import { containerHandler } from '../container/container';
 
 import { authFn } from '../auth/authMenu';
 import apiProducts from '../api/products/apiProducts';
+
+import { createNewPagination } from '../pagination/pagination.js';
+
+import profile from '../profile/profileMarkups';
+import userData from '.././userData';
+
+import { profileFavErrorMarkup, favouritesFormMarkup } from '../profile/profileMarkups';
+
 import { createList } from '../sale/saleSection';
 import { initialAction } from '../../index';
 import { createPagination } from '../pagination/pagination.js';
-import userData from '../userData.js';
 
 const headerButton = async event => {
   let dataname;
@@ -48,11 +52,9 @@ const headerButton = async event => {
   } else if (dataname === 'name_buttonClose') {
     closeHeaderMenu();
   } else if (dataname === 'name_sale') {
-    const pagination = await createPagination('refrigerators');
-    createList(pagination.array, pagination.paginationMarkup, userData.getName('refrigerators'));
-    // pagination.getPaginationPage();
-    // apiProducts.searchProductsbyCategory('new').then(data => createList(data.data));
-    // console.log('sale');
+    await createNewPagination('sale', createList);
+    // const pagination = await createPagination('sale');
+    // createList(pagination.array, pagination.paginationMarkup, userData.getName('sale'));
     closeHeaderMenu();
   } else if (dataname === 'name_info') {
     console.log('info');
@@ -65,6 +67,14 @@ const headerButton = async event => {
     authFn();
     closeHeaderMenu();
   } else if (dataname === 'name_like') {
+    //======open favourites=====
+    profile.maintabsMarkup();
+    userData.user.favorites ? favouritesFormMarkup(userData.user.favorites) : profileFavErrorMarkup();
+
+    const controlItem = document.querySelector('button[title="favourites"]');
+    controlItem.classList.add('active');
+    //======open favourites=====
+
     console.log('like');
     closeHeaderMenu();
   } else if (dataname === 'name_cart') {
