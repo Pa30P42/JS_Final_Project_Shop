@@ -1,19 +1,11 @@
-import {
-  contactMarkUp
-} from '../contacts/contacts.js';
-import {
-  showCart
-} from '../components/cart/cart';
+import { contactMarkUp } from '../contacts/contacts.js';
+import { showCart } from '../components/cart/cart';
 import trigger from '../components/trigger';
 // import trigger from './js/components/trigger';
 import { refs } from '../components/refs.js';
 import { headerMenu, closeHeaderMenu } from '../sideBar/headerSideBar.js';
 // import { contactMarkUp } from '../contacts/contacts.js';
-import {
-  catalogListMarkup,
-  listeners,
-  catalogListMarkupAddListeners
-} from '../catalog/catalog';
+import { catalogListMarkup, listeners, catalogListMarkupAddListeners } from '../catalog/catalog';
 
 import { categoriesListMarkup, categoriesListMarkupAddListeners } from '../category/category-markup';
 import { modalModule } from '../components/modalModule/modalModule.js';
@@ -25,9 +17,7 @@ import { searshForm, listenersForSearch } from '../search/searchdesktop/searchDe
 
 import { containerHandler } from '../container/container';
 
-import {
-  authFn
-} from '../auth/authMenu';
+import { authFn } from '../auth/authMenu';
 import apiProducts from '../api/products/apiProducts';
 
 import { createNewPagination } from '../pagination/pagination.js';
@@ -62,7 +52,7 @@ const headerButton = async event => {
   } else if (dataname === 'name_buttonClose') {
     closeHeaderMenu();
   } else if (dataname === 'name_sale') {
-    await createNewPagination('sale', createList);
+    await createNewPagination('new', createList);
     // const pagination = await createPagination('sale');
     // createList(pagination.array, pagination.paginationMarkup, userData.getName('sale'));
     closeHeaderMenu();
