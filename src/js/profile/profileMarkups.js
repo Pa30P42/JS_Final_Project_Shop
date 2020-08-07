@@ -215,9 +215,10 @@ export default {
         break;
       case "favourites":
         console.log("userdData :>> ", userData.user);
-        userData.user.favorites ?
-          favouritesFormMarkup(userData.user.favorites) :
-          profileFavErrorMarkup();
+        userData.user.favorites === [] ?
+          profileFavErrorMarkup() :
+          favouritesFormMarkup(userData.user.favorites);
+
 
         break;
       case "advertisement":
@@ -238,8 +239,8 @@ export default {
   },
 };
 
-export function profileFavErrorMarkup(array) {
-  const profileFavEmpty = (array) => {
+export function profileFavErrorMarkup() {
+  const profileFavEmpty = () => {
     return `
      <div class="favourites-wrapper tabs__panel" id="form" data-form="favourites">
     
@@ -249,12 +250,12 @@ export function profileFavErrorMarkup(array) {
            </div>
           </div>
           </div>
-            `;
+            `
   };
   const favouritesBtn = document.querySelector(".favourites");
   favouritesBtn.insertAdjacentHTML(
     "afterend",
-    profileFavEmpty(userData.user.favorites)
+    profileFavEmpty
   );
 
   setActive();
