@@ -1,11 +1,9 @@
 import apiUsers from './api/users/apiUsers';
 import userData from './userData';
-
 export default {
   isMobile: false,
   isTablet: false,
   isDesktop: false,
-
   getDevice(width) {
     if (width < 768) {
       this.isMobile = true;
@@ -24,25 +22,20 @@ export default {
     }
   },
 };
-
 export const userDataFn = async () => {
   if (localStorage.getItem('info')) {
     const userToken = JSON.parse(localStorage.getItem('info')).token;
     if (userToken) {
       const response = await apiUsers.getCurrentUser();
-
       userData.user = {
         ...userData.user,
         ...response.data,
       };
     }
     delete userData.user.password;
-  } else {
-    localStorage.setItem(
-      'favorites',
-      JSON.stringify({
-        favorites: [],
-      }),
-    );
   }
+  localStorage.setItem(
+    'favorites',
+    JSON.stringify([]),
+  )
 };

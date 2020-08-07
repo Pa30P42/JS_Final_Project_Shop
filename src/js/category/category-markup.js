@@ -3,9 +3,8 @@ import categoriesList from '../userData';
 import { modalModule } from '../components/modalModule/modalModule';
 import apiProducts from '../api/products/apiProducts';
 import { createList } from '../sale/saleSection';
-import { createPaginationMarkup, createPagination } from '../pagination/pagination';
+import { createNewPagination } from '../pagination/pagination';
 import userData from '../userData';
-// import { refsPagination } from '../pagination/pagination';
 
 const refs = {
   modalCategory: document.querySelector('.modalModule'),
@@ -47,13 +46,10 @@ export function categoriesListMarkup() {
 
 function getSubCategoryListMarkup(subCategory) {
   // console.log(subCategory);
-  const result = categoriesList.appliances[subCategory].categories.reduce(
-    (acc, subCategoryItem) => {
-      acc += getSubCategoryListItemMarkup(subCategoryItem);
-      return acc;
-    },
-    '',
-  );
+  const result = categoriesList.appliances[subCategory].categories.reduce((acc, subCategoryItem) => {
+    acc += getSubCategoryListItemMarkup(subCategoryItem);
+    return acc;
+  }, '');
   return `
         <div class="modal_wrapper">
           <ul class="subcategories__list">${result}</ul>
@@ -88,51 +84,34 @@ export function categoriesListMarkupAddListeners() {
   refs.categoriesListInsert = document.querySelector('.categories__list');
 
   if (refs.categoriesListInsert) {
-    console.log('refs.categoriesListInsert', refs.categoriesListInsert);
+    // console.log('refs.categoriesListInsert', refs.categoriesListInsert);
     refs.categoriesListInsert.addEventListener('click', showModal);
   }
 }
 
-function listeners(action) {
+async function listeners(action) {
   const getSubCategoryLink = async e => {
     const link = getLink(e);
-    // console.log('link getSubCategoryLink', link);
 
-    // createPagination(link);
-
+    // console.log(link);
     if (link) {
       action();
 
-      const pagination = await createPagination(link);
-      // console.log(pagination);
-      createList(pagination.array, pagination.paginationMarkup, userData.getName(link));
-      // const subCategoryList = document.querySelector('.subcategories__list');
-      // subCategoryList.removeEventListener('click', getSubCategoryLink);
+      // const pagination = await createPagination(link);
+      // // console.log(pagination);
+      // createList(pagination.array, pagination.paginationMarkup, userData.getName(link));
+
+      await createNewPagination(link, createList);
     }
   };
   const subCategoryList = document.querySelector('.subcategories__list');
-  // console.log('subCategoryList', subCategoryList);
   subCategoryList.addEventListener('click', getSubCategoryLink);
 }
 
 function showModal(e) {
   const newLink = getLink(e);
   // console.log('newLink', newLink);
-  // const markup = getSubCategoryListMarkup(newLink);
   if (newLink) {
     modalModule(() => getSubCategoryListMarkup(newLink), listeners);
   }
 }
-
-// function incomingData(e) {
-//   if (
-//     (e.target.nodeName === 'LI' || e.target.nodeName === 'P') &&
-//     e.target.closest('[data-categoryName]')
-//   ) {
-//     const categoryNameLink = e.target.dataset.categoryname;
-//     console.log('categoryNameLink', categoryNameLink);
-//     //! ==============================================================================
-//     //? вместо console.log вставляем функцию Ани которая принимает массив продуктов для открисовки категории по клику
-//     // apiProducts.searchProductsbyCategory(`${categoryNameLink}`).then(data => console.log(data.data));
-//   }
-// }

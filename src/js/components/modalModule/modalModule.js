@@ -24,6 +24,8 @@ export const modalModule = (component, listeners) => {
   const closeModalComponent = () => {
     container.innerHTML = '';
     document.body.style.overflow = 'auto';
+    modalOverlay.removeEventListener('click', closeModalWindow);
+    window.removeEventListener('keydown', closeModalWindow);
   };
 
   const closeModalWindow = e => {
@@ -34,6 +36,8 @@ export const modalModule = (component, listeners) => {
     ) {
       container.innerHTML = '';
       document.body.style.overflow = 'auto';
+      modalOverlay.removeEventListener('click', closeModalWindow);
+      window.removeEventListener('keydown', closeModalWindow);
     }
   };
 
@@ -52,10 +56,6 @@ export const modalModule = (component, listeners) => {
   const modalOverlay = document.querySelector('.modalOverlay');
   modalOverlay.addEventListener('click', closeModalWindow);
   window.addEventListener('keydown', closeModalWindow);
-
-  // const modalScrollLock = document.querySelector('.body');
-  // modalScrollLock.style.overflow = 'hidden';
-  // document.querySelector('.body').style.overflow = 'hidden';
 };
 // === test button need to be made in index.html to use it ===
 // btnTest.addEventListener('click', () => modalModule(component, listeners));

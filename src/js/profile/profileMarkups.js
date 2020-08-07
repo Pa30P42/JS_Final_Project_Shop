@@ -684,7 +684,7 @@ function deleteActive() {
 // };
 
 function addInfoListener(key) {
-  // e.preventDefault()
+//   e.preventDefault()
 
   // if (e.target.dataset.create !== "addProdact") {
   //   return
@@ -764,7 +764,7 @@ function getInfo(event) {
   // field.nextElementSibling.innerHTML = '';
 
   const inputNew = event.target.value.length;
-  const field = event.target;
+  const field = event.target; // сам инпут 
   const inputValue = event.target.value;
   const inputLength = event.target.value.length;
   const nameOfInput = field.getAttribute("name");

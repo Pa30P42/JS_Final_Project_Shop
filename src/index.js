@@ -1,3 +1,6 @@
+import {
+  startSpinner
+} from './js/scroll_and_spiner/spinner'
 import './sass/main.scss';
 import './js/category/category-markup';
 import {
@@ -25,11 +28,7 @@ import axios from 'axios';
 import apiAuth from './js/api/auth/apiAuth';
 import apiUsers from './js/api/users/apiUsers';
 import productCard from './js/adv/productCard';
-
-// =========== adv ==============
-
-// apiProducts.searchProductsbyCategory('new').then(data => createList(data.data));
-// =========== adv ==============
+import { createNewPagination } from './js/pagination/pagination';
 
 import userData from './js/userData';
 import {
@@ -43,17 +42,20 @@ import {
 import {
   addNewAndLastSeen
 } from './js/components/new';
-
-//=========================================================
+import {
+  heightScroll
+} from './js/scroll_and_spiner/scroll';
 
 export const initialAction = async () => {
+  startSpinner();
   userData.getSettings();
+  console.log(userData)
+
   await apiProducts.getCategories();
   setting.getDevice(document.documentElement.clientWidth);
   containerHandler();
+  heightScroll();
 
   new Sim();
-  // trigger.triggerFn();
-  // console.log('userData :>> ', userData);
 };
 initialAction();

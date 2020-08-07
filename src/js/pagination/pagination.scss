@@ -4,6 +4,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  max-width: 100%;
 }
 
 .products_pagination {
@@ -24,6 +25,7 @@
     &:hover,
     &:focus {
       box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.15);
+      background-color: $main-color;
     }
 
     &:not(:last-child) {
@@ -48,3 +50,28 @@
     color: $main--text-color;
   }
 }
+
+.active_pagination_tab {
+  box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.15);
+  background-color: $main-color;
+}
+
+.active_pagination_tab_number {
+  color: #ffffff;
+}
+
+.products_pagination__item_next {
+  font-size: 34px;
+}
+
+.products_pagination__item_end {
+  font-size: 28px;
+}
+
+// .products_pagination__item:hover .products_pagination__item {
+//   &_number,
+//   &_next,
+//   &_end {
+//     color: #ffffff;
+//   }
+// }
