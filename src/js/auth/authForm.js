@@ -1,8 +1,8 @@
 import close from '../../images/information/close-icon.svg';
 import userData from '.././userData';
 
-export  const authForm = () => {
-    return `
+export const authForm = () => {
+  return `
   <form name="authForm" class="authForm" >
   <p class="authorization-title">Авторизация </p> 
     <label for="email">
@@ -11,9 +11,7 @@ export  const authForm = () => {
     </label>
 
     <input 
-    value="${
-      userData.user.surname ? userData.user.surname : ""
-                    }"
+    value="${userData.user.surname ? userData.user.surname : ''}"
     type="email"
     name="email"
     class="authFormEmail" required placeholder="Email или телефон"/>
@@ -49,30 +47,29 @@ export  const authForm = () => {
   </button>
   </form>
     `;
-  };
+};
 
-
-  // <img
-    // src="${close}"
-    // alt="x"
-    // width="20"
-    // />
+// <img
+// src="${close}"
+// alt="x"
+// width="20"
+// />
 
 function addInfoListenerAuth(key) {
   // e.preventDefault()
   // if (e.target.dataset.create !== “addProdact”) {
   //   return
   // }
-  const inputForm = document.querySelector(".authForm");
+  const inputForm = document.querySelector('.authForm');
   // const inputForm = form.querySelector(`[data-form=“${key}“]`);
   inputForm.addEventListener('input', validateForm);
-  
+
   // console.log(“inputForm”, inputForm);
 }
 
-export function validateForm (event) {
-// console.log(event.target.value);
-  // const authField = event.target;
+export function validateForm(event) {
+  // console.log(event.target.value);
+  const authField = event.target;
   const authInputValue = event.target.value;
   // const authInputLength = event.target.value.length;
   // console.log(authInputLength);
@@ -87,7 +84,8 @@ export function validateForm (event) {
         (authField.style.outlineColor = '#109b17'))
       : ((authField.nextElementSibling.innerHTML = `<span class="auth-helper-text__invalid_email">Неверный адрес почты</span>`),
         (authField.style.outlineColor = '#FF8A9D'));
-  } if (authNameOfInput === 'password') { 
+  }
+  if (authNameOfInput === 'password') {
     // console.log(authNameOfInput);
     authNameOfInput === 'password' && authInputValue.length > 7 && authInputValue.match(passwordRedEx)
       ? ((authField.nextElementSibling.innerHTML = `<span class="auth-helper-text__valid_password"></span>`),
@@ -96,5 +94,3 @@ export function validateForm (event) {
         (authField.style.outlineColor = '#FF8A9D'));
   }
 }
-
-

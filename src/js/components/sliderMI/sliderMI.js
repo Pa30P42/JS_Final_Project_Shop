@@ -20,6 +20,7 @@ export default class SliderMultiItems {
     this.itemIndex = 0;
     this.slideIndex = 0;
     this.dotIndex = 0;
+    this.handlers = [];
     this.setup();
   }
 
@@ -28,7 +29,7 @@ export default class SliderMultiItems {
     if (this.isNavs) this.createNavs();
     if (this.isPagination) this.createPagination();
     this.wrapper.appendChild(this.slider);
-    this.setupEvents();
+    this.addListeners();
   }
 
   buildUI() {
@@ -118,11 +119,16 @@ export default class SliderMultiItems {
     this.goToSlideOfDot();
   }
 
-  setupEvents() {
+  addListeners() {
     const onResizeWindow = debounce(this.updateUI.bind(this), 200);
-    setting.handlers.resize.push(onResizeWindow);
-    let last = setting.handlers.resize.length - 1;
-    window.addEventListener('resize', setting.handlers.resize[last]);
+    this.handlers.push(onResizeWindow);
+    let last = this.handlers.length - 1;
+    window.addEventListener('resize', this.handlers[last]);
+  }
+
+  removeListeners() {
+    let last = this.handlers.length - 1;
+    window.removeEventListener('resize', this.handlers[last]);
   }
 
   updateUI() {
@@ -132,20 +138,21 @@ export default class SliderMultiItems {
     const style = window.getComputedStyle(this.items[0]);
     const itemMarginRight = parseInt(style.marginRight);
     this.itemWidth = this.items[0].clientWidth + itemMarginRight;
-    this.countItems = Math.round(this.wrapper.clientWidth / this.itemWidth);
+    this.countItems = Math.round(this.wrapper.clientWidth / this.itemWidth); // Math.ceil or Math.floor ?
     this.trackWidth = this.itemWidth * this.items.length;
     this.track.style.width = this.trackWidth + 'px';
     const holderRef = this.wrapper.querySelector('.slider__holder');
     holderRef.style.width = this.itemWidth * this.countItems - itemMarginRight + 20 + 'px';
     this.isStart = this.items.length <= this.countItems || this.itemIndex < this.countItems ? true : false;
-    this.isEnd = this.itemIndex > this.items.length - this.countItems ? true : false;
-    if (this.isStart) this.itemIndex = 0;
-    if (this.isEnd) {
-      this.itemIndex = this.items.length > this.countItems ? this.items.length - this.countItems : 0;
+    if (this.itemIndex > this.items.length - this.countItems) {
+      this.isEnd = true;
+      this.isStart = false;
     }
-    this.slideIndex = this.isEnd ?
-      Math.ceil(this.items.length / this.countItems) - 1 :
-      parseInt(this.itemIndex / this.countItems);
+    if (this.isStart) this.itemIndex = 0;
+    if (this.isEnd) this.itemIndex = this.items.length - this.countItems;
+    this.slideIndex = this.isEnd
+      ? Math.ceil(this.items.length / this.countItems) - 1
+      : parseInt(this.itemIndex / this.countItems);
     this.trackPosition = -(this.itemIndex * this.itemWidth);
     this.track.style.transform = `translate3d(${this.trackPosition}px,0,0)`;
     if (this.isNavs) this.updateNavs();
@@ -153,8 +160,15 @@ export default class SliderMultiItems {
   }
 
   updateNavs() {
-    this.isStart ? this.hidePrevNav() : this.showPrevNav;
-    this.isEnd || this.items.length <= this.countItems ? this.hideNextNav() : this.showNextNav();
+    if (this.items.length <= this.countItems) {
+      this.hidePrevNav();
+      this.hideNextNav();
+    } else {
+      this.showPrevNav();
+      this.showNextNav();
+      this.isStart && this.hidePrevNav();
+      this.isEnd && this.hideNextNav();
+    }
   }
 
   updatePagination() {
@@ -169,28 +183,26 @@ export default class SliderMultiItems {
     if (!paginationWrapper) {
       paginationWrapper = document.createElement('div');
       paginationWrapper.classList.add('slider__controls-dots');
-      this.wrapper.appendChild(paginationWrapper);
+      this.wrapper.insertAdjacentElement('beforeend', paginationWrapper);
       paginationWrapper.addEventListener('click', this.handlerClickDot.bind(this));
     } else {
       dotsRefsCount = paginationWrapper.children.length;
+      paginationWrapper.querySelector('.slide-dot_active').classList.remove('slide-dot_active');
     }
     const dotsLength = Math.ceil(this.items.length / this.countItems);
     if (dotsRefsCount < dotsLength) {
-      for (let i = 0; i < dotsLength - dotsRefsCount; i++) {
+      for (let i = 0; i < dotsLength - dotsRefsCount; i += 1) {
         const dotRef = document.createElement('button');
         dotRef.classList.add('slide-dot');
         dotRef.type = 'button';
         dotRef.dataset.index = i + dotsRefsCount;
-        paginationWrapper.appendChild(dotRef);
+        paginationWrapper.insertAdjacentElement('beforeend', dotRef);
       }
     } else if (dotsRefsCount > dotsLength) {
       const dotRefs = Array.from(paginationWrapper.children);
-      for (let i = dotsLength; i < dotsRefsCount; i++) {
+      for (let i = dotsRefsCount - 1; i >= dotsLength; i -= 1) {
         paginationWrapper.removeChild(dotRefs[i]);
       }
-    }
-    if (this.dotIndex < dotsLength) {
-      paginationWrapper.children[this.dotIndex].classList.remove('slide-dot_active');
     }
     this.dotIndex = this.isEnd ? paginationWrapper.children.length - 1 : parseInt(this.itemIndex / this.countItems);
     paginationWrapper.children[this.dotIndex].classList.add('slide-dot_active');
