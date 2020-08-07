@@ -1,7 +1,7 @@
 import vector_love from '../../images/sale/Vector_love.svg';
 import vector from '../../images/sale/Vector.svg';
 import {
-  refFavourites
+  getElementsForFavorites
 } from './saleSection';
 import {
   getImg
@@ -12,7 +12,6 @@ const userData = {
   isTablet: false,
   isDesktop: true,
 };
-
 
 
 export const createSingleCardMarkup = (element, sale) => {
@@ -33,21 +32,21 @@ export const createSingleCardMarkup = (element, sale) => {
     return `<li class="card_item" data-id=${element._id}>
   <div class="card-image">
   ${
-    userData.isMobile
-      ? ` <img class="card_img" src="${element.images[0]}" alt="${element.name}" width="86"/>`
-      : `<img class="card_img-tablet" src="${element.images[0]}" alt="${element.name}" width="149"/>`
-  }
+      userData.isMobile
+        ? ` <img class="card_img" src="${element.images[0]}" alt="${element.name}" width="86"/>`
+        : `<img class="card_img-tablet" src="${element.images[0]}" alt="${element.name}" width="149"/>`
+      }
 
   </div>
   <div class="card-vector">
 
 ${
 
-      `<img class="card_vector-notActiv" src="${getImg(element._id)}" data-favorite="false" data-clickVector="notActiv"/>`
-
-
-
-  }
+      `<img class="card_vector-notActiv"
+      src="${getImg(element._id)}"
+      data-favorite="${getElementsForFavorites(element)}"
+      data-id="${element._id}"/>`
+      }
   </div>
 
 
@@ -55,11 +54,11 @@ ${
   <ul class="card_rating-list">${rating()}</ul>
   <div class="card_prise-block">
      ${
-       sale
-         ? `<p class="card_price">${Math.round(element.price * 1.3)}<span> &#8372;</span></p>
+      sale
+        ? `<p class="card_price">${Math.round(element.price * 1.3)}<span> &#8372;</span></p>
         <p class="card_price-sale">${element.price}<span> &#8372;</span></p>`
-         : `<p class="card_price-sale">${element.price}<span> &#8372;</span></p>`
-     }
+        : `<p class="card_price-sale">${element.price}<span> &#8372;</span></p>`
+      }
 
   </div>
 </li>`;

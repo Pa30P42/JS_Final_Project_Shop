@@ -91,7 +91,7 @@
 
   .footer-container_box {
     display: flex;
-    align-items: flex-start;
+    align-items: center;
     justify-content: space-between;
     flex-direction: row;
   }
@@ -118,13 +118,13 @@
 }
 
 .wrapper ul li {
-  width: 50px;
-  height: 50px;
-  margin: 0 15px;
+  width: 3.8em;
+  height: 3.8em;
+  margin: 0 10px;
   text-align: center;
   cursor: pointer;
   border-radius: 50%;
-  border: 5px solid #fff;
+  border: 0.25em solid #fff;
   float: left;
   position: relative;
   transition: all 0.5s ease;
@@ -132,35 +132,35 @@
 
 .wrapper ul li .fa {
   color: #fff;
-  line-height: 50px;
-  font-size: 15px;
+  line-height: 2.1em;
+  font-size: 1.3rem;
   transition: all 0.5s ease;
 }
 
 
 /* For creating the text below the icons, I'm going to use the before pseudo element.*/
-ul li.facebook:before {
-  content: "facebook";
+// ul li.facebook:before {
+//   content: "facebook";
 
-}
+// }
 
-ul li.twitter:before {
-  content: "twitter";
-  left: 5px;
-}
+// ul li.twitter:before {
+//   content: "twitter";
+//   left: 5px;
+// }
 
-ul li.instagram:before {
-  content: "instagram";
-}
+// ul li.instagram:before {
+//   content: "instagram";
+// }
 
-ul li.google:before {
-  content: "google";
-  left: 5px;
-}
+// ul li.google:before {
+//   content: "google";
+//   left: 5px;
+// }
 
-ul li.whatsapp:before {
-  content: "whatsapp";
-}
+// ul li.whatsapp:before {
+//   content: "whatsapp";
+// }
 
 ul li:before {
   content: "";
@@ -192,23 +192,23 @@ ul li:before {
   text-shadow: 0 0 15px #3b5998;
 }
 
-/*twitter*/
-.wrapper ul li:hover.twitter {
-  border: 5px solid #00aced;
-  box-shadow: 0 0 15px #00aced;
-  transition: all 0.5s ease;
-}
+// /*twitter*/
+// .wrapper ul li:hover.twitter {
+//   border: 5px solid #00aced;
+//   box-shadow: 0 0 15px #00aced;
+//   transition: all 0.5s ease;
+// }
 
-.wrapper ul li:hover .fa-twitter {
-  color: #00aced;
-  text-shadow: 0 0 15px #00aced;
-  transition: all 0.5s ease;
-}
+// .wrapper ul li:hover .fa-twitter {
+//   color: #00aced;
+//   text-shadow: 0 0 15px #00aced;
+//   transition: all 0.5s ease;
+// }
 
-.wrapper ul li.twitter:hover:before {
-  color: #00aced;
-  text-shadow: 0 0 15px #00aced;
-}
+// .wrapper ul li.twitter:hover:before {
+//   color: #00aced;
+//   text-shadow: 0 0 15px #00aced;
+// }
 
 /* instagram */
 .wrapper ul li:hover.instagram {

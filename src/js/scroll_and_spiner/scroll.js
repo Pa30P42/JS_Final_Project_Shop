@@ -9,11 +9,11 @@ export function heightScroll() {
 
   window.addEventListener('scroll', () => {
     currentHeight = currentHeight + 1;
-    console.log(currentHeight, "height2")
+    // console.log(currentHeight, "height2")
 
     if (currentHeight > 450) {
       scrollElem.classList.remove('scroll_delite')
-      console.log(currentHeight, "height2")
+      // console.log(currentHeight, "height2")
       currentHeight = height;
     } else return;
   });
@@ -23,7 +23,7 @@ export function heightScroll() {
       console.log(e.target)
       scrollElem.classList.add('scroll_delite');
       currentHeight = height;
-      console.log(currentHeight, "height2")
+      // console.log(currentHeight, "height2")
     }
 
   })
