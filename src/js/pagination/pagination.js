@@ -249,6 +249,11 @@ export const createNewPagination = async (searchValue, innerMarkup, search) => {
   };
 
   const getCardItem = async e => {
+    if (e.target.dataset.clickvector) {
+      console.log(e.target.dataset);
+      return;
+    }
+
     if (e.target.closest('[data-id]')) {
       const productElement = e.target.closest('[data-elementname]').dataset.elementname;
 
