@@ -106,15 +106,125 @@
   line-height: 17px;
 }
 
-.information__close {
+.auth-close {
+  z-index: 10000;
+  @extend %btn;
   position: absolute;
   width: 24px;
   height: 24px;
   right: 20px;
   top: 20px;
-  line-height: 40px;
-  border: none;
-  background-color: rgba(0, 0, 0, 0);
-  cursor: pointer;
+  background-color: transparent;
+  svg {
+    stroke: $main--text-color;
+  }
 }
 
+
+input {
+  outline-color: #53535c;
+}
+
+div.auth-helper-text-div {
+  position: relative;
+}
+
+.auth-helper-text__invalid_email {
+  font-size: 12px;
+  display: inline-block;
+  height: auto;
+  position: absolute;
+  top: -18px;
+  right: 20px;
+  color: red;
+
+  &:before {
+    display: block;
+    content: ' ';
+    position: absolute;
+    top: -43px;
+    right: 0;
+    width: 42px;
+    height: 42px;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 50%;
+    background-image: url('../images/profile/error.svg');
+  }
+}
+
+.auth-helper-text__invalid_password {
+  font-size: 12px;
+  display: inline-block;
+  height: auto;
+  position: absolute;
+  top: 0px;
+  right: 20px;
+  color: red;
+
+  &:before {
+    display: block;
+    content: ' ';
+    position: absolute;
+    top: -43px;
+    right: 0;
+    width: 42px;
+    height: 42px;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 50%;
+    background-image: url('../images/profile/error.svg');
+  }
+}
+
+
+
+.auth-helper-text__valid_email {
+  font-size: 12px;
+  display: inline-block;
+
+  height: auto;
+  position: absolute;
+  top: -18px;
+  right: 7px;
+  color: rgb(16, 155, 23);
+
+  &:before {
+    display: block;
+    content: ' ';
+    position: absolute;
+    right: 19px;
+    top: -44px;
+    width: 42px;
+    height: 42px;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 73%;
+    background-image: url('../images/profile/valid.svg');
+  }
+}
+
+.auth-helper-text__valid_password {
+  font-size: 12px;
+  display: inline-block;
+
+  height: auto;
+  position: absolute;
+  top: -18px;
+  right: 7px;
+  color: rgb(16, 155, 23);
+
+  &:before {
+    display: block;
+    content: ' ';
+    position: absolute;
+    right: 19px;
+    top: -25px;
+    width: 42px;
+    height: 42px;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 73%;
+    background-image: url('../images/profile/valid.svg');
+  }
+}

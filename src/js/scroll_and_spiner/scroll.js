@@ -30,18 +30,3 @@ export function heightScroll() {
 
 
 }
-
-window.addEventListener('DOMMouseScroll', function (e) {
-  console.log(e, "e")
-  console.log(e.originalEvent, "e")
-  if (e.originalEvent.detail > 0) {
-    //scroll down
-    console.log('Down');
-  } else {
-    //scroll up
-    console.log('Up');
-  }
-
-  //prevent page fom scrolling
-  return false;
-});
