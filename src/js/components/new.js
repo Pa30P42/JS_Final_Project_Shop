@@ -1,16 +1,13 @@
-// import apiProducts from '../api/products/apiProducts';
-import {
-  refs
-} from './refs';
+import { refs } from './refs';
+import vector_love from '../../images/sale/Vector_love.svg';
+import vector from '../../images/sale/Vector.svg';
 import showLastSeen from './lastSeenOutput';
-import {
-  createSingleCardMarkup
-} from '../sale/cardModule';
+import { createSingleCardMarkup } from '../sale/cardModule';
 import productCard from '../adv/productCard';
 import SliderMI from './sliderMI/sliderMI';
-import axios from 'axios';
-import userData from '../userData';
-import products from './products';
+import products from './products.json';
+import { addProductsToCart, showCart } from './cart/cart';
+import { selectImg } from '../sale/saleSection';
 
 const newHeadMarkup = () => {
   return `
@@ -33,53 +30,71 @@ const createCardsListMarkup = products => {
     </ul>`;
 };
 
-const addNewAndLastSeen = () => {
-  const newProducts = products.filter(item => item.category === 'new');
-  const lastSeenProducts = showLastSeen(products);
-
-  const onSelectCard = (e, products) => {
-    if (e.target.nodeName === 'UL') return;
-    const id = e.target.closest('[data-id]').dataset.id;
+const onSelectCard = (e, products) => {
+  if (e.target.className === 'slider__list-cards') {
+    return;
+  }
+  const id = e.target.closest('[data-id]').dataset.id;
+  if (!e.target.dataset.favorite) {
     const product = products.find(item => item._id === id);
     productCard(product);
-    // const imgMain = document.querySelector('.product__image img');
-    // imgMain.src = product.images[0];
-  };
+  }
+};
+
+let sliderInstances = [];
+
+const addNewAndLastSeen = () => {
+  if (sliderInstances.length) {
+    sliderInstances.forEach(instance => instance.removeListeners());
+  }
+  sliderInstances = [];
+
+  const newProducts = products.filter(item => item.category === 'new');
+  const lastSeenProducts = showLastSeen(products);
 
   const newRef = refs.sections.querySelector('.new-products-wrapper');
   if (newProducts) {
     newRef.insertAdjacentHTML('afterbegin', createCardsListMarkup(newProducts));
     newRef.insertAdjacentHTML('afterbegin', newHeadMarkup());
 
-    new SliderMI('.new-products-wrapper', {
+    const newSlider = new SliderMI('.new-products-wrapper', {
       step: 1,
       isNavs: true,
       isPagination: true,
     });
+    sliderInstances.push(newSlider);
 
     const newListCards = newRef.querySelector('.slider__list-cards');
+    newListCards.addEventListener('click', selectImg);
     newListCards.addEventListener('click', e => {
       onSelectCard(e, newProducts);
     });
   }
+
+  // newRef.insertAdjacentHTML('beforeend', `<button id="buyNew">Buy</button>`);
+  // const btn = document.querySelector('#buyNew');
+  // btn.addEventListener('click', () => {
+  //   addProductsToCart(newProducts);
+  //   showCart();
+  // });
 
   if (lastSeenProducts.length) {
     const lastSeenRef = refs.sections.querySelector('.last-seen-wrapper');
     lastSeenRef.insertAdjacentHTML('afterbegin', lastSeenHeadMarkup());
     lastSeenRef.insertAdjacentHTML('afterbegin', createCardsListMarkup(lastSeenProducts));
 
-    new SliderMI('.last-seen-wrapper', {
+    const lastSlider = new SliderMI('.last-seen-wrapper', {
       step: 1,
       isNavs: true,
       isPagination: true,
     });
+    sliderInstances.push(lastSlider);
     const lastSeenList = lastSeenRef.querySelector('.slider__list-cards');
+    lastSeenList.addEventListener('click', selectImg);
     lastSeenList.addEventListener('click', e => {
       onSelectCard(e, lastSeenProducts);
     });
   }
 };
 
-export {
-  addNewAndLastSeen
-};
+export { addNewAndLastSeen, onSelectCard };

@@ -11,9 +11,7 @@ export const authForm = () => {
     </label>
 
     <input 
-    value="${
-      userData.user.surname ? userData.user.surname : ""
-                    }"
+    value="${userData.user.surname ? userData.user.surname : ''}"
     type="email"
     name="email"
     class="authFormEmail" required placeholder="Email или телефон"/>
@@ -51,7 +49,6 @@ export const authForm = () => {
     `;
 };
 
-
 // <img
 // src="${close}"
 // alt="x"
@@ -63,7 +60,7 @@ function addInfoListenerAuth(key) {
   // if (e.target.dataset.create !== “addProdact”) {
   //   return
   // }
-  const inputForm = document.querySelector(".authForm");
+  const inputForm = document.querySelector('.authForm');
   // const inputForm = form.querySelector(`[data-form=“${key}“]`);
   inputForm.addEventListener('input', validateForm);
 
@@ -96,4 +93,7 @@ export function validateForm(event) {
       ((authField.nextElementSibling.innerHTML = `<span class="auth-helper-text__invalid_password"><small>Пароль должен содержать не менее 8 символов</small></span>`),
         (authField.style.outlineColor = '#FF8A9D'));
   }
+  const inputForm = document.querySelector('.authForm');
+
+  inputForm.addEventListener('input', validateForm);
 }

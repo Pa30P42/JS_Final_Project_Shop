@@ -1,16 +1,11 @@
 import vector_love from '../../images/sale/Vector_love.svg';
 import vector from '../../images/sale/Vector.svg';
 
-import {
-  getElementsForFavorites
-} from './saleSection';
-import {
-  getImg
-} from './saleSection'
+import { getElementsForFavorites } from './saleSection';
+import { getImg } from './saleSection';
 import apiProducts from '../api/products/apiProducts';
 import getVector from './saleSection';
-import userData from '../userData'
-
+import userData from '../userData';
 
 export const createSingleCardMarkup = (element, sale) => {
   // console.log(element);
@@ -40,13 +35,10 @@ export const createSingleCardMarkup = (element, sale) => {
   </div>
   <div class="card-vector">
 
-${
-
-      `<img class="card_vector-notActiv"
+${`<img class="card_vector-notActiv"
       src="${getImg(element._id)}"
       data-favorite="${getElementsForFavorites(element)}"
-      data-id="${element._id}"/>`
-      }
+      data-id="${element._id}"/>`}
   </div>
 
 
@@ -54,11 +46,11 @@ ${
   <ul class="card_rating-list">${rating()}</ul>
   <div class="card_prise-block">
      ${
-      sale
-        ? `<p class="card_price">${Math.round(element.price * 1.3)}<span> &#8372;</span></p>
+       sale
+         ? `<p class="card_price">${Math.round(element.price * 1.3)}<span> &#8372;</span></p>
         <p class="card_price-sale">${element.price}<span> &#8372;</span></p>`
-        : `<p class="card_price-sale">${element.price}<span> &#8372;</span></p>`
-      }
+         : `<p class="card_price-sale">${element.price}<span> &#8372;</span></p>`
+     }
 
   </div>
 </li>`;

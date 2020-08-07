@@ -219,9 +219,10 @@ export default {
         break;
       case "favourites":
         console.log("userdData :>> ", userData.user);
-        (!userData.user.favorites) ?
-        profileFavErrorMarkup():
-          favouritesFormMarkup(userData.user.favorites);
+        // (userData.user.favorites) ?
+
+        favouritesFormMarkup(userData.user.favorites);
+        // profileFavErrorMarkup();
 
 
         break;
@@ -494,13 +495,22 @@ export function favouritesFormMarkup(array) {
   // }
   // ============= добавить в корзину=============
 
+  // const favouritesBtn = document.querySelector(".favourites");
+  // (!userData.user.favorites) ?
+  // profileFavErrorMarkup():
+  //   favouritesBtn.insertAdjacentHTML(
+  //     "afterend",
+  //     favouritesMarkup(userData.user.favorites)
+  //   );
+  //========================
+
   const favouritesBtn = document.querySelector(".favourites");
-  (!userData.user.favorites) ?
-  profileFavErrorMarkup():
-    favouritesBtn.insertAdjacentHTML(
-      "afterend",
-      favouritesMarkup(userData.user.favorites)
-    );
+  (userData.user.favorites) ?
+
+  favouritesBtn.insertAdjacentHTML(
+    "afterend",
+    favouritesMarkup(userData.user.favorites)
+  ): profileFavErrorMarkup();
   new SliderMI(".favourites-wrapper__position", {
     step: 1,
     isNavs: false,

@@ -159,11 +159,6 @@ import productCard from '../adv/productCard';
 // ========================================================
 // ========================================================
 
-export function getElement(element) {
-  // console.log(element);
-  return element;
-}
-
 export const createNewPagination = async (searchValue, innerMarkup, search) => {
   const constructor = {
     searchValue,
@@ -173,7 +168,7 @@ export const createNewPagination = async (searchValue, innerMarkup, search) => {
     minProd: 0,
     maxProd: 0,
     countOfPages: 0,
-    product: '',
+    product: {},
   };
 
   const createPaginationTabs = () => {
@@ -249,15 +244,23 @@ export const createNewPagination = async (searchValue, innerMarkup, search) => {
   };
 
   const getCardItem = async e => {
-    if (e.target.closest('[data-id]')) {
+    // console.log('ObjFirst', constructor.product);
+    if (e.target.dataset.favorite) {
+      return;
+    }
+
+    if (e.target.closest('[data-id]') && e.target.nodeName !== 'UL') {
       const productElement = e.target.closest('[data-elementname]').dataset.elementname;
+      // console.log('productElement', productElement);
+      // const productId = e.target.dataset.id;
 
       constructor.product = await apiProducts
         .searchProductsbyName(productElement)
+        // .then(res => console.log(res));
         .then(res => res.data[0])
         .then(res => (constructor.product = { ...res }));
     }
-    console.log(constructor.product);
+    // console.log('Obj', constructor.product);
     return constructor.product;
   };
 
@@ -273,11 +276,20 @@ export const createNewPagination = async (searchValue, innerMarkup, search) => {
     // =================================================================================
 
     const cardsWrapper = document.querySelector('.card_list');
-    console.log(cardsWrapper);
 
+    // cardsWrapper.addEventListener('click', getCardItem);
     cardsWrapper.addEventListener('click', async e => {
       productCard(await getCardItem(e));
     });
+
+    // const cardsWrapper = document.querySelector('.card_list');
+    // // console.log(cardsWrapper);
+    // const searchCardsWrapper = document.querySelector('.search__card_list');
+
+    // cardsWrapper.addEventListener('click', async e => {
+    //   productCard(await getCardItem(e));
+    // });
+    // searchCardsWrapper.addEventListener('click', console.log('SEARCH'));
   };
 
   const getCategory = async () => {
