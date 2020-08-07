@@ -2,6 +2,7 @@ import userData from '../../userData';
 import { modalModule } from '../modalModule/modalModule';
 import apiOrders from '../../api/orders/apiOrders';
 import apiUsers from '../../api/users/apiUsers';
+import setting from '../../setting';
 
 const getTotalAmount = cartItems => {
   const total = cartItems.reduce((acc, item) => {
@@ -57,9 +58,15 @@ const createFooterCartMarkup = () => {
   </div>`;
 };
 
+const setHeightList = () => {
+  const heightList = document.documentElement.clientHeight - 300;
+  return setting.isMobile ? heightList - 60 : heightList;
+};
+
 const createBodyCartMarkup = () => {
   const cartItems = userData.user.cart.cartItems;
   const totalAmount = getTotalAmount(cartItems);
+  const heightList = setHeightList();
   let bodyCart = `
       <div class="cart__list-wrap">
         <div class="cart__list" style="text-align: center">Корзина пуста</div>
@@ -67,7 +74,7 @@ const createBodyCartMarkup = () => {
   if (cartItems.length)
     bodyCart = `
     <div class="cart__list-wrap">
-      <ul class="cart__list">
+      <ul class="cart__list" style="max-height: ${heightList}px">
         ${cartItems.reduce((acc, cartItem) => {
           acc += createCartItemMarkup(cartItem);
           return acc;

@@ -1,4 +1,6 @@
 import { refs } from './refs';
+import vector_love from '../../images/sale/Vector_love.svg';
+import vector from '../../images/sale/Vector.svg';
 import showLastSeen from './lastSeenOutput';
 import { createSingleCardMarkup } from '../sale/cardModule';
 import productCard from '../adv/productCard';
@@ -28,10 +30,38 @@ const createCardsListMarkup = products => {
 };
 
 const onSelectCard = (e, products) => {
-  if (e.target.nodeName === 'UL') return;
+  if (e.target.className === 'slider__list-cards') {
+    return;
+  }
   const id = e.target.closest('[data-id]').dataset.id;
-  const product = products.find(item => item._id === id);
-  productCard(product);
+  if (e.target.dataset.clickvector) {
+    if (e.target.src === vector) {
+      e.target.src = vector_love;
+      // if (localStorage.getItem('info')) {
+      //   const token = localStorage.getItem('info');
+      //   const tokenParse = JSON.parse(token).token;
+      //   if (tokenParse) {
+      //     apiUsers.addFavorite(id).then(data => {
+      //       apiUsers.getCurrentUser().then(response => {
+      //         userData.user.favorites = response.data.favorites;
+      //       });
+      //     });
+      //   } else {
+      //     localStorage.setItem('favorites', JSON.stringify(favoritesArr));
+      //   }
+      // }
+    } else if (e.target.src === vector_love) {
+      e.target.src = vector;
+      // apiUsers.deleteFavorite(id);
+      // favoritesArr.find(elem => {
+      //   elem !== id;
+      //   favoritesArr.push(element);
+      // });
+    }
+  } else {
+    const product = products.find(item => item._id === id);
+    productCard(product);
+  }
 };
 
 let sliderInstances = [];
@@ -88,10 +118,4 @@ const addNewAndLastSeen = () => {
   }
 };
 
-<<<<<<< HEAD
 export { addNewAndLastSeen, onSelectCard };
-=======
-export {
-  addNewAndLastSeen
-};
->>>>>>> ea61955cc46e88c3acd296dc249917c0aa573d52
