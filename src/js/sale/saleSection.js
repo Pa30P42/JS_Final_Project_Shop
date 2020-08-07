@@ -30,7 +30,7 @@ export function getElementsForFavorites(element, reset) {
 }
 
 
-function selectImg(e) {
+export function selectImg(e) {
   const favorites = {
     user: [],
     local: [],

@@ -42,6 +42,13 @@ const privateMenu = function (e) {
   if (dataway.contains('favoritesAccount')) {
     modalContainer.innerHTML = '';
     document.body.style.overflow = 'auto';
+    // profile.maintabsMarkup();
+    // userData.user.favorites === [] ?
+    //   profileFavErrorMarkup() :
+    //   favouritesFormMarkup(userData.user.favorites);
+
+    // const controlItem = document.querySelector('button[title="favourites"]');
+    // controlItem.classList.add('active');
   }
   if (dataway.contains('createAdAccount')) {
     if (userData.user.role === "ADMIN") {
@@ -73,15 +80,16 @@ export const authFn = function () {
 
 
     const pseudoRef = document.querySelector('.privateAccount');
-    pseudoRef.addEventListener('click', profile.maintabsMarkup.bind(profile));
+    pseudoRef.addEventListener('click', profile.maintabsMarkup);
     const profileFavBtnInAuth = document.querySelector('.favoritesAccount');
     profileFavBtnInAuth.addEventListener('click', restFavOpen);
 
     //======open favourites=====
     function restFavOpen() {
       profile.maintabsMarkup();
-      (userData.user.favorites) ?
-      favouritesFormMarkup(userData.user.favorites): profileFavErrorMarkup();
+      (!userData.user.favorites) ?
+      profileFavErrorMarkup():
+        favouritesFormMarkup(userData.user.favorites);
 
       const controlItem = document.querySelector('button[title="favourites"]');
       controlItem.classList.add('active');

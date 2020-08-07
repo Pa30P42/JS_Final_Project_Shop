@@ -35,6 +35,10 @@ import {
 import {
   removeItem
 } from '../auth/authMenu';
+
+import {
+  selectImg
+} from '../sale/saleSection';
 // import {
 //   addToCart
 // } from '..components/cart/cart';
@@ -215,8 +219,8 @@ export default {
         break;
       case "favourites":
         console.log("userdData :>> ", userData.user);
-        userData.user.favorites === [] ?
-          profileFavErrorMarkup() :
+        (!userData.user.favorites) ?
+        profileFavErrorMarkup():
           favouritesFormMarkup(userData.user.favorites);
 
 
@@ -491,10 +495,12 @@ export function favouritesFormMarkup(array) {
   // ============= добавить в корзину=============
 
   const favouritesBtn = document.querySelector(".favourites");
-  favouritesBtn.insertAdjacentHTML(
-    "afterend",
-    favouritesMarkup(userData.user.favorites)
-  );
+  (!userData.user.favorites) ?
+  profileFavErrorMarkup():
+    favouritesBtn.insertAdjacentHTML(
+      "afterend",
+      favouritesMarkup(userData.user.favorites)
+    );
   new SliderMI(".favourites-wrapper__position", {
     step: 1,
     isNavs: false,
@@ -510,15 +516,18 @@ export function favouritesFormMarkup(array) {
 
     profileFavoritesLi[0].addEventListener("click", renderIntoBigCard);
     profileFavoritesLi[i].addEventListener("click", renderIntoBigCard);
+    profileFavoritesLi[i].addEventListener("click", selectImg);
 
     const renderIntoBigCard = (e, items) => {
       items = userData.user.favorites;
       console.log("items :>> ", items);
       console.log("e.target :>> ", e.target);
       if (e.target.nodeName === "UL") return;
-      const id = e.target.closest("[data-id]").dataset.id;
-      const product = items.find((item) => item._id === id);
-      productCard(product);
+      if (!e.target.dataset.favorite) {
+        const id = e.target.closest("[data-id]").dataset.id;
+        const product = items.find((item) => item._id === id);
+        productCard(product);
+      }
     };
   }
 
@@ -684,7 +693,7 @@ function deleteActive() {
 // };
 
 function addInfoListener(key) {
-//   e.preventDefault()
+  //   e.preventDefault()
 
   // if (e.target.dataset.create !== "addProdact") {
   //   return
