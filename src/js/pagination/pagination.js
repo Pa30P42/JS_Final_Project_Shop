@@ -249,20 +249,21 @@ export const createNewPagination = async (searchValue, innerMarkup, search) => {
   };
 
   const getCardItem = async e => {
-    if (e.target.dataset.clickvector) {
-      console.log(e.target.dataset);
-      return;
-    }
+    // if (e.target.dataset.favorite) {
+    //   // console.log(e.target.dataset);
+    //   return;
+    // }
 
-    if (e.target.closest('[data-id]')) {
+    if (!e.target.dataset.favorite && e.target.closest('[data-id]') && e.target.nodeName === 'LI') {
       const productElement = e.target.closest('[data-elementname]').dataset.elementname;
 
       constructor.product = await apiProducts
         .searchProductsbyName(productElement)
+        // .then(res => console.log(res));
         .then(res => res.data[0])
         .then(res => (constructor.product = { ...res }));
     }
-    console.log(constructor.product);
+    console.log('Obj', constructor.product);
     return constructor.product;
   };
 
@@ -278,11 +279,19 @@ export const createNewPagination = async (searchValue, innerMarkup, search) => {
     // =================================================================================
 
     const cardsWrapper = document.querySelector('.card_list');
-    console.log(cardsWrapper);
 
     cardsWrapper.addEventListener('click', async e => {
       productCard(await getCardItem(e));
     });
+
+    // const cardsWrapper = document.querySelector('.card_list');
+    // // console.log(cardsWrapper);
+    // const searchCardsWrapper = document.querySelector('.search__card_list');
+
+    // cardsWrapper.addEventListener('click', async e => {
+    //   productCard(await getCardItem(e));
+    // });
+    // searchCardsWrapper.addEventListener('click', console.log('SEARCH'));
   };
 
   const getCategory = async () => {
