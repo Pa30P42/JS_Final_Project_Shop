@@ -90,6 +90,7 @@ const addNewAndLastSeen = () => {
     });
     sliderInstances.push(lastSlider);
     const lastSeenList = lastSeenRef.querySelector('.slider__list-cards');
+    lastSeenList.addEventListener('click', selectImg);
     lastSeenList.addEventListener('click', e => {
       onSelectCard(e, lastSeenProducts);
     });
