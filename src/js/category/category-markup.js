@@ -93,7 +93,7 @@ async function listeners(action) {
   const getSubCategoryLink = async e => {
     const link = getLink(e);
 
-    console.log(link);
+    // console.log(link);
     if (link) {
       action();
 
