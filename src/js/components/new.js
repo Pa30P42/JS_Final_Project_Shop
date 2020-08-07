@@ -1,12 +1,9 @@
-// import apiProducts from '../api/products/apiProducts';
 import { refs } from './refs';
 import showLastSeen from './lastSeenOutput';
 import { createSingleCardMarkup } from '../sale/cardModule';
 import productCard from '../adv/productCard';
 import SliderMI from './sliderMI/sliderMI';
-import axios from 'axios';
-import userData from '../userData';
-import products from './products';
+import products from './products.json';
 
 const newHeadMarkup = () => {
   return `
@@ -36,7 +33,14 @@ const onSelectCard = (e, products) => {
   productCard(product);
 };
 
+let sliderInstances = [];
+
 const addNewAndLastSeen = () => {
+  if (sliderInstances.length) {
+    sliderInstances.forEach(instance => instance.removeListeners());
+  }
+  sliderInstances = [];
+
   const newProducts = products.filter(item => item.category === 'new');
   const lastSeenProducts = showLastSeen(products);
 
@@ -45,11 +49,12 @@ const addNewAndLastSeen = () => {
     newRef.insertAdjacentHTML('afterbegin', createCardsListMarkup(newProducts));
     newRef.insertAdjacentHTML('afterbegin', newHeadMarkup());
 
-    new SliderMI('.new-products-wrapper', {
+    const newSlider = new SliderMI('.new-products-wrapper', {
       step: 1,
       isNavs: true,
       isPagination: true,
     });
+    sliderInstances.push(newSlider);
 
     const newListCards = newRef.querySelector('.slider__list-cards');
     newListCards.addEventListener('click', e => {
@@ -62,11 +67,12 @@ const addNewAndLastSeen = () => {
     lastSeenRef.insertAdjacentHTML('afterbegin', lastSeenHeadMarkup());
     lastSeenRef.insertAdjacentHTML('afterbegin', createCardsListMarkup(lastSeenProducts));
 
-    new SliderMI('.last-seen-wrapper', {
+    const lastSlider = new SliderMI('.last-seen-wrapper', {
       step: 1,
       isNavs: true,
       isPagination: true,
     });
+    sliderInstances.push(lastSlider);
     const lastSeenList = lastSeenRef.querySelector('.slider__list-cards');
     lastSeenList.addEventListener('click', e => {
       onSelectCard(e, lastSeenProducts);
