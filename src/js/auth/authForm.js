@@ -58,21 +58,21 @@ export  const authForm = () => {
     // width="20"
     // />
 
-function addInfoListenerAuth(key) {
-  // e.preventDefault()
-  // if (e.target.dataset.create !== “addProdact”) {
-  //   return
-  // }
-  const inputForm = document.querySelector(".authForm");
-  // const inputForm = form.querySelector(`[data-form=“${key}“]`);
-  inputForm.addEventListener('input', validateForm);
+// function addInfoListenerAuth(key) {
+//   // e.preventDefault()
+//   // if (e.target.dataset.create !== “addProdact”) {
+//   //   return
+//   // }
+//   const inputForm = document.querySelector(".authForm");
+//   // const inputForm = form.querySelector(`[data-form=“${key}“]`);
+//   inputForm.addEventListener('input', validateForm);
   
-  // console.log(“inputForm”, inputForm);
-}
+//   // console.log(“inputForm”, inputForm);
+// }
 
 export function validateForm (event) {
 // console.log(event.target.value);
-  // const authField = event.target;
+  const authField = event.target;
   const authInputValue = event.target.value;
   // const authInputLength = event.target.value.length;
   // console.log(authInputLength);
@@ -95,6 +95,8 @@ export function validateForm (event) {
       : ((authField.nextElementSibling.innerHTML = `<span class="auth-helper-text__invalid_password"><small>Пароль должен содержать не менее 8 символов</small></span>`),
         (authField.style.outlineColor = '#FF8A9D'));
   }
+  const inputForm = document.querySelector(".authForm");
+  inputForm.addEventListener('input', validateForm);
 }
 
 
