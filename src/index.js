@@ -1,4 +1,4 @@
-// import { startSpinner } from './js/scroll_and_spiner/spinner';
+import { startSpinner } from './js/scroll_and_spiner/spinner';
 import './sass/main.scss';
 import './js/category/category-markup';
 import { containerHandler } from './js/container/container';
@@ -22,17 +22,17 @@ import userData from './js/userData';
 import { getPofileTest, favouritesFormMarkup } from './js/profile/profileMarkups';
 import { setCartCounter, setupEvents } from './js/components/cart/cart';
 import { addNewAndLastSeen } from './js/components/new';
-// import { heightScroll } from './js/scroll_and_spiner/scroll';
+import { heightScroll } from './js/scroll_and_spiner/scroll';
 
 export const initialAction = async () => {
-  // startSpinner();
+  startSpinner();
   userData.getSettings();
   console.log(userData);
 
   await apiProducts.getCategories();
   setting.getDevice(document.documentElement.clientWidth);
   containerHandler();
-  // heightScroll();
+  heightScroll();
 
   new Sim();
 };
