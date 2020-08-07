@@ -71,12 +71,12 @@ const addNewAndLastSeen = () => {
     });
   }
 
-  newRef.insertAdjacentHTML('beforeend', `<button id="buyNew">Buy</button>`);
-  const btn = document.querySelector('#buyNew');
-  btn.addEventListener('click', () => {
-    addProductsToCart(newProducts);
-    showCart();
-  });
+  // newRef.insertAdjacentHTML('beforeend', `<button id="buyNew">Buy</button>`);
+  // const btn = document.querySelector('#buyNew');
+  // btn.addEventListener('click', () => {
+  //   addProductsToCart(newProducts);
+  //   showCart();
+  // });
 
   if (lastSeenProducts.length) {
     const lastSeenRef = refs.sections.querySelector('.last-seen-wrapper');
