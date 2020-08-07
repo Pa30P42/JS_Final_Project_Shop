@@ -11,14 +11,26 @@ import vector from '../../images/sale/Vector.svg';
 import allProducts from '../api/products/apiProducts';
 import userData from '../../js/userData';
 import apiUsers from '../../js/api/users/apiUsers';
-import { selectImg } from '../../js/sale/saleSection';
+// import { selectImg } from '../../js/sale/saleSection';
+
+// export function setStatus(id) {
+//   const localUserFavorites = JSON.parse(localStorage.getItem('user-data')).response_data_user[0].favorites;
+//   const localStorage = JSON.parse(localStorage.getItem('favorites__'))
+//     ? JSON.parse(localStorage.getItem('favorites__'))
+//     : [];
+
+//   if ((localUserFavorites ? localUserFavorites : localStorage).some(elem => elem._id === id)) {
+//     console.log('localUserFavorites', userData.currentPrintElements);
+//     return 'Из избранного';
+//   } else return 'В избранное';
+// }
 
 const productCard = async item => {
   const component = () => markup(item);
   updateLastSeen(item._id);
   modalModule(component, addListener);
-
   // updateFavorites(item);
+  // function changeStatus()
 
   function selectImg(e) {
     console.log(e.target);
@@ -69,6 +81,7 @@ const productCard = async item => {
         getId();
         getObject();
         isExistLocalData();
+
         if (favorites.isAuth) {
           if (isExistUserData()) {
             userData.user.favorites = [...userData.user.favorites.filter(product => product._id !== favorites.id)];
@@ -118,7 +131,7 @@ const productCard = async item => {
     const btnBuy = document.getElementById('btnBuy');
     const btnClose = document.querySelector('.product__card-close');
 
-    const refTest = document.querySelector('.wrapper_test');
+    const refTest = document.querySelector('.adv__favorite');
     refTest.addEventListener('click', selectImg);
 
     btnBuy.addEventListener('click', () => {

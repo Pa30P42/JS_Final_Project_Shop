@@ -26,8 +26,7 @@ export function getElementsForFavorites(element, reset) {
   return 'favorite_product';
 }
 
-function selectImg(e) {
-  console.log(e.target);
+export function selectImg(e) {
   const favorites = {
     user: [],
     local: [],

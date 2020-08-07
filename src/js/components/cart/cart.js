@@ -1,11 +1,8 @@
-import { refs } from '../refs';
 import userData from '../../userData';
-import setting from '../../setting';
 import { modalModule } from '../modalModule/modalModule';
 import apiOrders from '../../api/orders/apiOrders';
 import apiUsers from '../../api/users/apiUsers';
-
-const headerRef = document.querySelector('.header');
+import setting from '../../setting';
 
 const getTotalAmount = cartItems => {
   const total = cartItems.reduce((acc, item) => {
@@ -24,25 +21,11 @@ const getTotalQuantity = cartItems => {
 };
 
 const setCartCounter = () => {
-  // let container;
-
-  // if (setting.isMobile) container = headerRef.querySelector('.header_phone');
-  // if (setting.isTablet) container = headerRef.querySelector('.header_tablet');
-  // if (setting.isDesktop) container = headerRef.querySelector('.header_desktop');
-
-  // const headerNav = container.querySelector('.header__nav');
   const headerNavCarts = document.querySelectorAll('header .counter_cart-items');
   const cartCounters = Array.from(headerNavCarts);
   const totalCount = getTotalQuantity(userData.user.cart.cartItems);
   cartCounters.forEach(counter => {
     counter.textContent = totalCount;
-  });
-};
-
-const setupEvents = () => {
-  window.addEventListener('resize', () => {
-    setting.getDevice(document.documentElement.clientWidth);
-    setCartCounter();
   });
 };
 
@@ -75,6 +58,11 @@ const createFooterCartMarkup = () => {
   </div>`;
 };
 
+const setHeightList = () => {
+  const heightList = document.documentElement.clientHeight - 300;
+  return setting.isMobile ? heightList - 60 : heightList;
+};
+
 const createBodyCartMarkup = () => {
   const cartItems = userData.user.cart.cartItems;
   const totalAmount = getTotalAmount(cartItems);
@@ -98,17 +86,6 @@ const createBodyCartMarkup = () => {
     ).format(totalAmount)} ₴</span></div>`;
 
   return bodyCart;
-};
-
-const setHeightList = () => {
-  const heightList = document.documentElement.clientHeight - 300;
-  return setting.isMobile ? heightList - 60 : heightList;
-};
-
-const changeListHeight = () => {
-  const cartList = document.querySelector('.cart__list');
-  // console.log('onchangeCart');
-  cartList.setAttribute('style', `max-height: ${setHeightList()}px`);
 };
 
 const createCartItemMarkup = item => {
@@ -153,7 +130,7 @@ const createCartMarkup = () => {
   return headerCart + bodyCart + footerCart;
 };
 
-const addToCart = product => {
+const addToCart = (product, single = true) => {
   const existProduct = userData.user.cart.cartItems.find(item => item.id === product._id);
   if (existProduct) {
     existProduct.quantity += 1;
@@ -167,6 +144,12 @@ const addToCart = product => {
     };
     userData.user.cart.cartItems = [newProduct, ...userData.user.cart.cartItems];
   }
+  single && setCartCounter();
+};
+
+const addProductsToCart = products => {
+  products.forEach(product => addToCart(product, false));
+  setCartCounter();
 };
 
 const inputQuantityHandler = ({ target }) => {
@@ -245,10 +228,6 @@ const removeCartItem = e => {
   setCartCounter();
 };
 
-const closeCart = closeModal => {
-  closeModal();
-};
-
 const addListener = callbackClose => {
   const buttonRef = document.createElement('button');
   buttonRef.addEventListener('click', callbackClose);
@@ -263,40 +242,21 @@ const createMsgMarkup = msg => {
 
 const createOrder = closeModal => {
   closeModal();
+  let token;
   if (localStorage.getItem('info')) {
+    token = JSON.parse(localStorage.getItem('info')).token;
+  }
+  if (token) {
     userData.user.address = {};
     const productIds = userData.user.cart.cartItems.map(({ id }) => id);
-    const getUserData = async () => {
-      try {
-        const response = await apiUsers.getCurrentUser();
-        // console.log(response.data.address);
-        return response.data.address;
-      } catch (error) {
-        console.log('Лог ошибки из apiUsers.getCurrentUser ' + error);
-      }
-    };
-
-    const sendOrder = async newOrder => {
-      try {
-        const response = await apiOrders.createNewOrder(newOrder);
-        // console.log(response);
-        return response.data;
-      } catch (error) {
-        console.log('Лог ошибки из apiOrders.createNewOrder ' + error);
-      }
-    };
-
-    getUserData()
-      .then(address => {
-        userData.user.address = address;
-
+    apiUsers
+      .getCurrentUser()
+      .then(response => {
+        userData.user.address = response.data.address;
         delete userData.user.address._id;
-        // console.log(userData.user.address);
         /*
-         * Временно для тестирования заполняем все поля
-         * иначе сервер не примет запрос
-         * должна быть валидация в форме авторизации при заполнении адреса
-         * чтобы не было пустых полей
+         * Временно для тестирования заполняем все поля, иначе сервер не примет запрос
+         * должна быть валидация в форме авторизации при заполнении адреса, чтобы не было пустых полей
          * (успели до того наши создать учетные записи с кое-где пустыми полями)
          */
         const keys = Object.keys(userData.user.address);
@@ -306,30 +266,32 @@ const createOrder = closeModal => {
           }
           userData.user.address[key] = 'x';
         }
-        // console.log(userData.user.address);
+
         const order = {
           address: userData.user.address,
           productList: productIds,
         };
-        // console.log(JSON.stringify(order));
         return order;
       })
-      .then(order => sendOrder(order))
-      .then(data => {
-        const msg = `Ваш заказ был успешно отправлен!
-      Номер вашего заказа: ${data.id}.
-      Благодарим за выбор нашего магазина,
-      надеемся, что Вы к нам заглянете ещё не раз!`;
+      .then(order => apiOrders.createNewOrder(order)) // sendOrder(JSON.stringify
+      .then(response => {
+        console.log(response);
+        const msg = `<div class="cart">Ваш заказ был успешно отправлен!
+          Номер вашего заказа: ${response.data.id}.
+          Благодарим за выбор нашего магазина,
+          надеемся, что Вы к нам заглянете ещё не раз!</div>`;
         modalModule(() => createMsgMarkup(msg), addListener);
+        userData.user.cart.cartItems = [];
+        userData.user.cart.totalAmount = 0;
+        setCartCounter();
       })
-      .catch(console.log);
-
-    const createOrderFromCart = async listIdProducts => {};
-    userData.user.cart.cartItems = [];
-    userData.user.cart.totalAmount = 0;
-    setCartCounter();
-
-    const promise = createOrderFromCart(productIds);
+      .catch(error => {
+        const msg = `<div class="cart">Извините, сервер временно недоступен!
+          Просим прощения за временные неудобства при оформлении заказов.
+          Чуть попозже попробуйте ещё раз отправить Ваш заказ, пожалуйста.</div>`;
+        modalModule(() => createMsgMarkup(msg), addListener);
+        console.log(error);
+      });
   } else {
     const msg = 'Зарегистрируйтесь, пожалуйста, для оформления заказа';
     modalModule(() => createMsgMarkup(msg), addListener);
@@ -340,13 +302,12 @@ const listeners = closeModal => {
   const btnClose = document.querySelector('.btn-close');
   const btnBackToProducts = document.querySelector('.cart__button_back');
   const btnConfirm = document.querySelector('.cart__button_confirm');
-  btnClose.addEventListener('click', () => closeCart(closeModal));
-  btnBackToProducts.addEventListener('click', () => closeCart(closeModal));
+  btnClose.addEventListener('click', closeModal);
+  btnBackToProducts.addEventListener('click', closeModal);
   btnConfirm.addEventListener('click', () => createOrder(closeModal));
 };
 document.body.style.overflow = 'auto';
 const showCart = () => {
-  setCartCounter();
   modalModule(createCartMarkup, listeners);
   const cartList = document.querySelector('.cart__list');
   cartList.addEventListener('click', counterHandler);
@@ -354,4 +315,4 @@ const showCart = () => {
   cartList.addEventListener('click', removeCartItem);
 };
 
-export { addToCart, showCart, setCartCounter, setupEvents };
+export { addToCart, addProductsToCart, showCart };

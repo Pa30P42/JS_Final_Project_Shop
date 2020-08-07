@@ -6,10 +6,21 @@ import favoriteFill from '../../images/adv/icons/favorite_fill.svg';
 // import favoriteFill from '../../images/sale/Vector_love.svg'; //картинки Ани
 import { selectImg } from '../../js/sale/saleSection';
 
-function updateFavorites(item) {}
+// function updateFavorites(id) {
+//   const refChangeTextFavorite = document.querySelector('.adv__in-favorite');
+//   console.log('id', id);
+//   console.log('favorites', favorites);
+//   // if (favorites.find(elem => elem._id === id)) {
+//   //   refChangeTextFavorite.textContent = 'Из избранного';
+//   //   // refBtnFavourite.src = favoriteFill;
+//   // }
+//   // if()
+// }
+// export default updateFavorites;
 
 // // const refBtnFavourite = document.getElementById('btnFavourite');
 // const refChangeTextFavorite = document.querySelector('.adv__in-favorite');
+//     refChangeTextFavorite.textContent = 'Из избранного';
 
 // function updateFavorites(item) {
 //   const favoriteData = localStorage.getItem('favorites__');
@@ -19,41 +30,40 @@ function updateFavorites(item) {}
 
 //   if (favorites.find(elem => elem._id === item._id)) {
 //     // refBtnFavourite.src = favoriteFill;
-//     refChangeTextFavorite.textContent = 'Из избранного';
 //   }
 
 //   const refBtnFavourite = document.getElementById('btnFavourite');
 //   refBtnFavourite.addEventListener('click', selectImg);
-//   // }
-//   // refBtnFavourite.addEventListener('click', async event => {
-//   // const favoriteData = localStorage.getItem(INFO);
-//   // let favorites = JSON.parse(favoriteData);
-//   // if (event.target.src === favorite) {
-//   //   event.target.src = favoriteFill;
-//   //   refChangeTextFavorite.textContent = 'Из избранного';
-//   //   favorites.push(id);
-//   //   localStorage.setItem('favorites', JSON.stringify(favorites));
-//   //   await apiUsers.addFavorite(id);
-//   //   userData.user.favorites = [...userData.user.favorites, id];
-//   //   console.log(userData.user.favorite);
-//   // } else if (event.target.src === favoriteFill) {
-//   //   event.target.src = favorite;
-//   //   refChangeTextFavorite.textContent = 'В избранное';
-//   //   const indexFavorites = favorites.indexOf(id);
-//   //   favorites.splice(indexFavorites, 1);
-//   //   localStorage.setItem('favorites', JSON.stringify(favorites));
-//   //   await apiUsers.deleteFavorite(id);
-//   //   const result = userData.user.favorites.filter(elem => elem !== id);
-//   //   userData.user.favorites = [...result];
-//   //   console.log(userData.user.favorite);
-//   // }
-//   // --------- проверка ---/
-//   // console.log('id ', id._id);
-//   // apiUsers.addFavorite(id._id).then(data => console.log('favorites ', data));
-//   // apiUsers.getCurrentUser().then(data => console.log('current ', data));
-//   // ----------------------/
-//   // }
-//   // });
+// }
+// refBtnFavourite.addEventListener('click', async event => {
+// const favoriteData = localStorage.getItem(INFO);
+// let favorites = JSON.parse(favoriteData);
+// if (event.target.src === favorite) {
+//   event.target.src = favoriteFill;
+//   refChangeTextFavorite.textContent = 'Из избранного';
+//   favorites.push(id);
+//   localStorage.setItem('favorites', JSON.stringify(favorites));
+//   await apiUsers.addFavorite(id);
+//   userData.user.favorites = [...userData.user.favorites, id];
+//   console.log(userData.user.favorite);
+// } else if (event.target.src === favoriteFill) {
+//   event.target.src = favorite;
+//   refChangeTextFavorite.textContent = 'В избранное';
+//   const indexFavorites = favorites.indexOf(id);
+//   favorites.splice(indexFavorites, 1);
+//   localStorage.setItem('favorites', JSON.stringify(favorites));
+//   await apiUsers.deleteFavorite(id);
+//   const result = userData.user.favorites.filter(elem => elem !== id);
+//   userData.user.favorites = [...result];
+//   console.log(userData.user.favorite);
+// }
+// --------- проверка ---/
+// console.log('id ', id._id);
+// apiUsers.addFavorite(id._id).then(data => console.log('favorites ', data));
+// apiUsers.getCurrentUser().then(data => console.log('current ', data));
+// ----------------------/
+// }
+// });
 // }
 
 // export default updateFavorites;
