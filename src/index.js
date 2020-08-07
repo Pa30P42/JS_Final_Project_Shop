@@ -16,6 +16,9 @@ import apiAuth from './js/api/auth/apiAuth';
 import apiUsers from './js/api/users/apiUsers';
 import productCard from './js/adv/productCard';
 
+
+import {createPaginationFunction} from './js/pagination/pagination';
+
 // =========== adv ==============
 
 // apiProducts.searchProductsbyCategory('new').then(data => createList(data.data));
@@ -29,6 +32,7 @@ import { addNewAndLastSeen } from './js/components/new';
 //=========================================================
 
 export const initialAction = async () => {
+  createPaginationFunction("ref")
   userData.getSettings();
   await apiProducts.getCategories();
   setting.getDevice(document.documentElement.clientWidth);
