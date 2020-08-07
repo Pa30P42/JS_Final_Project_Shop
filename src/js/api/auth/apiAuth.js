@@ -17,7 +17,7 @@ const errorMarkup = error => {
 };
 const addListener = callbackClose => {
   const buttonRef = document.createElement('button');
-  buttonRef.addEventListener('click', callbackClose);
+  // buttonRef.addEventListener('click', callbackClose);
 };
 
 export default {
@@ -55,12 +55,12 @@ export default {
       );
       axios.defaults.headers['Authorization'] = response.data.accces_token;
       const currentUser = await axios.get(apiUsers.getUserInfoUrl);
-
       localStorage.setItem(
         'info',
         JSON.stringify({
           token: response.data.accces_token,
           favorites: [...currentUser.data.favorites],
+          user: response.data
         }),
       );
       modalModule(() => errorMarkup('Вы успешно авторизировались!'), addListener);
