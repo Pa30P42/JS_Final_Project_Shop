@@ -13,6 +13,7 @@ import userData from '../userData'
 
 
 export const createSingleCardMarkup = (element, sale) => {
+  // console.log(element);
   const rating = () => {
     let markup = '';
     let number = getRandomInt(1, 6);
@@ -28,7 +29,7 @@ export const createSingleCardMarkup = (element, sale) => {
   };
   const cardItemMarkup = element => {
     // console.log(element);
-    return `<li class="card_item-sale" data-id=${element._id}>
+    return `<li class="card_item-sale" data-id=${element._id} data-elementname="${element.name}">
   <div class="card-image">
   ${
     userData.settings.isMobile

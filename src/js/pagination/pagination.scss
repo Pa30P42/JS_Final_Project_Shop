@@ -55,3 +55,23 @@
   box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.15);
   background-color: $main-color;
 }
+
+.active_pagination_tab_number {
+  color: #ffffff;
+}
+
+.products_pagination__item_next {
+  font-size: 34px;
+}
+
+.products_pagination__item_end {
+  font-size: 28px;
+}
+
+// .products_pagination__item:hover .products_pagination__item {
+//   &_number,
+//   &_next,
+//   &_end {
+//     color: #ffffff;
+//   }
+// }
