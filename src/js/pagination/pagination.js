@@ -4,7 +4,7 @@ import apiProducts from '../api/products/apiProducts';
 import userData from '../userData';
 // import { createList } from '../sale/saleSection';
 // import { createSingleCardMarkup } from '../sale/cardModule';
-// import productCard from '../adv/productCard';
+import productCard from '../adv/productCard';
 // import products from '../components/products';
 // // import { onSelectCard } from '../components/new';
 // //
@@ -159,6 +159,11 @@ import userData from '../userData';
 // ========================================================
 // ========================================================
 
+export function getElement(element) {
+  // console.log(element);
+  return element;
+}
+
 export const createNewPagination = async (searchValue, innerMarkup, search) => {
   const constructor = {
     searchValue,
@@ -168,6 +173,7 @@ export const createNewPagination = async (searchValue, innerMarkup, search) => {
     minProd: 0,
     maxProd: 0,
     countOfPages: 0,
+    product: '',
   };
 
   const createPaginationTabs = () => {
@@ -242,6 +248,19 @@ export const createNewPagination = async (searchValue, innerMarkup, search) => {
     cardsMarkups();
   };
 
+  const getCardItem = async e => {
+    if (e.target.closest('[data-id]')) {
+      const productElement = e.target.closest('[data-elementname]').dataset.elementname;
+
+      constructor.product = await apiProducts
+        .searchProductsbyName(productElement)
+        .then(res => res.data[0])
+        .then(res => (constructor.product = { ...res }));
+    }
+    console.log(constructor.product);
+    return constructor.product;
+  };
+
   const paginationTabsListener = () => {
     const paginationWrapper = document.querySelector('.pagination_wrapper');
     paginationWrapper.addEventListener('click', getTab);
@@ -250,6 +269,15 @@ export const createNewPagination = async (searchValue, innerMarkup, search) => {
       paginationWrapper
         .querySelector(`[data-pagenumber="${constructor.currentPage}"]`)
         .classList.add('active_pagination_tab');
+
+    // =================================================================================
+
+    const cardsWrapper = document.querySelector('.card_list');
+    console.log(cardsWrapper);
+
+    cardsWrapper.addEventListener('click', async e => {
+      productCard(await getCardItem(e));
+    });
   };
 
   const getCategory = async () => {
@@ -281,8 +309,8 @@ export const createNewPagination = async (searchValue, innerMarkup, search) => {
   };
 
   if (searchValue.constructor.name === 'String') {
-    console.log('if', constructor);
-    console.log(search);
+    // console.log('if', constructor);
+    // console.log(search);
     if (search) {
       await getSearch();
     } else await getCategory();
