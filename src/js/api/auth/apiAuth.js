@@ -31,36 +31,24 @@ export default {
     try {
       const user = info;
       const response = await axios.post(this.loginUrl, user);
-      console.log(response)
       userData.user = {
         ...userData.user,
         ...response.data.user
       }
-
-      // localStorage.setItem('user-data',
-      //   JSON.stringify({
-      //     USER_DATA: [...userData.user],
-      //     response_data_user: [...response.data.user],
-      //   }),
-      // );
-
-      localStorage.setItem(
-        'userData',
+      localStorage.setItem('user-data',
         JSON.stringify({
-          ...userData.user,
-          ...response.data.user,
+          USER_DATA: [...userData.user],
+          response_data_user: [...response.data.user],
         }),
       );
-
       axios.defaults.headers['Authorization'] = response.data.accces_token;
       const currentUser = await axios.get(apiUsers.getUserInfoUrl);
-
-
       localStorage.setItem(
         'info',
         JSON.stringify({
           token: response.data.accces_token,
           favorites: [...currentUser.data.favorites],
+          user: response.data
         }),
       );
     } catch (error) {
