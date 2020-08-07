@@ -87,7 +87,7 @@ export const authFn = function () {
     authFormListeners.addEventListener('click', e => {
       e.preventDefault();
       validateForm(e);
-      console.dir(e.target);
+      // console.dir(e.target);
       if (e.target === e.currentTarget[2]) {
         userValue.email = e.currentTarget[0].value;
         userValue.password = e.currentTarget[1].value;
@@ -106,7 +106,8 @@ export const authFn = function () {
         document.body.style.overflow = 'auto';
       }
 
-      if (e.target.nodeName === "IMG") {
+      // e.target.nodeName === "IMG"
+      if (e.target === e.currentTarget[4]) {
         modalContainer.innerHTML = "";
         document.body.style.overflow = 'auto';
       }
