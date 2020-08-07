@@ -221,7 +221,12 @@ export default {
         console.log("userdData :>> ", userData.user);
         // (userData.user.favorites) ?
 
-        favouritesFormMarkup(userData.user.favorites);
+        const localUserFavorites = JSON.parse(localStorage.getItem('user-data')).response_data_user[0].favorites;
+        const result = (localStorage.getItem("user-data")) ?
+          localUserFavorites :
+          (localStorage.getItem('favorites__') ? [...JSON.parse(localStorage.getItem('favorites__'))] : []);
+
+        favouritesFormMarkup(result);
         // profileFavErrorMarkup();
 
 
