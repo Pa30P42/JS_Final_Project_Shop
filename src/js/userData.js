@@ -91,9 +91,14 @@ export default {
       ],
     },
   },
+
   getSettings(width = document.documentElement.clientWidth) {
     userDataFn();
-
+    if (localStorage.getItem('info')) {
+      this.user = {...this.user, ...JSON.parse(localStorage.getItem('info')).user.user}
+      console.log('this', this);
+    }
+    // userData();
     if (width < 768) {
       this.settings.isMobile = true;
     }

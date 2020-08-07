@@ -141,6 +141,7 @@
 /* For creating the text below the icons, I'm going to use the before pseudo element.*/
 ul li.facebook:before {
   content: "facebook";
+
 }
 
 ul li.twitter:before {
@@ -275,18 +276,6 @@ ul li:before {
     margin-bottom: 45px;
   }
 }
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 /* youtube link */

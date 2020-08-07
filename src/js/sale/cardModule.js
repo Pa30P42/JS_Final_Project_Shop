@@ -3,6 +3,9 @@ import vector from '../../images/sale/Vector.svg';
 import {
   refFavourites
 } from './saleSection';
+import {
+  getImg
+} from './saleSection'
 
 const userData = {
   isMobile: false,
@@ -40,7 +43,7 @@ export const createSingleCardMarkup = (element, sale) => {
 
 ${
 
-      `<img class="card_vector-notActiv" src="${vector}" data-favorite="false" data-clickVector="notActiv"/>`
+      `<img class="card_vector-notActiv" src="${getImg(element._id)}" data-favorite="false" data-clickVector="notActiv"/>`
 
 
 

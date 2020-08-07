@@ -40,34 +40,55 @@ function favouritesIntoBackeEnd(array) {
 
 
 
-export const getItem = (event) => {
-
-  if (event.target.closest('[data-id]') && event.target.nodeName === 'IMG') {
-    let favorite = userData.localFavourites;
-
-    let id = event.target.closest('[data-id]').dataset.id;
-
-    if (!localStorage.getItem('info')) {
-      if (event.target.src === vector) {
-        event.target.src = vector_love;
-        favorite.push(id)
-        localStorage.setItem('favorites', JSON.stringify(favorite));
-        console.log("Если токен пустой", favorite)
-      } else if (event.target.src === vector_love) {
-        event.target.src = vector;
-
-        favorite = favorite.filter(elem => elem !== id);
+// ?
 
 
-        localStorage.setItem('favorites', JSON.stringify(favorite));
-        console.log("Если токен пустой", favorite)
-      }
+
+
+function selectImg(className){
+const favorites ={
+  user:[],
+  local:[],
+  
+}
+
+}
+
+export function getImg(id){
+  const favoritesItems ={
+user:[],
+local:[]
+  }
+
+  if(localStorage.getItem('info')){
+
+    favoritesItems.user = [...userData.user.favorites]
+    if(favoritesItems.user.some(item => item._id === id)){
+return vector_love
+    } else{
+      return vector
     }
 
 
 
+  } else{
+
+    favoritesItems.local = JSON.parse(localStorage.getItem('favorites').favorites)
+
+    if(favoritesItems.local.includes(id)){
+return vector_love
+    } else{
+      return vector
+    }
+
+  }
 
 
+
+
+
+
+}
 
 
 
@@ -144,8 +165,8 @@ export const getItem = (event) => {
 
 
 
-  } else return
-}
+//   } else return
+// }
 
 
 export const createList = array => {
