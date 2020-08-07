@@ -61,6 +61,7 @@ export default {
         JSON.stringify({
           token: response.data.accces_token,
           favorites: [...currentUser.data.favorites],
+          user: response.data
         }),
       );
       modalModule(() => errorMarkup('Вы успешно авторизировались!'), addListener);
