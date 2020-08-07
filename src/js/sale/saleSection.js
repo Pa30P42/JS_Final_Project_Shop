@@ -72,20 +72,14 @@
 // // };
 import vector_love from '../../images/sale/Vector_love.svg';
 import vector from '../../images/sale/Vector.svg';
-import {
-  createSingleCardMarkup
-} from '../sale/cardModule';
+import { createSingleCardMarkup } from '../sale/cardModule';
 import apiUsers from '../api/users/apiUsers';
 import userData from '../userData';
 
-import {
-  createPaginationMarkup
-} from '../pagination/pagination';
+import { createPaginationMarkup } from '../pagination/pagination';
 // import { refsPagination } from '../pagination/pagination';
 // import { getPaginationPage } from '../pagination/pagination';
-import {
-  getPaginationPage
-} from '../pagination/pagination';
+// import { getPaginationPage } from '../pagination/pagination';
 import productCard from '../adv/productCard';
 
 // /* <section class="card container"></section> *
@@ -109,13 +103,12 @@ const createListMarkup = (array, paginationMarkup, link) => {
 };
 
 export const createList = (array, paginationMarkup, link) => {
-  const container = document.querySelector('.container');
-  // const container = document.querySelector('.sections');
-  //
+  // const container = document.querySelector('.container');
+  const container = document.querySelector('.sections');
 
   container.innerHTML = createListMarkup(array, paginationMarkup, link);
   container.addEventListener('click', getItem);
-  container.addEventListener('click', e => getPaginationPage(e, link));
+  // container.addEventListener('click', e => getPaginationPage(e, link));
 };
 
 // export const createList = array => {
