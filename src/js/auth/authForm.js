@@ -93,4 +93,7 @@ export function validateForm(event) {
       : ((authField.nextElementSibling.innerHTML = `<span class="auth-helper-text__invalid_password"><small>Пароль должен содержать не менее 8 символов</small></span>`),
         (authField.style.outlineColor = '#FF8A9D'));
   }
+  const inputForm = document.querySelector('.authForm');
+
+  inputForm.addEventListener('input', validateForm);
 }
