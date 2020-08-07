@@ -90,9 +90,7 @@ export default {
   async searchProductsbyName(inputSearch) {
     axios.defaults.headers['Authorization'] = JSON.parse(localStorage.getItem('info'));
     try {
-      const dataName = await axios.get(
-        `https://goit-store.herokuapp.com/products?search=${inputSearch}`,
-      );
+      const dataName = await axios.get(`https://goit-store.herokuapp.com/products?search=${inputSearch}`);
       return dataName;
     } catch (err) {
       throw new Error(err);
@@ -102,9 +100,7 @@ export default {
   async searchProductsbyCategory(inputSearch) {
     axios.defaults.headers['Authorization'] = JSON.parse(localStorage.getItem('info'));
     try {
-      const dataCategory = await axios.get(
-        `https://goit-store.herokuapp.com/products?search=&category=${inputSearch}`,
-      );
+      const dataCategory = await axios.get(`https://goit-store.herokuapp.com/products?search=&category=${inputSearch}`);
       return dataCategory;
     } catch (err) {
       throw new Error(err);
@@ -140,12 +136,20 @@ export default {
     page = userData.pagination.currentPage,
     PerPage = userData.pagination.perPage,
   ) {
-    // console.log('category', category);
-    // console.log('current page', page);
-    // console.log('PerPage', PerPage);
     try {
       const response = await axios.get(
         `https://goit-store.herokuapp.com/products?itemsPerPage=${PerPage}&page=${page}&category=${category}`,
+      );
+      return response;
+    } catch (err) {
+      throw new Error(err);
+    }
+  },
+
+  async getSearchWithPagination(search, page = userData.pagination.currentPage, PerPage = userData.pagination.perPage) {
+    try {
+      const response = await axios.get(
+        `https://goit-store.herokuapp.com/products?itemsPerPage=${PerPage}&page=${page}&search=${search}`,
       );
       return response;
     } catch (err) {
