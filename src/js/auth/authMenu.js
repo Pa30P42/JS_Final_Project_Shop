@@ -1,9 +1,5 @@
-import {
-  modalModule
-} from '../components/modalModule/modalModule';
-import {
-  authForm
-} from '../auth/authForm';
+import { modalModule } from '../components/modalModule/modalModule';
+import { authForm } from '../auth/authForm';
 import apiAuth from '../api/auth/apiAuth';
 import apiUsers from '../api/users/apiUsers';
 import profile from '../profile/profileMarkups';
@@ -14,6 +10,8 @@ import {
 
 } from '../profile/profileMarkups';
 import userData from '.././userData';
+import { validateForm } from './authForm';
+
 
   
 let authFormListeners = '';
@@ -41,7 +39,6 @@ modalContainer.innerHTML = '';
   }
   if (dataway.contains('createAdAccount')) {
     if (userData.user.role === "ADMIN") {
-
       profile.maintabsMarkup(),
         advertisementFormMarkup();
       modalContainer.innerHTML = '';
@@ -57,6 +54,7 @@ modalContainer.innerHTML = '';
     document.body.style.overflow = 'auto';
   }
 };
+
 
 export const authFn = function () {
   document.body.style.overflow = 'hidden';
@@ -82,37 +80,37 @@ export const authFn = function () {
       const controlItem = document.querySelector('button[title="favourites"]');
       controlItem.classList.add('active');
     }
-
     //======open favourites=====
-
-
   } else {
     modalModule(authForm, authMenuMarkUpListener);
     authFormListeners = document.querySelector('.authForm');
-    
-
     authFormListeners.addEventListener('click', e => {
       e.preventDefault();
+      validateForm(e);
+      // console.dir(e.target);
       if (e.target === e.currentTarget[2]) {
         userValue.email = e.currentTarget[0].value;
         userValue.password = e.currentTarget[1].value;
+
         apiAuth.login(userValue);
         e.currentTarget.reset();
         modalContainer.innerHTML = '';
-        alert("Log in");
+        document.body.style.overflow = 'auto';
       }
+
       if (e.target === e.currentTarget[3]) {
         userValue.email = e.currentTarget[0].value;
         userValue.password = e.currentTarget[1].value;
         apiAuth.register(userValue);
         e.currentTarget.reset();
-        alert("Register");
-      }
-      if (e.target.nodeName === "IMG") {
-        modalContainer.innerHTML = "";
         document.body.style.overflow = 'auto';
       }
 
+      // e.target.nodeName === "IMG"
+      if (e.target === e.currentTarget[4]) {
+        modalContainer.innerHTML = "";
+        document.body.style.overflow = 'auto';
+      }
     });
   }
 };
@@ -152,33 +150,4 @@ export const authMenuMarkUp = function () {
 
 export const authMenuMarkUpListener = function () {
   listenPrivateAccount = document.querySelector('.auth-menu__list');
-};
-
-function validateForm(e) {
-
-  const field = event.target;
-  const inputValue = event.target.value;
-  const inputLength = event.target.value.length;
-  const nameOfInput = field.getAttribute('name');
-  // const onlyLetAndSymbolRegEx = /^(?=.*[A-ZА-Я])[a-zA-Zа-яА-Я_ -]*$/;
-  // const numbersRegEx = /^[a-zA-Zа-яА-Я0-9_/-]*$/;
-  // const zipRegEx = /^[0-9_/-]*$/;
-  const regExEmail = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{3,}))$/;
-
-
-  if (nameOfInput === 'email') {
-    nameOfInput === 'email' && inputValue.match(regExEmail)
-      ? ((field.nextElementSibling.innerHTML = `<span class="helper-text-valid"></span>`),
-        (field.style.outlineColor = '#109b17'))
-      : ((field.nextElementSibling.innerHTML = `<span class="helper-text-invalid">Неверный адрес почты</span>`),
-        (field.style.outlineColor = '#FF8A9D'));
-  }
-
-  if (nameOfInput === 'password') {
-    nameOfInput === 'password' && inputLength > 5
-      ? ((field.nextElementSibling.innerHTML = `<span class="helper-text-valid"></span>`),
-        (field.style.outlineColor = '#109b17'))
-      : ((field.nextElementSibling.innerHTML = `<span class="helper-text-invalid"><small>Пароль должен содержать не менее 6 символов</small></span>`),
-        (field.style.outlineColor = '#FF8A9D'));
-  }
-}
+}; 
