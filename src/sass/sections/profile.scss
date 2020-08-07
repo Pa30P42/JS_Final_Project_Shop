@@ -33,7 +33,6 @@
     font-weight: bold;
     font-size: 26px;
     line-height: 32px;
-    // padding: 0;
     margin-bottom: 20px;
   }
 }
@@ -214,108 +213,10 @@ em {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  // flex-wrap: wrap;
+
 }
 
-.favourites-list__items {
-  position: relative;
-  width: 135px;
-  height: 220px;
-  padding: 20px 15px 15px 15px;
 
-  background: #ffffff;
-  border-radius: 10px;
-  font-weight: 500;
-  font-size: 10px;
-  line-height: 12px;
-
-  color: #000000;
-
-  text-align: left;
-
-  margin: 0 10px 30px 0;
-
-  &:hover {
-    box-shadow: 0px 0px 5px #53535c;
-  }
-
-  @media (min-width: 768px) {
-    width: 204px;
-    height: 300px;
-    padding: 20px;
-    font-weight: 500;
-    font-size: 14px;
-    line-height: 17px;
-  }
-
-  @media (min-width: 1200px) {}
-
-  &__address::placeholder {
-    color: #b3b3b3;
-  }
-}
-
-.item-name {
-  margin: 10px 0 10px;
-}
-
-.item-img {
-  @media (min-width: 768px) {
-    width: 140px;
-    height: 140px;
-  }
-}
-
-.item-rate {
-  display: flex;
-  margin-bottom: 16px;
-
-  &__img {
-    margin-right: 5px;
-  }
-}
-
-.item-price {
-  @media (min-width: 768px) {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-end;
-  }
-}
-
-.item-price__old {
-  font-weight: 500;
-  font-size: 10px;
-  line-height: 12px;
-  text-decoration-line: line-through;
-
-  color: #b3b3b3;
-
-  @media (min-width: 768px) {
-    order: 2;
-    font-size: 14px;
-    line-height: 17px;
-    text-align: right;
-  }
-}
-
-.item-price__new {
-  font-weight: 600;
-  font-size: 18px;
-  line-height: 22px;
-
-  color: #53535c;
-
-  @media (min-width: 768px) {
-    order: 1;
-  }
-}
-
-.item__favorite-icon {
-  position: absolute;
-  right: 10px;
-  top: 10px;
-}
 
 //=========js-active=====
 .js-active-tab {
@@ -469,125 +370,7 @@ label.adv-label {
   }
 }
 
-/* START TOOLTIP STYLES */
-[tooltip] {
-  position: relative;
-  /* opinion 1 */
-}
 
-/* Applies to all tooltips */
-[tooltip]::before,
-[tooltip]::after {
-  text-transform: none;
-  /* opinion 2 */
-  font-size: 0.8em;
-  /* opinion 3 */
-  line-height: 1;
-  user-select: none;
-  pointer-events: none;
-  position: absolute;
-  display: none;
-  opacity: 0;
-}
-
-[tooltip]::before {
-  content: '';
-  border: 5px solid transparent;
-  /* opinion 4 */
-  z-index: 1001;
-  /* absurdity 1 */
-}
-
-[tooltip]::after {
-  content: attr(tooltip);
-  /* magic! */
-
-  /* most of the rest of this is opinion */
-  font-family: Helvetica, sans-serif;
-  text-align: center;
-
-  /* 
-    Let the content set the size of the tooltips 
-    but this will also keep them from being obnoxious
-    */
-  min-width: 3em;
-  max-width: 18em;
-  // white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  padding: 2ch 1.3ch;
-  border-radius: 0.9ch;
-  box-shadow: 0 1em 2em -0.5em rgba(0, 0, 0, 0.35);
-  background: #333;
-  color: #fff;
-  z-index: 1000;
-  /* absurdity 2 */
-}
-
-/* Make the tooltips respond to hover */
-[tooltip]:hover::before,
-[tooltip]:hover::after {
-  display: block;
-}
-
-/* don't show empty tooltips */
-[tooltip='']::before,
-[tooltip='']::after {
-  display: none !important;
-}
-
-/* FLOW: UP */
-[tooltip]:not([flow])::before,
-[tooltip][flow^='up']::before {
-  bottom: 100%;
-  border-bottom-width: 0;
-  border-top-color: #333;
-}
-
-[tooltip]:not([flow])::after,
-[tooltip][flow^='up']::after {
-  bottom: calc(100% + 5px);
-}
-
-[tooltip]:not([flow])::before,
-[tooltip]:not([flow])::after,
-[tooltip][flow^='up']::before,
-[tooltip][flow^='up']::after {
-  left: 50%;
-  transform: translate(-50%, -0.5em);
-}
-
-/* KEYFRAMES */
-@keyframes tooltips-vert {
-  to {
-    opacity: 0.9;
-    transform: translate(-50%, 0);
-  }
-}
-
-@keyframes tooltips-horz {
-  to {
-    opacity: 0.9;
-    transform: translate(0, -50%);
-  }
-}
-
-/* FX All The Things */
-[tooltip]:not([flow]):hover::before,
-[tooltip]:not([flow]):hover::after,
-[tooltip][flow^='up']:hover::before,
-[tooltip][flow^='up']:hover::after,
-[tooltip][flow^='down']:hover::before,
-[tooltip][flow^='down']:hover::after {
-  animation: tooltips-vert 300ms ease-out forwards;
-}
-
-[tooltip][flow^='left']:hover::before,
-[tooltip][flow^='left']:hover::after,
-[tooltip][flow^='right']:hover::before,
-[tooltip][flow^='right']:hover::after {
-  animation: tooltips-horz 300ms ease-out forwards;
-}
 
 //==================VALIDATION=====
 
@@ -682,7 +465,7 @@ div.helper-text-div {
   }
 }
 
-//.favourites-wrapper
+
 .form-group,
 .address-form-group {
   @media (max-width: 767px) {

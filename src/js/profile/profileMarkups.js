@@ -33,6 +33,9 @@ import {
   addToCartProducts,
   showCart
 } from '../components/cart/cart';
+// import {
+//   addToCart
+// } from '..components/cart/cart';
 
 //
 // apiAuth.getCurrentUser()   role: "ADMIN"
@@ -466,17 +469,17 @@ export function favouritesFormMarkup(array) {
                 </div>
               </div>`;
   };
-  //============= добавить в корзину=============
+  // ============= добавить в корзину=============
   // const favProfileBuyBtn = document.querySelector('.favorite-button');
   // favProfileBuyBtn.addEventListener('click', fromProfileTocart);
 
   // function fromProfileTocart() {
-
-  //   addToCartProducts(userData.user.favorites);
+  //   userData.user.favorites.forEach(addToCart);
+  //   //   addToCartProducts(userData.user.favorites);
   //   showCart();
 
   // }
-  //============= добавить в корзину=============
+  // ============= добавить в корзину=============
 
   const favouritesBtn = document.querySelector(".favourites");
   favouritesBtn.insertAdjacentHTML(
@@ -489,7 +492,7 @@ export function favouritesFormMarkup(array) {
     isPagination: true,
   });
 
-  const profileFavoritesLi = document.querySelectorAll('li');
+  const profileFavoritesLi = document.querySelectorAll('.card_item-sale');
 
   for (let i = 0; i < profileFavoritesLi.length; i += 1) {
     profileFavoritesLi[i].style.marginRight = '10px';
@@ -501,6 +504,7 @@ export function favouritesFormMarkup(array) {
     const renderIntoBigCard = (e, items) => {
       items = userData.user.favorites;
       console.log('items :>> ', items);
+      console.log('e.target :>> ', e.target);
       if (e.target.nodeName === "UL") return;
       const id = e.target.closest('[data-id]').dataset.id;
       const product = items.find(item => item._id === id);
@@ -508,21 +512,18 @@ export function favouritesFormMarkup(array) {
     };
   }
 
-  const profileImgTooltip = document.querySelectorAll('img[data-clickvector="notActiv"]');
-  for (let i = 0; i < profileImgTooltip.length; i += 1) {
-    profileImgTooltip[i].insertAdjacentHTML('afterEnd', `<span tooltip="Убрать из избранного">o</span>`);
-    console.log('profileImgTooltip :>> ', profileImgTooltip);
-  }
+  // const profileImgTooltip = document.querySelectorAll('img[data-clickvector="notActiv"]');
+  // for (let i = 0; i < profileImgTooltip.length; i += 1) {
+  //   profileImgTooltip[i].insertAdjacentHTML('afterEnd', `<span tooltip="Убрать из избранного">o</span>`);
+  //   console.log('profileImgTooltip :>> ', profileImgTooltip);
+  // }
+  // //=======tooltip=======
 
 
   setActive();
 }
-//=======tooltip=======
 
-//field.nextElementSibling.innerHTML = `<span tooltip="Убрать из избранного">o</span>`),
-//======tooltip======
-// const profileHeartImg = document.querySelector('.card_vector-notActiv');
-//=======FAVOURITES=========================
+
 
 export function advertisementFormMarkup() {
   const advertisementMarkup = () => {
