@@ -1,6 +1,7 @@
 .product__card {
   background-color: rgb(244, 244, 244);
   padding: 10px;
+  box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.15);
   border-radius: 10px;
 }
 .product__card-close {
@@ -41,11 +42,13 @@
 .product__image_item {
   width: auto;
   max-height: 260px;
+  border-radius: 10px;
 }
 
 .product__image--preview-list {
   display: flex;
   flex-wrap: wrap;
+  color: rgb(244, 244, 244);
 }
 
 .product__image--preview-item {
@@ -56,6 +59,12 @@
 .product__img-preview {
   width: auto;
   max-height: 40px;
+  border-radius: 10px;
+}
+
+.product__img-preview:hover,
+.product__img-preview:focus {
+  box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.15);
 }
 
 .product__img-preview,
