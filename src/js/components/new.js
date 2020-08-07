@@ -4,6 +4,7 @@ import { createSingleCardMarkup } from '../sale/cardModule';
 import productCard from '../adv/productCard';
 import SliderMI from './sliderMI/sliderMI';
 import products from './products.json';
+import { addProductsToCart, showCart } from './cart/cart';
 
 const newHeadMarkup = () => {
   return `
@@ -61,6 +62,13 @@ const addNewAndLastSeen = () => {
       onSelectCard(e, newProducts);
     });
   }
+
+  newRef.insertAdjacentHTML('beforeend', `<button id="buyNew">Buy</button>`);
+  const btn = document.querySelector('#buyNew');
+  btn.addEventListener('click', () => {
+    addProductsToCart(newProducts);
+    showCart();
+  });
 
   if (lastSeenProducts.length) {
     const lastSeenRef = refs.sections.querySelector('.last-seen-wrapper');
