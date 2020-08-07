@@ -1,4 +1,4 @@
-import { addToCart, showCart, setCartCounter } from '../components/cart/cart';
+import { addToCart, showCart } from '../components/cart/cart';
 
 const buy = (item, closeModal) => {
   addToCart(item);
