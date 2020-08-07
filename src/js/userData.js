@@ -26,11 +26,7 @@ export default {
     },
   },
 
-  categories: {
-    refrigerators: {
-      totalQuantity: 0,
-    },
-  },
+  categories: {},
 
   pagination: {
     currentPage: 1,
@@ -95,15 +91,15 @@ export default {
     // userData();
     if (width < 768) {
       this.settings.isMobile = true;
-      this.pagination.perPage = 2;
+      this.pagination.perPage = 6;
     }
     if (width >= 768 && width < 1200) {
       this.settings.isTablet = true;
-      this.pagination.perPage = 4;
+      this.pagination.perPage = 9;
     }
     if (width >= 1200) {
       this.settings.isDesktop = true;
-      this.pagination.perPage = 4;
+      this.pagination.perPage = 10;
     }
   },
 
