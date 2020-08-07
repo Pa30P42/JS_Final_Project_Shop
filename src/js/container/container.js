@@ -1,32 +1,12 @@
-import {
-  refs
-} from '../components/refs';
+import { refs } from '../components/refs';
 
-import {
-  sliderItemMarkup
-} from '../slider/sliderMarkup';
+import { sliderItemMarkup } from '../slider/sliderMarkup';
 
-import {
-  catalogListMarkup
-} from '../catalog/catalog';
-import {
-  header
-} from '../header/header';
-import {
-  categoriesListMarkup,
-  categoriesListMarkupAddListeners
-} from '../category/category-markup';
-import {
-  searchSideBar
-} from '../search/searchsidebar/searchSideBar.js';
-import {
-  setCartCounter,
-  setupEvents
-} from '../components/cart/cart';
-import {
-  addNewAndLastSeen
-} from '../components/new';
-import setting from '../setting';
+import { catalogListMarkup } from '../catalog/catalog';
+import { header } from '../header/header';
+import { categoriesListMarkup, categoriesListMarkupAddListeners } from '../category/category-markup';
+import { searchSideBar } from '../search/searchsidebar/searchSideBar.js';
+import { addNewAndLastSeen } from '../components/new';
 
 //В каждом диве запустить функцию определенного модуля который булет отрисовывать блок.
 
@@ -49,23 +29,12 @@ const containerSectionsMarkup = function () {
     `;
 };
 
-setting.handlers = {};
-setting.handlers.resize = [];
-
 export const containerHandler = () => {
   refs.container.insertAdjacentHTML('afterbegin', containerHeaderMarkup());
   refs.container.insertAdjacentHTML('beforeend', containerFooterMarkup());
   refs.sections.innerHTML = containerSectionsMarkup();
   categoriesListMarkupAddListeners();
-  let countHandlers = setting.handlers.resize.length;
-  if (countHandlers) {
-    for (let i = 0; i < countHandlers; i += 1) {
-      window.removeEventListener('resize', setting.handlers.resize[i]);
-    }
-    setting.handlers.resize = [];
-  }
   addNewAndLastSeen();
-  setCartCounter();
 };
 
 // categoriesListMarkup(categories);
