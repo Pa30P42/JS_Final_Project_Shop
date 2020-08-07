@@ -485,7 +485,7 @@ export function favouritesFormMarkup(array) {
   );
   new SliderMI('.favourites-wrapper__position', {
     step: 1,
-    isNavs: true,
+    isNavs: false,
     isPagination: true,
   });
 
