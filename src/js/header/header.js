@@ -19,10 +19,17 @@ import { containerHandler } from '../container/container';
 
 import { authFn } from '../auth/authMenu';
 import apiProducts from '../api/products/apiProducts';
+
+import { createNewPagination } from '../pagination/pagination.js';
+
+import profile from '../profile/profileMarkups';
+import userData from '.././userData';
+
+import { profileFavErrorMarkup, favouritesFormMarkup } from '../profile/profileMarkups';
+
 import { createList } from '../sale/saleSection';
 import { initialAction } from '../../index';
-import { createNewPagination } from '../pagination/pagination.js';
-import userData from '../userData.js';
+import { createPagination } from '../pagination/pagination.js';
 
 const headerButton = async event => {
   let dataname;
@@ -60,6 +67,14 @@ const headerButton = async event => {
     authFn();
     closeHeaderMenu();
   } else if (dataname === 'name_like') {
+    //======open favourites=====
+    profile.maintabsMarkup();
+    userData.user.favorites ? favouritesFormMarkup(userData.user.favorites) : profileFavErrorMarkup();
+
+    const controlItem = document.querySelector('button[title="favourites"]');
+    controlItem.classList.add('active');
+    //======open favourites=====
+
     console.log('like');
     closeHeaderMenu();
   } else if (dataname === 'name_cart') {

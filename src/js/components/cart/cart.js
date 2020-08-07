@@ -344,7 +344,7 @@ const listeners = closeModal => {
   btnBackToProducts.addEventListener('click', () => closeCart(closeModal));
   btnConfirm.addEventListener('click', () => createOrder(closeModal));
 };
-
+document.body.style.overflow = 'auto';
 const showCart = () => {
   setCartCounter();
   modalModule(createCartMarkup, listeners);
