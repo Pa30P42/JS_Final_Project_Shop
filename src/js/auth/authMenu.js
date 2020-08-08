@@ -87,10 +87,15 @@ export const authFn = function () {
     //======open favourites=====
     function restFavOpen() {
       profile.maintabsMarkup();
-      (!userData.user.favorites) ?
-      profileFavErrorMarkup():
-        favouritesFormMarkup(userData.user.favorites);
+      const localUserFavorites = JSON.parse(localStorage.getItem("user-data"))
+        .response_data_user[0].favorites;
+      const result = localStorage.getItem("user-data") ?
+        localUserFavorites :
+        localStorage.getItem("favorites__") ? [...JSON.parse(localStorage.getItem("favorites__"))] : [];
+      console.log('result :>> ', result);
+      favouritesFormMarkup(result);
 
+    
       const controlItem = document.querySelector('button[title="favourites"]');
       controlItem.classList.add('active');
     }

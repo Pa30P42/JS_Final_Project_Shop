@@ -107,12 +107,20 @@ const headerButton = async event => {
   } else if (dataname === 'name_like') {
     //======open favourites=====
 
-    (!userData.user.favorites) ?
-    profileFavErrorMarkup():
-      favouritesFormMarkup(userData.user.favorites);
+
+    profile.maintabsMarkup();
+    const localUserFavorites = JSON.parse(localStorage.getItem("user-data"))
+      .response_data_user[0].favorites;
+    const result = localStorage.getItem("user-data") ?
+      localUserFavorites :
+      localStorage.getItem("favorites__") ? [...JSON.parse(localStorage.getItem("favorites__"))] : [];
+    console.log('result :>> ', result);
+    favouritesFormMarkup(result);
+
 
     const controlItem = document.querySelector('button[title="favourites"]');
     controlItem.classList.add('active');
+
 
     //======open favourites=====
 
