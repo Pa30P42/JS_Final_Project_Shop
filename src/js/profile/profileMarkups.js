@@ -455,8 +455,8 @@ let profileSliderInstances = [];
 export function favouritesFormMarkup(array) {
   function favouritesMarkup(array) {
     return `
-          <div class="favourites-wrapper tabs__panel" id="form" data-form="favourites">
-          <div class="favourites-wrapper__position">
+          <div class="favourites-wrapper__position" id="form" data-form="favourites">
+          
     
                 <ul class="favourites-list">
                 ${array.reduce((acc, element) => {
@@ -466,7 +466,7 @@ export function favouritesFormMarkup(array) {
                 <button type="submit" id="submit" class="favorite-button save-button">
                   Купить всё
                 </button>
-                </div>
+                
               </div>`;
   };
   // ============= добавить в корзину=============
@@ -512,8 +512,8 @@ export function favouritesFormMarkup(array) {
   const profileFavoritesLi = document.querySelectorAll(".card_item-sale");
 
   for (let i = 0; i < profileFavoritesLi.length; i += 1) {
-    profileFavoritesLi[i].style.marginRight = "10px";
-    profileFavoritesLi[i].style.marginBottom = "0px";
+    //profileFavoritesLi[i].style.marginRight = "10px";
+    profileFavoritesLi[i].style.marginBottom = "0";
     profileFavoritesLi[i].style.flexShrink = "0";
 
     profileFavoritesLi[0].addEventListener("click", renderIntoBigCard);
