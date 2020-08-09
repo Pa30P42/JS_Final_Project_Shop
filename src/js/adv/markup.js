@@ -1,5 +1,7 @@
 import favourite from '../../images/adv/icons/favorite.svg';
 import close from '../../images/adv/icons/close-icon.svg';
+import { getImg, getElementsForFavorites } from '../../js/sale/saleSection';
+// import { setStatus } from './productCard';
 
 const productItem = item => {
   return `
@@ -63,8 +65,10 @@ const productItem = item => {
           </div>
           <div class="product__to-add-wrapper">
             <button id="btnBuy" class="buy-btn">купить</button>
-            <img class="adv__favorite" id="btnFavourite" src="${favourite}" alt="like" width="20" />
-            <span class="adv__in-favorite" data-action="adv__action_favorite">В избранное</span>
+              <img class="adv__favorite" id="btnFavourite" data-id="${item._id}" 
+              data-favorite="${getElementsForFavorites(item)}" 
+      src="${getImg(item._id)}" alt="like" width="20" />
+              <span class="adv__in-favorite" data-action="adv__action_favorite">Избранное</span>
           </div>
 
           <div class="product__describtion-desktop">
