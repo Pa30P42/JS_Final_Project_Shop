@@ -56,7 +56,8 @@ import userData from '.././userData';
 
 import {
   profileFavErrorMarkup,
-  favouritesFormMarkup
+  favouritesFormMarkup,
+  setFavouritesCount
 } from '../profile/profileMarkups';
 
 import {
@@ -108,19 +109,23 @@ const headerButton = async event => {
     //======open favourites=====
 
 
-    profile.maintabsMarkup();
     const localUserFavorites = JSON.parse(localStorage.getItem("user-data"))
       .response_data_user[0].favorites;
     const result = localStorage.getItem("user-data") ?
       localUserFavorites :
       localStorage.getItem("favorites__") ? [...JSON.parse(localStorage.getItem("favorites__"))] : [];
     console.log('result :>> ', result);
-    favouritesFormMarkup(result);
+    //======open favourites=====
+
+    profile.maintabsMarkup();
+    (result.length === 0) ?
+    profileFavErrorMarkup():
+      favouritesFormMarkup(result);
 
 
     const controlItem = document.querySelector('button[title="favourites"]');
     controlItem.classList.add('active');
-
+    setFavouritesCount();
 
     //======open favourites=====
 

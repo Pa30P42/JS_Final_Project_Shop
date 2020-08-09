@@ -59,7 +59,7 @@ import {
 
 
 
-const setFavouritesCount = () => {
+export const setFavouritesCount = () => {
   const headerNavLike = document.querySelector('header .counter_like-items');
   const localUserFavorites = JSON.parse(localStorage.getItem("user-data"))
     .response_data_user[0].favorites;
@@ -514,6 +514,7 @@ export function favouritesFormMarkup(array) {
 
   const favouritesBtn = document.querySelector(".favourites");
   favouritesBtn.insertAdjacentHTML("afterend", favouritesMarkup(array));
+  //==============slider=================
 
   if (profileSliderInstances.length) {
     profileSliderInstances.forEach((instance) => instance.removeListeners());
@@ -525,11 +526,13 @@ export function favouritesFormMarkup(array) {
     isPagination: true,
   });
   profileSliderInstances.push(profileSliderNew);
+
+  //==============slider=================
   const profileFavoritesLi = document.querySelectorAll(".card_item-sale");
 
   for (let i = 0; i < profileFavoritesLi.length; i += 1) {
     //profileFavoritesLi[i].style.marginRight = "18px";
-    profileFavoritesLi[i].style.marginBottom = "0";
+    // profileFavoritesLi[i].style.marginBottom = "0";
     //profileFavoritesLi[i].style.flexShrink = "0";
 
     profileFavoritesLi[0].addEventListener("click", renderIntoBigCard);

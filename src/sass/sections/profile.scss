@@ -219,6 +219,7 @@ em {
   // @media (max-width: 767px) {
   flex-shrink: 0;
   margin-right: 18px;
+  margin-bottom: 0;
   // }
 }
 
@@ -227,7 +228,7 @@ em {
   //padding: 15px 0 40px;
   @media (max-width: 767px) {
     width: 153px;
-    // height: 200px;
+    height: 350px;
     // display: flex;
     // justify-content: center;
     // flex-direction: column;

@@ -10,7 +10,8 @@ import profile from '../profile/profileMarkups';
 import {
   profileFavErrorMarkup,
   favouritesFormMarkup,
-  advertisementFormMarkup
+  advertisementFormMarkup,
+  setFavouritesCount
 
 } from '../profile/profileMarkups';
 import userData from '.././userData';
@@ -100,6 +101,7 @@ export const authFn = function () {
 
       const controlItem = document.querySelector('button[title="favourites"]');
       controlItem.classList.add('active');
+      setFavouritesCount();
     }
 
 
