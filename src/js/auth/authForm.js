@@ -1,4 +1,3 @@
-import close from '../../images/information/close-icon.svg';
 import userData from '.././userData';
 
 export const authForm = () => {
@@ -49,13 +48,6 @@ export const authForm = () => {
   </form>
     `;
 };
-
-// <img
-// src="${close}"
-// alt="x"
-// width="20"
-// />
-
 
 export function validateForm (event) {
   const authField = event.target;
