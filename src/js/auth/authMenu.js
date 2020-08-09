@@ -1,5 +1,9 @@
-import { modalModule } from '../components/modalModule/modalModule';
-import { authForm } from '../auth/authForm';
+import {
+  modalModule
+} from '../components/modalModule/modalModule';
+import {
+  authForm
+} from '../auth/authForm';
 import apiAuth from '../api/auth/apiAuth';
 import apiUsers from '../api/users/apiUsers';
 import profile from '../profile/profileMarkups';
@@ -10,10 +14,12 @@ import {
 
 } from '../profile/profileMarkups';
 import userData from '.././userData';
-import { validateForm } from './authForm';
+import {
+  validateForm
+} from './authForm';
 
 
-  
+
 let authFormListeners = '';
 let listenPrivateAccount = '';
 let loginAccount = '';
@@ -30,12 +36,19 @@ const privateMenu = function (e) {
   const dataway = e.target.classList;
   if (dataway.contains('privateAccount')) {
     profile.maintabsMarkup(),
-modalContainer.innerHTML = '';
+      modalContainer.innerHTML = '';
     document.body.style.overflow = 'auto';
   }
   if (dataway.contains('favoritesAccount')) {
     modalContainer.innerHTML = '';
     document.body.style.overflow = 'auto';
+    // profile.maintabsMarkup();
+    // userData.user.favorites === [] ?
+    //   profileFavErrorMarkup() :
+    //   favouritesFormMarkup(userData.user.favorites);
+
+    // const controlItem = document.querySelector('button[title="favourites"]');
+    // controlItem.classList.add('active');
   }
   if (dataway.contains('createAdAccount')) {
     if (userData.user.role === "ADMIN") {
@@ -67,16 +80,22 @@ export const authFn = function () {
 
 
     const pseudoRef = document.querySelector('.privateAccount');
-    pseudoRef.addEventListener('click', profile.maintabsMarkup.bind(profile));
+    pseudoRef.addEventListener('click', profile.maintabsMarkup);
     const profileFavBtnInAuth = document.querySelector('.favoritesAccount');
     profileFavBtnInAuth.addEventListener('click', restFavOpen);
 
     //======open favourites=====
     function restFavOpen() {
       profile.maintabsMarkup();
-      (userData.user.favorites) ?
-      favouritesFormMarkup(userData.user.favorites): profileFavErrorMarkup();
+      const localUserFavorites = JSON.parse(localStorage.getItem("user-data"))
+        .response_data_user[0].favorites;
+      const result = localStorage.getItem("user-data") ?
+        localUserFavorites :
+        localStorage.getItem("favorites__") ? [...JSON.parse(localStorage.getItem("favorites__"))] : [];
+      console.log('result :>> ', result);
+      favouritesFormMarkup(result);
 
+    
       const controlItem = document.querySelector('button[title="favourites"]');
       controlItem.classList.add('active');
     }
@@ -150,4 +169,4 @@ export const authMenuMarkUp = function () {
 
 export const authMenuMarkUpListener = function () {
   listenPrivateAccount = document.querySelector('.auth-menu__list');
-}; 
+};

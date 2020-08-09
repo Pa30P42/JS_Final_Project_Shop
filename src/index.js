@@ -1,4 +1,3 @@
-import { startSpinner } from './js/scroll_and_spiner/spinner';
 import './sass/main.scss';
 import './js/category/category-markup';
 import { containerHandler } from './js/container/container';
@@ -12,7 +11,7 @@ import userData from './js/userData';
 
 
 export const initialAction = async () => {
-  startSpinner();
+
   userData.getSettings();
 
   await apiProducts.getCategories();
