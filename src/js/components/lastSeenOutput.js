@@ -25,18 +25,3 @@ const showLastSeen = products => {
 };
 
 export default showLastSeen;
-
-// arrayFromLS.forEach(item => {
-//   const timePassed = moment(item.time).startOf('day').fromNow();
-//   console.log(timePassed);
-//   let start = item.time;
-//   let diff = end.diff(start);
-//   let days = moment.utc(diff).format('D');
-//   console.log(days);
-// });
-// const durationDaysLastSeen = arrayFromLS.map(item => {
-//   let diff = end.diff(item.time);
-//   let daysCount = moment.utc(diff).format('D');
-//   return { ...item, duration: daysCount };
-// });
-// console.log(durationDaysLastSeen);

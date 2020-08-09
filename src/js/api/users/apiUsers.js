@@ -126,7 +126,6 @@ export default {
       return currentId;
     } catch (error) {
       console.log(error);
-
     }
   },
 };
