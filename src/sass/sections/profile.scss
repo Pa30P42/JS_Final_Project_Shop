@@ -86,23 +86,23 @@
 }
 
 .contacts {
-  background-image: url('../images/profile/user.svg');
+  background-image: url("../images/profile/user.svg");
 }
 
 .password {
-  background-image: url('../images/profile/heartlock.svg');
+  background-image: url("../images/profile/heartlock.svg");
 }
 
 .address {
-  background-image: url('../images/profile/shopping.svg');
+  background-image: url("../images/profile/shopping.svg");
 }
 
 .favourites {
-  background-image: url('../images/profile/giftbag.svg');
+  background-image: url("../images/profile/giftbag.svg");
 }
 
 .advertisement {
-  background-image: url('../images/profile/addbutton.svg');
+  background-image: url("../images/profile/addbutton.svg");
 }
 
 .page-control__wrapper {
@@ -186,7 +186,8 @@
     width: 302px;
   }
 
-  @media (min-width: 1200px) {}
+  @media (min-width: 1200px) {
+  }
 }
 
 em {
@@ -194,57 +195,62 @@ em {
 }
 
 //==========favourites========
-
+.favourites-wrapper__position .slider__controls-arrow_right {
+  @media (max-width: 767px) {
+    right: -37px;
+  }
+}
+.favourites-wrapper__position .slider__controls-arrow_left {
+  @media (max-width: 767px) {
+    left: -51px;
+  }
+}
+.favourites-wrapper__position > li .card_item-sale {
+  @media (max-width: 767px) {
+    margin: 0;
+  }
+}
 .favourites-wrapper__position {
-  padding: 15px 0 40px;
-  width: 301px;
+  //padding: 15px 0 40px;
+  @media (max-width: 767px) {
+    width: 153px;
+    // display: flex;
+    // justify-content: center;
+    // flex-direction: column;
+  }
+  @media (min-width: 768px) {
+    width: 290px;
+  }
+
   // text-align: center;
   // height: 350px;
 
   @media (min-width: 768px) {
     position: absolute;
     // transform: translate(97%, 3%);
-    width: 414px;
+    width: 420px;
     position: absolute;
-    top: -19px;
-    right: -450px;
+    top: -6px;
+    right: -437px;
   }
 
-  @media (min-width: 1200px) {
-    // transform: translate(50%, -97%);
-  }
-}
-
-.favourites-wrapper__position .slider__holder {
-  // width: 300px;
-
-  margin-left: 0px;
-
-  @media (min-width: 768px) {
-    width: 440px;
-    // margin-left: -10px;
-
-  }
-}
-
-.favourites-list>li .card_item-sale {
-  margin-right: 10px;
-
-  @media (min-width: 768px) {
-    margin-right: 18px;
-  }
+  // @media (min-width: 1200px) {
+  //   top: -19px;
+  //   right: -437px;
+  // }
 }
 
 .favourites-list {
-
   display: flex;
-  //width: 1160px;
-  // align-items: center;
-  // justify-content: space-between;
+  justify-content: center;
 
+  @media (max-width: 766px) {
+    width: 153px;
+  }
+  @media (min-width: 768px) {
+    width: 290px;
+  }
 }
-
-
 
 //=========js-active=====
 .js-active-tab {
@@ -398,8 +404,6 @@ label.adv-label {
   }
 }
 
-
-
 //==================VALIDATION=====
 
 input {
@@ -421,7 +425,7 @@ div.helper-text-div {
 
   &:before {
     display: block;
-    content: ' ';
+    content: " ";
     position: absolute;
     top: -43px;
     right: 0;
@@ -430,7 +434,7 @@ div.helper-text-div {
     background-repeat: no-repeat;
     background-position: center;
     background-size: 50%;
-    background-image: url('../images/profile/error.svg');
+    background-image: url("../images/profile/error.svg");
   }
 }
 
@@ -446,7 +450,7 @@ div.helper-text-div {
 
   &:before {
     display: block;
-    content: ' ';
+    content: " ";
     position: absolute;
     right: 0;
     top: -40px;
@@ -455,7 +459,7 @@ div.helper-text-div {
     background-repeat: no-repeat;
     background-position: center;
     background-size: 73%;
-    background-image: url('../images/profile/valid.svg');
+    background-image: url("../images/profile/valid.svg");
   }
 }
 
@@ -492,7 +496,6 @@ div.helper-text-div {
     transform: translateY(0);
   }
 }
-
 
 .form-group,
 .address-form-group {
@@ -554,7 +557,17 @@ div.helper-text-div {
 .save-button__valid {
   width: 250px;
   height: 44px;
-  background: linear-gradient(60deg, #f79533, #f37055, #ef4e7b, #a166ab, #5073b8, #1098ad, #07b39b, #6fba82);
+  background: linear-gradient(
+    60deg,
+    #f79533,
+    #f37055,
+    #ef4e7b,
+    #a166ab,
+    #5073b8,
+    #1098ad,
+    #07b39b,
+    #6fba82
+  );
   animation: animatedgradient 3s ease alternate infinite;
   border-radius: 10px;
   color: white;
@@ -576,7 +589,7 @@ div.helper-text-div {
 
 .favorite-button {
   position: absolute;
-  transform: translate(20px, 280px);
+  transform: translate(-51px, 280px);
 
   @media (min-width: 768px) {
     transform: translate(86px, 383px);
@@ -586,7 +599,17 @@ div.helper-text-div {
 .profile-favourites-empty {
   position: relative;
   //background-color: white;
-  background: linear-gradient(60deg, #f79533, #f37055, #ef4e7b, #a166ab, #5073b8, #1098ad, #07b39b, #6fba82);
+  background: linear-gradient(
+    60deg,
+    #f79533,
+    #f37055,
+    #ef4e7b,
+    #a166ab,
+    #5073b8,
+    #1098ad,
+    #07b39b,
+    #6fba82
+  );
   animation: animatedgradient 3s ease alternate infinite;
   color: black;
   display: flex;
