@@ -1,19 +1,19 @@
 .modalModule {
   pointer-events: initial;
   z-index: 999;
-  box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.15);
+  box-shadow: $main__box-shadow;
   border-radius: 10px;
-  scroll-padding: 0px 0px 0px 0px;
+  padding-right: 20px;
 }
 
 .modalOverlay {
+  @include size (100vw, 100vh)
   position: fixed;
   background-color: $modal-module__background-color;
   top: 0;
   left: 0;
-  width: 100vw;
-  height: 100vh;
   z-index: 999;
+  overflow-y: auto;
 }
 
 .modalComponent {
@@ -22,5 +22,6 @@
   left: 50%;
   transform: translate(-50%, -50%);
   border-radius: 10px;
-  background-color: white;
+  background-color: $main__background-color;
+  max-height: 90vh;
 }

@@ -1,315 +1,431 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <!-- <link rel="stylesheet" src="./sass/main.scss"> -->
+    <!-- <link rel="stylesheet" src="./styles.css"> -->
+    <link rel="stylesheet" src="./sass/sections/header.scss" />
+    <title>JS Final</title>
+  </head>
 
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"
-    integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
-  <!-- <link rel="stylesheet" src="./sass/main.scss"> -->
-  <!-- <link rel="stylesheet" src="./styles.css" /> -->
-  <title>JS Final</title>
-</head>
+  <body>
+    <div class="preloader">
+      <div id="cssload-global">
+        <div id="cssload-top" class="cssload-mask">
+          <div class="cssload-plane"></div>
+        </div>
+        <div id="cssload-middle" class="cssload-mask">
+          <div class="cssload-plane"></div>
+        </div>
 
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-  <!-- <link rel="stylesheet" src="./sass/main.scss"> -->
-  <!-- <link rel="stylesheet" src="./styles.css"> -->
-  <link rel="stylesheet" src="./sass/sections/header.scss" />
-  <title>JS Final</title>
-</head>
-
-<body>
-  <div class="preloader">
-    <div id="cssload-global">
-
-      <div id="cssload-top" class="cssload-mask">
-        <div class="cssload-plane"></div>
+        <div id="cssload-bottom" class="cssload-mask">
+          <div class="cssload-plane"></div>
+        </div>
       </div>
-      <div id="cssload-middle" class="cssload-mask">
-        <div class="cssload-plane"></div>
+    </div>
+    <header class="header">
+      <div class="sidebar ishidden_sidebar">
+        <ul class="sidebar_list">
+          <li class="sidebar_item">
+            <div data-name="name_search" class="header_wrap_search">
+              <form class="search_sideBar" action="submit">
+                <button type="submit" class="search_btn">
+                  <div class="header_wrap_search">
+                    <img
+                      alt="icon_serch"
+                      class="header_img_search svg_imade_header"
+                      data-name="name_search"
+                      src="./images/svgHeader/search-white.svg"
+                    />
+                  </div>
+                </button>
+                <input class="sidebar_input_form" type="text" placeholder="Поиск" />
+              </form>
+              <img
+                data-name="name_buttonClose"
+                class="side_bar_img_phone svg_imade_header"
+                src="./images/svgHeader/close_btn.png"
+                width="20"
+                height="20"
+                alt=""
+              />
+            </div>
+          </li>
+          <li class="catalog__wrapper__markap sidebar__hover"></li>
+          <li data-name="name_sale" class="sidebar_item sidebar_close">
+            <p class="sidebar_text">Sale%</p>
+            <img
+              class="caret_down svg_imade_header"
+              data-name="name_sale"
+              src="./images/svgHeader/caret-black.svg"
+              width="15"
+              height="15"
+              alt=""
+            />
+          </li>
+          <li data-name="name_info" class="sidebar_item">
+            <p class="sidebar_text">Информация</p>
+            <img
+              class="caret_down svg_imade_header"
+              data-name="name_info"
+              src="./images/svgHeader/caret-black.svg"
+              width="15"
+              height="15"
+              alt=""
+            />
+          </li>
+          <li data-name="name_contacts" class="sidebar_item">
+            <p data-name="name_contacts" class="sidebar_text">Контакты</p>
+            <img
+              data-name="name_contacts"
+              class="caret_down"
+              src="./images/svgHeader/caret-black.svg"
+              width="15px"
+              height="15px"
+              alt=""
+            />
+          </li>
+          <li data-name="sidebar_phone" class="sidebar_item phoneClass">
+            <div class="sidebar_icon_info_wraper">
+              <p data-name="name_phone" class="sidebar_text">
+                +38(050)333-37-96
+              </p>
+              <img
+                class="caret_down svg_imade_header"
+                data-name="name_phone"
+                src="./images/svgHeader/caret-black.svg"
+                width="15"
+                height="15"
+                alt=""
+              />
+            </div>
+          </li>
+          <li data-name="name_user" class="sidebar_item">
+            <div class="sidebar_icon_info_wraper">
+              <div class="sidebar_header_wrap">
+                <img
+                  class="svg_imade_header header_img_search"
+                  data-name="name_user"
+                  src="./images/svgHeader/user-white.png"
+                  width="20"
+                  height="20"
+                  alt=""
+                />
+              </div>
+              <p class="sidebar_text">Личный кабинет</p>
+            </div>
+          </li>
+          <li data-name="name_like" class="sidebar_item">
+            <div class="sidebar_icon_info_wraper">
+              <div class="sidebar_header_wrap">
+                <img
+                  class="header_img_search svg_imade_header"
+                  data-name="name_like"
+                  src="./images/svgHeader/like-white.png"
+                  width="22"
+                  height="22"
+                  alt=""
+                />
+                <p class="amount_cart counter_like-items">0</p>
+              </div>
+              <p class="sidebar_text">Избранное</p>
+            </div>
+          </li>
+        </ul>
       </div>
 
-      <div id="cssload-bottom" class="cssload-mask">
-        <div class="cssload-plane"></div>
-      </div>
-
-    </div>
-  </div>
-  <header class="header">
-    <div class="sidebar ishidden_sidebar">
-      <ul class="sidebar_list">
-        <li class="sidebar_item">
-          <div data-name="name_search" class="header_wrap_search">
-            <form class="search_sideBar" action="submit">
-              <button type="submit" class="search_btn">
-                <div class="header_wrap_search">
-                  <img alt="icon_serch" class="header_img_search svg_imade_header" data-name="name_search"
-                    src="./images/svgHeader/search-white.svg" />
-                </div>
-              </button>
-              <input class="sidebar_input_form" type="text" placeholder="Поиск" />
-            </form>
-            <img data-name="name_buttonClose" class="side_bar_img_phone svg_imade_header"
-              src="./images/svgHeader/close_btn.png" width="20" height="20" alt="" />
-          </div>
-        </li>
-        <li class="catalog__wrapper__markap sidebar__hover"></li>
-        <li data-name="name_sale" class="sidebar_item sidebar_close">
-          <p class="sidebar_text">Sale%</p>
-          <img class="caret_down svg_imade_header" data-name="name_sale" src="./images/svgHeader/caret-black.svg"
-            width="15" height="15" alt="" />
-        </li>
-        <li data-name="name_info" class="sidebar_item">
-          <p class="sidebar_text">Информация</p>
-          <img class="caret_down svg_imade_header" data-name="name_info" src="./images/svgHeader/caret-black.svg"
-            width="15" height="15" alt="" />
-        </li>
-        <li data-name="name_contacts" class="sidebar_item">
-          <p data-name="name_contacts" class="sidebar_text">Контакты</p>
-          <img data-name="name_contacts" class="caret_down" src="./images/svgHeader/caret-black.svg" width="15px"
-            height="15px" alt="" />
-        </li>
-        <li data-name="sidebar_phone" class="sidebar_item phoneClass">
-          <div class="sidebar_icon_info_wraper">
-            <p data-name="name_phone" class="sidebar_text">
-              +38(050)333-37-96
-            </p>
-            <img class="caret_down svg_imade_header" data-name="name_phone" src="./images/svgHeader/caret-black.svg"
-              width="15" height="15" alt="" />
-          </div>
-        </li>
-        <li data-name="name_user" class="sidebar_item">
-          <div class="sidebar_icon_info_wraper">
-            <div class="sidebar_header_wrap">
-              <img class="svg_imade_header header_img_search" data-name="name_user"
-                src="./images/svgHeader/user-white.png" width="20" height="20" alt="" />
-            </div>
-            <p class="sidebar_text">Личный кабинет</p>
-          </div>
-        </li>
-        <li data-name="name_like" class="sidebar_item">
-          <div class="sidebar_icon_info_wraper">
-            <div class="sidebar_header_wrap">
-              <img class="header_img_search svg_imade_header" data-name="name_like"
-                src="./images/svgHeader/like-white.png" width="22" height="22" alt="" />
-              <p class="amount_cart">0</p>
-            </div>
-            <p class="sidebar_text">Избранное</p>
-          </div>
-        </li>
-      </ul>
-    </div>
-
-    <div class="header_phone">
-      <ul class="header__nav">
-        <div class="logo_container">
-          <li class="header__nav__input">
-            <a data-name="name_logo" class="header__logo"></a>
-          </li>
-        </div>
-        <div class="center_conatiner">
-          <li data-name="name_phone" class="header__nav__input">
-            <div class="header_wrap">
-              <img data-name="name_phone" class="header_img_phone svg_imade_header header_img_phone"
-                src="./images/svgHeader/phone.svg" width="25px" height="25px" />
-            </div>
-          </li>
-          <li data-name="name_search" class="header__nav__input">
-            <div class="header_wrap_search">
-              <img alt="svg_icon_header" class="header_img_search svg_imade_header" data-name="name_search"
-                src="./images/svgHeader/search-white.svg" />
-            </div>
-          </li>
-          <li class="header__nav__input">
-            <div class="header_wrap">
-              <p class="amount_cart counter_cart-items">0</p>
-              <img alt="svg_icon_header" data-name="name_cart" class="svg_imade_header header_img_cart"
-                src="./images/svgHeader/cart.png" width="20" height="20" />
-            </div>
-          </li>
-        </div>
-        <li class="header__nav__three_dots header__nav__input">
-          <div class="header_wrap_three_dots">
-            <img alt="svg_icon_header" data-name="name_menu" class="header_img_menu" src="./images/svgHeader/dot.png"
-              width="10" height="10" />
-            <img alt="svg_icon_header" data-name="name_menu" class="header_img_menu" src="./images/svgHeader/dot.png"
-              width="10" height="10" />
-            <img alt="svg_icon_header" data-name="name_menu" class="header_img_menu" src="./images/svgHeader/dot.png"
-              width="10" height="10" />
-          </div>
-        </li>
-      </ul>
-    </div>
-
-    <div class="header_tablet">
-      <ul class="header__nav">
-        <div class="logo_container">
-          <li class="header__nav__input">
-            <a data-name="name_logo" class="header__logo"></a>
-          </li>
-          <p data-name="name_logo" class="header_logo_name header__nav__input">
-            Lo<span class="header_txt">GO</span>
-          </p>
-        </div>
-        <div class="center_conatiner">
-          <li class="header__nav__input">
-            <div data-name="name_phone" class="header_wrap">
-              <img data-name="name_phone" class="header_img_phone svg_imade_header header_img_phone"
-                src="./images/svgHeader/phone.svg" width="25px" height="25px" />
-            </div>
-          </li>
-          <li data-name="name_search" class="header__nav__input">
-            <div class="header_wrap_search">
-              <img alt="svg_icon_header" class="header_img_search" data-name="name_search"
-                src="./images/svgHeader/search-white.svg" />
-            </div>
-          </li>
-          <li class="header__nav__input">
-            <div class="header_wrap">
-              <p class="amount_cart counter_cart-items">0</p>
-              <img alt="svg_icon_header" data-name="name_cart" class="svg_imade_header header_img_cart"
-                src="./images/svgHeader/cart.png" width="20" height="20" />
-            </div>
-          </li>
-        </div>
-        <li class="header__nav__three_dots header__nav__input">
-          <div class="header_wrap_three_dots">
-            <img alt="svg_icon_header" data-name="name_menu" class="header_img_menu" src="./images/svgHeader/dot.png"
-              width="10" height="10" />
-            <img alt="svg_icon_header" data-name="name_menu" class="header_img_menu" src="./images/svgHeader/dot.png"
-              width="10" height="10" />
-            <img alt="svg_icon_header" data-name="name_menu" class="header_img_menu" src="./images/svgHeader/dot.png"
-              width="10" height="10" />
-          </div>
-        </li>
-      </ul>
-    </div>
-
-    <div class="header_desktop">
-      <ul class="header__nav">
-        <div data-name="name_logo" class="logo_container header__nav__input">
-          <li class="header__nav__input">
-            <a data-name="name_logo" class="header__logo"></a>
-          </li>
-          <p data-name="name_logo" class="header_logo_name header__nav__input">
-            Lo<span class="header_txt">GO</span>
-          </p>
-        </div>
-        <div class="navigatiom_container">
-          <div data-name="name_phone" class="phone_container nav_item">
+      <div class="header_phone">
+        <ul class="header__nav">
+          <div class="logo_container">
             <li class="header__nav__input">
+              <a data-name="name_logo" class="header__logo"></a>
+            </li>
+          </div>
+          <div class="center_conatiner">
+            <li data-name="name_phone" class="header__nav__input">
               <div class="header_wrap">
-                <img data-name="name_phone" class="header_img_phone svg_imade_header header_img_phone"
-                  src="./images/svgHeader/phone.svg" width="25px" height="25px" />
+                <img
+                  data-name="name_phone"
+                  class="header_img_phone svg_imade_header header_img_phone"
+                  src="./images/svgHeader/phone.svg"
+                  width="25px"
+                  height="25px"
+                />
               </div>
             </li>
-            <p data-name="name_phone" class="header__phone_text header__nav__input header__txt__hover">
-              +38(050)333-37-96
-            </p>
+            <li data-name="name_search" class="header__nav__input">
+              <div class="header_wrap_search">
+                <img
+                  alt="svg_icon_header"
+                  class="header_img_search svg_imade_header"
+                  data-name="name_search"
+                  src="./images/svgHeader/search-white.svg"
+                />
+              </div>
+            </li>
+            <li class="header__nav__input">
+              <div class="header_wrap">
+                <p class="amount_cart counter_cart-items">0</p>
+                <img
+                  alt="svg_icon_header"
+                  data-name="name_cart"
+                  class="svg_imade_header header_img_cart"
+                  src="./images/svgHeader/cart.png"
+                  width="20"
+                  height="20"
+                />
+              </div>
+            </li>
           </div>
-          <div data-name="name_catalog" class="catalog_container navigatiom_container nav_item">
-            <p data-name="name_catalog" class="header__desktop_text header__nav__input header__txt__hover">
-              Каталог
-            </p>
-          </div>
-          <div data-name="name_sale" class="sale_container nav_item header__nav__input">
-            <p data-name="name_sale" class="header__txt__hover header__desktop_text header__nav__input">
-              Sale%
-            </p>
-          </div>
-          <div data-name="name_info" class="info_container nav_item">
-            <p data-name="name_info" class="header__txt__hover header__desktop_text header__nav__input">
-              Информация
-            </p>
-          </div>
-          <div data-name="name_contacts" class="contact_container nav_item">
-            <p data-name="name_contacts" class="header__txt__hover header__desktop_text header__nav__input">
-              Контакты
-            </p>
-          </div>
-        </div>
-        <div class="icon_container">
-          <li data-name="name_search" class="header__nav__input nav_icon">
-            <div class="header_wrap_search">
-              <img alt="svg_icon_header" class="header_img_search" data-name="name_search"
-                src="./images/svgHeader/search-white.svg" />
+          <li data-name="name_menu" class="header__nav__three_dots header__nav__input">
+            <div data-name="name_menu" class="header_wrap_three_dots">
+              <img
+                alt="svg_icon_header"
+                data-name="name_menu"
+                class="header_img_menu"
+                src="./images/svgHeader/dot.png"
+                width="10"
+                height="10"
+              />
+              <img
+                alt="svg_icon_header"
+                data-name="name_menu"
+                class="header_img_menu"
+                src="./images/svgHeader/dot.png"
+                width="10"
+                height="10"
+              />
+              <img
+                alt="svg_icon_header"
+                data-name="name_menu"
+                class="header_img_menu"
+                src="./images/svgHeader/dot.png"
+                width="10"
+                height="10"
+              />
             </div>
           </li>
-          <li class="header__nav__input nav_icon">
-            <div class="header_wrap">
-              <img alt="svg_icon_header" data-name="name_user" class="svg_imade_header header_img_phone"
-                src="./images/svgHeader/user1.svg" width="25" height="25" />
-            </div>
-          </li>
+        </ul>
+      </div>
 
-          <li class="header__nav__input nav_icon">
-            <div class="header_wrap">
-              <p class="amount_cart counter_cart-items">0</p>
-              <img alt="svg_icon_header" data-name="name_cart" class="svg_imade_header header_img_cart"
-                src="./images/svgHeader/cart.png" width="20" height="20" />
+      <div class="header_tablet">
+        <ul class="header__nav">
+          <div class="logo_container">
+            <li class="header__nav__input">
+              <a data-name="name_logo" class="header__logo"></a>
+            </li>
+            <p data-name="name_logo" class="header_logo_name header__nav__input">
+              Lo<span class="header_txt">GO</span>
+            </p>
+          </div>
+          <div class="center_conatiner">
+            <li class="header__nav__input">
+              <div data-name="name_phone" class="header_wrap">
+                <img
+                  data-name="name_phone"
+                  class="header_img_phone svg_imade_header header_img_phone"
+                  src="./images/svgHeader/phone.svg"
+                  width="25px"
+                  height="25px"
+                />
+              </div>
+            </li>
+            <li data-name="name_search" class="header__nav__input">
+              <div class="header_wrap_search">
+                <img
+                  alt="svg_icon_header"
+                  class="header_img_search"
+                  data-name="name_search"
+                  src="./images/svgHeader/search-white.svg"
+                />
+              </div>
+            </li>
+            <li class="header__nav__input">
+              <div class="header_wrap">
+                <p class="amount_cart counter_cart-items">0</p>
+                <img
+                  alt="svg_icon_header"
+                  data-name="name_cart"
+                  class="svg_imade_header header_img_cart"
+                  src="./images/svgHeader/cart.png"
+                  width="20"
+                  height="20"
+                />
+              </div>
+            </li>
+          </div>
+          <li data-name="name_menu" class="header__nav__three_dots header__nav__input">
+            <div data-name="name_menu" class="header_wrap_three_dots">
+              <img
+                alt="svg_icon_header"
+                data-name="name_menu"
+                class="header_img_menu"
+                src="./images/svgHeader/dot.png"
+                width="10"
+                height="10"
+              />
+              <img
+                alt="svg_icon_header"
+                data-name="name_menu"
+                class="header_img_menu"
+                src="./images/svgHeader/dot.png"
+                width="10"
+                height="10"
+              />
+              <img
+                alt="svg_icon_header"
+                data-name="name_menu"
+                class="header_img_menu"
+                src="./images/svgHeader/dot.png"
+                width="10"
+                height="10"
+              />
             </div>
           </li>
-          <li class="header__nav__input nav_icon">
-            <div class="header_wrap">
-              <p class="amount_cart">0</p>
-              <img alt="svg_icon_header" data-name="name_like" class="svg_imade_header header_img_search"
-                src="./images/svgHeader/like 5.03.13 PM.svg" width="35" height="35" />
+        </ul>
+      </div>
+
+      <div class="header_desktop">
+        <ul class="header__nav">
+          <div data-name="name_logo" class="logo_container header__nav__input">
+            <li class="header__nav__input">
+              <a data-name="name_logo" class="header__logo"></a>
+            </li>
+            <p data-name="name_logo" class="header_logo_name header__nav__input">
+              Lo<span class="header_txt">GO</span>
+            </p>
+          </div>
+          <div class="navigatiom_container">
+            <div data-name="name_phone" class="phone_container nav_item">
+              <li class="header__nav__input">
+                <div class="header_wrap">
+                  <img
+                    data-name="name_phone"
+                    class="header_img_phone svg_imade_header header_img_phone"
+                    src="./images/svgHeader/phone.svg"
+                    width="25px"
+                    height="25px"
+                  />
+                </div>
+              </li>
+              <p data-name="name_phone" class="header__phone_text header__nav__input header__txt__hover">
+                +38(050)333-37-96
+              </p>
             </div>
-          </li>
-        </div>
-      </ul>
+            <div data-name="name_catalog" class="catalog_container navigatiom_container nav_item">
+              <p data-name="name_catalog" class="header__desktop_text header__nav__input header__txt__hover">
+                Каталог
+              </p>
+            </div>
+            <div data-name="name_sale" class="sale_container nav_item header__nav__input">
+              <p data-name="name_sale" class="header__txt__hover header__desktop_text header__nav__input">
+                Sale%
+              </p>
+            </div>
+            <div data-name="name_info" class="info_container nav_item">
+              <p data-name="name_info" class="header__txt__hover header__desktop_text header__nav__input">
+                Информация
+              </p>
+            </div>
+            <div data-name="name_contacts" class="contact_container nav_item">
+              <p data-name="name_contacts" class="header__txt__hover header__desktop_text header__nav__input">
+                Контакты
+              </p>
+            </div>
+          </div>
+          <div class="icon_container">
+            <li data-name="name_search" class="header__nav__input nav_icon">
+              <div class="header_wrap_search">
+                <img
+                  alt="svg_icon_header"
+                  class="header_img_search"
+                  data-name="name_search"
+                  src="./images/svgHeader/search-white.svg"
+                />
+              </div>
+            </li>
+            <li class="header__nav__input nav_icon">
+              <div class="header_wrap">
+                <img
+                  alt="svg_icon_header"
+                  data-name="name_user"
+                  class="svg_imade_header header_img_phone"
+                  src="./images/svgHeader/user1.svg"
+                  width="25"
+                  height="25"
+                />
+              </div>
+            </li>
+
+            <li class="header__nav__input nav_icon">
+              <div class="header_wrap">
+                <p class="amount_cart counter_cart-items">0</p>
+                <img
+                  alt="svg_icon_header"
+                  data-name="name_cart"
+                  class="svg_imade_header header_img_cart"
+                  src="./images/svgHeader/cart.png"
+                  width="20"
+                  height="20"
+                />
+              </div>
+            </li>
+            <li class="header__nav__input nav_icon">
+              <div class="header_wrap">
+                <p class="amount_cart counter_like-items">0</p>
+                <img
+                  alt="svg_icon_header"
+                  data-name="name_like"
+                  class="svg_imade_header header_img_search"
+                  src="./images/svgHeader/like 5.03.13 PM.svg"
+                  width="35"
+                  height="35"
+                />
+              </div>
+            </li>
+          </div>
+        </ul>
+      </div>
+    </header>
+
+    <div class="profileTabs">
+      <!-- <button class="check">Check profile</button> -->
+      <!--работает через меню теперь можно удалить если не нудно. -->
     </div>
-  </header>
-  <a href="#scrollUp" class="scroll scroll_delite" data-scroll="moveScroll">
-    <img src="../src/js/scroll_and_spiner/olhaWhite.png" class="scroll__link" alt="Up" width="40px" height="25px"></a>
+    <div class="modalModule"></div>
+    <div class="container" id="root">
+      <div class="sections"></div>
+    </div>
+    <footer class="footer-main">
+      <div class="footer-container container">
+        <div class="footer-container_box">
+          <div class="footer-container_contacts">
+            <p class="footer-container_title footer__txt__hover">Есть к нам вопросы<span>?</span></p>
+            <p class="footer-container_num">
+              Телефон<br />
+              <a class="footer-container_num-link footer__txt__hover" href="tel:+380503333796">+38 (050) 333-37-96</a>
+            </p>
+          </div>
 
-  <div class="profileTabs">
-    <!-- <button class="check">Check profile</button> -->
-    <!--работает через меню теперь можно удалить если не нудно. -->
-  </div>
-  <div class="modalModule"></div>
-  <div class="container" id="root">
-    <div class="sections"></div>
-  </div>
-  <footer class="footer-main">
-    <div class="footer-container">
-      <div class="footer-container_box">
-        <div class="footer-container_contacts">
-          <p class="footer-container_title">Есть к нам вопросы?</p>
-          <p class="footer-container_num">
-            Телефон<br />
-            <a class="footer-container_num-link" href="tel:+380503333796">+38 (050) 333-37-96</a>
-          </p>
-        </div>
-
-        <div class="footer-container_schedule">
-          График работы CALL-центра<br />
-          <span>Пн - Пт: 09:00 - 18:00,<br />
-            Сб - Вс: Выходной
-          </span>
-        </div>
-        <div class="wrapper">
-          <ul>
-            <li class="facebook"><i class="fa fa-facebook " aria-hidden="true"></i></li>
-            <li class="twitter"><i class="fa fa-twitter" aria-hidden="true"></i></li>
-            <li class="instagram"><i class="fa fa-instagram fa-2x" aria-hidden="true"></i></li>
-            <li class="google"><i class="fa fa-google fa-2x" aria-hidden="true"></i></li>
-            <li class="whatsapp"><i class="fa fa-whatsapp fa-2x" aria-hidden="true"></i></li>
-          </ul>
+          <div class="footer-container_schedule">
+            График работы CALL-центра<br />
+            <span class="footer__txt__hover"
+              >Пн - Пт: 09:00 - 18:00,<br />
+              Сб - Вс: Выходной
+            </span>
+          </div>
         </div>
       </div>
-    </div>
-    <div class="footer-container_info">
-      <hr class="footer-container_hr" />
-      <p class="footer-container_info-data">
-        <a class="link" target="_blank" href="https://goit.ua/" width="40px" height="25px">&copy; 2020 | GoIT</a>
-      </p>
-    </div>
-  </footer>
-</body>
-
+      <div class="footer-container_info">
+        <hr class="footer-container_hr" />
+        <p class="footer-container_info-data">
+          <a class="link footer__txt__hover" target="_blank" href="https://goit.ua/" width="40px" height="25px"
+            >&copy; 2020 | GoIT</a
+          >
+        </p>
+      </div>
+    </footer>
+  </body>
 </html>

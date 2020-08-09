@@ -1,19 +1,26 @@
-import { modalModule } from '../components/modalModule/modalModule';
-import { authForm } from '../auth/authForm';
+import {
+  modalModule
+} from '../components/modalModule/modalModule';
+import {
+  authForm
+} from '../auth/authForm';
 import apiAuth from '../api/auth/apiAuth';
 import apiUsers from '../api/users/apiUsers';
 import profile from '../profile/profileMarkups';
 import {
   profileFavErrorMarkup,
   favouritesFormMarkup,
-  advertisementFormMarkup
+  advertisementFormMarkup,
+  setFavouritesCount
 
 } from '../profile/profileMarkups';
 import userData from '.././userData';
-import { validateForm } from './authForm';
+import {
+  validateForm
+} from './authForm';
 
 
-  
+
 let authFormListeners = '';
 let listenPrivateAccount = '';
 let loginAccount = '';
@@ -30,12 +37,13 @@ const privateMenu = function (e) {
   const dataway = e.target.classList;
   if (dataway.contains('privateAccount')) {
     profile.maintabsMarkup(),
-modalContainer.innerHTML = '';
+      modalContainer.innerHTML = '';
     document.body.style.overflow = 'auto';
   }
   if (dataway.contains('favoritesAccount')) {
     modalContainer.innerHTML = '';
     document.body.style.overflow = 'auto';
+
   }
   if (dataway.contains('createAdAccount')) {
     if (userData.user.role === "ADMIN") {
@@ -55,7 +63,6 @@ modalContainer.innerHTML = '';
   }
 };
 
-
 export const authFn = function () {
   document.body.style.overflow = 'hidden';
 
@@ -65,29 +72,39 @@ export const authFn = function () {
     loginAccount = document.querySelector('.auth-menu');
     loginAccount.addEventListener('click', privateMenu);
 
-
     const pseudoRef = document.querySelector('.privateAccount');
-    pseudoRef.addEventListener('click', profile.maintabsMarkup.bind(profile));
+    pseudoRef.addEventListener('click', profile.maintabsMarkup);
+
     const profileFavBtnInAuth = document.querySelector('.favoritesAccount');
-    profileFavBtnInAuth.addEventListener('click', restFavOpen);
+    profileFavBtnInAuth.addEventListener('click', openFavouritesFromAuth);
 
-    //======open favourites=====
-    function restFavOpen() {
+    function openFavouritesFromAuth() {
+
+      const localUserFavorites = JSON.parse(localStorage.getItem("user-data"))
+        .response_data_user[0].favorites;
+      const result = localStorage.getItem("user-data") ?
+        localUserFavorites :
+        localStorage.getItem("favorites__") ? [...JSON.parse(localStorage.getItem("favorites__"))] : [];
+
+      //======open favourites=====
+
       profile.maintabsMarkup();
-      (userData.user.favorites) ?
-      favouritesFormMarkup(userData.user.favorites): profileFavErrorMarkup();
-
+      (result.length === 0) ?
+      profileFavErrorMarkup():
+        favouritesFormMarkup(result);
       const controlItem = document.querySelector('button[title="favourites"]');
       controlItem.classList.add('active');
+      setFavouritesCount();
     }
+    
     //======open favourites=====
+
   } else {
     modalModule(authForm, authMenuMarkUpListener);
     authFormListeners = document.querySelector('.authForm');
     authFormListeners.addEventListener('click', e => {
       e.preventDefault();
       validateForm(e);
-      // console.dir(e.target);
       if (e.target === e.currentTarget[2]) {
         userValue.email = e.currentTarget[0].value;
         userValue.password = e.currentTarget[1].value;
@@ -106,7 +123,6 @@ export const authFn = function () {
         document.body.style.overflow = 'auto';
       }
 
-      // e.target.nodeName === "IMG"
       if (e.target === e.currentTarget[4]) {
         modalContainer.innerHTML = "";
         document.body.style.overflow = 'auto';
@@ -125,7 +141,6 @@ function getName() {
 
 function getUserName(data) {
   userName = data.name;
-  // console.log('userName', data.name);
 }
 
 getName();
@@ -150,4 +165,4 @@ export const authMenuMarkUp = function () {
 
 export const authMenuMarkUpListener = function () {
   listenPrivateAccount = document.querySelector('.auth-menu__list');
-}; 
+};

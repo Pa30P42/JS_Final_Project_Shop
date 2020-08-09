@@ -20,10 +20,6 @@ export function getLink(e) {
     if (e.target.closest('[data-sublink]')) {
       const subLink = e.target.closest('[data-sublink]').dataset.sublink;
       const subLinkName = e.target.closest('[data-sublink]').dataset.categoryname;
-      // console.log(e.target.closest('[data-sublink]').dataset);
-      // console.log(subLinkName);
-      // console.log('subLink', subLink);
-      // createList(subLinkName);
 
       return subLink;
     } else return;
@@ -45,7 +41,6 @@ export function categoriesListMarkup() {
 }
 
 function getSubCategoryListMarkup(subCategory) {
-  // console.log(subCategory);
   const result = categoriesList.appliances[subCategory].categories.reduce((acc, subCategoryItem) => {
     acc += getSubCategoryListItemMarkup(subCategoryItem);
     return acc;
@@ -57,7 +52,6 @@ function getSubCategoryListMarkup(subCategory) {
 }
 
 function getSubCategoryListItemMarkup(subCategoryItem) {
-  // console.log(subCategoryItem);
   return `
           <li class="subcategories__item" data-categoryName="${subCategoryItem.name}" data-sublink="${subCategoryItem.value}"> 
 <img class="subcategories__image" src="data:image/svg+xml;base64,PHN2ZyBoZWlnaHQ9IjUxMnB0IiB2aWV3Qm94PSIwIDAgNTEyIDUxMiIgd2lkdGg9IjUxMnB0IiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIj48bGluZWFyR3JhZGllbnQgaWQ9ImEiIGdyYWRpZW50VW5pdHM9InVzZXJTcGFjZU9uVXNlIiB4MT0iMCIgeDI9IjUxMiIgeTE9IjI1NiIgeTI9IjI1NiI+PHN0b3Agb2Zmc2V0PSIwIiBzdG9wLWNvbG9yPSIjODBkOGZmIi8+PHN0b3Agb2Zmc2V0PSIxIiBzdG9wLWNvbG9yPSIjZWE4MGZjIi8+PC9saW5lYXJHcmFkaWVudD48cGF0aCBkPSJtMzY5LjE2NDA2MiAxNzQuNzY5NTMxYzcuODEyNSA3LjgxMjUgNy44MTI1IDIwLjQ3NjU2MyAwIDI4LjI4NTE1N2wtMTM0LjE3MTg3NCAxMzQuMTc1NzgxYy03LjgxMjUgNy44MDg1OTMtMjAuNDcyNjU3IDcuODA4NTkzLTI4LjI4NTE1NyAwbC02My44NzEwOTMtNjMuODc1Yy03LjgxMjUtNy44MDg1OTQtNy44MTI1LTIwLjQ3MjY1NyAwLTI4LjI4MTI1IDcuODA4NTkzLTcuODEyNSAyMC40NzI2NTYtNy44MTI1IDI4LjI4MTI1IDBsNDkuNzMwNDY4IDQ5LjczMDQ2OSAxMjAuMDMxMjUtMTIwLjAzNTE1N2M3LjgxMjUtNy44MDg1OTMgMjAuNDc2NTYzLTcuODA4NTkzIDI4LjI4NTE1NiAwem0xNDIuODM1OTM4IDgxLjIzMDQ2OWMwIDE0MS41MDM5MDYtMTE0LjUxNTYyNSAyNTYtMjU2IDI1Ni0xNDEuNTAzOTA2IDAtMjU2LTExNC41MTU2MjUtMjU2LTI1NiAwLTE0MS41MDM5MDYgMTE0LjUxNTYyNS0yNTYgMjU2LTI1NiAxNDEuNTAzOTA2IDAgMjU2IDExNC41MTU2MjUgMjU2IDI1NnptLTQwIDBjMC0xMTkuMzk0NTMxLTk2LjYyMTA5NC0yMTYtMjE2LTIxNi0xMTkuMzk0NTMxIDAtMjE2IDk2LjYyMTA5NC0yMTYgMjE2IDAgMTE5LjM5NDUzMSA5Ni42MjEwOTQgMjE2IDIxNiAyMTYgMTE5LjM5NDUzMSAwIDIxNi05Ni42MjEwOTQgMjE2LTIxNnptMCAwIiBmaWxsPSJ1cmwoI2EpIi8+PC9zdmc+" width="50" height="50" />
@@ -84,7 +78,6 @@ export function categoriesListMarkupAddListeners() {
   refs.categoriesListInsert = document.querySelector('.categories__list');
 
   if (refs.categoriesListInsert) {
-    // console.log('refs.categoriesListInsert', refs.categoriesListInsert);
     refs.categoriesListInsert.addEventListener('click', showModal);
   }
 }
@@ -93,13 +86,8 @@ async function listeners(action) {
   const getSubCategoryLink = async e => {
     const link = getLink(e);
 
-    // console.log(link);
     if (link) {
       action();
-
-      // const pagination = await createPagination(link);
-      // // console.log(pagination);
-      // createList(pagination.array, pagination.paginationMarkup, userData.getName(link));
 
       await createNewPagination(link, createList);
     }
@@ -110,7 +98,6 @@ async function listeners(action) {
 
 function showModal(e) {
   const newLink = getLink(e);
-  // console.log('newLink', newLink);
   if (newLink) {
     modalModule(() => getSubCategoryListMarkup(newLink), listeners);
   }

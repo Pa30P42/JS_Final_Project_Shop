@@ -8,7 +8,6 @@ import getVector from './saleSection';
 import userData from '../userData';
 
 export const createSingleCardMarkup = (element, sale) => {
-  // console.log(element);
   const rating = () => {
     let markup = '';
     let number = getRandomInt(1, 6);
@@ -23,7 +22,7 @@ export const createSingleCardMarkup = (element, sale) => {
     return Math.floor(Math.random() * (max - min)) + min;
   };
   const cardItemMarkup = element => {
-    // console.log(element);
+    
     return `<li class="card_item-sale" data-id=${element._id} data-elementname="${element.name}">
   <div class="card-image">
   ${

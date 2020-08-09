@@ -43,12 +43,12 @@ export const modalModule = (component, listeners) => {
 
   const markup = `
     <div class="modalOverlay">
-    ${(document.body.style.overflow = 'hidden')}
     <div class="modalComponent"></div>
   </div>
     `;
 
   container.innerHTML = markup;
+  document.body.style.overflow = 'hidden';
 
   const modalComponent = document.querySelector('.modalComponent');
   modalComponent.innerHTML = component();
@@ -57,6 +57,7 @@ export const modalModule = (component, listeners) => {
   modalOverlay.addEventListener('click', closeModalWindow);
   window.addEventListener('keydown', closeModalWindow);
 };
+
 // === test button need to be made in index.html to use it ===
 // btnTest.addEventListener('click', () => modalModule(component, listeners));
 
