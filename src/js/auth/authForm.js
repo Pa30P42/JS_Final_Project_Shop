@@ -79,18 +79,18 @@ export function validateForm(event) {
   const regExEmail = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{3,}))$/;
 
   if (authNameOfInput === 'email') {
-    authNameOfInput === 'email' && authInputValue.match(regExEmail)
-      ? ((authField.nextElementSibling.innerHTML = `<span class="auth-helper-text__valid_email"></span>`),
-        (authField.style.outlineColor = '#109b17'))
-      : ((authField.nextElementSibling.innerHTML = `<span class="auth-helper-text__invalid_email">Неверный адрес почты</span>`),
+    authNameOfInput === 'email' && authInputValue.match(regExEmail) ?
+      ((authField.nextElementSibling.innerHTML = `<span class="auth-helper-text__valid_email"></span>`),
+        (authField.style.outlineColor = '#109b17')) :
+      ((authField.nextElementSibling.innerHTML = `<span class="auth-helper-text__invalid_email">Неверный адрес почты</span>`),
         (authField.style.outlineColor = '#FF8A9D'));
   }
   if (authNameOfInput === 'password') {
     // console.log(authNameOfInput);
-    authNameOfInput === 'password' && authInputValue.length > 7 && authInputValue.match(passwordRedEx)
-      ? ((authField.nextElementSibling.innerHTML = `<span class="auth-helper-text__valid_password"></span>`),
-        (authField.style.outlineColor = '#109b17'))
-      : ((authField.nextElementSibling.innerHTML = `<span class="auth-helper-text__invalid_password"><small>Пароль должен содержать не менее 8 символов</small></span>`),
+    authNameOfInput === 'password' && authInputValue.length > 7 && authInputValue.match(passwordRedEx) ?
+      ((authField.nextElementSibling.innerHTML = `<span class="auth-helper-text__valid_password"></span>`),
+        (authField.style.outlineColor = '#109b17')) :
+      ((authField.nextElementSibling.innerHTML = `<span class="auth-helper-text__invalid_password"><small>Пароль должен содержать не менее 8 символов</small></span>`),
         (authField.style.outlineColor = '#FF8A9D'));
   }
   const inputForm = document.querySelector('.authForm');
