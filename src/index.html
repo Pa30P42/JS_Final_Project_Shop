@@ -4,21 +4,6 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <link
-      href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
-      rel="stylesheet"
-      integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN"
-      crossorigin="anonymous"
-    />
-    <!-- <link rel="stylesheet" src="./sass/main.scss"> -->
-    <!-- <link rel="stylesheet" src="./styles.css" /> -->
-    <title>JS Final</title>
-  </head>
-
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <!-- <link rel="stylesheet" src="./sass/main.scss"> -->
     <!-- <link rel="stylesheet" src="./styles.css"> -->
     <link rel="stylesheet" src="./sass/sections/header.scss" />
@@ -143,7 +128,7 @@
                   height="22"
                   alt=""
                 />
-                <p class="amount_cart">0</p>
+                <p class="amount_cart counter_like-items">0</p>
               </div>
               <p class="sidebar_text">Избранное</p>
             </div>
@@ -389,7 +374,7 @@
             </li>
             <li class="header__nav__input nav_icon">
               <div class="header_wrap">
-                <p class="amount_cart">0</p>
+                <p class="amount_cart counter_like-items">0</p>
                 <img
                   alt="svg_icon_header"
                   data-name="name_like"
@@ -404,9 +389,6 @@
         </ul>
       </div>
     </header>
-    <a href="#scrollUp" class="scroll scroll_delite" data-scroll="moveScroll">
-      <img src="../src/js/scroll_and_spiner/olhaWhite.png" class="scroll__link" alt="Up" width="40px" height="25px"
-    /></a>
 
     <div class="profileTabs">
       <!-- <button class="check">Check profile</button> -->
@@ -417,38 +399,31 @@
       <div class="sections"></div>
     </div>
     <footer class="footer-main">
-      <div class="footer-container">
+      <div class="footer-container container">
         <div class="footer-container_box">
           <div class="footer-container_contacts">
-            <p class="footer-container_title">Есть к нам вопросы?</p>
+            <p class="footer-container_title footer__txt__hover">Есть к нам вопросы<span>?</span></p>
             <p class="footer-container_num">
               Телефон<br />
-              <a class="footer-container_num-link" href="tel:+380503333796">+38 (050) 333-37-96</a>
+              <a class="footer-container_num-link footer__txt__hover" href="tel:+380503333796">+38 (050) 333-37-96</a>
             </p>
           </div>
 
           <div class="footer-container_schedule">
             График работы CALL-центра<br />
-            <span
+            <span class="footer__txt__hover"
               >Пн - Пт: 09:00 - 18:00,<br />
               Сб - Вс: Выходной
             </span>
-          </div>
-          <div class="wrapper">
-            <ul>
-              <li class="facebook"><i class="fa fa-facebook" aria-hidden="true"></i></li>
-              <li class="twitter"><i class="fa fa-twitter" aria-hidden="true"></i></li>
-              <li class="instagram"><i class="fa fa-instagram fa-2x" aria-hidden="true"></i></li>
-              <li class="google"><i class="fa fa-google fa-2x" aria-hidden="true"></i></li>
-              <li class="whatsapp"><i class="fa fa-whatsapp fa-2x" aria-hidden="true"></i></li>
-            </ul>
           </div>
         </div>
       </div>
       <div class="footer-container_info">
         <hr class="footer-container_hr" />
         <p class="footer-container_info-data">
-          <a class="link" target="_blank" href="https://goit.ua/" width="40px" height="25px">&copy; 2020 | GoIT</a>
+          <a class="link footer__txt__hover" target="_blank" href="https://goit.ua/" width="40px" height="25px"
+            >&copy; 2020 | GoIT</a
+          >
         </p>
       </div>
     </footer>

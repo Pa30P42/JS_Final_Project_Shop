@@ -10,7 +10,8 @@ import profile from '../profile/profileMarkups';
 import {
   profileFavErrorMarkup,
   favouritesFormMarkup,
-  advertisementFormMarkup
+  advertisementFormMarkup,
+  setFavouritesCount
 
 } from '../profile/profileMarkups';
 import userData from '.././userData';
@@ -42,13 +43,7 @@ const privateMenu = function (e) {
   if (dataway.contains('favoritesAccount')) {
     modalContainer.innerHTML = '';
     document.body.style.overflow = 'auto';
-    // profile.maintabsMarkup();
-    // userData.user.favorites === [] ?
-    //   profileFavErrorMarkup() :
-    //   favouritesFormMarkup(userData.user.favorites);
 
-    // const controlItem = document.querySelector('button[title="favourites"]');
-    // controlItem.classList.add('active');
   }
   if (dataway.contains('createAdAccount')) {
     if (userData.user.role === "ADMIN") {
@@ -81,22 +76,27 @@ export const authFn = function () {
     pseudoRef.addEventListener('click', profile.maintabsMarkup);
 
     const profileFavBtnInAuth = document.querySelector('.favoritesAccount');
-    profileFavBtnInAuth.addEventListener('click', restFavOpen);
+    profileFavBtnInAuth.addEventListener('click', openFavouritesFromAuth);
 
-    //======open favourites=====
-    function restFavOpen() {
-      profile.maintabsMarkup();
+    function openFavouritesFromAuth() {
+
       const localUserFavorites = JSON.parse(localStorage.getItem("user-data"))
         .response_data_user[0].favorites;
       const result = localStorage.getItem("user-data") ?
         localUserFavorites :
         localStorage.getItem("favorites__") ? [...JSON.parse(localStorage.getItem("favorites__"))] : [];
-      console.log('result :>> ', result);
-      favouritesFormMarkup(result);
 
+      //======open favourites=====
+
+      profile.maintabsMarkup();
+      (result.length === 0) ?
+      profileFavErrorMarkup():
+        favouritesFormMarkup(result);
       const controlItem = document.querySelector('button[title="favourites"]');
       controlItem.classList.add('active');
+      setFavouritesCount();
     }
+    
     //======open favourites=====
 
   } else {
