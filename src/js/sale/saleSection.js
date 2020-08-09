@@ -2,10 +2,12 @@ import vector_love from '../../images/sale/Vector_love.svg';
 import vector from '../../images/sale/Vector.svg';
 import apiUsers from '../api/users/apiUsers';
 import userData from '../userData';
-import { createSingleCardMarkup } from '../sale/cardModule';
+import {
+  createSingleCardMarkup
+} from '../sale/cardModule';
 import productCard from '../adv/productCard';
 
-// /* <section class="card container"></section> *
+
 const createListMarkup = (array, paginationMarkup, link) => {
   return `
    <section class="card">
@@ -136,9 +138,9 @@ export function getImg(id) {
     }
   } else {
     if (localStorage.getItem('favorites__')) {
-      favoritesItems.local = localStorage.getItem('favorites__')
-        ? [...JSON.parse(localStorage.getItem('favorites__'))]
-        : [];
+      favoritesItems.local = localStorage.getItem('favorites__') ?
+        [...JSON.parse(localStorage.getItem('favorites__'))] :
+        [];
       if (favoritesItems.local.includes(id)) {
         return vector_love;
       } else {

@@ -6,8 +6,13 @@ import {
 } from '../components/cart/cart';
 import trigger from '../components/trigger';
 // import trigger from './js/components/trigger';
-import { refs } from '../components/refs.js';
-import { headerMenu, closeHeaderMenu } from '../sideBar/headerSideBar.js';
+import {
+  refs
+} from '../components/refs.js';
+import {
+  headerMenu,
+  closeHeaderMenu
+} from '../sideBar/headerSideBar.js';
 // import { contactMarkUp } from '../contacts/contacts.js';
 import {
   catalogListMarkup,
@@ -15,31 +20,55 @@ import {
   catalogListMarkupAddListeners
 } from '../catalog/catalog';
 
-import { categoriesListMarkup, categoriesListMarkupAddListeners } from '../category/category-markup';
-import { modalModule } from '../components/modalModule/modalModule.js';
+import {
+  categoriesListMarkup,
+  categoriesListMarkupAddListeners
+} from '../category/category-markup';
+import {
+  modalModule
+} from '../components/modalModule/modalModule.js';
 import information from '../information/information';
 
-import { pseudoProfile } from '../profile/profileTabs';
+import {
+  pseudoProfile
+} from '../profile/profileTabs';
 
-import { searshForm, listenersForSearch } from '../search/searchdesktop/searchDesktop';
+import {
+  searshForm,
+  listenersForSearch
+} from '../search/searchdesktop/searchDesktop';
 
-import { containerHandler } from '../container/container';
+import {
+  containerHandler
+} from '../container/container';
 
 import {
   authFn
 } from '../auth/authMenu';
 import apiProducts from '../api/products/apiProducts';
 
-import { createNewPagination } from '../pagination/pagination.js';
+import {
+  createNewPagination
+} from '../pagination/pagination.js';
 
 import profile from '../profile/profileMarkups';
 import userData from '.././userData';
 
-import { profileFavErrorMarkup, favouritesFormMarkup } from '../profile/profileMarkups';
+import {
+  profileFavErrorMarkup,
+  favouritesFormMarkup,
+  setFavouritesCount
+} from '../profile/profileMarkups';
 
-import { createList } from '../sale/saleSection';
-import { initialAction } from '../../index';
-import { createPagination } from '../pagination/pagination.js';
+import {
+  createList
+} from '../sale/saleSection';
+import {
+  initialAction
+} from '../../index';
+import {
+  createPagination
+} from '../pagination/pagination.js';
 
 const headerButton = async event => {
   let dataname;
@@ -48,14 +77,14 @@ const headerButton = async event => {
   } else return;
   if (dataname === 'name_logo') {
     initialAction();
-    // refs.container.innerHTML = categoriesListMarkup();
-    // categoriesListMarkupAddListeners();
+
+
 
     //======надо будет удалить=====
   } else if (dataname === 'name_phone') {
     trigger.triggerFn();
     // trigger.openTrigger();
-    console.log('phone');
+
   } else if (dataname === 'name_search') {
     modalModule(searshForm, listenersForSearch);
     closeHeaderMenu();
@@ -67,7 +96,7 @@ const headerButton = async event => {
     // createList(pagination.array, pagination.paginationMarkup, userData.getName('sale'));
     closeHeaderMenu();
   } else if (dataname === 'name_info') {
-    console.log('info');
+
     information();
     closeHeaderMenu();
   } else if (dataname === 'name_contacts') {
@@ -78,17 +107,32 @@ const headerButton = async event => {
     closeHeaderMenu();
   } else if (dataname === 'name_like') {
     //======open favourites=====
+
+
+    const localUserFavorites = JSON.parse(localStorage.getItem("user-data"))
+      .response_data_user[0].favorites;
+    const result = localStorage.getItem("user-data") ?
+      localUserFavorites :
+      localStorage.getItem("favorites__") ? [...JSON.parse(localStorage.getItem("favorites__"))] : [];
+
+    //======open favourites=====
+
     profile.maintabsMarkup();
-    userData.user.favorites ? favouritesFormMarkup(userData.user.favorites) : profileFavErrorMarkup();
+    (result.length === 0) ?
+    profileFavErrorMarkup():
+      favouritesFormMarkup(result);
+
 
     const controlItem = document.querySelector('button[title="favourites"]');
     controlItem.classList.add('active');
+    setFavouritesCount();
+
     //======open favourites=====
 
-    console.log('like');
+
     closeHeaderMenu();
   } else if (dataname === 'name_cart') {
-    // console.log('cart');
+
     closeHeaderMenu();
     showCart();
   } else if (dataname === 'name_menu') {
