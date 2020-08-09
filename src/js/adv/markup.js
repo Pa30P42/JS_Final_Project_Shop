@@ -1,7 +1,5 @@
-import favourite from '../../images/adv/icons/favorite.svg';
 import close from '../../images/adv/icons/close-icon.svg';
 import { getImg, getElementsForFavorites } from '../../js/sale/saleSection';
-// import { setStatus } from './productCard';
 
 const productItem = item => {
   return `
