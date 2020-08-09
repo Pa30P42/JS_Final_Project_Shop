@@ -54,6 +54,14 @@
 }
 
 @media (min-width: 768px) and (max-width: 1199px) {
+  .auth-menu {
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+}
+
+@media (min-width: 1200px){
   .body {
     overflow: auto;
   }
@@ -64,10 +72,3 @@
   }
 }
 
-@media (min-width: 320px) and (max-width: 767px) {
-  .auth-menu {
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-  }
-}

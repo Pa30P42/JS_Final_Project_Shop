@@ -25,6 +25,7 @@ export const authForm = () => {
     <input
     type="password"
     name="password"
+    autocomplete="on"
     class="authFormPassword" required placeholder="Пароль"/>
     <div class="helper-text-div"></div>
 
