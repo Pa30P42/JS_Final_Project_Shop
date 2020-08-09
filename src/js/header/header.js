@@ -56,7 +56,8 @@ import userData from '.././userData';
 
 import {
   profileFavErrorMarkup,
-  favouritesFormMarkup
+  favouritesFormMarkup,
+  setFavouritesCount
 } from '../profile/profileMarkups';
 
 import {
@@ -76,14 +77,14 @@ const headerButton = async event => {
   } else return;
   if (dataname === 'name_logo') {
     initialAction();
-   
-    // categoriesListMarkupAddListeners();
+
+
 
     //======надо будет удалить=====
   } else if (dataname === 'name_phone') {
     trigger.triggerFn();
     // trigger.openTrigger();
-    console.log('phone');
+
   } else if (dataname === 'name_search') {
     modalModule(searshForm, listenersForSearch);
     closeHeaderMenu();
@@ -95,7 +96,7 @@ const headerButton = async event => {
     // createList(pagination.array, pagination.paginationMarkup, userData.getName('sale'));
     closeHeaderMenu();
   } else if (dataname === 'name_info') {
-    console.log('info');
+
     information();
     closeHeaderMenu();
   } else if (dataname === 'name_contacts') {
@@ -108,26 +109,30 @@ const headerButton = async event => {
     //======open favourites=====
 
 
-    profile.maintabsMarkup();
     const localUserFavorites = JSON.parse(localStorage.getItem("user-data"))
       .response_data_user[0].favorites;
     const result = localStorage.getItem("user-data") ?
       localUserFavorites :
       localStorage.getItem("favorites__") ? [...JSON.parse(localStorage.getItem("favorites__"))] : [];
-    console.log('result :>> ', result);
-    favouritesFormMarkup(result);
+
+    //======open favourites=====
+
+    profile.maintabsMarkup();
+    (result.length === 0) ?
+    profileFavErrorMarkup():
+      favouritesFormMarkup(result);
 
 
     const controlItem = document.querySelector('button[title="favourites"]');
     controlItem.classList.add('active');
-
+    setFavouritesCount();
 
     //======open favourites=====
 
-    console.log('like');
+
     closeHeaderMenu();
   } else if (dataname === 'name_cart') {
-    // console.log('cart');
+
     closeHeaderMenu();
     showCart();
   } else if (dataname === 'name_menu') {

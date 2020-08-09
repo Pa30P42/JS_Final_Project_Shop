@@ -13,37 +13,65 @@ import userData from ".././userData";
 
 import Inputmask from "inputmask";
 import image6 from "../../images/profile/image6.png";
-import { refs } from "../components/refs";
-import { createSingleCardMarkup } from "../sale/cardModule";
+import {
+  refs
+} from "../components/refs";
+import {
+  createSingleCardMarkup
+} from "../sale/cardModule";
 import vector from "../../images/sale/Vector.svg";
-import { initialAction } from "../../index";
+import {
+  initialAction
+} from "../../index";
 import SliderMI from "../components/sliderMI/sliderMI";
 
 import productCard from "../adv/productCard";
 
-import { addToCartProducts, showCart } from "../components/cart/cart";
+import {
+  addProductsToCart,
+  showCart
+} from "../components/cart/cart";
 
-import { removeItem } from "../auth/authMenu";
+import {
+  removeItem
+} from "../auth/authMenu";
 
-import { selectImg } from "../sale/saleSection";
-// import {
-//   addToCart
-// } from '..components/cart/cart';
-
-//
-// apiAuth.getCurrentUser()   role: "ADMIN"
-//
-// const userData = {
-//   name: "admin",
-//   email: "admin@gmail.com",
-//   password: "qwerty321",
-//   role: "ADMIN",
-// };
+import {
+  selectImg
+} from "../sale/saleSection";
 
 import {
   categoriesListMarkup,
   categoriesListMarkupAddListeners,
 } from "../category/category-markup";
+
+
+
+export const setFavouritesCount = () => {
+  const headerNavLike = document.querySelectorAll('header .counter_like-items');
+  const likeCounters = Array.from(headerNavLike);
+
+  const localUserFavorites = JSON.parse(localStorage.getItem("user-data"))
+    .response_data_user[0].favorites;
+  const result = localStorage.getItem("user-data") ?
+    localUserFavorites :
+    localStorage.getItem("favorites__") ? [...JSON.parse(localStorage.getItem("favorites__"))] : [];
+
+
+
+
+  const totalLikeCount = result.length;
+  likeCounters.forEach(counter => {
+    counter.textContent = totalLikeCount;
+  })
+
+}
+
+
+const clearFavouritesCount = () => {
+  const headerNavLike = document.querySelector('header .counter_like-items');
+  headerNavLike.textContent = 0;
+}
 
 const forms = {
   infoForm: {
@@ -141,8 +169,7 @@ export default {
     const mainTabsNav = document.querySelector("#parent_profile");
     mainTabsNav.addEventListener("click", this.getMarkup);
 
-    // const favouritesBtn = document.querySelector(".favourites");
-    // favouritesBtn.addEventListener("click", (event) => {});
+
 
     //=========link  Выход ==============
     const profileExitLink = document.querySelector(".page-control__exit");
@@ -151,6 +178,7 @@ export default {
     function exitFromAccount() {
       localStorage.removeItem("info");
       initialAction();
+      clearFavouritesCount();
     }
     //=========link  Главная ==============
     const profileHomeLink = document.querySelector(".page-control__home");
@@ -186,19 +214,26 @@ export default {
         addInfoListener("addressForm");
         break;
       case "favourites":
-        console.log("userdData :>> ", userData.user);
-        // (userData.user.favorites) ?
+
 
         const localUserFavorites = JSON.parse(localStorage.getItem("user-data"))
           .response_data_user[0].favorites;
-        const result = localStorage.getItem("user-data")
-          ? localUserFavorites
-          : localStorage.getItem("favorites__")
-          ? [...JSON.parse(localStorage.getItem("favorites__"))]
-          : [];
-        console.log("result :>> ", result);
-        favouritesFormMarkup(result);
-        // profileFavErrorMarkup();
+        const result = localStorage.getItem("user-data") ?
+          localUserFavorites :
+          localStorage.getItem("favorites__") ? [...JSON.parse(localStorage.getItem("favorites__"))] : [];
+
+
+
+
+        (result.length === 0) ?
+        profileFavErrorMarkup():
+          favouritesFormMarkup(result);
+
+
+
+        setFavouritesCount();
+
+
 
         break;
       case "advertisement":
@@ -223,17 +258,17 @@ export function profileFavErrorMarkup() {
   const profileFavEmpty = () => {
     return `
      <div class="favourites-wrapper tabs__panel" id="form" data-form="favourites">
-    
+
           <div class="profile-favourites-empty">
-           <div class="profile-favourites-empty_top">
-          <span class="profile-favourites-empty__text">Вы еще не добавили ни одного  продукта в <big>"Избранное</big>"</span>
-           </div>
-          </div>
+              <div class="profile-favourites-empty_top">
+                 <span class="profile-favourites-empty__text">Вы еще не добавили ни одного  продукта в <big>"Избранное</big>"</span>
+                </div>
+              </div>
           </div>
             `;
   };
   const favouritesBtn = document.querySelector(".favourites");
-  favouritesBtn.insertAdjacentHTML("afterend", profileFavEmpty);
+  favouritesBtn.insertAdjacentHTML("afterend", profileFavEmpty());
 
   setActive();
 }
@@ -402,13 +437,13 @@ function addressFormMarkup() {
     ...userData.user.address,
   };
 
-  console.log("userData :>> ", userData);
+
 
   const myAddressBtn = document.querySelector(".address");
   myAddressBtn.insertAdjacentHTML("afterend", formMarkup());
 
   document.querySelector(".save-button").addEventListener("click", (event) => {
-    console.log("forms.addressForm :>> ", forms.addressForm);
+
     apiUsers
       .updateUserAddress({
         country: forms.addressForm.country,
@@ -430,13 +465,12 @@ function addressFormMarkup() {
   setActive();
 }
 //=======FAVOURITES=========================
-//<span tooltip="Убрать из избранного">o</span>
 
-//===============
 let profileSliderInstances = [];
 
 //==================
 export function favouritesFormMarkup(array) {
+
   function favouritesMarkup(array) {
     return `
           <div class="favourites-wrapper__position" id="form" data-form="favourites">
@@ -444,40 +478,19 @@ export function favouritesFormMarkup(array) {
     
                 <ul class="favourites-list">
                 ${array.reduce((acc, element) => {
-                  acc += createSingleCardMarkup(element);
-                  return acc;
-                }, "")} </ul>
+        acc += createSingleCardMarkup(element);
+        return acc;
+      }, "")} </ul>
                 <button type="submit" id="submit" class="favorite-button save-button">
                   Купить всё
                 </button>
                 
               </div>`;
   }
-  // ============= добавить в корзину=============
-  // const favProfileBuyBtn = document.querySelector('.favorite-button');
-  // favProfileBuyBtn.addEventListener('click', fromProfileTocart);
 
-  // function fromProfileTocart() {
-  //   userData.user.favorites.forEach(addToCart);
-  //   //   addToCartProducts(userData.user.favorites);
-  //   showCart();
-
-  // }
-  // ============= добавить в корзину=============
-
-  // const favouritesBtn = document.querySelector(".favourites");
-  // (!userData.user.favorites) ?
-  // profileFavErrorMarkup():
-  //   favouritesBtn.insertAdjacentHTML(
-  //     "afterend",
-  //     favouritesMarkup(userData.user.favorites)
-  //   );
-  //========================
-  // : profileFavErrorMarkup();
   const favouritesBtn = document.querySelector(".favourites");
-  // (userData.user.favorites) ?
-
   favouritesBtn.insertAdjacentHTML("afterend", favouritesMarkup(array));
+  //==============slider=================
 
   if (profileSliderInstances.length) {
     profileSliderInstances.forEach((instance) => instance.removeListeners());
@@ -489,12 +502,13 @@ export function favouritesFormMarkup(array) {
     isPagination: true,
   });
   profileSliderInstances.push(profileSliderNew);
+
+  //==============slider=================
+
   const profileFavoritesLi = document.querySelectorAll(".card_item-sale");
 
   for (let i = 0; i < profileFavoritesLi.length; i += 1) {
-    profileFavoritesLi[i].style.marginRight = "18px";
-    profileFavoritesLi[i].style.marginBottom = "0";
-    profileFavoritesLi[i].style.flexShrink = "0";
+
 
     profileFavoritesLi[0].addEventListener("click", renderIntoBigCard);
     profileFavoritesLi[i].addEventListener("click", renderIntoBigCard);
@@ -502,19 +516,34 @@ export function favouritesFormMarkup(array) {
 
     const renderIntoBigCard = (e, items) => {
       items = userData.user.favorites;
-      console.log("items :>> ", items);
-      console.log("e.target :>> ", e.target);
+
       if (e.target.nodeName === "UL") return;
       if (!e.target.dataset.favorite) {
         const id = e.target.closest("[data-id]").dataset.id;
         const product = items.find((item) => item._id === id);
         productCard(product);
-      }
-    };
-  }
 
-  setActive();
-}
+      };
+    }
+
+    // ============= добавить в корзину=============
+    const favProfileBuyBtn = document.querySelector('.favorite-button');
+    favProfileBuyBtn.addEventListener('click', fromprofiltoCart);
+
+    function fromprofiltoCart() {
+      const localUserFavorites = JSON.parse(localStorage.getItem("user-data"))
+        .response_data_user[0].favorites;
+      const result = localStorage.getItem("user-data") ?
+        localUserFavorites :
+        localStorage.getItem("favorites__") ? [...JSON.parse(localStorage.getItem("favorites__"))] : [];
+      addProductsToCart(result);
+      showCart();
+    };
+    // ============= добавить в корзину=============
+
+    setActive();
+  }
+};
 
 export function advertisementFormMarkup() {
   const advertisementMarkup = () => {
@@ -656,44 +685,18 @@ function deleteActive() {
   parent.removeChild(child);
 }
 
-// function getInfo(event) {
-//   let key = event.target.closest('[data-form]').dataset.form;
-//   forms[key][event.target.name] = event.target.value;
 
-//   forms[key][event.target] = event.target;
-//   console.log('forms[key]', forms[key]);
-//   console.log('event.target : ', event.target);
-//   console.log('forms[key][event.target.name] :>> ', forms[key][event.target.name]);
-
-// };
 
 function addInfoListener(key) {
-  //   e.preventDefault()
 
-  // if (e.target.dataset.create !== "addProdact") {
-  //   return
-  // }
 
   const form = document.querySelector("#profile");
   const inputForm = form.querySelector(`[data-form="${key}"]`);
 
   inputForm.addEventListener("input", getInfo);
-  // console.log("inputForm", inputForm);
+
 }
-//apiUsers.getInfo();
-//getCurrentUser
-//apiUsers.updateUserAddress()
-//changeUserInfo
-// const user = {
-//   country: 'USA',
-//   city: 'NY',
-//   place: 'Brroklyn',
-//   street: 'Wall street',
-//   block: '1',
-//   building: '',
-//   flat: '15',
-//   zip: '',
-// };
+
 //! ==================== Kostya ==================
 const product = {
   images: [],
@@ -715,13 +718,13 @@ function toDataUrl(element) {
 function addProduct(e) {
   if (e.target.nodeName === "BUTTON" && e.target.closest("[data-create]")) {
     const createBtn = e.target.closest("[data-create]").dataset.create;
-    // console.log("product", product);
+
     apiProducts.CreateNewProduct(product);
   }
 }
 
 function getInfo(event) {
-  // console.log("product", product);
+
 
   if (event.target.name === "productPrice") {
     product.price = event.target.value;
@@ -741,11 +744,7 @@ function getInfo(event) {
   forms[key][event.target.name] = event.target.value;
 
   forms[key][event.target] = event.target;
-  // console.log('forms[key]', forms[key]);
-  // console.log('event.target : ', event.target);
-  // console.log('forms[key][event.target.name] :>> ', forms[key][event.target.name]);
-  // const field = forms[key][event.target];
-  // field.nextElementSibling.innerHTML = '';
+
 
   const inputNew = event.target.value.length;
   const field = event.target; // сам инпут
@@ -768,36 +767,36 @@ function getInfo(event) {
 
   if (nameOfInput === "name") {
     inputLength > 1 &&
-    inputLength < 35 &&
-    inputValue.match(onlyLetAndSymbolRegEx)
-      ? ((field.nextElementSibling.innerHTML = `<span class="helper-text-valid"></span>`),
-        (field.style.outlineColor = "#109b17"))
-      : ((field.nextElementSibling.innerHTML = `<span class="helper-text-invalid">Введите имя, отчество </span>`),
+      inputLength < 35 &&
+      inputValue.match(onlyLetAndSymbolRegEx) ?
+      ((field.nextElementSibling.innerHTML = `<span class="helper-text-valid"></span>`),
+        (field.style.outlineColor = "#109b17")) :
+      ((field.nextElementSibling.innerHTML = `<span class="helper-text-invalid">Введите имя, отчество </span>`),
         (field.style.outlineColor = "#FF8A9D"));
   } else if (nameOfInput === "surname") {
     inputLength < 35 &&
-    inputLength > 1 &&
-    inputValue.match(onlyLetAndSymbolRegEx)
-      ? ((field.nextElementSibling.innerHTML = `<span class="helper-text-valid"></span>`),
-        (field.style.outlineColor = "#109b17"))
-      : ((field.nextElementSibling.innerHTML = `<span class="helper-text-invalid">Введите фамилию</span>`),
+      inputLength > 1 &&
+      inputValue.match(onlyLetAndSymbolRegEx) ?
+      ((field.nextElementSibling.innerHTML = `<span class="helper-text-valid"></span>`),
+        (field.style.outlineColor = "#109b17")) :
+      ((field.nextElementSibling.innerHTML = `<span class="helper-text-invalid">Введите фамилию</span>`),
         (field.style.outlineColor = "#FF8A9D"));
   } else if (nameOfInput === "email") {
     const regExEmail = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{3,}))$/;
-    nameOfInput === "email" && inputValue.match(regExEmail)
-      ? ((field.nextElementSibling.innerHTML = `<span class="helper-text-valid"></span>`),
-        (field.style.outlineColor = "#109b17"))
-      : ((field.nextElementSibling.innerHTML = `<span class="helper-text-invalid">Неверный адрес почты</span>`),
+    nameOfInput === "email" && inputValue.match(regExEmail) ?
+      ((field.nextElementSibling.innerHTML = `<span class="helper-text-valid"></span>`),
+        (field.style.outlineColor = "#109b17")) :
+      ((field.nextElementSibling.innerHTML = `<span class="helper-text-invalid">Неверный адрес почты</span>`),
         (field.style.outlineColor = "#FF8A9D"));
   } else if (nameOfInput === "tel") {
     let selector = document.querySelector('input[type="tel"]');
 
     let im = new Inputmask("+38 (999) 999-99-99");
     im.mask(selector);
-    inputLength > 18
-      ? ((field.nextElementSibling.innerHTML = `<span class="helper-text-valid"></span>`),
-        (field.style.outlineColor = "#109b17"))
-      : ((field.nextElementSibling.innerHTML = `<span class="helper-text-invalid">Введите номер телефона</span>`),
+    inputLength > 18 ?
+      ((field.nextElementSibling.innerHTML = `<span class="helper-text-valid"></span>`),
+        (field.style.outlineColor = "#109b17")) :
+      ((field.nextElementSibling.innerHTML = `<span class="helper-text-invalid">Введите номер телефона</span>`),
         (field.style.outlineColor = "#FF8A9D"));
 
     const inputValueProfile = document.querySelectorAll(".helper-text-valid");
@@ -805,15 +804,15 @@ function getInfo(event) {
       document
         .querySelector(".save-button")
         .classList.add("save-button__valid");
-      // saveAndNewTabsMarkup();
+
     }
   } else if (nameOfInput === "password") {
     nameOfInput === "password" &&
-    inputLength > 7 &&
-    inputValue.match(passwordRedEx)
-      ? ((field.nextElementSibling.innerHTML = `<span class="helper-text-valid"></span>`),
-        (field.style.outlineColor = "#109b17"))
-      : ((field.nextElementSibling.innerHTML = `<span class="helper-text-invalid"><small>Пароль должен содержать не менее 8 символов</small></span>`),
+      inputLength > 7 &&
+      inputValue.match(passwordRedEx) ?
+      ((field.nextElementSibling.innerHTML = `<span class="helper-text-valid"></span>`),
+        (field.style.outlineColor = "#109b17")) :
+      ((field.nextElementSibling.innerHTML = `<span class="helper-text-invalid"><small>Пароль должен содержать не менее 8 символов</small></span>`),
         (field.style.outlineColor = "#FF8A9D"));
   } else if (nameOfInput === "confirmPassword") {
     let password = document.querySelector('[name="password"]').value;
@@ -821,10 +820,10 @@ function getInfo(event) {
       .value;
     const errorDiv = document.querySelector("#helper-text-div");
 
-    password === confirmPassword
-      ? ((errorDiv.innerHTML = `<span class="helper-text-valid"></span>`),
-        (field.style.outlineColor = "#109b17"))
-      : ((errorDiv.innerHTML = `<span class="helper-text-invalid"><small>Подтвердите пароль</small></span>`),
+    password === confirmPassword ?
+      ((errorDiv.innerHTML = `<span class="helper-text-valid"></span>`),
+        (field.style.outlineColor = "#109b17")) :
+      ((errorDiv.innerHTML = `<span class="helper-text-invalid"><small>Подтвердите пароль</small></span>`),
         (field.style.outlineColor = "#FF8A9D"));
     const inputValueProfile = document.querySelectorAll(".helper-text-valid");
 
@@ -840,21 +839,21 @@ function getInfo(event) {
     nameOfInput === "street"
   ) {
     inputLength > 2 &&
-    inputLength < 35 &&
-    inputValue.match(onlyLetAndSymbolRegEx)
-      ? ((field.nextElementSibling.innerHTML = `<span class="helper-text-valid"></span>`),
-        (field.style.outlineColor = "#109b17"))
-      : ((field.nextElementSibling.innerHTML = `<span class="helper-text-invalid">Введите данные</span>`),
+      inputLength < 35 &&
+      inputValue.match(onlyLetAndSymbolRegEx) ?
+      ((field.nextElementSibling.innerHTML = `<span class="helper-text-valid"></span>`),
+        (field.style.outlineColor = "#109b17")) :
+      ((field.nextElementSibling.innerHTML = `<span class="helper-text-invalid">Введите данные</span>`),
         (field.style.outlineColor = "#FF8A9D"));
   } else if (
     nameOfInput === "building" ||
     nameOfInput === "block" ||
     nameOfInput === "flat"
   ) {
-    inputLength > 0 && inputLength < 9 && inputValue.match(numbersRegEx)
-      ? ((field.nextElementSibling.innerHTML = `<span class="helper-text-valid"></span>`),
-        (field.style.outlineColor = "#109b17"))
-      : ((field.nextElementSibling.innerHTML = `<span class="helper-text-invalid">Введите данные</span>`),
+    inputLength > 0 && inputLength < 9 && inputValue.match(numbersRegEx) ?
+      ((field.nextElementSibling.innerHTML = `<span class="helper-text-valid"></span>`),
+        (field.style.outlineColor = "#109b17")) :
+      ((field.nextElementSibling.innerHTML = `<span class="helper-text-invalid">Введите данные</span>`),
         (field.style.outlineColor = "#FF8A9D"));
     const inputValueProfile = document.querySelectorAll(".helper-text-valid");
     if (inputValueProfile.length >= 5) {
@@ -865,33 +864,12 @@ function getInfo(event) {
 
     //======= address==========
   } else if (nameOfInput === "postIndex") {
-    inputLength === 5 && inputValue.match(zipRegEx)
-      ? ((field.nextElementSibling.innerHTML = `<span class="helper-text-valid"></span>`),
-        (field.style.outlineColor = "#109b17"))
-      : ((field.nextElementSibling.innerHTML = `<span class="helper-text-invalid">Введите 5 цифр индекса</span>`),
+    inputLength === 5 && inputValue.match(zipRegEx) ?
+      ((field.nextElementSibling.innerHTML = `<span class="helper-text-valid"></span>`),
+        (field.style.outlineColor = "#109b17")) :
+      ((field.nextElementSibling.innerHTML = `<span class="helper-text-invalid">Введите 5 цифр индекса</span>`),
         (field.style.outlineColor = "#FF8A9D"));
-    // } else if (inputForm.dataset.form === 'favourites') {
-    //console.log('key :>> ', event.target.dataset.form);
-  }
-  // console.log('forms :>> ', forms);
-}
-//==========
-// function saveAndNewTabsMarkup() {
-//   const submitButton = document.querySelector(".save-button");
-//   submitButton.classList.add("save-button__valid");
-//   // const currentActiveBtn = document.querySelector(".active");
-//   // currentActiveBtn.classList.remove("active");
-//   submitButton.addEventListener("click", deleteOnPressClick);
-// }
 
-// function deleteOnPressClick() {
-//   const parent = document.querySelector("#parent_profile");
-//   const child = document.querySelector("#form");
-//   parent.removeChild(child);
-// }
-//==================
-// const profileImgTooltip = document.querySelectorAll('img[data-clickvector="notActiv"]');
-// for (let i = 0; i < profileImgTooltip.length; i += 1) {
-//   profileImgTooltip[i].insertAdjacentHTML('afterEnd', `<span tooltip="Убрать из избранного">o</span>`);
-//   console.log('profileImgTooltip :>> ', profileImgTooltip);
-// }
+  }
+
+}
