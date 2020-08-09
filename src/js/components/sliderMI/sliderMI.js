@@ -238,11 +238,13 @@ export default class SliderMultiItems {
       this.isStart = true;
       this.hidePrevNav();
     } else this.isStart = false;
-    const slideIndex = parseInt((this.itemIndex + 1) / this.countItems);
-    if (this.slideIndex > slideIndex) {
-      this.slideIndex -= 1;
-      if (this.isPagination) {
-        this.toggleActiveDot(false);
+    if (!this.isStart) {
+      const slideIndex = parseInt((this.itemIndex + 1) / this.countItems);
+      if (this.slideIndex > slideIndex) {
+        this.slideIndex -= 1;
+        if (this.isPagination) {
+          this.toggleActiveDot(false);
+        }
       }
     }
   }
@@ -269,11 +271,13 @@ export default class SliderMultiItems {
     this.itemIndex += 1;
     this.trackPosition -= this.itemWidth * step;
     this.moveSlider();
-    const slideIndex = parseInt((this.itemIndex + 1) / this.countItems);
-    if (slideIndex > this.slideIndex) {
-      this.slideIndex += 1;
-      if (this.isPagination) {
-        this.toggleActiveDot(true);
+    if (!this.isEnd) {
+      const slideIndex = parseInt((this.itemIndex + 1) / this.countItems);
+      if (slideIndex > this.slideIndex) {
+        this.slideIndex += 1;
+        if (this.isPagination) {
+          this.toggleActiveDot(true);
+        }
       }
     }
   }
