@@ -1,6 +1,4 @@
 import debounce from 'debounce';
-import setting from '../../setting';
-import userData from '../../userData';
 
 export default class SliderMultiItems {
   constructor(selector, options) {
@@ -19,7 +17,6 @@ export default class SliderMultiItems {
     this.isEnd = false;
     this.itemIndex = 0;
     this.slideIndex = 0;
-    this.dotIndex = 0;
     this.handlers = [];
     this.setup();
   }
@@ -90,7 +87,6 @@ export default class SliderMultiItems {
       paginationWrapper.appendChild(dotRef);
     }
     paginationWrapper.children[0].classList.add('slide-dot_active');
-    this.dotIndex = 0;
     this.slider.appendChild(paginationWrapper);
     paginationWrapper.addEventListener('click', this.handlerClickDot.bind(this));
   }
@@ -99,8 +95,8 @@ export default class SliderMultiItems {
     const paginationWrapper = this.wrapper.querySelector('.slider__controls-dots');
     if (e.target.nodeName !== 'BUTTON') return;
     if (this.isNavs) {
-      if (this.dotIndex === 0) this.showPrevNav();
-      if (this.dotIndex === paginationWrapper.children.length - 1) this.showNextNav();
+      if (this.slideIndex === 0) this.showPrevNav();
+      if (this.slideIndex === paginationWrapper.children.length - 1) this.showNextNav();
     }
     const currentDot = paginationWrapper.querySelector('.slide-dot_active');
     currentDot.classList.remove('slide-dot_active');
@@ -114,9 +110,18 @@ export default class SliderMultiItems {
       this.isEnd = true;
       this.isNavs && this.hideNextNav();
     } else this.isEnd = false;
-    this.dotIndex = index;
     this.slideIndex = index;
-    this.goToSlideOfDot();
+    if (this.isEnd) {
+      this.trackPosition = -(this.trackWidth - this.itemWidth * this.countItems);
+      this.itemIndex = this.items.length - this.countItems;
+    } else if (this.isStart) {
+      this.trackPosition = 0;
+      this.itemIndex = 0;
+    } else {
+      this.trackPosition = -(this.slideIndex * this.itemWidth * this.countItems);
+      this.itemIndex = this.slideIndex * this.countItems;
+    }
+    this.moveSlider();
   }
 
   addListeners() {
@@ -143,13 +148,17 @@ export default class SliderMultiItems {
     this.track.style.width = this.trackWidth + 'px';
     const holderRef = this.wrapper.querySelector('.slider__holder');
     holderRef.style.width = this.itemWidth * this.countItems - itemMarginRight + 20 + 'px';
-    this.isStart = this.items.length <= this.countItems || this.itemIndex < this.countItems ? true : false;
-    if (this.itemIndex > this.items.length - this.countItems) {
-      this.isEnd = true;
+    this.isStart = this.itemIndex < this.countItems ? true : false;
+    this.isEnd =
+      this.itemIndex >= this.items.length - this.countItems && this.items.length > this.countItems ? true : false;
+    if (this.isStart) {
+      this.itemIndex = 0;
+      this.isEnd = false;
+    }
+    if (this.isEnd) {
+      this.itemIndex = this.items.length - this.countItems;
       this.isStart = false;
     }
-    if (this.isStart) this.itemIndex = 0;
-    if (this.isEnd) this.itemIndex = this.items.length - this.countItems;
     this.slideIndex = this.isEnd
       ? Math.ceil(this.items.length / this.countItems) - 1
       : parseInt(this.itemIndex / this.countItems);
@@ -204,22 +213,7 @@ export default class SliderMultiItems {
         paginationWrapper.removeChild(dotRefs[i]);
       }
     }
-    this.dotIndex = this.isEnd ? paginationWrapper.children.length - 1 : parseInt(this.itemIndex / this.countItems);
-    paginationWrapper.children[this.dotIndex].classList.add('slide-dot_active');
-  }
-
-  goToSlideOfDot() {
-    if (this.isEnd) {
-      this.trackPosition = -(this.trackWidth - this.itemWidth * this.countItems);
-      this.itemIndex = this.items.length - this.countItems;
-    } else if (this.isStart) {
-      this.trackPosition = 0;
-      this.itemIndex = 0;
-    } else {
-      this.trackPosition = -(this.dotIndex * this.itemWidth * this.countItems);
-      this.itemIndex = this.dotIndex * this.countItems;
-    }
-    this.moveSlider();
+    paginationWrapper.children[this.slideIndex].classList.add('slide-dot_active');
   }
 
   moveSlider() {
@@ -286,9 +280,8 @@ export default class SliderMultiItems {
 
   toggleActiveDot(isNext) {
     const paginationWrapper = this.wrapper.querySelector('.slider__controls-dots');
-    paginationWrapper.children[this.dotIndex].classList.remove('slide-dot_active');
-    this.dotIndex = isNext ? this.dotIndex + 1 : this.dotIndex - 1;
-    paginationWrapper.children[this.dotIndex].classList.add('slide-dot_active');
+    paginationWrapper.querySelector('.slide-dot_active').classList.remove('slide-dot_active');
+    paginationWrapper.children[this.slideIndex].classList.add('slide-dot_active');
   }
 
   showNextNav() {

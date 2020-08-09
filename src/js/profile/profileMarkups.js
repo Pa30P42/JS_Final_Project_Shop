@@ -528,12 +528,11 @@ export function favouritesFormMarkup(array) {
   profileSliderInstances.push(profileSliderNew);
 
   //==============slider=================
+
   const profileFavoritesLi = document.querySelectorAll(".card_item-sale");
 
   for (let i = 0; i < profileFavoritesLi.length; i += 1) {
-    //profileFavoritesLi[i].style.marginRight = "18px";
-    // profileFavoritesLi[i].style.marginBottom = "0";
-    //profileFavoritesLi[i].style.flexShrink = "0";
+
 
     profileFavoritesLi[0].addEventListener("click", renderIntoBigCard);
     profileFavoritesLi[i].addEventListener("click", renderIntoBigCard);

@@ -1,12 +1,9 @@
 import { refs } from './refs';
-import vector_love from '../../images/sale/Vector_love.svg';
-import vector from '../../images/sale/Vector.svg';
 import showLastSeen from './lastSeenOutput';
 import { createSingleCardMarkup } from '../sale/cardModule';
 import productCard from '../adv/productCard';
 import SliderMI from './sliderMI/sliderMI';
 import products from './products.json';
-import { addProductsToCart, showCart } from './cart/cart';
 import { selectImg } from '../sale/saleSection';
 
 const newHeadMarkup = () => {
@@ -48,7 +45,6 @@ const addNewAndLastSeen = () => {
     sliderInstances.forEach(instance => instance.removeListeners());
   }
   sliderInstances = [];
-
   const newProducts = products.filter(item => item.category === 'new');
   const lastSeenProducts = showLastSeen(products);
 
@@ -70,13 +66,6 @@ const addNewAndLastSeen = () => {
       onSelectCard(e, newProducts);
     });
   }
-
-  // newRef.insertAdjacentHTML('beforeend', `<button id="buyNew">Buy</button>`);
-  // const btn = document.querySelector('#buyNew');
-  // btn.addEventListener('click', () => {
-  //   addProductsToCart(newProducts);
-  //   showCart();
-  // });
 
   if (lastSeenProducts.length) {
     const lastSeenRef = refs.sections.querySelector('.last-seen-wrapper');
