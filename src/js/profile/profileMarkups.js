@@ -28,7 +28,7 @@ import SliderMI from "../components/sliderMI/sliderMI";
 import productCard from "../adv/productCard";
 
 import {
-  addToCartProducts,
+  addProductsToCart,
   showCart
 } from "../components/cart/cart";
 
@@ -57,16 +57,6 @@ import {
   categoriesListMarkupAddListeners,
 } from "../category/category-markup";
 
-// function profileGetFavInfo() {
-//   const localUserFavorites = JSON.parse(localStorage.getItem("user-data"))
-//     .response_data_user[0].favorites;
-//   const result = localStorage.getItem("user-data") ?
-//     localUserFavorites :
-//     localStorage.getItem("favorites__") ? [...JSON.parse(localStorage.getItem("favorites__"))] : [];
-//   console.log("result :>> ", result);
-//   return result;
-
-// };
 
 
 const setFavouritesCount = () => {
@@ -196,6 +186,7 @@ export default {
     function exitFromAccount() {
       localStorage.removeItem("info");
       initialAction();
+      clearFavouritesCount();
     }
     //=========link  Главная ==============
     const profileHomeLink = document.querySelector(".page-control__home");
@@ -231,7 +222,7 @@ export default {
         addInfoListener("addressForm");
         break;
       case "favourites":
-        console.log("userdData :>> ", userData.user);
+        // console.log("userdData :>> ", userData.user);
         // (userData.user.favorites) ?
 
         const localUserFavorites = JSON.parse(localStorage.getItem("user-data"))
@@ -241,7 +232,10 @@ export default {
           localStorage.getItem("favorites__") ? [...JSON.parse(localStorage.getItem("favorites__"))] : [];
         console.log("result :>> ", result);
         favouritesFormMarkup(result);
+
+
         setFavouritesCount();
+
         // profileFavErrorMarkup();
 
         break;
@@ -498,15 +492,11 @@ export function favouritesFormMarkup(array) {
               </div>`;
   }
   // ============= добавить в корзину=============
-  // const favProfileBuyBtn = document.querySelector('.favorite-button');
-  // favProfileBuyBtn.addEventListener('click', fromProfileTocart);
 
-  // function fromProfileTocart() {
-  //   userData.user.favorites.forEach(addToCart);
-  //   //   addToCartProducts(userData.user.favorites);
-  //   showCart();
 
-  // }
+
+
+
   // ============= добавить в корзину=============
 
   // const favouritesBtn = document.querySelector(".favourites");
@@ -556,6 +546,21 @@ export function favouritesFormMarkup(array) {
       }
     };
   }
+  const favProfileBuyBtn = document.querySelector('.favorite-button');
+  favProfileBuyBtn.addEventListener('click', fromprofiltoCart);
+
+  function fromprofiltoCart() {
+
+    const localUserFavorites = JSON.parse(localStorage.getItem("user-data"))
+      .response_data_user[0].favorites;
+    const result = localStorage.getItem("user-data") ?
+      localUserFavorites :
+      localStorage.getItem("favorites__") ? [...JSON.parse(localStorage.getItem("favorites__"))] : [];
+
+    addProductsToCart(result);
+    //   addToCartProducts(userData.user.favorites);
+    showCart();
+  };
 
   setActive();
 }
