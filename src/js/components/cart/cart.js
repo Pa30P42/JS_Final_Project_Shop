@@ -275,7 +275,7 @@ const createOrder = closeModal => {
       })
       .then(order => apiOrders.createNewOrder(order)) // sendOrder(JSON.stringify
       .then(response => {
-        console.log(response);
+     
         const msg = `<div class="cart">Ваш заказ был успешно отправлен!
           Номер вашего заказа: ${response.data.id}.
           Благодарим за выбор нашего магазина,
@@ -290,7 +290,7 @@ const createOrder = closeModal => {
           Просим прощения за временные неудобства при оформлении заказов.
           Чуть попозже попробуйте ещё раз отправить Ваш заказ, пожалуйста.</div>`;
         modalModule(() => createMsgMarkup(msg), addListener);
-        console.log(error);
+     
       });
   } else {
     const msg = 'Зарегистрируйтесь, пожалуйста, для оформления заказа';

@@ -105,7 +105,7 @@ export function selectImg(e) {
 
       if (!favorites.isAuth) {
         if (isExistElementLocally()) {
-          console.log('favorites.local', favorites.local);
+    
           favorites.local = [...favorites.local.filter(id => id !== favorites.id)];
           localStorage.setItem('favorites__', JSON.stringify(favorites.local));
           e.target.src = vector;

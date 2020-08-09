@@ -48,10 +48,8 @@ const getItem = (event, products) => {
         favoritesArr.push(element);
       });
     }
-    console.log(products);
-    console.log(id);
+
     const filteredproduct = products.find(item => item._id === id);
-    console.log(filteredproduct);
     productCard(filteredproduct);
     return id; // функция Ани(id)
   } else return;
