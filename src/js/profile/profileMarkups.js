@@ -60,7 +60,9 @@ import {
 
 
 export const setFavouritesCount = () => {
-  const headerNavLike = document.querySelector('header .counter_like-items');
+  const headerNavLike = document.querySelectorAll('header .counter_like-items');
+  const likeCounters = Array.from(headerNavLike);
+
   const localUserFavorites = JSON.parse(localStorage.getItem("user-data"))
     .response_data_user[0].favorites;
   const result = localStorage.getItem("user-data") ?
@@ -71,7 +73,10 @@ export const setFavouritesCount = () => {
 
 
   const totalLikeCount = result.length;
-  headerNavLike.textContent = totalLikeCount;
+  likeCounters.forEach(counter => {
+    counter.textContent = totalLikeCount;
+  })
+
 }
 // setFavouritesCount();
 
