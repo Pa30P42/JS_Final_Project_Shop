@@ -231,7 +231,13 @@ export default {
           localUserFavorites :
           localStorage.getItem("favorites__") ? [...JSON.parse(localStorage.getItem("favorites__"))] : [];
         console.log("result :>> ", result);
-        favouritesFormMarkup(result);
+
+        //favouritesFormMarkup(result);
+
+        (result.length === 0) ?
+        profileFavErrorMarkup():
+          favouritesFormMarkup(result);
+
 
 
         setFavouritesCount();
@@ -261,17 +267,17 @@ export function profileFavErrorMarkup() {
   const profileFavEmpty = () => {
     return `
      <div class="favourites-wrapper tabs__panel" id="form" data-form="favourites">
-    
+
           <div class="profile-favourites-empty">
-           <div class="profile-favourites-empty_top">
-          <span class="profile-favourites-empty__text">Вы еще не добавили ни одного  продукта в <big>"Избранное</big>"</span>
-           </div>
-          </div>
+              <div class="profile-favourites-empty_top">
+                 <span class="profile-favourites-empty__text">Вы еще не добавили ни одного  продукта в <big>"Избранное</big>"</span>
+                </div>
+              </div>
           </div>
             `;
   };
   const favouritesBtn = document.querySelector(".favourites");
-  favouritesBtn.insertAdjacentHTML("afterend", profileFavEmpty);
+  favouritesBtn.insertAdjacentHTML("afterend", profileFavEmpty());
 
   setActive();
 }
@@ -468,13 +474,27 @@ function addressFormMarkup() {
   setActive();
 }
 //=======FAVOURITES=========================
-//<span tooltip="Убрать из избранного">o</span>
 
-//===============
 let profileSliderInstances = [];
 
 //==================
 export function favouritesFormMarkup(array) {
+  // if (array == []) {
+  //   const profileFavEmpty = () => {
+  //     return `
+  //    <div class="favourites-wrapper tabs__panel" id="form" data-form="favourites">
+
+  //         <div class="profile-favourites-empty">
+  //             <div class="profile-favourites-empty_top">
+  //                <span class="profile-favourites-empty__text">Вы еще не добавили ни одного  продукта в <big>"Избранное</big>"</span>
+  //               </div>
+  //             </div>
+  //         </div>
+  //           `;
+  //   };
+  //   const favouritesBtn = document.querySelector(".favourites");
+  //   favouritesBtn.insertAdjacentHTML("afterend", profileFavEmpty);
+  // } else {
   function favouritesMarkup(array) {
     return `
           <div class="favourites-wrapper__position" id="form" data-form="favourites">
@@ -482,35 +502,17 @@ export function favouritesFormMarkup(array) {
     
                 <ul class="favourites-list">
                 ${array.reduce((acc, element) => {
-                  acc += createSingleCardMarkup(element);
-                  return acc;
-                }, "")} </ul>
+        acc += createSingleCardMarkup(element);
+        return acc;
+      }, "")} </ul>
                 <button type="submit" id="submit" class="favorite-button save-button">
                   Купить всё
                 </button>
                 
               </div>`;
   }
-  // ============= добавить в корзину=============
 
-
-
-
-
-  // ============= добавить в корзину=============
-
-  // const favouritesBtn = document.querySelector(".favourites");
-  // (!userData.user.favorites) ?
-  // profileFavErrorMarkup():
-  //   favouritesBtn.insertAdjacentHTML(
-  //     "afterend",
-  //     favouritesMarkup(userData.user.favorites)
-  //   );
-  //========================
-  // : profileFavErrorMarkup();
   const favouritesBtn = document.querySelector(".favourites");
-  // (userData.user.favorites) ?
-
   favouritesBtn.insertAdjacentHTML("afterend", favouritesMarkup(array));
 
   if (profileSliderInstances.length) {
@@ -543,27 +545,28 @@ export function favouritesFormMarkup(array) {
         const id = e.target.closest("[data-id]").dataset.id;
         const product = items.find((item) => item._id === id);
         productCard(product);
-      }
+
+      };
+    }
+
+    // ============= добавить в корзину=============
+    const favProfileBuyBtn = document.querySelector('.favorite-button');
+    favProfileBuyBtn.addEventListener('click', fromprofiltoCart);
+
+    function fromprofiltoCart() {
+      const localUserFavorites = JSON.parse(localStorage.getItem("user-data"))
+        .response_data_user[0].favorites;
+      const result = localStorage.getItem("user-data") ?
+        localUserFavorites :
+        localStorage.getItem("favorites__") ? [...JSON.parse(localStorage.getItem("favorites__"))] : [];
+      addProductsToCart(result);
+      showCart();
     };
+    // ============= добавить в корзину=============
+
+    setActive();
   }
-  const favProfileBuyBtn = document.querySelector('.favorite-button');
-  favProfileBuyBtn.addEventListener('click', fromprofiltoCart);
-
-  function fromprofiltoCart() {
-
-    const localUserFavorites = JSON.parse(localStorage.getItem("user-data"))
-      .response_data_user[0].favorites;
-    const result = localStorage.getItem("user-data") ?
-      localUserFavorites :
-      localStorage.getItem("favorites__") ? [...JSON.parse(localStorage.getItem("favorites__"))] : [];
-
-    addProductsToCart(result);
-    //   addToCartProducts(userData.user.favorites);
-    showCart();
-  };
-
-  setActive();
-}
+};
 
 export function advertisementFormMarkup() {
   const advertisementMarkup = () => {
@@ -729,20 +732,7 @@ function addInfoListener(key) {
   inputForm.addEventListener("input", getInfo);
   // console.log("inputForm", inputForm);
 }
-//apiUsers.getInfo();
-//getCurrentUser
-//apiUsers.updateUserAddress()
-//changeUserInfo
-// const user = {
-//   country: 'USA',
-//   city: 'NY',
-//   place: 'Brroklyn',
-//   street: 'Wall street',
-//   block: '1',
-//   building: '',
-//   flat: '15',
-//   zip: '',
-// };
+
 //! ==================== Kostya ==================
 const product = {
   images: [],

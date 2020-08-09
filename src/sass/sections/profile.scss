@@ -194,6 +194,14 @@ em {
 }
 
 //==========favourites========
+
+.favorites-wrapper {
+  background-color: green;
+  width: 100px;
+  height: 100px;
+
+}
+
 .favourites-wrapper__position .slider__controls-arrow_right {
   @media (max-width: 767px) {
     right: -37px;
