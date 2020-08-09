@@ -77,14 +77,14 @@ const headerButton = async event => {
   } else return;
   if (dataname === 'name_logo') {
     initialAction();
-   
-    // categoriesListMarkupAddListeners();
+
+
 
     //======надо будет удалить=====
   } else if (dataname === 'name_phone') {
     trigger.triggerFn();
     // trigger.openTrigger();
-    console.log('phone');
+
   } else if (dataname === 'name_search') {
     modalModule(searshForm, listenersForSearch);
     closeHeaderMenu();
@@ -96,7 +96,7 @@ const headerButton = async event => {
     // createList(pagination.array, pagination.paginationMarkup, userData.getName('sale'));
     closeHeaderMenu();
   } else if (dataname === 'name_info') {
-    console.log('info');
+
     information();
     closeHeaderMenu();
   } else if (dataname === 'name_contacts') {
@@ -114,7 +114,7 @@ const headerButton = async event => {
     const result = localStorage.getItem("user-data") ?
       localUserFavorites :
       localStorage.getItem("favorites__") ? [...JSON.parse(localStorage.getItem("favorites__"))] : [];
-    console.log('result :>> ', result);
+
     //======open favourites=====
 
     profile.maintabsMarkup();
@@ -129,10 +129,10 @@ const headerButton = async event => {
 
     //======open favourites=====
 
-    console.log('like');
+
     closeHeaderMenu();
   } else if (dataname === 'name_cart') {
-    // console.log('cart');
+
     closeHeaderMenu();
     showCart();
   } else if (dataname === 'name_menu') {

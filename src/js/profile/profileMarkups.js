@@ -39,19 +39,7 @@ import {
 import {
   selectImg
 } from "../sale/saleSection";
-// import {
-//   addToCart
-// } from '..components/cart/cart';
 
-//
-// apiAuth.getCurrentUser()   role: "ADMIN"
-//
-// const userData = {
-//   name: "admin",
-//   email: "admin@gmail.com",
-//   password: "qwerty321",
-//   role: "ADMIN",
-// };
 import {
   categoriesListMarkup,
   categoriesListMarkupAddListeners,
@@ -68,7 +56,7 @@ export const setFavouritesCount = () => {
   const result = localStorage.getItem("user-data") ?
     localUserFavorites :
     localStorage.getItem("favorites__") ? [...JSON.parse(localStorage.getItem("favorites__"))] : [];
-  console.log("result :>> ", result);
+
 
 
 
@@ -78,7 +66,7 @@ export const setFavouritesCount = () => {
   })
 
 }
-// setFavouritesCount();
+
 
 const clearFavouritesCount = () => {
   const headerNavLike = document.querySelector('header .counter_like-items');
@@ -181,8 +169,7 @@ export default {
     const mainTabsNav = document.querySelector("#parent_profile");
     mainTabsNav.addEventListener("click", this.getMarkup);
 
-    // const favouritesBtn = document.querySelector(".favourites");
-    // favouritesBtn.addEventListener("click", (event) => {});
+
 
     //=========link  Выход ==============
     const profileExitLink = document.querySelector(".page-control__exit");
@@ -227,17 +214,16 @@ export default {
         addInfoListener("addressForm");
         break;
       case "favourites":
-        // console.log("userdData :>> ", userData.user);
-        // (userData.user.favorites) ?
+
 
         const localUserFavorites = JSON.parse(localStorage.getItem("user-data"))
           .response_data_user[0].favorites;
         const result = localStorage.getItem("user-data") ?
           localUserFavorites :
           localStorage.getItem("favorites__") ? [...JSON.parse(localStorage.getItem("favorites__"))] : [];
-        console.log("result :>> ", result);
 
-        //favouritesFormMarkup(result);
+
+
 
         (result.length === 0) ?
         profileFavErrorMarkup():
@@ -247,7 +233,7 @@ export default {
 
         setFavouritesCount();
 
-        // profileFavErrorMarkup();
+
 
         break;
       case "advertisement":
@@ -451,13 +437,13 @@ function addressFormMarkup() {
     ...userData.user.address,
   };
 
-  console.log("userData :>> ", userData);
+
 
   const myAddressBtn = document.querySelector(".address");
   myAddressBtn.insertAdjacentHTML("afterend", formMarkup());
 
   document.querySelector(".save-button").addEventListener("click", (event) => {
-    console.log("forms.addressForm :>> ", forms.addressForm);
+
     apiUsers
       .updateUserAddress({
         country: forms.addressForm.country,
@@ -484,22 +470,7 @@ let profileSliderInstances = [];
 
 //==================
 export function favouritesFormMarkup(array) {
-  // if (array == []) {
-  //   const profileFavEmpty = () => {
-  //     return `
-  //    <div class="favourites-wrapper tabs__panel" id="form" data-form="favourites">
 
-  //         <div class="profile-favourites-empty">
-  //             <div class="profile-favourites-empty_top">
-  //                <span class="profile-favourites-empty__text">Вы еще не добавили ни одного  продукта в <big>"Избранное</big>"</span>
-  //               </div>
-  //             </div>
-  //         </div>
-  //           `;
-  //   };
-  //   const favouritesBtn = document.querySelector(".favourites");
-  //   favouritesBtn.insertAdjacentHTML("afterend", profileFavEmpty);
-  // } else {
   function favouritesMarkup(array) {
     return `
           <div class="favourites-wrapper__position" id="form" data-form="favourites">
@@ -545,8 +516,7 @@ export function favouritesFormMarkup(array) {
 
     const renderIntoBigCard = (e, items) => {
       items = userData.user.favorites;
-      console.log("items :>> ", items);
-      console.log("e.target :>> ", e.target);
+
       if (e.target.nodeName === "UL") return;
       if (!e.target.dataset.favorite) {
         const id = e.target.closest("[data-id]").dataset.id;
@@ -715,29 +685,16 @@ function deleteActive() {
   parent.removeChild(child);
 }
 
-// function getInfo(event) {
-//   let key = event.target.closest('[data-form]').dataset.form;
-//   forms[key][event.target.name] = event.target.value;
 
-//   forms[key][event.target] = event.target;
-//   console.log('forms[key]', forms[key]);
-//   console.log('event.target : ', event.target);
-//   console.log('forms[key][event.target.name] :>> ', forms[key][event.target.name]);
-
-// };
 
 function addInfoListener(key) {
-  //   e.preventDefault()
 
-  // if (e.target.dataset.create !== "addProdact") {
-  //   return
-  // }
 
   const form = document.querySelector("#profile");
   const inputForm = form.querySelector(`[data-form="${key}"]`);
 
   inputForm.addEventListener("input", getInfo);
-  // console.log("inputForm", inputForm);
+
 }
 
 //! ==================== Kostya ==================
@@ -761,13 +718,13 @@ function toDataUrl(element) {
 function addProduct(e) {
   if (e.target.nodeName === "BUTTON" && e.target.closest("[data-create]")) {
     const createBtn = e.target.closest("[data-create]").dataset.create;
-    // console.log("product", product);
+
     apiProducts.CreateNewProduct(product);
   }
 }
 
 function getInfo(event) {
-  // console.log("product", product);
+
 
   if (event.target.name === "productPrice") {
     product.price = event.target.value;
@@ -787,11 +744,7 @@ function getInfo(event) {
   forms[key][event.target.name] = event.target.value;
 
   forms[key][event.target] = event.target;
-  // console.log('forms[key]', forms[key]);
-  // console.log('event.target : ', event.target);
-  // console.log('forms[key][event.target.name] :>> ', forms[key][event.target.name]);
-  // const field = forms[key][event.target];
-  // field.nextElementSibling.innerHTML = '';
+
 
   const inputNew = event.target.value.length;
   const field = event.target; // сам инпут
@@ -851,7 +804,7 @@ function getInfo(event) {
       document
         .querySelector(".save-button")
         .classList.add("save-button__valid");
-      // saveAndNewTabsMarkup();
+
     }
   } else if (nameOfInput === "password") {
     nameOfInput === "password" &&
@@ -916,28 +869,7 @@ function getInfo(event) {
         (field.style.outlineColor = "#109b17")) :
       ((field.nextElementSibling.innerHTML = `<span class="helper-text-invalid">Введите 5 цифр индекса</span>`),
         (field.style.outlineColor = "#FF8A9D"));
-    // } else if (inputForm.dataset.form === 'favourites') {
-    //console.log('key :>> ', event.target.dataset.form);
-  }
-  // console.log('forms :>> ', forms);
-}
-//==========
-// function saveAndNewTabsMarkup() {
-//   const submitButton = document.querySelector(".save-button");
-//   submitButton.classList.add("save-button__valid");
-//   // const currentActiveBtn = document.querySelector(".active");
-//   // currentActiveBtn.classList.remove("active");
-//   submitButton.addEventListener("click", deleteOnPressClick);
-// }
 
-// function deleteOnPressClick() {
-//   const parent = document.querySelector("#parent_profile");
-//   const child = document.querySelector("#form");
-//   parent.removeChild(child);
-// }
-//==================
-// const profileImgTooltip = document.querySelectorAll('img[data-clickvector="notActiv"]');
-// for (let i = 0; i < profileImgTooltip.length; i += 1) {
-//   profileImgTooltip[i].insertAdjacentHTML('afterEnd', `<span tooltip="Убрать из избранного">o</span>`);
-//   console.log('profileImgTooltip :>> ', profileImgTooltip);
-// }
+  }
+
+}
