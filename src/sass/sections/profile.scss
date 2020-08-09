@@ -195,10 +195,11 @@ em {
 
 //==========favourites========
 
+
 .favorites-wrapper {
   background-color: green;
-  width: 100px;
-  height: 100px;
+  width: 30px;
+  // height: 150px;
 
 }
 
@@ -226,6 +227,7 @@ em {
   //padding: 15px 0 40px;
   @media (max-width: 767px) {
     width: 153px;
+    // height: 200px;
     // display: flex;
     // justify-content: center;
     // flex-direction: column;
@@ -637,6 +639,7 @@ div.helper-text-div {
   //border: 1px solid white;
   border-radius: 10px;
   background-size: 300% 300%;
+  margin-bottom: 30px;
 
   @media (min-width: 768px) {
     padding: 3px;
