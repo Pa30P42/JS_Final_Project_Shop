@@ -76,7 +76,7 @@ const headerButton = async event => {
   } else return;
   if (dataname === 'name_logo') {
     initialAction();
-    // refs.container.innerHTML = categoriesListMarkup();
+   
     // categoriesListMarkupAddListeners();
 
     //======надо будет удалить=====

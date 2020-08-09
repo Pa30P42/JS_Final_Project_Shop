@@ -7,7 +7,7 @@ import {
 } from '../sale/cardModule';
 import productCard from '../adv/productCard';
 
-// /* <section class="card container"></section> *
+
 const createListMarkup = (array, paginationMarkup, link) => {
   return `
    <section class="card">
