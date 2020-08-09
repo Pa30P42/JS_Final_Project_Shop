@@ -186,7 +186,7 @@ export default {
         addInfoListener("addressForm");
         break;
       case "favourites":
-        console.log("userdData :>> ", userData.user);
+        
         // (userData.user.favorites) ?
 
         const localUserFavorites = JSON.parse(localStorage.getItem("user-data"))
