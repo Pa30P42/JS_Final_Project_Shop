@@ -186,8 +186,7 @@
     width: 302px;
   }
 
-  @media (min-width: 1200px) {
-  }
+  @media (min-width: 1200px) {}
 }
 
 em {
@@ -200,17 +199,22 @@ em {
     right: -37px;
   }
 }
+
 .favourites-wrapper__position .slider__controls-arrow_left {
   @media (max-width: 767px) {
     left: -51px;
   }
 }
-.favourites-wrapper__position > li .card_item-sale {
-  @media (max-width: 767px) {
-    margin: 0;
-  }
+
+.favourites-wrapper__position .card_item-sale {
+  // @media (max-width: 767px) {
+  flex-shrink: 0;
+  margin-right: 18px;
+  // }
 }
+
 .favourites-wrapper__position {
+
   //padding: 15px 0 40px;
   @media (max-width: 767px) {
     width: 153px;
@@ -218,6 +222,7 @@ em {
     // justify-content: center;
     // flex-direction: column;
   }
+
   @media (min-width: 768px) {
     width: 290px;
   }
@@ -243,10 +248,12 @@ em {
 .favourites-list {
   display: flex;
   justify-content: center;
+  transition: transform 500ms ease 0s;
 
   @media (max-width: 766px) {
     width: 153px;
   }
+
   @media (min-width: 768px) {
     width: 290px;
   }
@@ -557,17 +564,15 @@ div.helper-text-div {
 .save-button__valid {
   width: 250px;
   height: 44px;
-  background: linear-gradient(
-    60deg,
-    #f79533,
-    #f37055,
-    #ef4e7b,
-    #a166ab,
-    #5073b8,
-    #1098ad,
-    #07b39b,
-    #6fba82
-  );
+  background: linear-gradient(60deg,
+      #f79533,
+      #f37055,
+      #ef4e7b,
+      #a166ab,
+      #5073b8,
+      #1098ad,
+      #07b39b,
+      #6fba82);
   animation: animatedgradient 3s ease alternate infinite;
   border-radius: 10px;
   color: white;
@@ -599,17 +604,15 @@ div.helper-text-div {
 .profile-favourites-empty {
   position: relative;
   //background-color: white;
-  background: linear-gradient(
-    60deg,
-    #f79533,
-    #f37055,
-    #ef4e7b,
-    #a166ab,
-    #5073b8,
-    #1098ad,
-    #07b39b,
-    #6fba82
-  );
+  background: linear-gradient(60deg,
+      #f79533,
+      #f37055,
+      #ef4e7b,
+      #a166ab,
+      #5073b8,
+      #1098ad,
+      #07b39b,
+      #6fba82);
   animation: animatedgradient 3s ease alternate infinite;
   color: black;
   display: flex;
