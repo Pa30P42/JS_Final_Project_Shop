@@ -1,39 +1,18 @@
 import { modalModule } from '../components/modalModule/modalModule';
 import markup from './markup';
 import updateLastSeen from './lastSeen';
-import updateFavorites from './favorite';
 import buy from './buy';
-import favoriteFill from '../../images/adv/icons/favorite_fill.svg';
-import favorite from '../../images/adv/icons/favorite.svg';
 import vector_love from '../../images/sale/Vector_love.svg';
 import vector from '../../images/sale/Vector.svg';
-
-import allProducts from '../api/products/apiProducts';
 import userData from '../../js/userData';
 import apiUsers from '../../js/api/users/apiUsers';
-// import { selectImg } from '../../js/sale/saleSection';
-
-// export function setStatus(id) {
-//   const localUserFavorites = JSON.parse(localStorage.getItem('user-data')).response_data_user[0].favorites;
-//   const localStorage = JSON.parse(localStorage.getItem('favorites__'))
-//     ? JSON.parse(localStorage.getItem('favorites__'))
-//     : [];
-
-//   if ((localUserFavorites ? localUserFavorites : localStorage).some(elem => elem._id === id)) {
-//     console.log('localUserFavorites', userData.currentPrintElements);
-//     return 'Из избранного';
-//   } else return 'В избранное';
-// }
 
 const productCard = async item => {
   const component = () => markup(item);
   updateLastSeen(item._id);
   modalModule(component, addListener);
-  // updateFavorites(item);
-  // function changeStatus()
 
   function selectImg(e) {
-    console.log(e.target);
     const favorites = {
       user: [],
       local: [],
@@ -111,7 +90,6 @@ const productCard = async item => {
 
         if (!favorites.isAuth) {
           if (isExistElementLocally()) {
-            console.log('favorites.local', favorites.local);
             favorites.local = [...favorites.local.filter(id => id !== favorites.id)];
             localStorage.setItem('favorites__', JSON.stringify(favorites.local));
             e.target.src = vector;
@@ -131,8 +109,8 @@ const productCard = async item => {
     const btnBuy = document.getElementById('btnBuy');
     const btnClose = document.querySelector('.product__card-close');
 
-    const refTest = document.querySelector('.adv__favorite');
-    refTest.addEventListener('click', selectImg);
+    const refFavorites = document.querySelector('.adv__favorite');
+    refFavorites.addEventListener('click', selectImg);
 
     btnBuy.addEventListener('click', () => {
       if (item) {
