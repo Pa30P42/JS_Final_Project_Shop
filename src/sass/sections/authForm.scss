@@ -1,23 +1,20 @@
+
+// ------- AUTHFORM -------
+
 .authForm {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   min-width: 342px;
   min-height: 414px;
-  background: $auth-menu__background-color;
+  background: $main__background-color;
   border-radius: 10px;
+  @include font (600, 18px, 22px, $main--text-color);
   font-style: normal;
-  font-weight: 600;
-  font-size: 18px;
-  line-height: 22px;
-  color: $main--text-color;
   word-wrap: break-word;
 }
 
 .authorization-title {
-  font-style: normal;
-  font-weight: 600;
-  line-height: 22px;
   color: $main--text-color;
   margin: 20px 0 20px;
   padding: 0 0 0 20px;
@@ -29,15 +26,11 @@
   margin: 0 20px 20px;
   width: 302px;
   min-height: 40px;
-  border: 1px solid #b3b3b3;
+  border: 1px solid $placeholder-color;
   border-radius: 10px;
 
   &::placeholder {
-    color: #b3b3b3;
-    font-style: normal;
-    font-weight: 500;
-    font-size: 14px;
-    line-height: 17px;
+    @include font (500, 14px, 17px, $placeholder-color);
   }
 }
 
@@ -46,29 +39,22 @@
   margin: 0 20px;
   width: 302px;
   min-height: 40px;
-  border: 1px solid #b3b3b3;
+  border: 1px solid $placeholder-color;
   border-radius: 10px;
 
   &::placeholder {
-    color: #b3b3b3;
-    font-style: normal;
-    font-weight: 500;
-    font-size: 14px;
-    line-height: 17px;
+    @include font (500, 14px, 17px, $placeholder-color);
   }
 }
 
 .btn__sign_in {
+  @extend %btn;
+  @include size (240px, auto);
   margin: 70px 50px 0;
   padding: 12px;
   text-align: center;
-  width: 240px;
-  height: auto;
-  color: $auth-menu__background-color;
+  color: $main__background-color;
   background: $main-gradient;
-  border-radius: 10px;
-  border: none;
-  cursor: pointer;
 
   &:focus,
   &:hover {
@@ -77,21 +63,19 @@
 }
 
 .btn__sign_up {
+  @extend %btn;
+  @include size (240px, auto);
   margin: 16px 50px 30px;
   padding: 12px;
   text-align: center;
-  width: 240px;
-  height: auto;
   color: $main-color;
-  background: $auth-menu__background-color;
-  border-radius: 10px;
+  background: $main__background-color;
   border: 2px solid $main-color;
-  cursor: pointer;
 
   &:focus,
   &:hover {
     background: $main-color;
-    color: $auth-menu__background-color;
+    color: $main__background-color;
   }
 }
 
@@ -100,18 +84,14 @@
 }
 
 .authorization-helper {
+  @include font (500, 14px, 17px, 0)
   font-style: normal;
-  font-weight: 500;
-  font-size: 14px;
-  line-height: 17px;
 }
 
 .auth-close {
-  z-index: 10000;
   @extend %btn;
+  @include size (22px, 22px);
   position: absolute;
-  width: 24px;
-  height: 24px;
   right: 20px;
   top: 20px;
   background-color: transparent;
@@ -120,9 +100,10 @@
   }
 }
 
+// ------- VALIDATION-------
 
 input {
-  outline-color: #53535c;
+  outline-color: $main--text-color;
 }
 
 div.auth-helper-text-div {
@@ -136,7 +117,7 @@ div.auth-helper-text-div {
   position: absolute;
   top: -18px;
   right: 20px;
-  color: red;
+  color: $validation-form__invalid;
 
   &:before {
     display: block;
@@ -144,8 +125,7 @@ div.auth-helper-text-div {
     position: absolute;
     top: -43px;
     right: 0;
-    width: 42px;
-    height: 42px;
+    @include size (42px, 42px);
     background-repeat: no-repeat;
     background-position: center;
     background-size: 50%;
@@ -160,7 +140,7 @@ div.auth-helper-text-div {
   position: absolute;
   top: 0px;
   right: 20px;
-  color: red;
+  color: $validation-form__invalid;
 
   &:before {
     display: block;
@@ -168,8 +148,7 @@ div.auth-helper-text-div {
     position: absolute;
     top: -43px;
     right: 0;
-    width: 42px;
-    height: 42px;
+    @include size (42px, 42px);
     background-repeat: no-repeat;
     background-position: center;
     background-size: 50%;
@@ -177,17 +156,14 @@ div.auth-helper-text-div {
   }
 }
 
-
-
 .auth-helper-text__valid_email {
   font-size: 12px;
   display: inline-block;
-
   height: auto;
   position: absolute;
   top: -18px;
   right: 7px;
-  color: rgb(16, 155, 23);
+  color: $validation-form__valid;
 
   &:before {
     display: block;
@@ -195,8 +171,7 @@ div.auth-helper-text-div {
     position: absolute;
     right: 19px;
     top: -44px;
-    width: 42px;
-    height: 42px;
+    @include size (42px, 42px);
     background-repeat: no-repeat;
     background-position: center;
     background-size: 73%;
@@ -207,12 +182,11 @@ div.auth-helper-text-div {
 .auth-helper-text__valid_password {
   font-size: 12px;
   display: inline-block;
-
   height: auto;
   position: absolute;
   top: -18px;
   right: 7px;
-  color: rgb(16, 155, 23);
+  color: $validation-form__valid;
 
   &:before {
     display: block;
@@ -220,8 +194,7 @@ div.auth-helper-text-div {
     position: absolute;
     right: 19px;
     top: -25px;
-    width: 42px;
-    height: 42px;
+    @include size (42px, 42px);
     background-repeat: no-repeat;
     background-position: center;
     background-size: 73%;

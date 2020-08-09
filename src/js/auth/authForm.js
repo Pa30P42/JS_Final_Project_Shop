@@ -1,4 +1,3 @@
-import close from '../../images/information/close-icon.svg';
 import userData from '.././userData';
 
 export const authForm = () => {
@@ -25,6 +24,7 @@ export const authForm = () => {
     <input
     type="password"
     name="password"
+    autocomplete="on"
     class="authFormPassword" required placeholder="Пароль"/>
     <div class="helper-text-div"></div>
 
@@ -49,32 +49,10 @@ export const authForm = () => {
     `;
 };
 
-// <img
-// src="${close}"
-// alt="x"
-// width="20"
-// />
-
-function addInfoListenerAuth(key) {
-  // e.preventDefault()
-  // if (e.target.dataset.create !== “addProdact”) {
-  //   return
-  // }
-  const inputForm = document.querySelector('.authForm');
-  // const inputForm = form.querySelector(`[data-form=“${key}“]`);
-  inputForm.addEventListener('input', validateForm);
-
-  // console.log(“inputForm”, inputForm);
-}
-
-export function validateForm(event) {
-  // console.log(event.target.value);
+export function validateForm (event) {
   const authField = event.target;
   const authInputValue = event.target.value;
-  // const authInputLength = event.target.value.length;
-  // console.log(authInputLength);
   const authNameOfInput = authField.getAttribute('name');
-  // console.log(authNameOfInput);
   const passwordRedEx = /(?=.*[a-zA-Zа-яёА-Я])/;
   const regExEmail = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{3,}))$/;
 
@@ -86,14 +64,13 @@ export function validateForm(event) {
         (authField.style.outlineColor = '#FF8A9D'));
   }
   if (authNameOfInput === 'password') {
-    // console.log(authNameOfInput);
     authNameOfInput === 'password' && authInputValue.length > 7 && authInputValue.match(passwordRedEx) ?
       ((authField.nextElementSibling.innerHTML = `<span class="auth-helper-text__valid_password"></span>`),
         (authField.style.outlineColor = '#109b17')) :
       ((authField.nextElementSibling.innerHTML = `<span class="auth-helper-text__invalid_password"><small>Пароль должен содержать не менее 8 символов</small></span>`),
         (authField.style.outlineColor = '#FF8A9D'));
   }
-  const inputForm = document.querySelector('.authForm');
-
+  const inputForm = document.querySelector(".authForm");
   inputForm.addEventListener('input', validateForm);
 }
+

@@ -5,7 +5,7 @@
   position: absolute;
   min-width: 204px;
   min-height: auto;
-  background: $auth-menu__background-color;
+  background: $main__background-color;
   word-wrap: break-word;
   border-radius: 10px;
   top: 50%;
@@ -15,31 +15,22 @@
 
 .authMenu_component {
   position: absolute;
-  // top: 25%;
-  // right: 15%;
-  // transform: translate(-50%, -50%);
   border-radius: 10px;
-  background-color: $auth-menu__background-color;
+  background-color: $main__background-color;
 }
 
 .user-name {
   margin-top: 10px;
   padding: 0 5px 0 20px;
+  @include font (600, 18px, 22px, $main--text-color);
   font-style: normal;
-  font-weight: 600;
-  font-size: 18px;
-  line-height: 22px;
-  color: $main--text-color;
 }
 
 .auth-menu__list_item {
   margin-top: 10px;
   padding: 0 5px 0 20px;
+  @include font (500, 14px, 17px, $main--text-color);
   font-style: normal;
-  font-weight: 500;
-  font-size: 14px;
-  line-height: 17px;
-  color: $main--text-color;
   cursor: pointer;
   &:first-child {
     margin-top: 20px;
@@ -56,30 +47,28 @@
   padding: 10px 5px 0 20px;
   min-height: 46px;
   background-color: $modal-module__background-color_exit;
+  @include font (500,14px, 17px, $main--text-color);
   font-style: normal;
-  font-weight: 500;
-  font-size: 14px;
-  line-height: 17px;
-  color: $main--text-color;
   border-radius: 10px;
   cursor: pointer;
 }
 
 @media (min-width: 768px) and (max-width: 1199px) {
+  .auth-menu {
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+}
+
+@media (min-width: 1200px){
   .body {
     overflow: auto;
   }
   .auth-menu {
     top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+    left: 50%;
+    transform: translate(-50%, -50%);
   }
 }
 
-@media (min-width: 20px) and (max-width: 767px) {
-  .auth-menu {
-    top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  }
-}

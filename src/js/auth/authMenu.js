@@ -41,8 +41,6 @@ const privateMenu = function (e) {
     document.body.style.overflow = 'auto';
   }
   if (dataway.contains('favoritesAccount')) {
-    //need to put 
-
     modalContainer.innerHTML = '';
     document.body.style.overflow = 'auto';
 
@@ -65,7 +63,6 @@ const privateMenu = function (e) {
   }
 };
 
-
 export const authFn = function () {
   document.body.style.overflow = 'hidden';
 
@@ -75,10 +72,8 @@ export const authFn = function () {
     loginAccount = document.querySelector('.auth-menu');
     loginAccount.addEventListener('click', privateMenu);
 
-
     const pseudoRef = document.querySelector('.privateAccount');
     pseudoRef.addEventListener('click', profile.maintabsMarkup);
-
 
     const profileFavBtnInAuth = document.querySelector('.favoritesAccount');
     profileFavBtnInAuth.addEventListener('click', openFavouritesFromAuth);
@@ -97,22 +92,19 @@ export const authFn = function () {
       (result.length === 0) ?
       profileFavErrorMarkup():
         favouritesFormMarkup(result);
-
-
       const controlItem = document.querySelector('button[title="favourites"]');
       controlItem.classList.add('active');
       setFavouritesCount();
     }
-
-
+    
     //======open favourites=====
+
   } else {
     modalModule(authForm, authMenuMarkUpListener);
     authFormListeners = document.querySelector('.authForm');
     authFormListeners.addEventListener('click', e => {
       e.preventDefault();
       validateForm(e);
-
       if (e.target === e.currentTarget[2]) {
         userValue.email = e.currentTarget[0].value;
         userValue.password = e.currentTarget[1].value;
@@ -131,7 +123,6 @@ export const authFn = function () {
         document.body.style.overflow = 'auto';
       }
 
-      // e.target.nodeName === "IMG"
       if (e.target === e.currentTarget[4]) {
         modalContainer.innerHTML = "";
         document.body.style.overflow = 'auto';
@@ -150,7 +141,6 @@ function getName() {
 
 function getUserName(data) {
   userName = data.name;
-  // console.log('userName', data.name);
 }
 
 getName();
