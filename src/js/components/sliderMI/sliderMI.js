@@ -143,13 +143,17 @@ export default class SliderMultiItems {
     this.track.style.width = this.trackWidth + 'px';
     const holderRef = this.wrapper.querySelector('.slider__holder');
     holderRef.style.width = this.itemWidth * this.countItems - itemMarginRight + 20 + 'px';
-    this.isStart = this.items.length <= this.countItems || this.itemIndex < this.countItems ? true : false;
-    if (this.itemIndex > this.items.length - this.countItems) {
-      this.isEnd = true;
+    this.isStart = this.itemIndex < this.countItems ? true : false;
+    this.isEnd =
+      this.itemIndex >= this.items.length - this.countItems && this.items.length > this.countItems ? true : false;
+    if (this.isStart) {
+      this.itemIndex = 0;
+      this.isEnd = false;
+    }
+    if (this.isEnd) {
+      this.itemIndex = this.items.length - this.countItems;
       this.isStart = false;
     }
-    if (this.isStart) this.itemIndex = 0;
-    if (this.isEnd) this.itemIndex = this.items.length - this.countItems;
     this.slideIndex = this.isEnd
       ? Math.ceil(this.items.length / this.countItems) - 1
       : parseInt(this.itemIndex / this.countItems);
