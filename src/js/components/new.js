@@ -45,7 +45,6 @@ const addNewAndLastSeen = () => {
     sliderInstances.forEach(instance => instance.removeListeners());
   }
   sliderInstances = [];
-
   const newProducts = products.filter(item => item.category === 'new');
   const lastSeenProducts = showLastSeen(products);
 
