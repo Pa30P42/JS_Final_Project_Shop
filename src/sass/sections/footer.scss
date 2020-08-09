@@ -3,7 +3,6 @@
   transition: all 250ms linear;
 }
 
-
 .footer-main {
   display: flex;
   flex-direction: column;
@@ -12,12 +11,10 @@
   background: #53535c;
 }
 
-
 .footer-container_title {
   @include font(600, 1.3em, 22px, #ffc390);
   margin-bottom: 4%;
 }
-
 
 .footer-container_num {
   @include font(500, 1.1em, 23px, #c7c7c7);
