@@ -1,9 +1,5 @@
-import {
-  modalModule
-} from '../components/modalModule/modalModule';
-import {
-  authForm
-} from '../auth/authForm';
+import { modalModule } from '../components/modalModule/modalModule';
+import { authForm } from '../auth/authForm';
 import apiAuth from '../api/auth/apiAuth';
 import apiUsers from '../api/users/apiUsers';
 import profile from '../profile/profileMarkups';
@@ -15,9 +11,7 @@ import {
 
 } from '../profile/profileMarkups';
 import userData from '.././userData';
-import {
-  validateForm
-} from './authForm';
+import { validateForm } from './authForm';
 
 
 
